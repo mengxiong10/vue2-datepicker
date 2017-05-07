@@ -1,0 +1,15 @@
+{
+  "name": "vue2-datepicker",
+  "version": "1.0.0",
+  "description": "datepicker for Vue2",
+  "main": "index.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "datepicker"
+  ],
+  "author": "xmx",
+  "license": "MIT"
+}
