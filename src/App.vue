@@ -19,7 +19,7 @@ export default {
   components:{ DatePicker },
   data () {
     return {
-      value1:'',
+      value1:'2015-10-10',
       value2:'',
     }
   }
