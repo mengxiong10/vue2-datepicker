@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import { formatDate } from './utils.js'
-
 export default {
   props: {
     startAt: null,
@@ -42,69 +40,65 @@ export default {
     return {
       days: ['日', '一', '二', '三', '四', '五', '六'],
       dates: [],
-      now: this.value ? new Date(this.value) : new Date(),
+      now: new Date(),
     }
   },
   created() {
-    this.update()
+    this.updateCalendar()
   },
   watch: {
     show(val) {
       if (val) {
-        this.now = this.value ? new Date(this.value) : new Date()
+        this.updateNow()
       }
     },
-    value(val) {
-      this.now = val ? new Date(val) : new Date()
+    value: {
+      handler:'updateNow',
+      immediate: true,
     },
-    now: 'update',
+    now: 'updateCalendar',
   },
   methods: {
-    getCalendar(time, firstday, length, classes) {
-      const today = new Date().setHours(0, 0, 0, 0)
-      return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
-        let day = firstday + i
-        let type = classes
-        const date = new Date(time.getFullYear(), time.getMonth(), day)
-        const isToday = today === date.getTime()
-        if (isToday) {
-          day = '今天'
-          type += ' today'
-        }
-        return {
-          title: formatDate(date, 'yyyy-MM-dd'),
-          date,
-          day,
-          type,
-        }
-      })
+    updateNow() {
+      let now = this.value ? new Date(this.value) : new Date()
+      now.setDate(1)
+      this.now = now
     },
     // 更新面板选择时间
-    update() {
-      const row = 6
-      const col = 7
+    updateCalendar() {
+      function getCalendar(time, firstday, length, classes) {
+        return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
+          let day = firstday + i
+          const date = new Date(time.getFullYear(), time.getMonth(), day)
+          return {
+            title: date.toLocaleDateString(),
+            date,
+            day,
+            classes,
+          }
+        })
+      }
       const time = new Date(this.now)
-
       time.setDate(0) // 把时间切换到上个月最后一天
       const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
       const lastMonthfirst = time.getDate() - (lastMonthLength - 1)
-      const lastMonth = this.getCalendar(time, lastMonthfirst, lastMonthLength, 'lastMonth')
+      const lastMonth = getCalendar(time, lastMonthfirst, lastMonthLength, 'lastMonth')
 
       time.setMonth(time.getMonth() + 2, 0) // 切换到这个月最后一天
       const curMonthLength = time.getDate()
-      const curMonth = this.getCalendar(time, 1, curMonthLength, 'curMonth')
+      const curMonth = getCalendar(time, 1, curMonthLength, 'curMonth')
 
       time.setMonth(time.getMonth() + 1, 1)
-      const nextMonthLength = (row * col) - (lastMonthLength + curMonthLength)
-      const nextMonth = this.getCalendar(time, 1, nextMonthLength, 'nextMonth')
+      const nextMonthLength = 42 - (lastMonthLength + curMonthLength)
+      const nextMonth = getCalendar(time, 1, nextMonthLength, 'nextMonth')
 
       // 分割数组
       let index = 0
       let resIndex = 0
       const arr = lastMonth.concat(curMonth, nextMonth)
-      const result = new Array(row)
-      while (index < row * col) {
-        result[resIndex++] = arr.slice(index, index += col)
+      const result = new Array(6)
+      while (index < 42) {
+        result[resIndex++] = arr.slice(index, index += 7)
       }
       this.dates = result
     },
@@ -112,10 +106,19 @@ export default {
       const classes = []
       const cellTime = cell.date.getTime()
       const curTime = this.value ? new Date(this.value).setHours(0, 0, 0, 0) : 0
-      const startTime = this.startAt ? this.startAt.setHours(0, 0, 0, 0) : 0
-      const endTime = this.endAt ? this.endAt.setHours(0, 0, 0, 0) : 0
-      classes.push(cell.type)
-      if (startTime) {
+      const startTime = this.startAt ? new Date(this.startAt).setHours(0, 0, 0, 0) : 0
+      const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
+      const today = new Date().setHours(0, 0, 0, 0)
+
+      classes.push(cell.classes)
+
+      if (cellTime === today) {
+        classes.push('today')
+      }
+      // range classes
+      if (cellTime === curTime) {
+        classes.push('current')
+      } else if (startTime) {
         if (cellTime < startTime) {
           classes.push('disabled')
         } else if (curTime && cellTime <= curTime) {
@@ -128,20 +131,16 @@ export default {
           classes.push('inrange')
         }
       }
-      if (curTime === cellTime) {
-        classes.push('current')
-      }
+
       return classes.join(' ')
     },
     changeYear(flag) {
       const now = new Date(this.now)
-      now.setDate(1)
       now.setFullYear(now.getFullYear() + flag)
       this.now = now
     },
     changeMonth(flag) {
       const now = new Date(this.now)
-      now.setDate(1)
       now.setMonth(now.getMonth() + flag)
       this.now = now
     },
@@ -150,7 +149,6 @@ export default {
       if (classes.indexOf('disabled') !== -1) {
         return
       }
-      this.now = cell.date
       this.$emit('input', cell.date)
     },
   },
@@ -165,8 +163,8 @@ export default {
   padding: 6px 12px;
 }
 
-.calendar:nth-child(2) {
-  border-left: 1px solid #e4e4e4;
+.calendar * {
+  box-sizing: border-box;
 }
 
 .calendar-header {
