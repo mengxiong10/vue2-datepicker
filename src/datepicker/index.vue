@@ -33,6 +33,7 @@
 
 <script>
 import CalendarPanel from './calendar-panel.vue'
+import Languages from './languages.js'
 
 export default {
   components: { CalendarPanel },
@@ -49,7 +50,11 @@ export default {
       type: [String, Number],
       default: 210,
     },
-    palceholder: String,
+    placeholder: String,
+    lang: {
+      type: String,
+      default: 'zh'
+    },
     value: null,
   },
   data() {
@@ -57,7 +62,7 @@ export default {
       showPopup: false,
       showCloseIcon: false,
       currentValue: this.value,
-      ranges: [],
+      ranges: [],  // 快捷选项 
     }
   },
   watch: {
@@ -78,8 +83,11 @@ export default {
     },
   },
   computed: {
+    translation() {
+      return Languages[this.lang] || Languages['en']
+    },
     innerPlaceholder() {
-      return this.placeholder ? this.placeholder : (this.range ? '请选择日期范围' : '请选择日期')
+      return this.placeholder || (this.range ? this.translation.placeholder.dateRange : this.translation.placeholder.date)
     },
     text() {
       if (!this.range && this.currentValue) {
@@ -159,32 +167,29 @@ export default {
       this.$emit('input', [range.start, range.end])
     },
     initRanges() {
-      const time = new Date()
-      time.setMonth(time.getMonth() + 1, 0) // 切换到本月最后一天
-      this.ranges.push({
+      this.ranges = [{
         text: '今天',
         start: new Date(),
         end: new Date(),
+      }, {
+        text: '未来一周',
+        start: new Date(),
+        end: new Date(Date.now() + 3600 * 1000 * 24 * 7),
+      }, {
+        text: '未来一个月',
+        start: new Date(),
+        end: new Date(Date.now() + 3600 * 1000 * 24 * 30)
       }, {
         text: '最近一周',
         start: new Date(Date.now() - 3600 * 1000 * 24 * 7),
         end: new Date(),
       }, {
-        text: '今后一周',
-        start: new Date(),
-        end: new Date(Date.now() + 3600 * 1000 * 24 * 7),
-      }, {
-        text: '本月',
-        start: new Date(time.getFullYear(), time.getMonth(), 1),
-        end: time,
-      }, {
         text: '最近一个月',
         start: new Date(Date.now() - 3600 * 1000 * 24 * 30),
         end: new Date(),
-      }, {
-        text: '最近三个月',
-        start: new Date(Date.now() - 3600 * 1000 * 24 * 90),
-        end: new Date()
+      }]
+      this.ranges.forEach((v, i) => {
+        v.text = this.translation.pickers[i]
       })
     },
   },
@@ -221,7 +226,7 @@ export default {
 
 .datepicker-popup {
   position: absolute;
-  width: 234px;
+  width: 248px;
   margin-top: 1px;
   border: 1px solid #d9d9d9;
   background-color: #fff;
@@ -230,7 +235,7 @@ export default {
 }
 
 .range {
-  width: 468px;
+  width: 496px;
 }
 
 .input {

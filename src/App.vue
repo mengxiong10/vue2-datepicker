@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div class="demo">
-      <span class="label">默认:</span>
-      <date-picker v-model="value1"></date-picker>
+      <span class="label">default:</span>
+      <date-picker v-model="value1" lang="en"></date-picker>
     </div>
     <div class="demo">
       <span class="label">range:</span>
-      <date-picker v-model="value2" range></date-picker>
+      <date-picker v-model="value2" range lang="zh"></date-picker>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   components:{ DatePicker },
   data () {
     return {
-      value1:'2015-10-10',
+      value1:'2017-5-9',
       value2:'',
     }
   }

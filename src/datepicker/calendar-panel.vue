@@ -3,8 +3,8 @@
     <div class="calendar-header">
       <i class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</i>
       <i class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</i>
-      <span>{{now.getFullYear() + '年'}}</span>
-      <span>{{now.getMonth() + 1 + '月'}}</span>
+      <span>{{months[now.getMonth()]}}</span>
+      <span>{{now.getFullYear()}}</span>
       <i class="calendar__next-icon" @click="changeYear(1)">&raquo;</i>
       <i class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</i>
     </div>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import Languages from './languages.js'
+
 export default {
   props: {
     startAt: null,
@@ -37,8 +39,10 @@ export default {
     show: Boolean,
   },
   data() {
+    const translation = this.$parent.translation
     return {
-      days: ['日', '一', '二', '三', '四', '五', '六'],
+      days: translation.days,
+      months: translation.months,
       dates: [],
       now: new Date(),
     }
@@ -203,8 +207,8 @@ export default {
 
 .calendar-table td,
 .calendar-table th {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   text-align: center;
 }
 

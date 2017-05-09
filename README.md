@@ -1,18 +1,43 @@
 # vue2-datepicker
 
-> A Vue.js project
+> A Datepicker Component For Vue2
 
-## Build Setup
+## Demo
+<>
+![image](https://github.com/mengxiong10/vue2-datepicker/tree/master/screenshot/demo.png)
 
-``` bash
-# install dependencies
-npm install
+## Usage
 
-# serve with hot reload at localhost:8080
-npm run dev
+```html
+<template>
+  <div>
+    <date-picker v-model="time1"></date-picker>
+    <date-picker v-model="time2" range></date-picker>
+  </div>
+</template>
 
-# build for production with minification
-npm run build
+<script>
+import DatePicker from 'datepicker/index.vue'
+
+export default {
+  components: { DatePicker },
+  data() {
+    return {
+      time1: '',
+      time2: '',
+    }
+  }
+}
+</script>
 ```
+## Attributes
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+| Prop            | Type          | Default     | Description                           |
+|-----------------|---------------|-------------|---------------------------------------|
+| range           | Boolean       | false       | if true, the type is daterange        |
+| format          | String        | yyyy-MM-dd  | Date formatting string                |
+| language        | String        | zh          | Translation (en/zh)      |
+| placeholder     | String        |             | input placeholder text                |
+| width           | String/Number | 210         | input size                            |
+
+
