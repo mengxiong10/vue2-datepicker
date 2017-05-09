@@ -4,20 +4,20 @@
 
 ## Demo
 <https://mengxiong10.github.io/vue2-datepicker/>
-![image](https://github.com/mengxiong10/vue2-datepicker/blob/master/screenshot/demo.PNG)
+
+![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
+
+## Install
+
+```bash
+$ npm install vue2-datepicker --save
+```
 
 ## Usage
 
 ```html
-<template>
-  <div>
-    <date-picker v-model="time1"></date-picker>
-    <date-picker v-model="time2" range></date-picker>
-  </div>
-</template>
-
 <script>
-import DatePicker from 'datepicker/index.vue'
+import DatePicker from 'vue2-datepicker'
 
 export default {
   components: { DatePicker },
@@ -29,6 +29,13 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div>
+    <date-picker v-model="time1"></date-picker>
+    <date-picker v-model="time2" range></date-picker>
+  </div>
+</template>
 ```
 ## Attributes
 
