@@ -3,8 +3,8 @@
 > A Datepicker Component For Vue2
 
 ## Demo
-<>
-![image](https://github.com/mengxiong10/vue2-datepicker/tree/master/screenshot/demo.png)
+<https://mengxiong10.github.io/vue2-datepicker/>
+![image](https://github.com/mengxiong10/vue2-datepicker/blob/master/screenshot/demo.PNG)
 
 ## Usage
 
