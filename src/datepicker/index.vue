@@ -195,7 +195,6 @@ export default {
       })
     },
     displayPopup () {
-      console.log()
       const dw = document.documentElement.clientWidth
       const dh = document.documentElement.clientHeight
       const InputRect = this.$el.getBoundingClientRect()
