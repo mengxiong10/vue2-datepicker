@@ -29,48 +29,46 @@
 </template>
 
 <script>
-import Languages from './languages.js'
-
 export default {
   props: {
     startAt: null,
     endAt: null,
     value: null,
-    show: Boolean,
+    show: Boolean
   },
-  data() {
+  data () {
     const translation = this.$parent.translation
     return {
       days: translation.days,
       months: translation.months,
       dates: [],
-      now: new Date(),
+      now: new Date()
     }
   },
-  created() {
+  created () {
     this.updateCalendar()
   },
   watch: {
-    show(val) {
+    show (val) {
       if (val) {
         this.updateNow()
       }
     },
     value: {
-      handler:'updateNow',
-      immediate: true,
+      handler: 'updateNow',
+      immediate: true
     },
-    now: 'updateCalendar',
+    now: 'updateCalendar'
   },
   methods: {
-    updateNow() {
+    updateNow () {
       let now = this.value ? new Date(this.value) : new Date()
       now.setDate(1)
       this.now = now
     },
     // 更新面板选择时间
-    updateCalendar() {
-      function getCalendar(time, firstday, length, classes) {
+    updateCalendar () {
+      function getCalendar (time, firstday, length, classes) {
         return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
           let day = firstday + i
           const date = new Date(time.getFullYear(), time.getMonth(), day)
@@ -78,7 +76,7 @@ export default {
             title: date.toLocaleDateString(),
             date,
             day,
-            classes,
+            classes
           }
         })
       }
@@ -106,7 +104,7 @@ export default {
       }
       this.dates = result
     },
-    getClasses(cell) {
+    getClasses (cell) {
       const classes = []
       const cellTime = cell.date.getTime()
       const curTime = this.value ? new Date(this.value).setHours(0, 0, 0, 0) : 0
@@ -138,24 +136,24 @@ export default {
 
       return classes.join(' ')
     },
-    changeYear(flag) {
+    changeYear (flag) {
       const now = new Date(this.now)
       now.setFullYear(now.getFullYear() + flag)
       this.now = now
     },
-    changeMonth(flag) {
+    changeMonth (flag) {
       const now = new Date(this.now)
       now.setMonth(now.getMonth() + flag)
       this.now = now
     },
-    selectDate(cell) {
+    selectDate (cell) {
       const classes = this.getClasses(cell)
       if (classes.indexOf('disabled') !== -1) {
         return
       }
       this.$emit('input', cell.date)
-    },
-  },
+    }
+  }
 }
 
 </script>
@@ -242,4 +240,3 @@ export default {
 }
 
 </style>
-

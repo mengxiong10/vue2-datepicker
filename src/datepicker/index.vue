@@ -1,7 +1,7 @@
 <template>
   <div class="datepicker"
        :style="{'width': width + 'px','min-width':range ? '210px' : '140px'}"
-       v-clickoutside="closePopup">   
+       v-clickoutside="closePopup">
     <input readonly
           class="input"
           :value="text"
@@ -16,6 +16,8 @@
       @click="clickIcon" ></i>
     <div class="datepicker-popup"
          :class="{'range':range}"
+         :style="position"
+         ref="calendar"
          v-show="showPopup">
       <template v-if="!range">
         <calendar-panel v-model="currentValue" :show="showPopup"></calendar-panel>
@@ -40,56 +42,63 @@ export default {
   props: {
     format: {
       type: String,
-      default: 'yyyy-MM-dd',
+      default: 'yyyy-MM-dd'
     },
     range: {
       type: Boolean,
-      default: false,
+      default: false
     },
     width: {
       type: [String, Number],
-      default: 210,
+      default: 210
     },
     placeholder: String,
     lang: {
       type: String,
       default: 'zh'
     },
-    value: null,
+    value: null
   },
-  data() {
+  data () {
     return {
       showPopup: false,
       showCloseIcon: false,
       currentValue: this.value,
-      ranges: [],  // 快捷选项 
+      position: null,
+      ranges: []  // 快捷选项
     }
   },
   watch: {
     value: {
-      handler(val) {
+      handler (val) {
         if (!this.range) {
           this.currentValue = this.isValidDate(val) ? val : undefined
         } else {
           this.currentValue = this.isValidRange(val) ? val : [undefined, undefined]
         }
       },
-      immediate: true,
+      immediate: true
     },
-    currentValue(val) {
+    currentValue (val) {
       if ((!this.range && val) || (this.range && val[0] && val[1])) {
         this.$emit('input', val)
       }
     },
+    showPopup (val) {
+      if (val) {
+        this.$nextTick(this.displayPopup)
+        // this.displayPopup()
+      }
+    }
   },
   computed: {
-    translation() {
+    translation () {
       return Languages[this.lang] || Languages['en']
     },
-    innerPlaceholder() {
+    innerPlaceholder () {
       return this.placeholder || (this.range ? this.translation.placeholder.dateRange : this.translation.placeholder.date)
     },
-    text() {
+    text () {
       if (!this.range && this.currentValue) {
         return this.stringify(this.currentValue)
       }
@@ -97,16 +106,13 @@ export default {
         return this.stringify(this.currentValue[0]) + ' ~ ' + this.stringify(this.currentValue[1])
       }
       return ''
-    },
-  },
-  created() {
-    this.initRanges()
+    }
   },
   methods: {
-    closePopup() {
+    closePopup () {
       this.showPopup = false
     },
-    togglePopup() {
+    togglePopup () {
       if (this.showPopup) {
         this.$refs.input.blur()
         this.showPopup = false
@@ -115,7 +121,7 @@ export default {
         this.showPopup = true
       }
     },
-    hoverIcon(e) {
+    hoverIcon (e) {
       if (e.type === 'mouseenter' && this.text) {
         this.showCloseIcon = true
       }
@@ -123,14 +129,14 @@ export default {
         this.showCloseIcon = false
       }
     },
-    clickIcon() {
+    clickIcon () {
       if (this.showCloseIcon) {
         this.$emit('input', '')
       } else {
         this.togglePopup()
       }
     },
-    formatDate(date, fmt) {
+    formatDate (date, fmt) {
       const map = {
         'M+': date.getMonth() + 1, // 月份
         '[Dd]+': date.getDate(), // 日
@@ -138,7 +144,7 @@ export default {
         'm+': date.getMinutes(), // 分
         's+': date.getSeconds(), // 秒
         'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
-        'S': date.getMilliseconds(), // 毫秒
+        'S': date.getMilliseconds() // 毫秒
       }
       let str = fmt.replace(/[Yy]+/g, function (str) {
         return ('' + date.getFullYear()).slice(4 - str.length)
@@ -151,51 +157,72 @@ export default {
       })
       return str
     },
-    stringify(date) {
+    stringify (date) {
       return this.formatDate(new Date(date), this.format)
     },
-    isValidDate(date) {
+    isValidDate (date) {
       return !!new Date(date).getTime()
     },
-    isValidRange(date) {
+    isValidRange (date) {
       return Array.isArray(date) &&
         date.length === 2 &&
         this.isValidDate(date[0]) &&
         this.isValidDate(date[1])
     },
-    selectRange(range) {
+    selectRange (range) {
       this.$emit('input', [range.start, range.end])
     },
-    initRanges() {
+    initRanges () {
       this.ranges = [{
-        text: '今天',
+        text: '未来7天',
         start: new Date(),
-        end: new Date(),
+        end: new Date(Date.now() + 3600 * 1000 * 24 * 7)
       }, {
-        text: '未来一周',
-        start: new Date(),
-        end: new Date(Date.now() + 3600 * 1000 * 24 * 7),
-      }, {
-        text: '未来一个月',
+        text: '未来30天',
         start: new Date(),
         end: new Date(Date.now() + 3600 * 1000 * 24 * 30)
       }, {
-        text: '最近一周',
+        text: '最近7天',
         start: new Date(Date.now() - 3600 * 1000 * 24 * 7),
-        end: new Date(),
+        end: new Date()
       }, {
-        text: '最近一个月',
+        text: '最近30天',
         start: new Date(Date.now() - 3600 * 1000 * 24 * 30),
-        end: new Date(),
+        end: new Date()
       }]
       this.ranges.forEach((v, i) => {
         v.text = this.translation.pickers[i]
       })
     },
+    displayPopup () {
+      console.log()
+      const dw = document.documentElement.clientWidth
+      const dh = document.documentElement.clientHeight
+      const InputRect = this.$el.getBoundingClientRect()
+      const PopupRect = this.$refs.calendar.getBoundingClientRect()
+      this.position = {}
+      if (dw - InputRect.left < PopupRect.width && InputRect.right < PopupRect.width) {
+        this.position.left = 1 - InputRect.left + 'px'
+      } else if (InputRect.left + InputRect.width / 2 <= dw / 2) {
+        this.position.left = 0
+      } else {
+        this.position.right = 0
+      }
+      if (InputRect.top <= PopupRect.height + 1 && dh - InputRect.bottom <= PopupRect.height + 1) {
+        this.position.top = dh - InputRect.top - PopupRect.height - 1 + 'px'
+      } else if (InputRect.top + InputRect.height / 2 <= dh / 2) {
+        this.position.top = '100%'
+      } else {
+        this.position.bottom = '100%'
+      }
+    }
+  },
+  created () {
+    this.initRanges()
   },
   directives: {
     clickoutside: {
-      bind(el, binding, vnode) {
+      bind (el, binding, vnode) {
         el['@clickoutside'] = (e) => {
           if (!el.contains(e.target) && binding.expression && vnode.context[binding.expression]) {
             binding.value()
@@ -203,9 +230,9 @@ export default {
         }
         document.addEventListener('click', el['@clickoutside'], true)
       },
-      unbind(el) {
+      unbind (el) {
         document.removeEventListener('click', el['@clickoutside'], true)
-      },
+      }
     }
   }
 }
@@ -228,6 +255,7 @@ export default {
   position: absolute;
   width: 248px;
   margin-top: 1px;
+  margin-bottom: 1px;
   border: 1px solid #d9d9d9;
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);

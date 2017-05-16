@@ -16,11 +16,11 @@ import DatePicker from './datepicker/index.vue'
 
 export default {
   name: 'app',
-  components:{ DatePicker },
+  components: { DatePicker },
   data () {
     return {
-      value1:'2017-5-9',
-      value2:'',
+      value1: '2017-5-9',
+      value2: ''
     }
   }
 }
@@ -29,7 +29,7 @@ export default {
 <style>
 .demo {
   float:left;
-  margin:60px;
+  margin:250px;
 }
 .label{
   margin-right: 1em;
