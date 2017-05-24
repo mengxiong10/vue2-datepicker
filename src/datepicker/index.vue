@@ -250,9 +250,10 @@ export default {
   box-sizing: border-box;
 }
 
+
 .datepicker-popup {
   position: absolute;
-  width: 248px;
+  width: 250px;
   margin-top: 1px;
   margin-bottom: 1px;
   border: 1px solid #d9d9d9;

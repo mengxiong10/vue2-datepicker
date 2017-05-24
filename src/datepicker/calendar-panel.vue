@@ -1,15 +1,15 @@
 <template>
   <div class="calendar">
     <div class="calendar-header">
-      <i class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</i>
-      <i class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</i>
-      <span>{{months[now.getMonth()]}}</span>
-      <span>{{now.getFullYear()}}</span>
-      <i class="calendar__next-icon" @click="changeYear(1)">&raquo;</i>
-      <i class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</i>
+      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
+      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</a>
+      <a @click="showMonths">{{months[currentMonth]}}</a>
+      <a @click="showYears">{{currentYear}}</a>
     </div>
     <div class="calendar-content">
-      <table class="calendar-table">
+      <table class="calendar-table" v-show="currentPanel === 'date'">
         <thead>
           <tr>
             <th v-for="day in days">{{day}}</th>
@@ -24,6 +24,12 @@
           </tr>
         </tbody>
       </table>
+      <div class="calendar-year" v-show="currentPanel === 'years'">
+        <a v-for="year in years" @click="selectYear(year)" :class="{'current': currentYear === year}">{{year}}</a>
+      </div>
+      <div class="calendar-month" v-show="currentPanel === 'months'">
+        <a v-for="(month, index) in months" @click="selectMonth(index)" :class="{'current': currentMonth === index}">{{month}}</a>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +48,17 @@ export default {
       days: translation.days,
       months: translation.months,
       dates: [],
-      now: new Date()
+      now: new Date(), // calendar-header 显示的时间, 用于切换日历
+      years: [], // 年代面板
+      currentPanel: 'date'
+    }
+  },
+  computed: {
+    currentYear () {
+      return this.now.getFullYear()
+    },
+    currentMonth () {
+      return this.now.getMonth()
     }
   },
   created () {
@@ -51,6 +67,7 @@ export default {
   watch: {
     show (val) {
       if (val) {
+        this.currentPanel = 'date'
         this.updateNow()
       }
     },
@@ -133,13 +150,38 @@ export default {
           classes.push('inrange')
         }
       }
-
       return classes.join(' ')
     },
+    showMonths () {
+      if (this.currentPanel === 'months') {
+        this.currentPanel = 'date'
+      } else {
+        this.currentPanel = 'months'
+      }
+    },
+    showYears () {
+      // 当前年代
+      if (this.currentPanel === 'years') {
+        this.currentPanel = 'date'
+      } else {
+        let firstYear = Math.floor(this.now.getFullYear() / 10) * 10
+        let years = []
+        for (let i = 0; i < 10; i++) {
+          years.push(firstYear + i)
+        }
+        this.years = years
+        this.currentPanel = 'years'
+      }
+    },
+    // 前进或后退一年
     changeYear (flag) {
-      const now = new Date(this.now)
-      now.setFullYear(now.getFullYear() + flag)
-      this.now = now
+      if (this.currentPanel === 'years') {
+        this.years = this.years.map(v => v + flag * 10)
+      } else {
+        const now = new Date(this.now)
+        now.setFullYear(now.getFullYear() + flag)
+        this.now = now
+      }
     },
     changeMonth (flag) {
       const now = new Date(this.now)
@@ -152,6 +194,18 @@ export default {
         return
       }
       this.$emit('input', cell.date)
+    },
+    selectYear (year) {
+      const now = new Date(this.now)
+      now.setFullYear(year)
+      this.now = now
+      this.currentPanel = 'months'
+    },
+    selectMonth (month) {
+      const now = new Date(this.now)
+      now.setMonth(month)
+      this.now = now
+      this.currentPanel = 'date'
     }
   }
 }
@@ -169,6 +223,12 @@ export default {
   box-sizing: border-box;
 }
 
+.calendar a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .calendar-header {
   line-height: 34px;
   text-align: center;
@@ -176,14 +236,10 @@ export default {
 
 .calendar__next-icon,
 .calendar__prev-icon {
-  font-style: normal;
   font-size: 20px;
   padding: 0 6px;
-  cursor: pointer;
 }
-
-.calendar__next-icon:hover,
-.calendar__prev-icon:hover {
+.calendar-header > a:hover {
   color: #1284e7;
 }
 
@@ -215,11 +271,15 @@ export default {
 }
 
 .calendar-table td.inrange,
-.calendar-table td:hover {
+.calendar-table td:hover,
+.calendar-year > a:hover,
+.calendar-month > a:hover {
   background-color: #eaf8fe;
 }
 
-.calendar-table td.current {
+.calendar-table td.current,
+.calendar-year > a.current,
+.calendar-month > a.current {
   color: #fff;
   background-color: #1284e7;
 }
@@ -238,5 +298,25 @@ export default {
 .today {
   color: #20a0ff;
 }
+
+.calendar-year,.calendar-month {
+  width: 100%;
+  height: 224px;
+  padding: 7px 0;
+  text-align: center;
+}
+.calendar-year > a {
+  display: inline-block;
+  width: 40%;
+  margin: 1px 5%;
+  line-height: 40px;
+}
+.calendar-month > a {
+  display: inline-block;
+  width: 30%;
+  line-height: 40px;
+  margin: 8px 1.5%;
+}
+
 
 </style>
