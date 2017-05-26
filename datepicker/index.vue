@@ -20,7 +20,7 @@
          ref="calendar"
          v-show="showPopup">
       <template v-if="!range">
-        <calendar-panel v-model="currentValue" :show="showPopup"></calendar-panel>
+        <calendar-panel @select="showPopup = false" v-model="currentValue" :show="showPopup"></calendar-panel>
       </template>
       <template v-else>
         <div class="datepicker-top">
@@ -109,6 +109,9 @@ export default {
     }
   },
   methods: {
+    selectDate (date) {
+
+    },
     closePopup () {
       this.showPopup = false
     },
