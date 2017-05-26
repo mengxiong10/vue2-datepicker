@@ -194,6 +194,7 @@ export default {
         return
       }
       this.$emit('input', cell.date)
+      this.$emit('select')
     },
     selectYear (year) {
       const now = new Date(this.now)
