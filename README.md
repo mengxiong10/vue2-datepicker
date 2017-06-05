@@ -43,7 +43,7 @@ export default {
 |-----------------|---------------|-------------|---------------------------------------|
 | range           | Boolean       | false       | if true, the type is daterange        |
 | format          | String        | yyyy-MM-dd  | Date formatting string                |
-| lang            | String        | zh          | Translation (en/zh)      |
+| lang            | String        | zh          | Translation (en/zh/es)      |
 | placeholder     | String        |             | input placeholder text                |
 | width           | String/Number | 210         | input size                            |
 
