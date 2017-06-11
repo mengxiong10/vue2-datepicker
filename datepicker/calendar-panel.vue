@@ -40,7 +40,8 @@ export default {
     startAt: null,
     endAt: null,
     value: null,
-    show: Boolean
+    show: Boolean,
+    disabledDays: Array
   },
   data () {
     const translation = this.$parent.translation
@@ -91,12 +92,14 @@ export default {
           const date = new Date(time.getFullYear(), time.getMonth(), day)
           return {
             title: date.toLocaleDateString(),
+            iso: cal.isoDate(date),
             date,
             day,
             classes
           }
         })
       }
+      var cal = this;
       const time = new Date(this.now)
       time.setDate(0) // 把时间切换到上个月最后一天
       const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
@@ -121,6 +124,15 @@ export default {
       }
       this.dates = result
     },
+    isoDate(date) {
+      function doubleDigits(num) {
+        if ( parseInt(num) < 10 ) {
+          return '0'+num;
+        }
+        return num;
+      }
+      return date.getFullYear()+'-'+doubleDigits((date.getMonth()+1))+'-'+doubleDigits(date.getDate());
+    },
     getClasses (cell) {
       const classes = []
       const cellTime = cell.date.getTime()
@@ -130,6 +142,10 @@ export default {
       const today = new Date().setHours(0, 0, 0, 0)
 
       classes.push(cell.classes)
+
+      if ( typeof this.disabledDays.find(function(disabledDate) { return disabledDate === cell.iso } ) !== 'undefined' ) {
+        classes.push('disabled');
+      }
 
       if (cellTime === today) {
         classes.push('today')
