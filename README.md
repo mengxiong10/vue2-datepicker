@@ -47,5 +47,6 @@ export default {
 | placeholder     | String        |             | input placeholder text                |
 | width           | String/Number | 210         | input size                            |
 | disabledDays    | Array         | []          | Days in YYYY-MM-DD format to disable  |
+| showYearNav     | Boolean       | true        | Show the year nav in the calendar     |
 
 

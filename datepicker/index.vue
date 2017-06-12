@@ -20,14 +20,14 @@
          ref="calendar"
          v-show="showPopup">
       <template v-if="!range">
-        <calendar-panel @select="showPopup = false" v-model="currentValue" :show="showPopup" :disabledDays="disabledDays"></calendar-panel>
+        <calendar-panel @select="showPopup = false" v-model="currentValue" :show="showPopup" :disabledDays="disabledDays" :showYearNav="showYearNav"></calendar-panel>
       </template>
       <template v-else>
         <div class="datepicker-top">
           <span v-for="range in ranges" @click="selectRange(range)">{{range.text}}</span>
         </div>
-        <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"  v-model="currentValue[0]" :end-at="currentValue[1]" :show="showPopup" :disabledDays="disabledDays"></calendar-panel>
-        <calendar-panel style="width:50%;"  v-model="currentValue[1]" :start-at="currentValue[0]" :show="showPopup" :disabledDays="disabledDays"></calendar-panel>
+        <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"  v-model="currentValue[0]" :end-at="currentValue[1]" :show="showPopup" :disabledDays="disabledDays" :showYearNav="showYearNav"></calendar-panel>
+        <calendar-panel style="width:50%;"  v-model="currentValue[1]" :start-at="currentValue[0]" :show="showPopup" :disabledDays="disabledDays" :showYearNav="showYearNav"></calendar-panel>
       </template>
     </div>
   </div>
@@ -58,7 +58,14 @@ export default {
       default: 'zh'
     },
     value: null,
-    disabledDays: Array
+    disabledDays: {
+      type: Array,
+      default: []
+    },
+    showYearNav: {
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     return {

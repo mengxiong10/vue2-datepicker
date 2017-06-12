@@ -1,9 +1,9 @@
 <template>
   <div class="calendar">
     <div class="calendar-header">
-      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+      <a v-show="showYearNav" class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
-      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+      <a v-show="showYearNav" class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</a>
       <a @click="showMonths">{{months[currentMonth]}}</a>
       <a @click="showYears">{{currentYear}}</a>
@@ -41,7 +41,14 @@ export default {
     endAt: null,
     value: null,
     show: Boolean,
-    disabledDays: Array
+    disabledDays: {
+      type: Array,
+      default: []
+    },
+    showYearNav: {
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     const translation = this.$parent.translation
