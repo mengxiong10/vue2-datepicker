@@ -60,7 +60,7 @@ export default {
     value: null,
     disabledDays: {
       type: Array,
-      default: []
+      default: function () { return [] }
     },
     showYearNav: {
       type: Boolean,

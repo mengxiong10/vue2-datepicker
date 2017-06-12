@@ -43,7 +43,7 @@ export default {
     show: Boolean,
     disabledDays: {
       type: Array,
-      default: []
+      default: function () { return [] }
     },
     showYearNav: {
       type: Boolean,
