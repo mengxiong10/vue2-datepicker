@@ -39,14 +39,16 @@ export default {
 ```
 ## Attributes
 
-| Prop            | Type          | Default     | Description                           |
-|-----------------|---------------|-------------|---------------------------------------|
-| range           | Boolean       | false       | if true, the type is daterange        |
-| format          | String        | yyyy-MM-dd  | Date formatting string                |
-| lang            | String        | zh          | Translation (en/zh/es)                |
-| placeholder     | String        |             | input placeholder text                |
-| width           | String/Number | 210         | input size                            |
-| disabledDays    | Array         | []          | Days in YYYY-MM-DD format to disable  |
-| showYearNav     | Boolean       | true        | Show the year nav in the calendar     |
+| Prop            | Type          | Default     | Description                                       |
+|-----------------|---------------|-------------|---------------------------------------------------|
+| range           | Boolean       | false       | if true, the type is daterange                    |
+| format          | String        | yyyy-MM-dd  | Date formatting string                            |
+| lang            | String        | zh          | Translation (en/zh/es)                            |
+| placeholder     | String        |             | input placeholder text                            |
+| width           | String/Number | 210         | input size                                        |
+| disabledDays    | Array         | []          | Days in YYYY-MM-DD format to disable              |
+| showYearNav     | Boolean       | true        | Show the year nav in the calendar                 |
+| notBefore       | String        | ''          | Disable all dates before date in YYY-MM-DD format |
+| notAfter        | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
 
 

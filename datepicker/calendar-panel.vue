@@ -48,6 +48,14 @@ export default {
     showYearNav: {
       type: Boolean,
       default: true
+    },
+    notBefore: {
+      type: String,
+      default: ''
+    },
+    notAfter: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -151,6 +159,11 @@ export default {
       classes.push(cell.classes)
 
       if ( typeof this.disabledDays.find(function(disabledDate) { return disabledDate === cell.iso } ) !== 'undefined' ) {
+        classes.push('disabled');
+      } else if (
+        (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
+        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter)).getTime())
+      ) {
         classes.push('disabled');
       }
 
