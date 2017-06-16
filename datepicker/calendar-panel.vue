@@ -104,7 +104,7 @@ export default {
       function getCalendar (time, firstday, length, classes) {
         return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
           let day = firstday + i
-          const date = new Date(time.getFullYear(), time.getMonth(), day)
+          const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
           return {
             title: date.toLocaleDateString(),
             iso: cal.isoDate(date),
@@ -162,7 +162,7 @@ export default {
         classes.push('disabled');
       } else if (
         (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
-        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter)).getTime())
+        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter+' 00:00:00')).getTime())
       ) {
         classes.push('disabled');
       }
