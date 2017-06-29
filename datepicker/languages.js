@@ -25,5 +25,14 @@ export default {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
     }
+  },
+  'fr': {
+    'days': ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    'months': ['Janv', 'Fevr', 'Mars', 'Avr', 'Mai', 'Juin', 'Juill', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec'],
+    'pickers': ['7 prochains jours', '30 prochains jours', '7 jours précédents', '30 jours précédents'],
+    'placeholder': {
+      'date': 'Sélectionnez une date',
+      'dateRange': 'Sélectionnez une période'
+    }
   }
 }
