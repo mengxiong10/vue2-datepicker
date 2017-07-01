@@ -39,12 +39,12 @@ export default {
 ```
 ## Attributes
 
-| Prop            | Type          | Default     | Description                           |
-|-----------------|---------------|-------------|---------------------------------------|
-| range           | Boolean       | false       | if true, the type is daterange        |
-| format          | String        | yyyy-MM-dd  | Date formatting string                |
-| lang            | String        | zh          | Translation (en/zh/es)      |
-| placeholder     | String        |             | input placeholder text                |
-| width           | String/Number | 210         | input size                            |
+| Prop        | Type          | Default    | Description                    |
+|-------------|---------------|------------|--------------------------------|
+| range       | Boolean       | false      | if true, the type is daterange |
+| format      | String        | yyyy-MM-dd | Date formatting string         |
+| lang        | String        | zh         | Translation (en/zh/es/fr)      |
+| placeholder | String        |            | input placeholder text         |
+| width       | String/Number | 210        | input size                     |
 
 
