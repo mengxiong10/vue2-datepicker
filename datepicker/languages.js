@@ -25,5 +25,14 @@ export default {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
     }
+  },
+  'cs': {
+    'days': ['Ned', 'Pon', 'Úte', 'Stř', 'Čtv', 'Pát', 'Sob'],
+    'months': ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', 'Čerc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
+    'pickers': ['příštích 7 dní', 'příštích 30 dní', 'předchozích 7 dní', 'předchozích 30 dní'],
+    'placeholder': {
+      'date': 'Vyberte datum',
+      'dateRange': 'Vyberte časové rozmezí'
+    }
   }
 }
