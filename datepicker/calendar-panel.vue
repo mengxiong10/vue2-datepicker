@@ -4,7 +4,7 @@
       <a v-show="showYearNav" class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
       <a v-show="showYearNav" class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
-      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
       <a @click="showMonths">{{months[currentMonth]}}</a>
       <a @click="showYears">{{currentYear}}</a>
     </div>
@@ -17,10 +17,7 @@
         </thead>
         <tbody>
           <tr v-for="row in dates">
-            <td v-for="cell in row"
-                :title="cell.title"
-                :class="getClasses(cell)"
-                @click="selectDate(cell)">{{cell.day}}</td>
+            <td v-for="cell in row" :title="cell.title" :class="getClasses(cell)" @click="selectDate(cell)">{{cell.day}}</td>
           </tr>
         </tbody>
       </table>
@@ -107,14 +104,12 @@ export default {
           const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
           return {
             title: date.toLocaleDateString(),
-            iso: cal.isoDate(date),
             date,
             day,
             classes
           }
         })
       }
-      var cal = this;
       const time = new Date(this.now)
       time.setDate(0) // 把时间切换到上个月最后一天
       const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
@@ -139,15 +134,6 @@ export default {
       }
       this.dates = result
     },
-    isoDate(date) {
-      function doubleDigits(num) {
-        if ( parseInt(num) < 10 ) {
-          return '0'+num;
-        }
-        return num;
-      }
-      return date.getFullYear()+'-'+doubleDigits((date.getMonth()+1))+'-'+doubleDigits(date.getDate());
-    },
     getClasses (cell) {
       const classes = []
       const cellTime = cell.date.getTime()
@@ -158,13 +144,10 @@ export default {
 
       classes.push(cell.classes)
 
-      if ( typeof this.disabledDays.find(function(disabledDate) { return disabledDate === cell.iso } ) !== 'undefined' ) {
-        classes.push('disabled');
-      } else if (
+      if (this.disabledDays.some(v => +new Date(v) === +cell.date) ||
         (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
-        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter+' 00:00:00')).getTime())
-      ) {
-        classes.push('disabled');
+        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter)).getTime())) {
+        classes.push('disabled')
       }
 
       if (cellTime === today) {
@@ -250,7 +233,6 @@ export default {
 </script>
 
 <style scoped>
-
 .calendar {
   float: left;
   padding: 6px 12px;
@@ -276,7 +258,8 @@ export default {
   font-size: 20px;
   padding: 0 6px;
 }
-.calendar-header > a:hover {
+
+.calendar-header>a:hover {
   color: #1284e7;
 }
 
@@ -309,14 +292,14 @@ export default {
 
 .calendar-table td.inrange,
 .calendar-table td:hover,
-.calendar-year > a:hover,
-.calendar-month > a:hover {
+.calendar-year>a:hover,
+.calendar-month>a:hover {
   background-color: #eaf8fe;
 }
 
 .calendar-table td.current,
-.calendar-year > a.current,
-.calendar-month > a.current {
+.calendar-year>a.current,
+.calendar-month>a.current {
   color: #fff;
   background-color: #1284e7;
 }
@@ -336,24 +319,25 @@ export default {
   color: #20a0ff;
 }
 
-.calendar-year,.calendar-month {
+.calendar-year,
+.calendar-month {
   width: 100%;
   height: 224px;
   padding: 7px 0;
   text-align: center;
 }
-.calendar-year > a {
+
+.calendar-year>a {
   display: inline-block;
   width: 40%;
   margin: 1px 5%;
   line-height: 40px;
 }
-.calendar-month > a {
+
+.calendar-month>a {
   display: inline-block;
   width: 30%;
   line-height: 40px;
   margin: 8px 1.5%;
 }
-
-
 </style>
