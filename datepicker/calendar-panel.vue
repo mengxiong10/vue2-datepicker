@@ -142,17 +142,18 @@ export default {
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       const today = new Date().setHours(0, 0, 0, 0)
 
-      classes.push(cell.classes)
-
       if (this.disabledDays.some(v => +new Date(v) === +cell.date) ||
         (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
         (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter)).getTime())) {
-        classes.push('disabled')
+        return 'disabled'
       }
+
+      classes.push(cell.classes)
 
       if (cellTime === today) {
         classes.push('today')
       }
+
       // range classes
       if (cellTime === curTime) {
         classes.push('current')

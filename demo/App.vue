@@ -20,6 +20,8 @@ export default {
   data () {
     return {
       value1: '2017-5-9',
+      disabledDays: ['2017-8-13'],
+      notAfter: '2017-9-16',
       value2: ''
     }
   }
