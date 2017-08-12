@@ -16,5 +16,14 @@ export default {
       'date': 'Select Date',
       'dateRange': 'Select Date Range'
     }
+  },
+  'es': {
+    'days': ['Dom', 'Lun', 'mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    'months': ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    'pickers': ['próximos 7 días', 'próximos 30 días', '7 dás anteriores', '30 das anteriores'],
+    'placeholder': {
+      'date': 'Seleccionar fecha',
+      'dateRange': 'Seleccionar un rango de fechas'
+    }
   }
 }

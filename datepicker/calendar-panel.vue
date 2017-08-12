@@ -1,10 +1,10 @@
 <template>
   <div class="calendar">
     <div class="calendar-header">
-      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+      <a v-show="showYearNav" class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
-      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
-      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</a>
+      <a v-show="showYearNav" class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
       <a @click="showMonths">{{months[currentMonth]}}</a>
       <a @click="showYears">{{currentYear}}</a>
     </div>
@@ -17,10 +17,7 @@
         </thead>
         <tbody>
           <tr v-for="row in dates">
-            <td v-for="cell in row"
-                :title="cell.title"
-                :class="getClasses(cell)"
-                @click="selectDate(cell)">{{cell.day}}</td>
+            <td v-for="cell in row" :title="cell.title" :class="getClasses(cell)" @click="selectDate(cell)">{{cell.day}}</td>
           </tr>
         </tbody>
       </table>
@@ -40,7 +37,23 @@ export default {
     startAt: null,
     endAt: null,
     value: null,
-    show: Boolean
+    show: Boolean,
+    disabledDays: {
+      type: Array,
+      default: function () { return [] }
+    },
+    showYearNav: {
+      type: Boolean,
+      default: true
+    },
+    notBefore: {
+      type: String,
+      default: ''
+    },
+    notAfter: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     const translation = this.$parent.translation
@@ -88,7 +101,7 @@ export default {
       function getCalendar (time, firstday, length, classes) {
         return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
           let day = firstday + i
-          const date = new Date(time.getFullYear(), time.getMonth(), day)
+          const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
           return {
             title: date.toLocaleDateString(),
             date,
@@ -130,6 +143,12 @@ export default {
       const today = new Date().setHours(0, 0, 0, 0)
 
       classes.push(cell.classes)
+
+      if (this.disabledDays.some(v => +new Date(v) === +cell.date) ||
+        (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
+        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter)).getTime())) {
+        classes.push('disabled')
+      }
 
       if (cellTime === today) {
         classes.push('today')
@@ -214,7 +233,6 @@ export default {
 </script>
 
 <style scoped>
-
 .calendar {
   float: left;
   padding: 6px 12px;
@@ -240,7 +258,8 @@ export default {
   font-size: 20px;
   padding: 0 6px;
 }
-.calendar-header > a:hover {
+
+.calendar-header>a:hover {
   color: #1284e7;
 }
 
@@ -273,14 +292,14 @@ export default {
 
 .calendar-table td.inrange,
 .calendar-table td:hover,
-.calendar-year > a:hover,
-.calendar-month > a:hover {
+.calendar-year>a:hover,
+.calendar-month>a:hover {
   background-color: #eaf8fe;
 }
 
 .calendar-table td.current,
-.calendar-year > a.current,
-.calendar-month > a.current {
+.calendar-year>a.current,
+.calendar-month>a.current {
   color: #fff;
   background-color: #1284e7;
 }
@@ -300,24 +319,25 @@ export default {
   color: #20a0ff;
 }
 
-.calendar-year,.calendar-month {
+.calendar-year,
+.calendar-month {
   width: 100%;
   height: 224px;
   padding: 7px 0;
   text-align: center;
 }
-.calendar-year > a {
+
+.calendar-year>a {
   display: inline-block;
   width: 40%;
   margin: 1px 5%;
   line-height: 40px;
 }
-.calendar-month > a {
+
+.calendar-month>a {
   display: inline-block;
   width: 30%;
   line-height: 40px;
   margin: 8px 1.5%;
 }
-
-
 </style>
