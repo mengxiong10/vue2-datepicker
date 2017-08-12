@@ -1,9 +1,9 @@
 <template>
   <div class="calendar">
     <div class="calendar-header">
-      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+      <a v-show="showYearNav" class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
-      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+      <a v-show="showYearNav" class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</a>
       <a @click="showMonths">{{months[currentMonth]}}</a>
       <a @click="showYears">{{currentYear}}</a>
@@ -40,7 +40,23 @@ export default {
     startAt: null,
     endAt: null,
     value: null,
-    show: Boolean
+    show: Boolean,
+    disabledDays: {
+      type: Array,
+      default: function () { return [] }
+    },
+    showYearNav: {
+      type: Boolean,
+      default: true
+    },
+    notBefore: {
+      type: String,
+      default: ''
+    },
+    notAfter: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     const translation = this.$parent.translation
@@ -88,15 +104,17 @@ export default {
       function getCalendar (time, firstday, length, classes) {
         return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
           let day = firstday + i
-          const date = new Date(time.getFullYear(), time.getMonth(), day)
+          const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
           return {
             title: date.toLocaleDateString(),
+            iso: cal.isoDate(date),
             date,
             day,
             classes
           }
         })
       }
+      var cal = this;
       const time = new Date(this.now)
       time.setDate(0) // 把时间切换到上个月最后一天
       const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
@@ -121,6 +139,15 @@ export default {
       }
       this.dates = result
     },
+    isoDate(date) {
+      function doubleDigits(num) {
+        if ( parseInt(num) < 10 ) {
+          return '0'+num;
+        }
+        return num;
+      }
+      return date.getFullYear()+'-'+doubleDigits((date.getMonth()+1))+'-'+doubleDigits(date.getDate());
+    },
     getClasses (cell) {
       const classes = []
       const cellTime = cell.date.getTime()
@@ -130,6 +157,15 @@ export default {
       const today = new Date().setHours(0, 0, 0, 0)
 
       classes.push(cell.classes)
+
+      if ( typeof this.disabledDays.find(function(disabledDate) { return disabledDate === cell.iso } ) !== 'undefined' ) {
+        classes.push('disabled');
+      } else if (
+        (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
+        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter+' 00:00:00')).getTime())
+      ) {
+        classes.push('disabled');
+      }
 
       if (cellTime === today) {
         classes.push('today')
