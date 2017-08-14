@@ -94,7 +94,12 @@ export default {
     notAfter: {
       type: String,
       default: ''
-    }
+    },
+    disablePicker: {
+      type: Boolean,
+      default: false
+    },
+
   },
   data () {
     return {
@@ -213,6 +218,10 @@ export default {
       this.$emit('input', [range.start, range.end])
     },
     initRanges () {
+      if(this.disablePicker) {
+          this.ranges = [];
+          return;
+      }
       this.ranges = [{
         text: '未来7天',
         start: new Date(),

@@ -50,5 +50,6 @@ export default {
 | showYearNav     | Boolean       | true        | Show the year nav in the calendar                 |
 | notBefore       | String        | ''          | Disable all dates before date in YYY-MM-DD format |
 | notAfter        | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
+| disablePicker   | Boolean       | false       | Disable next and previous pickers on daterange    |
 
 
