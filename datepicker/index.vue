@@ -29,7 +29,7 @@
                         :notAfter="notAfter"></calendar-panel>
       </template>
       <template v-else>
-        <div class="datepicker-top">
+        <div class="datepicker-top" v-if="ranges.length">
           <span v-for="range in ranges" @click="selectRange(range)">{{range.text}}</span>
         </div>
         <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"
@@ -79,6 +79,10 @@ export default {
       default: 'zh'
     },
     value: null,
+    shortcuts: {
+      type: [Boolean, Array],
+      default: true
+    },
     disabledDays: {
       type: Array,
       default: function () { return [] }
@@ -146,9 +150,6 @@ export default {
     }
   },
   methods: {
-    selectDate (date) {
-
-    },
     closePopup () {
       this.showPopup = false
     },
@@ -213,26 +214,32 @@ export default {
       this.$emit('input', [range.start, range.end])
     },
     initRanges () {
-      this.ranges = [{
-        text: '未来7天',
-        start: new Date(),
-        end: new Date(Date.now() + 3600 * 1000 * 24 * 7)
-      }, {
-        text: '未来30天',
-        start: new Date(),
-        end: new Date(Date.now() + 3600 * 1000 * 24 * 30)
-      }, {
-        text: '最近7天',
-        start: new Date(Date.now() - 3600 * 1000 * 24 * 7),
-        end: new Date()
-      }, {
-        text: '最近30天',
-        start: new Date(Date.now() - 3600 * 1000 * 24 * 30),
-        end: new Date()
-      }]
-      this.ranges.forEach((v, i) => {
-        v.text = this.translation.pickers[i]
-      })
+      if (Array.isArray(this.shortcuts)) {
+        this.ranges = this.shortcuts
+      } else if (this.shortcuts) {
+        this.ranges = [{
+          text: '未来7天',
+          start: new Date(),
+          end: new Date(Date.now() + 3600 * 1000 * 24 * 7)
+        }, {
+          text: '未来30天',
+          start: new Date(),
+          end: new Date(Date.now() + 3600 * 1000 * 24 * 30)
+        }, {
+          text: '最近7天',
+          start: new Date(Date.now() - 3600 * 1000 * 24 * 7),
+          end: new Date()
+        }, {
+          text: '最近30天',
+          start: new Date(Date.now() - 3600 * 1000 * 24 * 30),
+          end: new Date()
+        }]
+        this.ranges.forEach((v, i) => {
+          v.text = this.translation.pickers[i]
+        })       
+      } else {
+        this.ranges = []
+      }
     },
     displayPopup () {
       const dw = document.documentElement.clientWidth

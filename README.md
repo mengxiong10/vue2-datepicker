@@ -25,6 +25,13 @@ export default {
     return {
       time1: '',
       time2: '',
+      shortcuts: [
+        {
+          text: 'Today',
+          start: new Date(),
+          end: new Date()
+        }
+      ]
     }
   }
 }
@@ -33,7 +40,7 @@ export default {
 <template>
   <div>
     <date-picker v-model="time1"></date-picker>
-    <date-picker v-model="time2" range></date-picker>
+    <date-picker v-model="time2" range :shortcuts="shortcuts"></date-picker>
   </div>
 </template>
 ```
@@ -50,5 +57,18 @@ export default {
 | showYearNav     | Boolean       | true        | Show the year nav in the calendar                 |
 | notBefore       | String        | ''          | Disable all dates before date in YYY-MM-DD format |
 | notAfter        | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
+| shortcuts       | Boolean/Array | true        | the shortcuts for the range picker                |
+
+## shortcuts
+* true -      show the default shortcuts
+* false -     hide the shortcuts
+* Object[] -  custom shortcuts, [{text, start, end}]
+
+| Prop            | Type          |  Description           |
+|-----------------|---------------|------------------------|
+| text            | String        | Text                   |
+| start           | Date          | Start Date             |
+| end             | Date          | End Date               |
+
 
 
