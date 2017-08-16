@@ -25,5 +25,15 @@ export default {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
     }
-  }
+  },
+	'ptbr': {
+		'days': ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+	  'months': ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+	              'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+	  'pickers': ['próximos 7 dias', 'próximos 30 dias', '7 dias anteriores', '30 dias anteriores'],
+	  'placeholder': {
+	    'date': 'Selecionar data',
+	    'dateRange': 'Selecionar um intervalo'
+	  }
+	}
 }
