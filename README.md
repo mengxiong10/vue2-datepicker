@@ -53,10 +53,9 @@ export default {
 | lang            | String        | zh          | Translation (en/zh/es)                            |
 | placeholder     | String        |             | input placeholder text                            |
 | width           | String/Number | 210         | input size                                        |
-| disabledDays    | Array         | []          | Days in YYYY-MM-DD format to disable              |
-| showYearNav     | Boolean       | true        | Show the year nav in the calendar                 |
-| notBefore       | String        | ''          | Disable all dates before date in YYY-MM-DD format |
-| notAfter        | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
+| disabled-days   | Array         | []          | Days in YYYY-MM-DD format to disable              |
+| not-before      | String        | ''          | Disable all dates before date in YYY-MM-DD format |
+| not-after       | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
 | shortcuts       | Boolean/Array | true        | the shortcuts for the range picker                |
 
 ## shortcuts
