@@ -22,11 +22,7 @@
       <template v-if="!range">
         <calendar-panel @select="showPopup = false"
                         v-model="currentValue"
-                        :show="showPopup"
-                        :disabledDays="disabledDays"
-                        :showYearNav="showYearNav"
-                        :notBefore="notBefore"
-                        :notAfter="notAfter"></calendar-panel>
+                        :show="showPopup"></calendar-panel>
       </template>
       <template v-else>
         <div class="datepicker-top">
@@ -35,20 +31,11 @@
         <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"
                         v-model="currentValue[0]"
                         :end-at="currentValue[1]"
-                        :show="showPopup"
-                        :disabledDays="disabledDays"
-                        :showYearNav="showYearNav"
-                        :notBefore="notBefore"
-                        :notAfter="notAfter"
-        ></calendar-panel>
+                        :show="showPopup"></calendar-panel>
         <calendar-panel style="width:50%;"
                         v-model="currentValue[1]"
                         :start-at="currentValue[0]"
-                        :show="showPopup"
-                        :disabledDays="disabledDays"
-                        :showYearNav="showYearNav"
-                        :notBefore="notBefore"
-                        :notAfter="notAfter"></calendar-panel>
+                        :show="showPopup"></calendar-panel>
       </template>
     </div>
   </div>
@@ -82,10 +69,6 @@ export default {
     disabledDays: {
       type: Array,
       default: function () { return [] }
-    },
-    showYearNav: {
-      type: Boolean,
-      default: true
     },
     notBefore: {
       type: String,
@@ -124,7 +107,6 @@ export default {
     showPopup (val) {
       if (val) {
         this.$nextTick(this.displayPopup)
-        // this.displayPopup()
       }
     }
   },
@@ -146,9 +128,6 @@ export default {
     }
   },
   methods: {
-    selectDate (date) {
-
-    },
     closePopup () {
       this.showPopup = false
     },

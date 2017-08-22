@@ -1,9 +1,9 @@
 <template>
   <div class="calendar">
     <div class="calendar-header">
-      <a v-show="showYearNav" class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
-      <a v-show="showYearNav" class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
       <a @click="showMonths">{{months[currentMonth]}}</a>
       <a @click="showYears">{{currentYear}}</a>
@@ -37,23 +37,7 @@ export default {
     startAt: null,
     endAt: null,
     value: null,
-    show: Boolean,
-    disabledDays: {
-      type: Array,
-      default: function () { return [] }
-    },
-    showYearNav: {
-      type: Boolean,
-      default: true
-    },
-    notBefore: {
-      type: String,
-      default: ''
-    },
-    notAfter: {
-      type: String,
-      default: ''
-    }
+    show: Boolean
   },
   data () {
     const translation = this.$parent.translation
@@ -142,9 +126,9 @@ export default {
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       const today = new Date().setHours(0, 0, 0, 0)
 
-      if (this.disabledDays.some(v => +new Date(v) === +cell.date) ||
-        (this.notBefore !== '' && cell.date.getTime() < (new Date(this.notBefore)).getTime()) ||
-        (this.notAfter !== '' && cell.date.getTime() > (new Date(this.notAfter)).getTime())) {
+      if (this.$parent.disabledDays.some(v => +new Date(v) === +cell.date) ||
+        (this.$parent.notBefore !== '' && cell.date.getTime() < (new Date(this.$parent.notBefore)).getTime()) ||
+        (this.$parent.notAfter !== '' && cell.date.getTime() > (new Date(this.$parent.notAfter)).getTime())) {
         return 'disabled'
       }
 

@@ -2,7 +2,7 @@
   <div id="app">
     <div class="demo">
       <span class="label">default:</span>
-      <date-picker v-model="value1" lang="en"></date-picker>
+      <date-picker v-model="value1" lang="en" :not-after="notAfter"></date-picker>
     </div>
     <div class="demo">
       <span class="label">range:</span>
