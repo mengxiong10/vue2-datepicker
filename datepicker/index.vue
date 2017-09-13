@@ -81,6 +81,11 @@ export default {
     notAfter: {
       type: String,
       default: ''
+    },
+    firstDayOfWeek: {
+      default: 7,
+      type: Number,
+      validator: val => val >= 1 && val <= 7
     }
   },
   data () {
@@ -218,7 +223,7 @@ export default {
         }]
         this.ranges.forEach((v, i) => {
           v.text = this.translation.pickers[i]
-        })       
+        })
       } else {
         this.ranges = []
       }

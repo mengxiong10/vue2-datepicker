@@ -39,24 +39,25 @@ export default {
 
 <template>
   <div>
-    <date-picker v-model="time1"></date-picker>
+    <date-picker v-model="time1" :first-day-of-week="1"></date-picker>
     <date-picker v-model="time2" range :shortcuts="shortcuts"></date-picker>
   </div>
 </template>
 ```
 ## Attributes
 
-| Prop            | Type          | Default     | Description                                       |
-|-----------------|---------------|-------------|---------------------------------------------------|
-| range           | Boolean       | false       | if true, the type is daterange                    |
-| format          | String        | yyyy-MM-dd  | Date formatting string                            |
-| lang            | String        | zh          | Translation (en/zh/es)                            |
-| placeholder     | String        |             | input placeholder text                            |
-| width           | String/Number | 210         | input size                                        |
-| disabled-days   | Array         | []          | Days in YYYY-MM-DD format to disable              |
-| not-before      | String        | ''          | Disable all dates before date in YYY-MM-DD format |
-| not-after       | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
-| shortcuts       | Boolean/Array | true        | the shortcuts for the range picker                |
+| Prop              | Type          | Default     | Description                                       |
+|-------------------|---------------|-------------|---------------------------------------------------|
+| range             | Boolean       | false       | if true, the type is daterange                    |
+| format            | String        | yyyy-MM-dd  | Date formatting string                            |
+| lang              | String        | zh          | Translation (en/zh/es)                            |
+| placeholder       | String        |             | input placeholder text                            |
+| width             | String/Number | 210         | input size                                        |
+| disabled-days     | Array         | []          | Days in YYYY-MM-DD format to disable              |
+| not-before        | String        | ''          | Disable all dates before date in YYY-MM-DD format |
+| not-after         | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
+| shortcuts         | Boolean/Array | true        | the shortcuts for the range picker                |
+| first-day-of-week | Number        | 7           | set the first day of week (1-7)                   |
 
 ## shortcuts
 * true -      show the default shortcuts

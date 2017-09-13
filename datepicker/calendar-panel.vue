@@ -42,7 +42,6 @@ export default {
   data () {
     const translation = this.$parent.translation
     return {
-      days: translation.days,
       months: translation.months,
       dates: [],
       now: new Date(), // calendar-header 显示的时间, 用于切换日历
@@ -51,6 +50,11 @@ export default {
     }
   },
   computed: {
+    days () {
+      const days = this.$parent.translation.days
+      const firstday = +this.$parent.firstDayOfWeek
+      return days.concat(days).slice(firstday, firstday + 7)
+    },
     currentYear () {
       return this.now.getFullYear()
     },
@@ -94,9 +98,10 @@ export default {
           }
         })
       }
+      const firstDayOfWeek = this.$parent.firstDayOfWeek
       const time = new Date(this.now)
       time.setDate(0) // 把时间切换到上个月最后一天
-      const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
+      const lastMonthLength = (time.getDay() + 7 - firstDayOfWeek) % 7 + 1  // time.getDay() 0是星期天, 1是星期一 ...
       const lastMonthfirst = time.getDate() - (lastMonthLength - 1)
       const lastMonth = getCalendar(time, lastMonthfirst, lastMonthLength, 'lastMonth')
 
@@ -214,7 +219,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
