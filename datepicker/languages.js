@@ -25,5 +25,14 @@ export default {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
     }
-  }
+  },
+  'it': {
+    'days': ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+    'months': ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+    'pickers': ['successivi 7 giorni', 'successivi 30 giorni', 'precedenti 7 giorni', 'precedenti 30 giorni'],
+    'placeholder': {
+      'date': 'Seleziona una data',
+      'dateRange': 'Seleziona un intervallo date'
+    }
+  },
 }
