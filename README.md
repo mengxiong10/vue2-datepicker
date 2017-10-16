@@ -50,7 +50,7 @@ export default {
 |-------------------|---------------|-------------|---------------------------------------------------|
 | range             | Boolean       | false       | if true, the type is daterange                    |
 | format            | String        | yyyy-MM-dd  | Date formatting string                            |
-| lang              | String        | zh          | Translation (en/zh/es)                            |
+| lang              | String        | zh          | Translation (en/zh/es/pt-br)                            |
 | placeholder       | String        |             | input placeholder text                            |
 | width             | String/Number | 210         | input size                                        |
 | disabled-days     | Array         | []          | Days in YYYY-MM-DD format to disable              |
