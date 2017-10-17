@@ -34,5 +34,14 @@ export default {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
     }
+  },
+  'ru': {
+    'days': ['Вс', 'Пн', 'Ср', 'Чт', 'Пт', 'Сб'],
+    'months': ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+    'pickers': ['след. 7 дней', 'след. 30 дней', 'прош. 7 дней', 'прош. 30 дней'],
+    'placeholder': {
+      'date': 'Выберите дату',
+      'dateRange': 'Выберите дату'
+    }
   }
 }
