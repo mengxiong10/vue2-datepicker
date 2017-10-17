@@ -4,7 +4,7 @@
       <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
       <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
       <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
-      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
       <a @click="showMonths">{{months[currentMonth]}}</a>
       <a @click="showYears">{{currentYear}}</a>
     </div>
@@ -17,10 +17,7 @@
         </thead>
         <tbody>
           <tr v-for="row in dates">
-            <td v-for="cell in row"
-                :title="cell.title"
-                :class="getClasses(cell)"
-                @click="selectDate(cell)">{{cell.day}}</td>
+            <td v-for="cell in row" :title="cell.title" :class="getClasses(cell)" @click="selectDate(cell)">{{cell.day}}</td>
           </tr>
         </tbody>
       </table>
@@ -45,7 +42,6 @@ export default {
   data () {
     const translation = this.$parent.translation
     return {
-      days: translation.days,
       months: translation.months,
       dates: [],
       now: new Date(), // calendar-header 显示的时间, 用于切换日历
@@ -54,6 +50,11 @@ export default {
     }
   },
   computed: {
+    days () {
+      const days = this.$parent.translation.days
+      const firstday = +this.$parent.firstDayOfWeek
+      return days.concat(days).slice(firstday, firstday + 7)
+    },
     currentYear () {
       return this.now.getFullYear()
     },
@@ -88,7 +89,7 @@ export default {
       function getCalendar (time, firstday, length, classes) {
         return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
           let day = firstday + i
-          const date = new Date(time.getFullYear(), time.getMonth(), day)
+          const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
           return {
             title: date.toLocaleDateString(),
             date,
@@ -97,9 +98,10 @@ export default {
           }
         })
       }
+      const firstDayOfWeek = this.$parent.firstDayOfWeek
       const time = new Date(this.now)
       time.setDate(0) // 把时间切换到上个月最后一天
-      const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
+      const lastMonthLength = (time.getDay() + 7 - firstDayOfWeek) % 7 + 1  // time.getDay() 0是星期天, 1是星期一 ...
       const lastMonthfirst = time.getDate() - (lastMonthLength - 1)
       const lastMonth = getCalendar(time, lastMonthfirst, lastMonthLength, 'lastMonth')
 
@@ -129,11 +131,18 @@ export default {
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       const today = new Date().setHours(0, 0, 0, 0)
 
+      if (this.$parent.disabledDays.some(v => +new Date(v) === +cell.date) ||
+        (this.$parent.notBefore !== '' && cell.date.getTime() < (new Date(this.$parent.notBefore)).getTime()) ||
+        (this.$parent.notAfter !== '' && cell.date.getTime() > (new Date(this.$parent.notAfter)).getTime())) {
+        return 'disabled'
+      }
+
       classes.push(cell.classes)
 
       if (cellTime === today) {
         classes.push('today')
       }
+
       // range classes
       if (cellTime === curTime) {
         classes.push('current')
@@ -210,11 +219,9 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
-
 .calendar {
   float: left;
   padding: 6px 12px;
@@ -240,7 +247,8 @@ export default {
   font-size: 20px;
   padding: 0 6px;
 }
-.calendar-header > a:hover {
+
+.calendar-header>a:hover {
   color: #1284e7;
 }
 
@@ -273,14 +281,14 @@ export default {
 
 .calendar-table td.inrange,
 .calendar-table td:hover,
-.calendar-year > a:hover,
-.calendar-month > a:hover {
+.calendar-year>a:hover,
+.calendar-month>a:hover {
   background-color: #eaf8fe;
 }
 
 .calendar-table td.current,
-.calendar-year > a.current,
-.calendar-month > a.current {
+.calendar-year>a.current,
+.calendar-month>a.current {
   color: #fff;
   background-color: #1284e7;
 }
@@ -300,24 +308,25 @@ export default {
   color: #20a0ff;
 }
 
-.calendar-year,.calendar-month {
+.calendar-year,
+.calendar-month {
   width: 100%;
   height: 224px;
   padding: 7px 0;
   text-align: center;
 }
-.calendar-year > a {
+
+.calendar-year>a {
   display: inline-block;
   width: 40%;
   margin: 1px 5%;
   line-height: 40px;
 }
-.calendar-month > a {
+
+.calendar-month>a {
   display: inline-block;
   width: 30%;
   line-height: 40px;
   margin: 8px 1.5%;
 }
-
-
 </style>
