@@ -34,5 +34,14 @@ export default {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
     }
+  },
+  'de': {
+    'days': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+    'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    'pickers': ['nächsten 7 Tage', 'nächsten 30 Tage', 'vorigen 7 Tage', 'vorigen 30 Tage'],
+    'placeholder': {
+      'date': 'Datum auswählen',
+      'dateRange': 'Zeitraum auswählen'
+    }
   }
 }
