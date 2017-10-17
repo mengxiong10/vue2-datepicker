@@ -28,7 +28,7 @@ export default {
   },
   'pt-br': {
     'days': ['Dom','Seg', 'Ter', 'Qua', 'Quin', 'Sex', 'Sáb'],
-    'months': ['Jav', 'Feb', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    'months': ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
     'pickers': ['próximos 7 dias', 'próximos 30 dias', '7 dias anteriores', ' 30 dias anteriores'],
     'placeholder': {
       'date': 'Selecione uma data',
