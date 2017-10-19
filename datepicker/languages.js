@@ -17,6 +17,15 @@ export default {
       'dateRange': 'Select Date Range'
     }
   },
+  'fr': {
+    'days': ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    'months': ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'],
+    'pickers': ['7 jours suivants', '30 jours suivants', '7 jours précédents', '30 jours précédents'],
+    'placeholder': {
+      'date': 'Sélectionnez une date',
+      'dateRange': 'Sélectionnez une période'
+    }
+  },
   'es': {
     'days': ['Dom', 'Lun', 'mar', 'Mie', 'Jue', 'Vie', 'Sab'],
     'months': ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
