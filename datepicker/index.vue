@@ -3,7 +3,7 @@
        :style="{'width': width + 'px','min-width':range ? '210px' : '140px'}"
        v-clickoutside="closePopup">
     <input readonly
-          class="input"
+          :class="inputClass"
           :value="text"
           :placeholder="innerPlaceholder"
           ref="input"
@@ -86,6 +86,10 @@ export default {
       default: 7,
       type: Number,
       validator: val => val >= 1 && val <= 7
+    },
+    inputClass: {
+      default: 'input',
+      type: String
     }
   },
   data () {
