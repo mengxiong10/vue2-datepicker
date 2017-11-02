@@ -48,16 +48,20 @@ export default {
 
 | Prop              | Type          | Default     | Description                                       |
 |-------------------|---------------|-------------|---------------------------------------------------|
-| range             | Boolean       | false       | if true, the type is daterange                    |
+| type              | String        | 'date'      | select datepicker or datetimepicker(date/datetime)|
+| range             | Boolean       | false       | if true, the type is daterange or datetimerange   |
+| confirm           | Boolean       | false       | if true, need click the button to change the value|
 | format            | String        | yyyy-MM-dd  | Date formatting string                            |
 | lang              | String        | zh          | Translation (en/zh/es/pt-br/fr)                   |
 | placeholder       | String        |             | input placeholder text                            |
 | width             | String/Number | 210         | input size                                        |
 | disabled-days     | Array         | []          | Days in YYYY-MM-DD format to disable              |
-| not-before        | String        | ''          | Disable all dates before date in YYY-MM-DD format |
-| not-after         | String        | ''          | Disable all dates after date in YYY-MM-DD format  |
+| not-before        | String/Date   | ''          | Disable all dates before new Date(not-before)     |
+| not-after         | String/Date   | ''          | Disable all dates after new Date(not-after)       |
 | shortcuts         | Boolean/Array | true        | the shortcuts for the range picker                |
 | first-day-of-week | Number        | 7           | set the first day of week (1-7)                   |
+| minute-step       | Number        | 0           | if > 0 don't show the second picker(0 - 60)       |
+
 
 ## shortcuts
 * true -      show the default shortcuts

@@ -1,23 +1,26 @@
 <template>
   <div class="calendar">
     <div class="calendar-header">
-      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
-      <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
-      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
-      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
-      <a @click="showMonths">{{months[currentMonth]}}</a>
-      <a @click="showYears">{{currentYear}}</a>
+      <a v-if="currentPanel === 'time'" @click="currentPanel = 'date'">{{now.toLocaleDateString()}}</a>
+      <template v-else>
+        <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+        <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
+        <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+        <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
+        <a @click="showMonths">{{months[currentMonth]}}</a>
+        <a @click="showYears">{{currentYear}}</a>
+      </template>
     </div>
     <div class="calendar-content">
       <table class="calendar-table" v-show="currentPanel === 'date'">
         <thead>
           <tr>
-            <th v-for="day in days">{{day}}</th>
+            <th v-for="(day, index) in days" :key="index">{{day}}</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="row in dates">
-            <td v-for="cell in row" :title="cell.title" :class="getClasses(cell)" @click="selectDate(cell)">{{cell.day}}</td>
+            <td v-for="cell in row" :title="cell.title" :class="getDateClasses(cell)" @click="selectDate(cell)">{{cell.day}}</td>
           </tr>
         </tbody>
       </table>
@@ -27,11 +30,33 @@
       <div class="calendar-month" v-show="currentPanel === 'months'">
         <a v-for="(month, index) in months" @click="selectMonth(index)" :class="{'current': currentMonth === index}">{{month}}</a>
       </div>
+      <div class="calendar-time"
+        v-show="currentPanel === 'time'" >
+        <div class="time-list-wrapper" 
+          :style="{width: 100 / times.length + '%' }"
+          v-for="(time, index) in times" 
+          :key="index">
+          <ul class="time-list">
+            <li class="time-item"
+              v-for="num in time"
+              :class="getTimeClasses(num, index)"
+              :key="num"
+              @click="selectTime(num, index)"
+              >{{num | timeText}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
+function getTimeArray (len, step = 1) {
+  const length = parseInt(len / step)
+  return Array.apply(null, {length}).map((v, i) => i * step)
+}
+
 export default {
   props: {
     startAt: null,
@@ -41,15 +66,22 @@ export default {
   },
   data () {
     const translation = this.$parent.translation
+    const minuteStep = this.$parent.minuteStep
+    const times = [getTimeArray(24, 1), getTimeArray(60, minuteStep || 1)]
+    if (minuteStep === 0) {
+      times.push(getTimeArray(60, 1))
+    }
     return {
       months: translation.months,
-      dates: [],
-      now: new Date(), // calendar-header 显示的时间, 用于切换日历
+      dates: [], // 日历面板
       years: [], // 年代面板
-      currentPanel: 'date'
+      now: new Date(), // calendar-header 显示的时间, 用于切换日历
+      currentPanel: 'date',
+      times: times
     }
   },
   computed: {
+    // 日历显示头
     days () {
       const days = this.$parent.translation.days
       const firstday = +this.$parent.firstDayOfWeek
@@ -60,6 +92,15 @@ export default {
     },
     currentMonth () {
       return this.now.getMonth()
+    },
+    curHour () {
+      return this.now.getHours()
+    },
+    curMinute () {
+      return this.now.getMinutes()
+    },
+    curSecond () {
+      return this.now.getSeconds()
     }
   },
   created () {
@@ -78,11 +119,14 @@ export default {
     },
     now: 'updateCalendar'
   },
+  filters: {
+    timeText (value) {
+      return ('00' + value).slice(String(value).length)
+    }
+  },
   methods: {
     updateNow () {
-      let now = this.value ? new Date(this.value) : new Date()
-      now.setDate(1)
-      this.now = now
+      this.now = this.value ? new Date(this.value) : new Date()
     },
     // 更新面板选择时间
     updateCalendar () {
@@ -90,8 +134,9 @@ export default {
         return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
           let day = firstday + i
           const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
+          date.setDate(day)
           return {
-            title: date.toLocaleDateString(),
+            title: date.toLocaleString(),
             date,
             day,
             classes
@@ -123,17 +168,18 @@ export default {
       }
       this.dates = result
     },
-    getClasses (cell) {
+    getDateClasses (cell) {
       const classes = []
-      const cellTime = cell.date.getTime()
+      const cellTime = new Date(cell.date).setHours(0, 0, 0, 0)
+      const cellEndTime = new Date(cell.date).setHours(23, 59, 59, 999)
       const curTime = this.value ? new Date(this.value).setHours(0, 0, 0, 0) : 0
       const startTime = this.startAt ? new Date(this.startAt).setHours(0, 0, 0, 0) : 0
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       const today = new Date().setHours(0, 0, 0, 0)
 
       if (this.$parent.disabledDays.some(v => +new Date(v) === +cell.date) ||
-        (this.$parent.notBefore !== '' && cell.date.getTime() < (new Date(this.$parent.notBefore)).getTime()) ||
-        (this.$parent.notAfter !== '' && cell.date.getTime() > (new Date(this.$parent.notAfter)).getTime())) {
+        (this.$parent.notBefore !== '' && cellEndTime < (new Date(this.$parent.notBefore)).getTime()) ||
+        (this.$parent.notAfter !== '' && cellTime > (new Date(this.$parent.notAfter)).getTime())) {
         return 'disabled'
       }
 
@@ -157,6 +203,46 @@ export default {
           classes.push('disabled')
         } else if (curTime && cellTime >= curTime) {
           classes.push('inrange')
+        }
+      }
+      return classes.join(' ')
+    },
+    getTimeClasses (value, index) {
+      let curValue
+      let cellTime
+      const startTime = this.startAt ? new Date(this.startAt) : 0
+      const endTime = this.endAt ? new Date(this.endAt) : 0
+      const classes = []
+      switch (index) {
+        case 0:
+          curValue = this.curHour
+          cellTime = new Date(this.now).setHours(value)
+          break
+        case 1:
+          curValue = this.curMinute
+          cellTime = new Date(this.now).setMinutes(value)
+          break
+        case 2:
+          curValue = this.curSecond
+          cellTime = new Date(this.now).setSeconds(value)
+          break
+      }
+      if (
+          this.$parent.notBefore !== '' && cellTime < new Date(this.$parent.notBefore).getTime() ||
+          this.$parent.notAfter !== '' && cellTime > new Date(this.$parent.notAfter).getTime()
+        ) {
+        return 'disabled'
+      }
+
+      if (value === curValue) {
+        classes.push('cur-time')
+      } else if (startTime) {
+        if (cellTime < startTime) {
+          classes.push('disabled')
+        }
+      } else if (endTime) {
+        if (cellTime > endTime) {
+          classes.push('disabled')
         }
       }
       return classes.join(' ')
@@ -188,21 +274,41 @@ export default {
         this.years = this.years.map(v => v + flag * 10)
       } else {
         const now = new Date(this.now)
-        now.setFullYear(now.getFullYear() + flag)
+        now.setFullYear(now.getFullYear() + flag, now.getMonth(), 1)
         this.now = now
       }
     },
     changeMonth (flag) {
       const now = new Date(this.now)
-      now.setMonth(now.getMonth() + flag)
+      now.setMonth(now.getMonth() + flag, 1)
       this.now = now
     },
     selectDate (cell) {
-      const classes = this.getClasses(cell)
+      const classes = this.getDateClasses(cell)
       if (classes.indexOf('disabled') !== -1) {
         return
       }
-      this.$emit('input', cell.date)
+      let date = new Date(cell.date)
+      // datetime 跳转到 timepicker
+      if (this.$parent.type === 'datetime') {
+        // 保留时分秒
+        if (this.value instanceof Date) {
+          date.setHours(this.value.getHours(), this.value.getMinutes(), this.value.getSeconds())
+        }
+        if (this.startAt && date.getTime() < new Date(this.startAt).getTime()){
+          date = new Date(this.startAt)
+        } else if (this.endAt && date.getTime() > new Date(this.endAt).getTime()) {
+          date = new Date(this.endAt)
+        }
+        this.currentPanel = 'time'
+        this.$nextTick(() => {
+          Array.prototype.forEach.call(this.$el.querySelectorAll('.cur-time'), function (el) {
+            el.scrollIntoView()
+          })
+        })
+      }
+      this.now = date
+      this.$emit('input', date)
       this.$emit('select')
     },
     selectYear (year) {
@@ -216,6 +322,19 @@ export default {
       now.setMonth(month)
       this.now = now
       this.currentPanel = 'date'
+    },
+    selectTime (value, index) {
+      const date = new Date(this.now)
+      if (index === 0) {
+        date.setHours(value)
+      } else if (index === 1) {
+        date.setMinutes(value)
+      } else if (index === 2) {
+        date.setSeconds(value)
+      }
+      this.now = date
+      this.$emit('input', date)
+      this.$emit('select')
     }
   }
 }
@@ -224,6 +343,7 @@ export default {
 <style scoped>
 .calendar {
   float: left;
+  width: 100%;
   padding: 6px 12px;
 }
 
@@ -309,7 +429,8 @@ export default {
 }
 
 .calendar-year,
-.calendar-month {
+.calendar-month,
+.calendar-time {
   width: 100%;
   height: 224px;
   padding: 7px 0;
@@ -329,4 +450,69 @@ export default {
   line-height: 40px;
   margin: 8px 1.5%;
 }
+
+
+.time-list-wrapper {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.time-list-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* 滚动条滑块 */
+.time-list-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.time-list-wrapper:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.time-list-wrapper:first-child {
+  border-left: 0;
+}
+
+.time-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.time-item {
+  width: 100%;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.time-item:hover {
+  background-color: #eaf8fe;
+}
+.time-item.cur-time {
+  color: #fff;
+  background-color: #1284e7;
+}
+.time-item.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+  background-color: #f3f3f3;
+}
+/* .time-hint {
+  position: sticky; 
+  top: 0px;
+  line-height: 30px;
+  color: #ccc;
+  background: #fff;
+} */
 </style>
