@@ -43,5 +43,41 @@ export default {
       'date': 'Selecione uma data',
       'dateRange': 'Selecione um período'
     }
+  },
+  'ru': {
+    'days': ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    'months': ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+    'pickers': ['след. 7 дней', 'след. 30 дней', 'прош. 7 дней', 'прош. 30 дней'],
+    'placeholder': {
+      'date': 'Выберите дату',
+      'dateRange': 'Выберите период'
+    }
+  },
+  'de': {
+    'days': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+    'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    'pickers': ['nächsten 7 Tage', 'nächsten 30 Tage', 'vorigen 7 Tage', 'vorigen 30 Tage'],
+    'placeholder': {
+      'date': 'Datum auswählen',
+      'dateRange': 'Zeitraum auswählen'
+    }
+  },
+  'it': {
+    'days': ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+    'months': ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+    'pickers': ['successivi 7 giorni', 'successivi 30 giorni', 'precedenti 7 giorni', 'precedenti 30 giorni'],
+    'placeholder': {
+      'date': 'Seleziona una data',
+      'dateRange': 'Seleziona un intervallo date'
+    }
+  },
+  'cs': {
+    'days': ['Ned', 'Pon', 'Úte', 'Stř', 'Čtv', 'Pát', 'Sob'],
+    'months': ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', 'Čerc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
+    'pickers': ['příštích 7 dní', 'příštích 30 dní', 'předchozích 7 dní', 'předchozích 30 dní'],
+    'placeholder': {
+      'date': 'Vyberte datum',
+      'dateRange': 'Vyberte časové rozmezí'
+    }
   }
 }
