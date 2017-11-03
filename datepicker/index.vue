@@ -1,9 +1,9 @@
 <template>
   <div class="datepicker"
-       :style="{'width': width + 'px','min-width':range ? '210px' : '140px'}"
+       :style="{'width': width + 'px','min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
        v-clickoutside="closePopup">
     <input readonly
-          class="input"
+          :class="inputClass"
           :value="text"
           :placeholder="innerPlaceholder"
           ref="input"
@@ -20,9 +20,10 @@
          ref="calendar"
          v-show="showPopup">
       <template v-if="!range">
-        <calendar-panel @select="showPopup = false"
-                        v-model="currentValue"
-                        :show="showPopup"></calendar-panel>
+        <calendar-panel 
+          v-model="currentValue"
+          @select="selectDate"
+          :show="showPopup"></calendar-panel>
       </template>
       <template v-else>
         <div class="datepicker-top" v-if="ranges.length">
@@ -31,12 +32,17 @@
         <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"
                         v-model="currentValue[0]"
                         :end-at="currentValue[1]"
+                        @select="selectDate"
                         :show="showPopup"></calendar-panel>
         <calendar-panel style="width:50%;"
                         v-model="currentValue[1]"
                         :start-at="currentValue[0]"
+                        @select="selectDate"
                         :show="showPopup"></calendar-panel>
       </template>
+      <div class="datepicker-footer" v-if="confirm">
+        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate">确定</button>
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +54,7 @@ import Languages from './languages.js'
 export default {
   components: { CalendarPanel },
   props: {
+    value: null,
     format: {
       type: String,
       default: 'yyyy-MM-dd'
@@ -55,6 +62,10 @@ export default {
     range: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: 'date'  // ['date', 'datetime']
     },
     width: {
       type: [String, Number],
@@ -65,7 +76,6 @@ export default {
       type: String,
       default: 'zh'
     },
-    value: null,
     shortcuts: {
       type: [Boolean, Array],
       default: true
@@ -75,17 +85,28 @@ export default {
       default: function () { return [] }
     },
     notBefore: {
-      type: String,
       default: ''
     },
     notAfter: {
-      type: String,
       default: ''
     },
     firstDayOfWeek: {
       default: 7,
       type: Number,
       validator: val => val >= 1 && val <= 7
+    },
+    minuteStep: {
+      type: Number,
+      default: 0,
+      validator: val => val >= 0 && val <= 60
+    },
+    confirm: {
+      type: Boolean,
+      default: false
+    },
+    inputClass: {
+      type: String,
+      default: 'input'
     }
   },
   data () {
@@ -103,15 +124,10 @@ export default {
         if (!this.range) {
           this.currentValue = this.isValidDate(val) ? val : undefined
         } else {
-          this.currentValue = this.isValidRange(val) ? val : [undefined, undefined]
+          this.currentValue = this.isValidRange(val) ? val.slice(0, 2) : [undefined, undefined]
         }
       },
       immediate: true
-    },
-    currentValue (val) {
-      if ((!this.range && val) || (this.range && val[0] && val[1])) {
-        this.$emit('input', val)
-      }
     },
     showPopup (val) {
       if (val) {
@@ -127,16 +143,36 @@ export default {
       return this.placeholder || (this.range ? this.translation.placeholder.dateRange : this.translation.placeholder.date)
     },
     text () {
-      if (!this.range && this.currentValue) {
-        return this.stringify(this.currentValue)
+      if (!this.range && this.isValidDate(this.value)) {
+        return this.stringify(this.value)
       }
-      if (this.range && this.currentValue[0] && this.currentValue[1]) {
-        return this.stringify(this.currentValue[0]) + ' ~ ' + this.stringify(this.currentValue[1])
+      if (this.range && this.isValidRange(this.value)) {
+        return this.stringify(this.value[0]) + ' ~ ' + this.stringify(this.value[1])
       }
       return ''
     }
   },
   methods: {
+    updateDate () {
+      const val = this.currentValue
+      if ((!this.range && val) || (this.range && val[0] && val[1])) {
+        this.$emit('input', val)
+        console.log(this.value, this.currentValue)
+      }
+    },
+    confirmDate () {
+      this.updateDate()
+      this.closePopup()
+      this.$emit('confirm')
+    },
+    selectDate () {
+      if (!this.confirm) {
+        this.updateDate()
+        if (this.type === 'date' && !this.range) {
+          this.closePopup()
+        }
+      }
+    },
     closePopup () {
       this.showPopup = false
     },
@@ -342,7 +378,7 @@ export default {
 }
 
 .datepicker-top {
-  margin: 0 12px;
+  padding: 0 12px;
   line-height: 34px;
   border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
@@ -360,5 +396,24 @@ export default {
   content: "|";
   margin: 0 10px;
   color: #48576a;
+}
+.datepicker-footer {
+  padding: 4px;
+  clear: both;
+  text-align: right;
+  border-top: 1px solid rgba(0, 0, 0, .05);
+}
+.datepicker-btn {
+  font-size: 12px;
+  line-height: 28px;
+  padding: 0 5px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.datepicker-btn-confirm {
+  color: #1284e7;
 }
 </style>
