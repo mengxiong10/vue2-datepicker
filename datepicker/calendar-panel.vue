@@ -324,6 +324,10 @@ export default {
       this.currentPanel = 'date'
     },
     selectTime (value, index) {
+      const classes = this.getTimeClasses(value, index)
+      if (classes.indexOf('disabled') !== -1) {
+        return
+      }
       const date = new Date(this.now)
       if (index === 0) {
         date.setHours(value)
