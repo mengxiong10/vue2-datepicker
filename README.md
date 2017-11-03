@@ -61,6 +61,7 @@ export default {
 | shortcuts         | Boolean/Array | true        | the shortcuts for the range picker                |
 | first-day-of-week | Number        | 7           | set the first day of week (1-7)                   |
 | minute-step       | Number        | 0           | if > 0 don't show the second picker(0 - 60)       |
+| input-class       | String        | 'input'     | the input class name                              |
 
 
 ## shortcuts

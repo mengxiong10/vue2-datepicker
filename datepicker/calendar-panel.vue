@@ -136,7 +136,7 @@ export default {
           const date = new Date(time.getFullYear(), time.getMonth(), day, 0, 0, 0)
           date.setDate(day)
           return {
-            title: date.toLocaleString(),
+            title: date.toLocaleDateString(),
             date,
             day,
             classes

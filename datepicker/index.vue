@@ -3,7 +3,7 @@
        :style="{'width': width + 'px','min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
        v-clickoutside="closePopup">
     <input readonly
-          class="input"
+          :class="inputClass"
           :value="text"
           :placeholder="innerPlaceholder"
           ref="input"
@@ -103,6 +103,10 @@ export default {
     confirm: {
       type: Boolean,
       default: false
+    },
+    inputClass: {
+      type: String,
+      default: 'input'
     }
   },
   data () {
