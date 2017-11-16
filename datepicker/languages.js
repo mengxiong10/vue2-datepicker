@@ -6,7 +6,8 @@ export default {
     'placeholder': {
       'date': '请选择日期',
       'dateRange': '请选择日期范围'
-    }
+    },
+    'confirm_text' : '确定',
   },
   'en': {
     'days': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -15,7 +16,8 @@ export default {
     'placeholder': {
       'date': 'Select Date',
       'dateRange': 'Select Date Range'
-    }
+    },
+    'confirm_text' : 'OK',
   },
   'fr': {
     'days': ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
@@ -24,7 +26,8 @@ export default {
     'placeholder': {
       'date': 'Sélectionnez une date',
       'dateRange': 'Sélectionnez une période'
-    }
+    },
+    'confirm_text' : 'OK',
   },
   'es': {
     'days': ['Dom', 'Lun', 'mar', 'Mie', 'Jue', 'Vie', 'Sab'],
@@ -33,7 +36,8 @@ export default {
     'placeholder': {
       'date': 'Seleccionar fecha',
       'dateRange': 'Seleccionar un rango de fechas'
-    }
+    },
+    'confirm_text' : 'OK',
   },
   'pt-br': {
     'days': ['Dom', 'Seg', 'Ter', 'Qua', 'Quin', 'Sex', 'Sáb'],
@@ -42,7 +46,8 @@ export default {
     'placeholder': {
       'date': 'Selecione uma data',
       'dateRange': 'Selecione um período'
-    }
+    },
+    'confirm_text' : 'OK',
   },
   'ru': {
     'days': ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
@@ -51,7 +56,8 @@ export default {
     'placeholder': {
       'date': 'Выберите дату',
       'dateRange': 'Выберите период'
-    }
+    },
+    'confirm_text' : 'OK',
   },
   'de': {
     'days': ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
@@ -60,7 +66,8 @@ export default {
     'placeholder': {
       'date': 'Datum auswählen',
       'dateRange': 'Zeitraum auswählen'
-    }
+    },
+    'confirm_text' : 'OK',
   },
   'it': {
     'days': ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
@@ -69,7 +76,8 @@ export default {
     'placeholder': {
       'date': 'Seleziona una data',
       'dateRange': 'Seleziona un intervallo date'
-    }
+    },
+    'confirm_text' : 'Determinare',
   },
   'cs': {
     'days': ['Ned', 'Pon', 'Úte', 'Stř', 'Čtv', 'Pát', 'Sob'],
@@ -78,6 +86,7 @@ export default {
     'placeholder': {
       'date': 'Vyberte datum',
       'dateRange': 'Vyberte časové rozmezí'
-    }
+    },
+    'confirm_text' : 'Accede',
   }
 }
