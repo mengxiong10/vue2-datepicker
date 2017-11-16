@@ -41,7 +41,7 @@
                         :show="showPopup"></calendar-panel>
       </template>
       <div class="datepicker-footer" v-if="confirm">
-        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate">确定</button>
+        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate"> {{ translation.confirm_text}}</button>
       </div>
     </div>
   </div>
@@ -107,6 +107,10 @@ export default {
     inputClass: {
       type: String,
       default: 'input'
+    },
+    confirm_text: {
+      type: String,
+      default: 'Ok'
     }
   },
   data () {
