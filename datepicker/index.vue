@@ -41,7 +41,7 @@
                         :show="showPopup"></calendar-panel>
       </template>
       <div class="datepicker-footer" v-if="confirm">
-        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate"> {{ confirm_text }}</button>
+        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate"> {{ confirmText }}</button>
       </div>
     </div>
   </div>
@@ -108,9 +108,9 @@ export default {
       type: String,
       default: 'input'
     },
-    confirm_text: {
+    confirmText: {
       type: String,
-      default: 'Ok'
+      default: 'OK'
     }
   },
   data () {
@@ -409,15 +409,21 @@ export default {
 }
 .datepicker-btn {
   font-size: 12px;
-  line-height: 28px;
-  padding: 0 5px;
+  line-height: 1;
+  padding: 7px 15px;
   margin: 0 5px;
   cursor: pointer;
   background-color: transparent;
   outline: none;
   border: none;
+  border-radius: 3px;
 }
 .datepicker-btn-confirm {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #73879c;
+}
+.datepicker-btn-confirm:hover {
   color: #1284e7;
+  border-color: #1284e7;
 }
 </style>

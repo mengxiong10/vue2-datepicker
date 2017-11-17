@@ -62,7 +62,7 @@ export default {
 | first-day-of-week | Number        | 7           | set the first day of week (1-7)                   |
 | minute-step       | Number        | 0           | if > 0 don't show the second picker(0 - 60)       |
 | input-class       | String        | 'input'     | the input class name                              |
-| confirm_text      | String        | 'Ok'        | the default text to display on confirm button     |
+| confirm-text      | String        | 'OK'        | the default text to display on confirm button     |
 
 
 ## shortcuts
