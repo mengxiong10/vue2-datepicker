@@ -41,7 +41,7 @@
                         :show="showPopup"></calendar-panel>
       </template>
       <div class="datepicker-footer" v-if="confirm">
-        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate"> {{ translation.confirm_text}}</button>
+        <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate"> {{ confirm_text }}</button>
       </div>
     </div>
   </div>
