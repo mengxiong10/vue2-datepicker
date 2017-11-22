@@ -54,6 +54,7 @@
           range
           lang="en"
           format="yyyy-MM-dd"
+          @confirm="confirm"
           confirm></date-picker>
       </section>
       <blockquote class="tips">
@@ -84,6 +85,11 @@ export default {
       demo1: '<date-picker v-model="value1" lang="en"></date-picker>\n<date-picker v-model="value3" range lang="en"></date-picker>',
       demo2: '<date-picker v-model="value3" type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en"></date-picker>\n<date-picker v-model="value4" type="datetime" format="yyyy-MM-dd HH:mm" :minute-step="10" lang="en"></date-picker>\n<date-picker v-model="value4" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en"></date-picker>',
       demo3: '<date-picker v-model="value6" format="yyyy-MM-dd" lang="en" confirm></date-picker>\n<date-picker v-model="value7" lang="en" type="datetime" format="yyyy-MM-dd hh:mm:ss" confirm></date-picker>\n<date-picker v-model="value8" lang="en" range format="yyyy-MM-dd" confirm></date-picker>'
+    }
+  },
+  methods: {
+    confirm (val) {
+      console.log(val)
     }
   }
 }

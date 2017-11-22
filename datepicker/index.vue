@@ -161,13 +161,12 @@ export default {
       const val = this.currentValue
       if ((!this.range && val) || (this.range && val[0] && val[1])) {
         this.$emit('input', val)
-        console.log(this.value, this.currentValue)
       }
     },
     confirmDate () {
       this.updateDate()
       this.closePopup()
-      this.$emit('confirm')
+      this.$emit('confirm', this.currentValue)
     },
     selectDate () {
       if (!this.confirm) {
