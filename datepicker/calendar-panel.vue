@@ -1,15 +1,15 @@
 <template>
   <div class="calendar">
-    <div class="calendar-header">
-      <a v-if="currentPanel === 'time'" @click="currentPanel = 'date'">{{now.toLocaleDateString()}}</a>
-      <template v-else>
-        <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
-        <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
-        <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
-        <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
-        <a @click="showMonths">{{months[currentMonth]}}</a>
-        <a @click="showYears">{{currentYear}}</a>
-      </template>
+    <div class="calendar-header" v-if="currentPanel === 'time'">
+      <a @click="currentPanel = 'date'">{{now.toLocaleDateString()}}</a>
+    </div>
+    <div class="calendar-header" v-else>
+      <a class="calendar__prev-icon" @click="changeYear(-1)">&laquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__prev-icon" @click="changeMonth(-1)">&lsaquo;</a>
+      <a class="calendar__next-icon" @click="changeYear(1)">&raquo;</a>
+      <a v-show="currentPanel === 'date'" class="calendar__next-icon" @click="changeMonth(1)">&rsaquo;</a>
+      <a @click="showMonths">{{months[currentMonth]}}</a>
+      <a @click="showYears">{{currentYear}}</a>
     </div>
     <div class="calendar-content">
       <table class="calendar-table" v-show="currentPanel === 'date'">

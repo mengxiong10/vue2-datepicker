@@ -19,13 +19,13 @@
          :style="position"
          ref="calendar"
          v-show="showPopup">
-      <template v-if="!range">
-        <calendar-panel 
-          v-model="currentValue"
-          @select="selectDate"
-          :show="showPopup"></calendar-panel>
-      </template>
-      <template v-else>
+
+      <calendar-panel 
+        v-if="!range"
+        v-model="currentValue"
+        @select="selectDate"
+        :show="showPopup"></calendar-panel>
+      <div v-else style="overflow:hidden" >
         <div class="datepicker-top" v-if="ranges.length">
           <span v-for="range in ranges" @click="selectRange(range)">{{range.text}}</span>
         </div>
@@ -39,7 +39,7 @@
                         :start-at="currentValue[0]"
                         @select="selectDate"
                         :show="showPopup"></calendar-panel>
-      </template>
+      </div>
       <div class="datepicker-footer" v-if="confirm">
         <button type="button" class="datepicker-btn datepicker-btn-confirm" @click="confirmDate"> {{ confirmText }}</button>
       </div>
