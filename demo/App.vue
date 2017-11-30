@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import DatePicker from '../datepicker/index.vue'
+import DatePicker from '../dist/build'
 
 export default {
   name: 'app',
