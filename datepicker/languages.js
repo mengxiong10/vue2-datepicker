@@ -79,5 +79,14 @@ export default {
       'date': 'Vyberte datum',
       'dateRange': 'Vyberte časové rozmezí'
     }
+  },
+  'sl': {
+    'days': ['Ned', 'Pon', 'Tor', 'Sre', 'Čet', 'Pet', 'Sob'],
+    'months': ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Avg', 'Sep', 'Okt', 'Nov', 'Dec'],
+    'pickers': ['naslednjih 7 dni', 'naslednjih 30 dni', 'prejšnjih 7 dni', 'prejšnjih 30 dni'],
+    'placeholder': {
+      'date': 'Izberite datu,',
+      'dateRange': 'Izberite razpon med 2 datumoma'
+    }
   }
 }
