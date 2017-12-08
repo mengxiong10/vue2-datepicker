@@ -85,7 +85,7 @@ export default {
     'months': ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Avg', 'Sep', 'Okt', 'Nov', 'Dec'],
     'pickers': ['naslednjih 7 dni', 'naslednjih 30 dni', 'prejšnjih 7 dni', 'prejšnjih 30 dni'],
     'placeholder': {
-      'date': 'Izberite datu,',
+      'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
   }
