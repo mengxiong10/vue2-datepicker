@@ -32,7 +32,17 @@
       </div>
       <div class="mx-calendar-time"
         v-show="currentPanel === 'time'" >
-        <div class="mx-time-list-wrapper" 
+        <div v-if="timeSelectOptions.length" class="mx-time-list-wrapper">
+          <ul class="mx-time-list">
+            <li class="mx-time-item mx-time-picker-item"
+              :class="getTimeClasses(item.value.hours * 60 + item.value.minutes, -1)"
+              @click="pickTime(item.value)"
+              v-for="item in timeSelectOptions">
+              {{item.label}}
+            </li>
+          </ul>
+        </div>
+        <div v-else class="mx-time-list-wrapper" 
           :style="{width: 100 / times.length + '%' }"
           v-for="(time, index) in times" 
           :key="index">
@@ -51,9 +61,34 @@
 </template>
 
 <script>
-function getTimeArray(len, step = 1) {
+const getTimeArray = function (len, step = 1) {
   const length = parseInt(len / step)
   return Array.apply(null, { length }).map((v, i) => i * step)
+}
+
+const parseTime = function(time) {
+  const values = (time || '').split(':');
+  if (values.length >= 2) {
+    const hours = parseInt(values[0], 10);
+    const minutes = parseInt(values[1], 10);
+    return {
+      hours,
+      minutes
+    }
+  }
+  return null;
+}
+
+const formatTime = function(time, type="24") {
+  let hours = time.hours
+  hours = (type === '24') ? hours : (hours % 12 || 12)
+  hours = hours < 10 ? '0' + hours : hours
+  let minutes = time.minutes < 10 ? '0' + time.minutes : time.minutes
+  let result = hours + ':' + minutes
+  if (type === '12') {
+    result += time.hours >= 12 ? ' pm' : ' am'
+  }
+  return result
 }
 
 export default {
@@ -85,6 +120,39 @@ export default {
       const days = this.$parent.translation.days
       const firstday = +this.$parent.firstDayOfWeek
       return days.concat(days).slice(firstday, firstday + 7)
+    },
+    timeType () {
+      return /h+/.test(this.$parent.format) ? '12' : '24'
+    },
+    timeSelectOptions () {
+      const result = []
+      const options = this.$parent.timePickerOptions
+      if (!options) {
+        return []
+      }
+      const start = parseTime(options.start)
+      const end = parseTime(options.end)
+      const step = parseTime(options.step)
+      if (start && end && step) {
+        const startMinutes = start.minutes + start.hours * 60;
+        const endMinutes = end.minutes + end.hours * 60;
+        const stepMinutes = step.minutes + step.hours * 60
+        const len = Math.floor((endMinutes - startMinutes) / stepMinutes)
+        for (let i = 0; i <= len; i++) {
+          let timeMinutes = startMinutes + i * stepMinutes
+          let hours = Math.floor(timeMinutes/60)
+          let minutes = timeMinutes % 60
+          let value = {
+            hours, minutes
+          }
+          result.push({
+            value,
+            label: formatTime(value, this.timeType)
+          })
+        }        
+      }
+
+      return result
     },
     currentYear() {
       return this.now.getFullYear()
@@ -232,6 +300,10 @@ export default {
       const endTime = this.endAt ? new Date(this.endAt) : 0
       const classes = []
       switch (index) {
+        case -1:
+          curValue = this.curHour * 60 + this.curMinute
+          cellTime = new Date(this.now).setHours(Math.floor(value / 60), value % 60, 0)
+          break
         case 0:
           curValue = this.curHour
           cellTime = new Date(this.now).setHours(value)
@@ -369,6 +441,17 @@ export default {
       this.now = date
       this.$emit('input', date)
       this.$emit('select')
+    },
+    pickTime (value) {
+      const classes = this.getTimeClasses(value.hours * 60 + value.minutes, -1)
+      if (classes.indexOf('disabled') !== -1) {
+        return
+      }
+      const date = new Date(this.now)
+      date.setHours(value.hours, value.minutes, 0)
+      this.now = date
+      this.$emit('input', date)
+      this.$emit('select')      
     }
   }
 }
@@ -481,7 +564,7 @@ export default {
 
 .mx-time-list-wrapper {
   display: inline-block;
-  width: 50%;
+  width: 100%;
   height: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   border-left: 1px solid rgba(0, 0, 0, 0.05);
@@ -508,12 +591,15 @@ export default {
 .mx-time-list-wrapper:first-child {
   border-left: 0;
 }
+.mx-time-picker-item {
+  text-align: left;
+  padding-left: 10px;
+}
 
 .mx-time-list {
   margin: 0;
   padding: 0;
   list-style: none;
-  text-align: center;
 }
 .mx-time-item {
   width: 100%;
