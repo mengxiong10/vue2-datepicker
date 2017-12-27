@@ -17,6 +17,15 @@ export default {
       'dateRange': 'Select Date Range'
     }
   },
+  'ro': {
+    'days': ['Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm', 'Dum'],
+    'months': ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Noi', 'Dec'],
+    'pickers': ['urmatoarele 7 zile', 'urmatoarele 30 zile', 'ultimele 7 zile', 'ultimele 30 zile'],
+    'placeholder': {
+      'date': 'Selectați Data',
+      'dateRange': 'Selectați Intervalul De Date'
+    }
+  },
   'fr': {
     'days': ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
     'months': ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'],
