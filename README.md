@@ -1,5 +1,7 @@
 # vue2-datepicker
 
+[中文版](https://github.com/mengxiong10/vue2-datepicker/blob/master/README_CN.md)
+
 > A Datepicker Component For Vue2
 
 ## Demo
@@ -77,7 +79,7 @@ export default {
 | end             | Date          | End Date               |
 
 ## time-picker-options
-* Object[] -  custom shortcuts, [{start, step, end}]
+* Object[] -  custom time-picker, [{start, step, end}]
 
 | Prop            | Type          |  Description           |
 |-----------------|---------------|------------------------|
