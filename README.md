@@ -46,7 +46,7 @@ export default {
   </div>
 </template>
 ```
-## Attributes
+### Attributes
 
 | Prop                | Type          | Default     | Description                                       |
 |---------------------|---------------|-------------|---------------------------------------------------|
@@ -67,7 +67,7 @@ export default {
 | input-class         | String        | 'mx-input'  | the input class name                              |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button     |
 
-## shortcuts
+#### shortcuts
 * true -      show the default shortcuts
 * false -     hide the shortcuts
 * Object[] -  custom shortcuts, [{text, start, end}]
@@ -78,7 +78,7 @@ export default {
 | start           | Date          | Start Date             |
 | end             | Date          | End Date               |
 
-## time-picker-options
+#### time-picker-options
 * Object[] -  custom time-picker, [{start, step, end}]
 
 | Prop            | Type          |  Description           |
@@ -88,7 +88,13 @@ export default {
 | end             | String        | endTime   (eg '23:30') |
 
 
-## Events
+### Events
 | Name            | Description                  |  Callback Arguments    |
 |-----------------|------------------------------|------------------------|
 | confirm         | When you click 'OK' button   | the currentValue       |
+
+## License
+
+[MIT](https://github.com/mengxiong10/vue2-datepicker/blob/master/LICENSE)
+
+Copyright (c) 2017-present xiemengxiong

@@ -46,7 +46,7 @@ export default {
   </div>
 </template>
 ```
-## Props
+### Props
 
 | 名称                 | 类型           | 默认        | 说明                                       
 |---------------------|---------------|-------------|------------------------------------------- 
@@ -67,7 +67,7 @@ export default {
 | input-class         | String        | 'mx-input'  | 自定义输入框的类名                              
 | confirm-text        | String        | 'OK'        | 确认按钮的名称                                 
 
-## shortcuts
+#### shortcuts
 * true -      显示默认快捷选择
 * false -     隐藏快捷选择
 * Object[] -  自定义快捷选择, 格式：[{text, start, end}]
@@ -78,7 +78,7 @@ export default {
 | start           | Date          | 开始日期         |
 | end             | Date          | 结束日期         |
 
-## time-picker-options
+#### time-picker-options
 * Object[] -  自定义时间选择, 格式：[{start, step, end}]
 
 | 名称             | 类型           |  说明                 |
@@ -88,7 +88,13 @@ export default {
 | end             | String        | 结束时间   (eg '23:30') |
 
 
-## Events
+### Events
 | Name            | 说明                          |  回调参数    |
 |-----------------|------------------------------|-------------|
 | confirm         | 点击确认按钮触发的事件           | 选择的日期    |
+
+## 许可证
+
+[MIT](https://github.com/mengxiong10/vue2-datepicker/blob/master/LICENSE)
+
+Copyright (c) 2017-present xiemengxiong
