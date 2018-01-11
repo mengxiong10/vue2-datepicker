@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import DatePicker from '../dist/build'
+import DatePicker from '../index'
 
 export default {
   name: 'app',

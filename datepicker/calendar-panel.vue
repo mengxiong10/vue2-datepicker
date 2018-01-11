@@ -260,7 +260,7 @@ export default {
       const today = new Date().setHours(0, 0, 0, 0)
 
       if (
-        this.$parent.disabledDays.some(v => +new Date(v) === +cell.date) ||
+        this.$parent.disabledDays.some(v => new Date(v).setHours(0, 0, 0, 0) === cellTime) ||
         (this.$parent.notBefore !== '' &&
           cellEndTime < new Date(this.$parent.notBefore).getTime()) ||
         (this.$parent.notAfter !== '' &&
