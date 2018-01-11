@@ -46,7 +46,7 @@ export default {
   </div>
 </template>
 ```
-### Attributes
+### Props
 
 | Prop                | Type          | Default     | Description                                       |
 |---------------------|---------------|-------------|---------------------------------------------------|
@@ -89,9 +89,9 @@ export default {
 
 
 ### Events
-| Name            | Description                  |  Callback Arguments    |
-|-----------------|------------------------------|------------------------|
-| confirm         | When you click 'OK' button   | the currentValue       |
+| Name            |    Attributes     |     Listen    |          Description               |
+|-----------------|-------------------|---------------|------------------------------------|
+| input           |     (value)       |     @input    |  Triggered when the value changes  |                
 
 ## License
 
