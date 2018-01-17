@@ -2,10 +2,11 @@
   "name": "vue2-datepicker",
   "description": "A Datepicker Component For Vue2",
   "main": "dist/build.js",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.demo.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.build.config.js"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "webpack-merge": "^4.1.1"
   }
 }

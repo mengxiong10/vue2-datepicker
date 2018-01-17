@@ -4,11 +4,9 @@ var webpack = require('webpack')
 module.exports = {
   entry: './demo/main.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js',
-    library: "DatePicker",
-    libraryTarget: "umd"
+    path: path.resolve(__dirname, './demo'),
+    publicPath: '/demo/',
+    filename: 'build.js'
   },
   module: {
     rules: [
@@ -35,11 +33,6 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    alias: {
-      // 'vue$': 'vue/dist/vue.esm.js'
-    }
-  },
   devServer: {
     historyApiFallback: true,
     noInfo: true,
@@ -49,26 +42,4 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map'
-}
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.entry = './index.js'
-  module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: false,
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
 }
