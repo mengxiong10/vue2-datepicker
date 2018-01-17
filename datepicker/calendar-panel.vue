@@ -375,6 +375,21 @@ export default {
       now.setMonth(now.getMonth() + flag, 1)
       this.now = now
     },
+    scrollIntoView(container, selected) {
+      if (!selected) {
+        container.scrollTop = 0
+        return
+      }
+      const top = selected.offsetTop
+      const bottom = selected.offsetTop + selected.offsetHeight
+      const viewRectTop = container.scrollTop
+      const viewRectBottom = viewRectTop + container.clientHeight
+      if (top < viewRectTop) {
+        container.scrollTop = top
+      } else if (bottom > viewRectBottom) {
+        container.scrollTop = bottom - container.clientHeight
+      }
+    },
     selectDate(cell) {
       const classes = this.getDateClasses(cell)
       if (classes.indexOf('disabled') !== -1) {
@@ -402,9 +417,9 @@ export default {
         this.currentPanel = 'time'
         this.$nextTick(() => {
           Array.prototype.forEach.call(
-            this.$el.querySelectorAll('.cur-time'),
-            function(el) {
-              el.scrollIntoView()
+            this.$el.querySelectorAll('.mx-time-list-wrapper'),
+            (el) => {
+              this.scrollIntoView(el, el.querySelector('.cur-time'))
             }
           )
         })
@@ -490,6 +505,11 @@ export default {
   float: right;
 }
 
+.mx-calendar-content {
+  height: 224px;
+  overflow: hidden;
+}
+
 .mx-calendar-table {
   width: 100%;
   font-size: 12px;
@@ -543,7 +563,7 @@ export default {
 .mx-calendar-month,
 .mx-calendar-time {
   width: 100%;
-  height: 224px;
+  height: 100%;
   padding: 7px 0;
   text-align: center;
 }
@@ -563,6 +583,7 @@ export default {
 }
 
 .mx-time-list-wrapper {
+  position: relative;
   display: inline-block;
   width: 100%;
   height: 100%;
