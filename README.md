@@ -66,6 +66,7 @@ export default {
 | first-day-of-week   | Number        | 7           | set the first day of week (1-7)                   |
 | input-class         | String        | 'mx-input'  | the input class name                              |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button     |
+| disabled            | Boolean       | false       | Disable the component                             |
 
 #### shortcuts
 * true -      show the default shortcuts

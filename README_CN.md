@@ -65,7 +65,8 @@ export default {
 | minute-step         | Number        | 0           | 分钟的步进，设置time-picker-options，这项无效    
 | first-day-of-week   | Number        | 7           | 设置日历星期几开头(1-7)                         
 | input-class         | String        | 'mx-input'  | 自定义输入框的类名                              
-| confirm-text        | String        | 'OK'        | 确认按钮的名称                                 
+| confirm-text        | String        | 'OK'        | 确认按钮的名称
+| disabled            | Boolean       | false       | 禁用组件                           
 
 #### shortcuts
 * true -      显示默认快捷选择

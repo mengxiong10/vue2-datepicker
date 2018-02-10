@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.demo.config.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.build.config.js"
+    "deploy": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.deploy.config.js"
   },
   "repository": {
     "type": "git",

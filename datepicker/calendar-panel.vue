@@ -432,12 +432,20 @@ export default {
       const now = new Date(this.now)
       now.setFullYear(year)
       this.now = now
+      if (this.value) {
+        this.$emit('input', now)
+        this.$emit('select', true)        
+      }
       this.currentPanel = 'months'
     },
     selectMonth(month) {
       const now = new Date(this.now)
       now.setMonth(month)
       this.now = now
+      if (this.value) {
+        this.$emit('input', now)
+        this.$emit('select', true)       
+      }
       this.currentPanel = 'date'
     },
     selectTime(value, index) {

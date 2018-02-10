@@ -1,12 +1,17 @@
 <template>
   <div class="mx-datepicker"
+       :class="{'disabled': disabled}"
        :style="{'width': width + 'px','min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
        v-clickoutside="closePopup">
     <input readonly
+          name="date"
+          :disabled="disabled"
           :class="inputClass"
           :value="text"
           :placeholder="innerPlaceholder"
           ref="input"
+          @mouseenter="hoverIcon"
+          @mouseleave="hoverIcon"
           @click="togglePopup"
           @mousedown="$event.preventDefault()">
     <i class="mx-input-icon" 
@@ -120,6 +125,10 @@ export default {
     confirmText: {
       type: String,
       default: 'OK'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -186,10 +195,10 @@ export default {
       this.closePopup()
       this.$emit('confirm', this.currentValue)
     },
-    selectDate() {
-      if (!this.confirm) {
+    selectDate(show = false) {
+      if (!this.confirm && !this.disabled) {
         this.updateDate()
-        if (this.type === 'date' && !this.range) {
+        if (!show && this.type === 'date' && !this.range) {
           this.closePopup()
         }
       }
@@ -207,6 +216,9 @@ export default {
       }
     },
     hoverIcon(e) {
+      if (this.disabled) {
+        return
+      }
       if (e.type === 'mouseenter' && this.text) {
         this.showCloseIcon = true
       }
@@ -215,6 +227,9 @@ export default {
       }
     },
     clickIcon() {
+      if (this.disabled) {
+        return
+      }
       if (this.showCloseIcon) {
         this.$emit('input', '')
       } else {
@@ -297,6 +312,9 @@ export default {
       }
     },
     displayPopup() {
+      if (this.disabled) {
+        return
+      }
       const dw = document.documentElement.clientWidth
       const dh = document.documentElement.clientHeight
       const InputRect = this.$el.getBoundingClientRect()
@@ -360,6 +378,10 @@ export default {
   * {
     box-sizing: border-box;
   }
+  &.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 }
 .mx-datepicker-popup {
   position: absolute;
@@ -387,6 +409,10 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  &:disabled, &.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;    
+  }
 }
 
 .mx-input-icon {
