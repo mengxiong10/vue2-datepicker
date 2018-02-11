@@ -106,5 +106,5 @@ export default {
       'date': '日付を選択',
       'dateRange': '期間を選択'
     }
-  },
+  }
 }
