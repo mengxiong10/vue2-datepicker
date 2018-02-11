@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
-  }
+  },
+  'ja': {
+    'days': ['日', '月', '火', '水', '木', '金', '土'],
+    'months': ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    'pickers': ['1週間後', '1ヶ月後', '1週間前', '1ヶ月前'],
+    'placeholder': {
+      'date': '日付を選択',
+      'dateRange': '期間を選択'
+    }
+  },
 }
