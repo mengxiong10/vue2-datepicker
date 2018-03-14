@@ -54,7 +54,7 @@ export default {
 | range               | Boolean       | false       | if true, the type is daterange or datetimerange   |
 | confirm             | Boolean       | false       | if true, need click the button to change the value|
 | format              | String        | yyyy-MM-dd  | Date formatting string                            |
-| lang                | String        | zh          | Translation (en/zh/es/pt-br/fr/ru/de/it/cs)       |
+| lang                | String        | zh          | Translation (en/zh/es/pt-br/fr/ru/de/nl/it/cs)    |
 | placeholder         | String        |             | input placeholder text                            |
 | width               | String/Number | 210         | input size                                        |
 | disabled-days       | Array         | []          | Days in YYYY-MM-DD format to disable              |

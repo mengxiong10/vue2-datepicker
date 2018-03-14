@@ -54,7 +54,7 @@ export default {
 | range               | Boolean       | false       | 如果是true， 显示日历范围选择                  
 | confirm             | Boolean       | false       | 如果是true， 显示确认按钮且需要确认才更新时间     
 | format              | String        | yyyy-MM-dd  | 自定义显示在输入框上的格式(yyyy-MM-dd HH:mm:ss) 
-| lang                | String        | zh          | 选择语言 (en/zh/es/pt-br/fr/ru/de/it/cs)     
+| lang                | String        | zh          | 选择语言 (en/zh/es/pt-br/fr/ru/de/nl/it/cs)  
 | placeholder         | String        |             | placeholder的值                              
 | width               | String/Number | 210         | 输入框的width                                 
 | disabled-days       | Array         | []          | 禁止选择的日期 (['2018-1-1'])                  
