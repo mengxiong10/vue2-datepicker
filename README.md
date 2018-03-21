@@ -67,6 +67,7 @@ export default {
 | input-class         | String        | 'mx-input'  | the input class name                              |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button     |
 | disabled            | Boolean       | false       | Disable the component                             |
+| editable            | Boolean       | false       | if true, user can type it(only the range is false)|
 
 #### shortcuts
 * true -      show the default shortcuts

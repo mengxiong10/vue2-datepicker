@@ -66,7 +66,8 @@ export default {
 | first-day-of-week   | Number        | 7           | 设置日历星期几开头(1-7)                         
 | input-class         | String        | 'mx-input'  | 自定义输入框的类名                              
 | confirm-text        | String        | 'OK'        | 确认按钮的名称
-| disabled            | Boolean       | false       | 禁用组件                           
+| disabled            | Boolean       | false       | 禁用组件
+| editable            | Boolean       | false       | 如果是true, 用户可以手动输入 (仅在range === false)                   
 
 #### shortcuts
 * true -      显示默认快捷选择
