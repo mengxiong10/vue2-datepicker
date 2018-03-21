@@ -3,7 +3,7 @@
     <div class="example">
         <section class="demo">
           <span class="label">default:</span>
-          <date-picker v-model="value1" lang="en"></date-picker>
+          <date-picker v-model="value1" lang="en" editable></date-picker>
         </section>
         <section class="demo">
           <span class="label">range:</span>
@@ -87,7 +87,7 @@ export default {
       value6: '',
       value7: '',
       value8: '',
-      demo1: '<date-picker v-model="value1" lang="en"></date-picker>\n<date-picker v-model="value3" range lang="en"></date-picker>',
+      demo1: '<date-picker v-model="value1" editable lang="en"></date-picker>\n<date-picker v-model="value3" range lang="en"></date-picker>',
       demo2: `<date-picker v-model="value3" type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en"></date-picker>\n<date-picker v-model="value4" type="datetime" format="yyyy-MM-dd hh:mm:ss a" :time-picker-options="{start: '00:00',step: '00:30',end: '23:30'}" lang="en"></date-picker>\n<date-picker v-model="value4" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en"></date-picker>`,
       demo3: '<date-picker v-model="value6" format="yyyy-MM-dd" lang="en" confirm></date-picker>\n<date-picker v-model="value7" lang="en" type="datetime" format="yyyy-MM-dd hh:mm:ss" confirm></date-picker>\n<date-picker v-model="value8" lang="en" range format="yyyy-MM-dd" confirm></date-picker>'
     }
