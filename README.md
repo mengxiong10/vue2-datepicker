@@ -93,7 +93,8 @@ export default {
 ### Events
 | Name            | Description                  |  Callback Arguments    |
 |-----------------|------------------------------|------------------------|
-| confirm         | When you click 'OK' button   | the currentValue       |
+| change          | When user select date        | the currentValue       |
+| confirm         | When user click 'OK' button  | the currentValue       |
 
 ## License
 
