@@ -148,7 +148,7 @@ export default {
       showCloseIcon: false,
       currentValue: this.value,
       position: null,
-      userInput: '',
+      userInput: null,
       ranges: [] // 快捷选项
     }
   },
