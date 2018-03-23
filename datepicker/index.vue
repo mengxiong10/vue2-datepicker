@@ -226,7 +226,6 @@ export default {
       if ((!this.range && val) || (this.range && val[0] && val[1])) {
         this.$emit('input', val)
         this.$emit('change', val)
-        this.closePopup()
       }
     },
     confirmDate () {
@@ -238,6 +237,7 @@ export default {
       if (!this.confirm && !this.disabled) {
         this.updateDate()
         if (!show && this.type === 'date' && !this.range) {
+          console.log('show')
           this.closePopup()
         }
       }
