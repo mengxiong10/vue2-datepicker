@@ -97,5 +97,15 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
-  }
+  },
+  'da': {
+    'days': ['søn', 'man', 'tir', 'ons', 'tor', 'fre', 'lør'],
+    'months': ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'],
+    'pickers': ['neste 7 dager', 'neste 30 dager', 'sidste 7 dager', 'sidste 30 dager'],
+    'placeholder': {
+      'date': 'Vælg dato',
+      'dateRange': 'Vælg datointerval'
+    }
+  },
+
 }
