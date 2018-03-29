@@ -101,11 +101,10 @@ export default {
   'da': {
     'days': ['søn', 'man', 'tir', 'ons', 'tor', 'fre', 'lør'],
     'months': ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'],
-    'pickers': ['neste 7 dager', 'neste 30 dager', 'sidste 7 dager', 'sidste 30 dager'],
+    'pickers': ['næste 7 dage', 'næste 30 dage', 'sidste 7 dage', 'sidste 30 dage'],
     'placeholder': {
       'date': 'Vælg dato',
       'dateRange': 'Vælg datointerval'
     }
-  },
-
+  }
 }
