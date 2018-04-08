@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
+  },
+  'vi': {
+    'days': ['Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy', 'CN'],
+    'months': ['Một', 'Hai', 'Ba', 'Tư', 'Năm', 'Sáu', 'Bảy', 'Tám', 'Chín', 'Mười', 'Mười một', 'Mười hai'],
+    'pickers': ['Tuần kế tiếp', 'Tháng kế tiếp', 'Tuần trước', 'Tháng trước'],
+    'placeholder': {
+      'date': 'Chọn ngày',
+      'dateRange': 'Chọn khoảng ngày'
+    }
   }
 }
