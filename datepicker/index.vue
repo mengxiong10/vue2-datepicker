@@ -63,6 +63,10 @@
 import CalendarPanel from './calendar-panel.vue'
 import Languages from './languages.js'
 
+const isObject = function (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
 export default {
   name: 'DatePicker',
   components: { CalendarPanel },
@@ -86,7 +90,7 @@ export default {
     },
     placeholder: String,
     lang: {
-      type: String,
+      type: [String, Object],
       default: 'zh'
     },
     shortcuts: {
@@ -175,6 +179,9 @@ export default {
   },
   computed: {
     translation () {
+      if (isObject(this.lang)) {
+        return { ...Languages['en'], ...this.lang }
+      }
       return Languages[this.lang] || Languages['en']
     },
     innerPlaceholder () {
