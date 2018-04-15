@@ -76,8 +76,8 @@ export default {
     'months': ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
     'pickers': ['volgende 7 dagen', 'volgende 30 dagen', 'vorige 7 dagen', 'vorige 30 dagen'],
     'placeholder': {
-      'date': 'datum selekteren',
-      'dateRange': 'periode selekteren'
+      'date': 'datum selecteren',
+      'dateRange': 'periode selecteren'
     }
   },
   'it': {
