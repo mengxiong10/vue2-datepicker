@@ -248,7 +248,6 @@ export default {
       if (!this.confirm && !this.disabled) {
         this.updateDate()
         if (!show && this.type === 'date' && !this.range) {
-          console.log('show')
           this.closePopup()
         }
       }
