@@ -52,9 +52,11 @@ export default {
 |---------------------|---------------|-------------|-----------------------------------------------------|
 | type                | String        | 'date'      | select datepicker or datetimepicker(date/datetime)  |
 | range               | Boolean       | false       | if true, the type is daterange or datetimerange     |
-| confirm             | Boolean       | false       | if true, need click the button to change the value  |
 | format              | String        | yyyy-MM-dd  | Date formatting string                              |
 | lang                | String/Object | zh          | Translation (en/zh/es/pt-br/fr/ru/de/it/cs)(custom) |
+| confirm             | Boolean       | false       | if true, need click the button to change the value  |
+| disabled            | Boolean       | false       | Disable the component                               |
+| editable            | Boolean       | false       | if true, user can type it(only the range is false)  |
 | placeholder         | String        |             | input placeholder text                              |
 | width               | String/Number | 210         | input size                                          |
 | disabled-days       | Array         | []          | Days in YYYY-MM-DD format to disable                |
@@ -66,8 +68,8 @@ export default {
 | first-day-of-week   | Number        | 7           | set the first day of week (1-7)                     |
 | input-class         | String        | 'mx-input'  | the input class name                                |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button       |
-| disabled            | Boolean       | false       | Disable the component                               |
-| editable            | Boolean       | false       | if true, user can type it(only the range is false)  |
+| range-separator     | String        | '~'         | the range separator text                            |
+
 
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)

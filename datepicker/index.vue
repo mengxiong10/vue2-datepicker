@@ -144,6 +144,10 @@ export default {
     editable: {
       type: Boolean,
       default: false
+    },
+    rangeSeparator: {
+      type: String,
+      default: '~'
     }
   },
   data () {
@@ -198,7 +202,7 @@ export default {
       }
       if (this.range && this.isValidRange(this.value)) {
         return (
-          this.stringify(this.value[0]) + ' ~ ' + this.stringify(this.value[1])
+          this.stringify(this.value[0]) + ` ${this.rangeSeparator} ` + this.stringify(this.value[1])
         )
       }
       return ''
