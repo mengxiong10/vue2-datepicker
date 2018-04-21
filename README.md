@@ -53,6 +53,7 @@ export default {
 | type                | String        | 'date'      | select datepicker or datetimepicker(date/datetime)  |
 | range               | Boolean       | false       | if true, the type is daterange or datetimerange     |
 | format              | String        | yyyy-MM-dd  | Date formatting string                              |
+| custom-formatter    | function      | null        | custom Date display                                 |
 | lang                | String/Object | zh          | Translation (en/zh/es/pt-br/fr/ru/de/it/cs)(custom) |
 | confirm             | Boolean       | false       | if true, need click the button to change the value  |
 | disabled            | Boolean       | false       | Disable the component                               |
