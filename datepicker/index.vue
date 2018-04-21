@@ -76,6 +76,9 @@ export default {
       type: String,
       default: 'yyyy-MM-dd'
     },
+    customFormatter: {
+      type: Function
+    },
     range: {
       type: Boolean,
       default: false
@@ -334,6 +337,9 @@ export default {
       return str
     },
     stringify (date) {
+      if (typeof this.customFormatter === 'function') {
+        return this.customFormatter(new Date(date))
+      }
       return this.formatDate(new Date(date), this.format)
     },
     isValidDate (date) {
