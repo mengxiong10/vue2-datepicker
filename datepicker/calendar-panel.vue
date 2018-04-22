@@ -25,10 +25,14 @@
         </tbody>
       </table>
       <div class="mx-calendar-year" v-show="currentPanel === 'years'">
-        <a v-for="year in years" @click="selectYear(year)" :class="{'current': currentYear === year}">{{year}}</a>
+        <a v-for="year in years" 
+          @click="selectYear(year)" 
+          :class="{'current': currentYear === year, 'disabled': isDisabledYear(year)}">{{year}}</a>
       </div>
       <div class="mx-calendar-month" v-show="currentPanel === 'months'">
-        <a v-for="(month, index) in months" @click="selectMonth(index)" :class="{'current': currentMonth === index}">{{month}}</a>
+        <a v-for="(month, index) in months" 
+        @click="selectMonth(index)" 
+        :class="{'current': currentMonth === index, 'disabled': isDisabledMonth(index)}">{{month}}</a>
       </div>
       <div class="mx-calendar-time"
         v-show="currentPanel === 'time'" >
@@ -248,6 +252,19 @@ export default {
       }
       this.dates = result
     },
+    isDisabled (date) {
+      const now = new Date(date).getTime()
+      if (
+        this.$parent.disabledDays.some(v => new Date(v).setHours(0, 0, 0, 0) === now) ||
+        this.$parent.notBefore !== '' && now < new Date(this.$parent.notBefore).getTime() ||
+        this.$parent.notAfter !== '' && now > new Date(this.$parent.notAfter).getTime() ||
+        this.startAt && now < new Date(this.startAt).setHours(0, 0, 0, 0) ||
+        this.endAt && now > new Date(this.endAt).setHours(0, 0, 0, 0)        
+      ) {
+        return true
+      }
+      return false
+    },
     getDateClasses(cell) {
       const classes = []
       const cellTime = new Date(cell.date).setHours(0, 0, 0, 0)
@@ -258,17 +275,9 @@ export default {
         : 0
       const endTime = this.endAt ? new Date(this.endAt).setHours(0, 0, 0, 0) : 0
       const today = new Date().setHours(0, 0, 0, 0)
-
-      if (
-        this.$parent.disabledDays.some(v => new Date(v).setHours(0, 0, 0, 0) === cellTime) ||
-        (this.$parent.notBefore !== '' &&
-          cellEndTime < new Date(this.$parent.notBefore).getTime()) ||
-        (this.$parent.notAfter !== '' &&
-          cellTime > new Date(this.$parent.notAfter).getTime())
-      ) {
+      if (this.isDisabled(cellTime)) {
         return 'disabled'
       }
-
       classes.push(cell.classes)
 
       if (cellTime === today) {
@@ -276,20 +285,14 @@ export default {
       }
 
       // range classes
-      if (cellTime === curTime) {
-        classes.push('current')
-      } else if (startTime) {
-        if (cellTime < startTime) {
-          classes.push('disabled')
-        } else if (curTime && cellTime <= curTime) {
+      if (curTime) {
+        if (cellTime === curTime) {
+          classes.push('current')
+        } else if (startTime && cellTime <= curTime) {
           classes.push('inrange')
-        }
-      } else if (endTime) {
-        if (cellTime > endTime) {
-          classes.push('disabled')
-        } else if (curTime && cellTime >= curTime) {
+        } else if (endTime && cellTime >= curTime) {
           classes.push('inrange')
-        }
+        }       
       }
       return classes.join(' ')
     },
@@ -428,17 +431,37 @@ export default {
       this.$emit('input', date)
       this.$emit('select')
     },
+    isDisabledYear (year) {
+      if (this.value) {
+        const now = new Date(this.now).setFullYear(year)
+        return this.isDisabled(now) 
+      }
+      return false
+    },
+    isDisabledMonth (month) {
+      if (this.value) {
+        const now = new Date(this.now).setMonth(month)
+        return this.isDisabled(now)  
+      }
+      return false
+    },
     selectYear(year) {
+      if (this.isDisabledYear(year)) {
+        return
+      }
       const now = new Date(this.now)
       now.setFullYear(year)
       this.now = now
       if (this.value) {
         this.$emit('input', now)
-        this.$emit('select', true)        
+        this.$emit('select', true)
       }
       this.currentPanel = 'months'
     },
     selectMonth(month) {
+      if (this.isDisabledMonth(month)) {
+        return
+      }
       const now = new Date(this.now)
       now.setMonth(month)
       this.now = now
@@ -561,7 +584,10 @@ export default {
   background-color: #1284e7;
 }
 
-.mx-calendar-table td.disabled {
+.mx-calendar-table td.disabled,
+.mx-time-item.disabled,
+.mx-calendar-year a.disabled,
+.mx-calendar-month a.disabled {
   cursor: not-allowed;
   color: #ccc;
   background-color: #f3f3f3;
@@ -643,10 +669,5 @@ export default {
 .mx-time-item.cur-time {
   color: #fff;
   background-color: #1284e7;
-}
-.mx-time-item.disabled {
-  cursor: not-allowed;
-  color: #ccc;
-  background-color: #f3f3f3;
 }
 </style>
