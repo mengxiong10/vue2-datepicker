@@ -1,7 +1,7 @@
 <template>
 <div class="mx-datepicker"
   :class="{'disabled': disabled}"
-  :style="{'width': width + 'px','min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
+  :style="{'width': computedWidth,'min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
   v-clickoutside="closePopup">
   <input name="date"
     :disabled="disabled"
@@ -209,6 +209,16 @@ export default {
         )
       }
       return ''
+    },
+    computedWidth () {
+      if (typeof this.width === 'string' && this.width.match(/(px|%|rem|em|ex)$/)) {
+        return this.width
+      }
+      if (typeof this.width === 'string') {
+        return this.width.replace(/\D/g,'') + 'px'
+      }
+      
+      return this.width + 'px'
     }
   },
   methods: {
