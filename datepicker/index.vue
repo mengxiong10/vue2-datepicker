@@ -211,14 +211,10 @@ export default {
       return ''
     },
     computedWidth () {
-      if (typeof this.width === 'string' && this.width.match(/(px|%|rem|em|ex)$/)) {
-        return this.width
+      if ((typeof this.width === 'string' && /^\d+$/.test(this.width)) || typeof this.width === 'number') {
+        return this.width + 'px'
       }
-      if (typeof this.width === 'string') {
-        return this.width.replace(/\D/g,'') + 'px'
-      }
-      
-      return this.width + 'px'
+      return this.width
     }
   },
   methods: {
