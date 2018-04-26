@@ -3,7 +3,7 @@
   :class="{'disabled': disabled}"
   :style="{'width': computedWidth,'min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
   v-clickoutside="closePopup">
-  <input name="date"
+  <input :name="inputName"
     :disabled="disabled"
     :class="inputClass"
     :value="text"
@@ -151,6 +151,10 @@ export default {
     rangeSeparator: {
       type: String,
       default: '~'
+    },
+    inputName:{
+      type: String,
+      default: 'date'
     }
   },
   data () {
