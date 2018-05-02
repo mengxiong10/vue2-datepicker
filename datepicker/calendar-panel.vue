@@ -134,6 +134,9 @@ export default {
       if (!options) {
         return []
       }
+      if (typeof options === 'function') {
+        return options() || []
+      }
       const start = parseTime(options.start)
       const end = parseTime(options.end)
       const step = parseTime(options.step)

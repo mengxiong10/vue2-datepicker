@@ -123,9 +123,9 @@ export default {
       validator: val => val >= 0 && val <= 60
     },
     timePickerOptions: {
-      type: Object,
+      type: [Object, Function],
       default () {
-        return {}
+        return null
       }
     },
     confirm: {
