@@ -8,6 +8,15 @@ export default {
       'dateRange': '请选择日期范围'
     }
   },
+  'az': {
+    'days': ['B.', 'B.E', 'Ç.A', 'Ç.', 'C.A', 'C.', 'Ş.'],
+    'months': ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'İyn', 'İyl', 'Avq', 'Sen', 'Okt', 'Noy', 'Dek'],
+    'pickers': ['sonrakı 7 gün', 'sonrakı 30 gün', 'əvvəlki 7 gün', 'əvvəlki 30 gün'],
+    'placeholder': {
+      'date': 'Tarixi Seç',
+      'dateRange': 'Tarix Aralığını Seç'
+    }
+  },
   'en': {
     'days': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     'months': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
