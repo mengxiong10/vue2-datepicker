@@ -259,8 +259,8 @@ export default {
       const now = new Date(date).getTime()
       if (
         this.$parent.disabledDays.some(v => new Date(v).setHours(0, 0, 0, 0) === now) ||
-        this.$parent.notBefore !== '' && now < new Date(this.$parent.notBefore).getTime() ||
-        this.$parent.notAfter !== '' && now > new Date(this.$parent.notAfter).getTime() ||
+        this.$parent.notBefore !== '' && now < new Date(this.$parent.notBefore).setHours(0, 0, 0, 0) ||
+        this.$parent.notAfter !== '' && now > new Date(this.$parent.notAfter).setHours(0, 0, 0, 0) ||
         this.startAt && now < new Date(this.startAt).setHours(0, 0, 0, 0) ||
         this.endAt && now > new Date(this.endAt).setHours(0, 0, 0, 0)        
       ) {
