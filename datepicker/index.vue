@@ -26,6 +26,9 @@
     :style="position"
     ref="calendar"
     v-show="showPopup">
+    
+    <slot name="header"></slot>
+
     <calendar-panel v-if="!range"
       v-model="currentValue"
       @select="selectDate"
@@ -50,6 +53,13 @@
     </div>
     <div class="mx-datepicker-footer"
       v-if="confirm">
+
+      <slot name="footer"></slot>
+      
+      <button type="button"
+        class="mx-datepicker-btn mx-datepicker-btn-cancel"
+        @click="cancelDate"> {{ cancelText }}</button>
+
       <button type="button"
         class="mx-datepicker-btn mx-datepicker-btn-confirm"
         @click="confirmDate"> {{ confirmText }}</button>
@@ -139,6 +149,10 @@ export default {
     confirmText: {
       type: String,
       default: 'OK'
+    },
+    cancelText: {
+      type: String,
+      default: 'Cancel'
     },
     disabled: {
       type: Boolean,
@@ -256,6 +270,11 @@ export default {
       this.updateDate()
       this.closePopup()
       this.$emit('confirm', this.currentValue)
+    },
+    cancelDate () {
+      this.updateDate()
+      this.closePopup()
+      this.$emit('cancel', this.currentValue)
     },
     selectDate (show = false) {
       if (!this.confirm && !this.disabled) {
