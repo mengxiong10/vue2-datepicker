@@ -272,7 +272,6 @@ export default {
       this.$emit('confirm', this.currentValue)
     },
     cancelDate () {
-      this.updateDate()
       this.closePopup()
       this.$emit('cancel', this.currentValue)
     },
