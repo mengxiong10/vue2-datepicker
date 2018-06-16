@@ -89,6 +89,35 @@ export default {
 | confirm-text        | String        | 'OK'        | 确认按钮的名称       
 | range-separator     | String        | '~'         | range 分隔符                            
 
+#### lang
+* String (en/zh/es/pt-br/fr/ru/de/it/cs)
+* Object (自定义)
+
+```html
+<script>
+export default {
+  data() {
+    return {
+      value: '',
+      lang: {
+        days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+        placeholder: {
+          date: 'Select Date',
+          dateRange: 'Select Date Range'
+        }
+      }
+    }
+  }
+}
+</script>
+
+<template>
+  <date-picker v-model="value" :lang="lang"></date-picker>
+</template>
+
+```
 
 #### shortcuts
 * true -      显示默认快捷选择
