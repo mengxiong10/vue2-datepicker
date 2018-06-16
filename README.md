@@ -15,7 +15,7 @@
 </a>
 
 ## Demo
-<https://mengxiong10.github.io/vue2-datepicker/demo>
+<https://mengxiong10.github.io/vue2-datepicker/demo/index.html>
 
 ![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
 
@@ -148,6 +148,19 @@ export default {
 | input           | When the value change        | the currentValue       |
 | confirm         | When user click 'OK' button  | the currentValue       |
 | input-error     | When user type a invalid Date| the input value        |
+
+### Slots
+
+| Name            | Description              |
+|-----------------|--------------------------|     
+| calendar-icon   | custom the calender icon |
+| header          | popup header             |
+| footer          | popup footer             |
+
+## ChangeLog 
+
+[CHANGELOG](CHANGELOG.md)
+
 
 ## License
 

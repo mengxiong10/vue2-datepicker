@@ -10,9 +10,10 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --open --config build/webpack.dev.config.js",
     "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.demo.config.js",
-    "deploy": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.deploy.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.deploy.config.js",
     "test:push": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "npm test && npm run build"
   },
   "jest": {
     "moduleFileExtensions": [
