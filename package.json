@@ -1,12 +1,31 @@
 {
   "name": "vue2-datepicker",
   "description": "A Datepicker Component For Vue2",
-  "main": "dist/build.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "version": "1.9.8",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.demo.config.js",
-    "deploy": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack.deploy.config.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --open --config build/webpack.dev.config.js",
+    "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.demo.config.js",
+    "deploy": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.deploy.config.js",
+    "test:push": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   },
   "repository": {
     "type": "git",
@@ -23,34 +42,54 @@
   },
   "homepage": "https://github.com/mengxiong10/vue2-datepicker#readme",
   "dependencies": {
-    "vue": "^2.2.1"
+    "fecha": "^2.3.3"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.6",
-    "babel-core": "^6.0.0",
-    "babel-eslint": "^8.0.2",
-    "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.6.0",
+    "@vue/test-utils": "^1.0.0-beta.18",
+    "autoprefixer": "^7.2.6",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-jsx-v-model": "^2.0.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-stage-3": "^6.24.1",
-    "cross-env": "^5.0.0",
+    "coveralls": "^3.0.1",
+    "cross-env": "^5.1.6",
     "css-loader": "^0.25.0",
-    "eslint": "^4.12.0",
-    "eslint-config-standard": "^10.2.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^4.0.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "file-loader": "^0.9.0",
-    "node-sass": "^4.7.2",
-    "postcss-loader": "^2.0.9",
-    "sass-loader": "^6.0.6",
-    "vue-loader": "^13.0.5",
-    "vue-template-compiler": "^2.2.1",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
-    "webpack-merge": "^4.1.1"
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "eslint-plugin-vue": "^4.5.0",
+    "file-loader": "^1.1.11",
+    "highlight.js": "^9.12.0",
+    "jest": "^23.0.1",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
+    "optimize-css-assets-webpack-plugin": "^4.0.2",
+    "postcss-loader": "^2.1.5",
+    "sass-loader": "^6.0.7",
+    "vue": "^2.5.16",
+    "vue-jest": "^2.6.0",
+    "vue-loader": "^15.2.1",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
