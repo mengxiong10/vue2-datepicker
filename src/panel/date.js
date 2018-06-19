@@ -1,7 +1,8 @@
-import { t } from '@/locale/index'
+import locale from '@/mixins/locale'
 
 export default {
   name: 'panelDate',
+  mixins: [locale],
   props: {
     value: null,
     startAt: null,
@@ -33,7 +34,7 @@ export default {
       this.$emit('select', date)
     },
     getDays (firstDayOfWeek) {
-      const days = t('days')
+      const days = this.t('days')
       const firstday = parseInt(firstDayOfWeek, 10)
       return days.concat(days).slice(firstday, firstday + 7)
     },

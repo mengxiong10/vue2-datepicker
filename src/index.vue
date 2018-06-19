@@ -98,13 +98,15 @@
 <script>
 import fecha from 'fecha'
 import clickoutside from '@/directives/clickoutside'
-import { isValidDate, isValidRange, isDateObejct } from '@/utils/index'
-import { use, t } from '@/locale/index'
+import { isValidDate, isValidRange, isDateObejct, isPlainObject } from '@/utils/index'
 import CalendarPanel from './calendar.vue'
+import locale from '@/mixins/locale'
+import Languages from '@/locale/languages'
 
 export default {
   name: 'DatePicker',
   components: { CalendarPanel },
+  mixins: [locale],
   directives: {
     clickoutside
   },
@@ -189,11 +191,17 @@ export default {
     }
   },
   computed: {
+    language () {
+      if (isPlainObject(this.lang)) {
+        return { ...Languages.en, ...this.lang }
+      }
+      return Languages[this.lang] || Languages.en
+    },
     innerPlaceholder () {
       if (typeof this.placeholder === 'string') {
         return this.placeholder
       }
-      return this.range ? t('placeholder.dateRange') : t('placeholder.date')
+      return this.range ? this.t('placeholder.dateRange') : this.t('placeholder.date')
     },
     text () {
       if (this.userInput !== null) {
@@ -222,7 +230,7 @@ export default {
       if (this.shortcuts === false) {
         return []
       }
-      const pickers = t('pickers')
+      const pickers = this.t('pickers')
       const arr = [
         {
           text: pickers[0],
@@ -247,9 +255,6 @@ export default {
       ]
       return arr
     }
-  },
-  created () {
-    use(this.lang)
   },
   methods: {
     initCalendar () {

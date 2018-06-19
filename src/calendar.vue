@@ -64,7 +64,7 @@
 
 <script>
 import { isValidDate, isDateObejct } from '@/utils/index'
-import { t } from '@/locale/index'
+import locale from '@/mixins/locale'
 import scrollIntoView from '@/utils/scroll-into-view'
 import PanelDate from '@/panel/date'
 import PanelYear from '@/panel/year'
@@ -74,6 +74,7 @@ import PanelTime from '@/panel/time'
 export default {
   name: 'CalendarPanel',
   components: { PanelDate, PanelYear, PanelMonth, PanelTime },
+  mixins: [locale],
   props: {
     value: {
       default: null,
@@ -133,11 +134,9 @@ export default {
     const calendarYear = now.getFullYear()
     const calendarMonth = now.getMonth()
     const firstYear = Math.floor(calendarYear / 10) * 10
-    const months = t('months')
     return {
       panel: 'DATE',
       dates: [],
-      months,
       calendarMonth,
       calendarYear,
       firstYear
@@ -156,6 +155,9 @@ export default {
     },
     timeHeader () {
       return this.value && new Date(this.value).toLocaleDateString()
+    },
+    months () {
+      return this.t('months')
     }
   },
   watch: {

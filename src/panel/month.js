@@ -1,7 +1,8 @@
-import { t } from '@/locale/index'
+import locale from '@/mixins/locale'
 
 export default {
   name: 'panelMonth',
+  mixins: [locale],
   props: {
     value: null,
     calendarYear: {
@@ -14,7 +15,7 @@ export default {
     }
   },
   render (h) {
-    let months = t('months')
+    let months = this.t('months')
     const currentYear = this.value && new Date(this.value).getFullYear()
     const currentMonth = this.value && new Date(this.value).getMonth()
     months = months.map((v, i) => {

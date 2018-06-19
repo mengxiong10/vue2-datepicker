@@ -191,14 +191,19 @@ describe('datepicker', () => {
     expect(el.getAttribute('placeholder')).toBe('hehe')
   })
 
-  it('prop: lang', () => {
-    wrapper = shallowMount(DatePicker, {
+  it.only('prop: lang', () => {
+    wrapper = mount(DatePicker, {
       propsData: {
-        lang: 'en'
+        lang: 'en',
+        value: new Date(2018, 5, 5)
       }
     })
-    const el = wrapper.find('.mx-input').element
-    expect(el.getAttribute('placeholder')).toBe('Select Date')
+    const el = wrapper.find('.mx-current-month')
+    expect(el.text()).toBe('Jun')
+    wrapper.setProps({
+      lang: 'zh'
+    })
+    expect(el.text()).toBe('6月')
   })
 
   it('prop: shortcuts', () => {
