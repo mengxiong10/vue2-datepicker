@@ -1,14 +1,10 @@
 import Vue from 'vue'
 import { mount, shallowMount } from '@vue/test-utils'
-import { use } from '../src/locale/index'
 import DatePicker from '../src/index.vue'
 import CalendarPanel from '../src/calendar.vue'
-
 import DatePanel from '../src/panel/date'
 import TimePanel from '../src/panel/time'
 import YearPanel from '../src/panel/year'
-
-use('zh')
 
 let wrapper
 
@@ -191,7 +187,7 @@ describe('datepicker', () => {
     expect(el.getAttribute('placeholder')).toBe('hehe')
   })
 
-  it.only('prop: lang', () => {
+  it('prop: lang', () => {
     wrapper = mount(DatePicker, {
       propsData: {
         lang: 'en',

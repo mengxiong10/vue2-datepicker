@@ -1,3 +1,6 @@
+import Languages from '@/locale/languages'
+
+const defaultLang = Languages.zh
 
 export default {
   methods: {
@@ -10,21 +13,20 @@ export default {
           name = component.$options.name
         }
       }
-      if (component && component.language) {
-        const arr = path.split('.')
-        let current = component.language
-        let value
-        for (let i = 0, len = arr.length; i < len; i++) {
-          const prop = arr[i]
-          value = current[prop]
-          if (i === len - 1) {
-            return value
-          }
-          if (!value) {
-            return ''
-          }
-          current = value
+      const lang = component && component.language || defaultLang
+      const arr = path.split('.')
+      let current = lang
+      let value
+      for (let i = 0, len = arr.length; i < len; i++) {
+        const prop = arr[i]
+        value = current[prop]
+        if (i === len - 1) {
+          return value
         }
+        if (!value) {
+          return ''
+        }
+        current = value
       }
       return ''
     }
