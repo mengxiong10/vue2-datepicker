@@ -105,5 +105,6 @@ export default {
     'placeholder': {
       'date': 'Επιλέξτε Ημερομηνία',
       'dateRange': 'Επιλέξτε Εύρος Ημερομηνιών'
+    }
   }
 }
