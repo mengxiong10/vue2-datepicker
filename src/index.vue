@@ -84,7 +84,7 @@
           @select-date="selectEndDate"
           @select-time="selectEndTime"></calendar-panel>
       </div>
-      <slot name="footer">
+      <slot name="footer" :confirm="confirmDate">
         <div class="mx-datepicker-footer"
           v-if="confirm">
           <button type="button"
