@@ -120,6 +120,12 @@ $primary-color: #1284e7;
   line-height: 34px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   .mx-shortcuts {
+    background: none;
+    outline: none;
+    border: 0;
+    color: inherit;
+    margin: 0;
+    padding: 0;
     white-space: nowrap;
     cursor: pointer;
     &:hover {

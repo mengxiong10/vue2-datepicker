@@ -49,11 +49,12 @@
       <slot name="header">
         <div class="mx-shortcuts-wrapper"
           v-if="range && innnerShortcuts.length">
-          <span
+          <button
+            type="button"
             class="mx-shortcuts"
             v-for="(range, index) in innnerShortcuts"
             :key="index"
-            @click="selectRange(range)">{{range.text}}</span>
+            @click="selectRange(range)">{{range.text}}</button>
         </div>
       </slot>
       <calendar-panel
