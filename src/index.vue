@@ -105,6 +105,7 @@ import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
 
 export default {
+  fecha,
   name: 'DatePicker',
   components: { CalendarPanel },
   mixins: [locale],
