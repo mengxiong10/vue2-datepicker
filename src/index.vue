@@ -236,23 +236,31 @@ export default {
       const arr = [
         {
           text: pickers[0],
-          start: new Date(),
-          end: new Date(Date.now() + 3600 * 1000 * 24 * 7)
+          onClick (self) {
+            self.currentValue = [ new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7) ]
+            self.updateDate(true)
+          }
         },
         {
           text: pickers[1],
-          start: new Date(),
-          end: new Date(Date.now() + 3600 * 1000 * 24 * 30)
+          onClick (self) {
+            self.currentValue = [ new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 30) ]
+            self.updateDate(true)
+          }
         },
         {
           text: pickers[2],
-          start: new Date(Date.now() - 3600 * 1000 * 24 * 7),
-          end: new Date()
+          onClick (self) {
+            self.currentValue = [ new Date(Date.now() - 3600 * 1000 * 24 * 7), new Date() ]
+            self.updateDate(true)
+          }
         },
         {
           text: pickers[3],
-          start: new Date(Date.now() - 3600 * 1000 * 24 * 30),
-          end: new Date()
+          onClick (self) {
+            self.currentValue = [ new Date(Date.now() - 3600 * 1000 * 24 * 30), new Date() ]
+            self.updateDate(true)
+          }
         }
       ]
       return arr
@@ -282,6 +290,9 @@ export default {
       return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((item, index) => this.dateEqual(item, b[index]))
     },
     selectRange (range) {
+      if (typeof range.onClick === 'function') {
+        return range.onClick(this)
+      }
       this.currentValue = [ new Date(range.start), new Date(range.end) ]
       this.updateDate(true)
     },

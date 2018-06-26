@@ -41,8 +41,9 @@ export default {
       shortcuts: [
         {
           text: 'Today',
-          start: new Date(),
-          end: new Date()
+          onClick: () => {
+            this.time3 = [ new Date(), new Date() ]
+          }
         }
       ],
       timePickerOptions:{
@@ -124,12 +125,14 @@ export default {
 * true -      show the default shortcuts
 * false -     hide the shortcuts
 * Object[] -  custom shortcuts, [{text, start, end}]
+* Object[] -  custom shortcuts, [{text, onClick}]
 
 | Prop            | Type          |  Description           |
 |-----------------|---------------|------------------------|
 | text            | String        | Text                   |
 | start           | Date          | Start Date             |
 | end             | Date          | End Date               |
+| onClick         | Function      | click handler          |
 
 #### time-picker-options
 * Object[] -  custom time-picker, [{start, step, end}]

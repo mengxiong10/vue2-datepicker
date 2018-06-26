@@ -40,9 +40,10 @@ export default {
       time3: '',
       shortcuts: [
         {
-          text: 'Today',
-          start: new Date(),
-          end: new Date()
+          text: '今天',
+          onClick: () => {
+            this.time3 = [ new Date(), new Date() ]
+          }
         }
       ],
       timePickerOptions:{
@@ -123,12 +124,14 @@ export default {
 * true -      显示默认快捷选择
 * false -     隐藏快捷选择
 * Object[] -  自定义快捷选择, 格式：[{text, start, end}]
+* Object[] -  自定义快捷选择, 格式：[{text, onClick}]
 
 | 名称             | 类型          |  说明           |
 |-----------------|---------------|----------------|
 | text            | String        | 显示文字         |
 | start           | Date          | 开始日期         |
 | end             | Date          | 结束日期         |
+| onClick         | Function      | 点击时候触发的函数 |
 
 #### time-picker-options
 * Object[] -  自定义时间选择, 格式：[{start, step, end}]
