@@ -12,7 +12,6 @@ afterEach(() => {
   wrapper.destroy()
 })
 
-
 describe('datepicker', () => {
   it('click: pick date', () => {
     wrapper = mount(DatePicker, {
@@ -22,7 +21,7 @@ describe('datepicker', () => {
     })
     // 2018-05-03
     const vm = wrapper.vm
-    
+
     let td = wrapper.find('.mx-panel-date td:nth-child(5)')
     expect(td.classes()).not.toContain('actived')
     expect(vm.text).toBe('2018-05-02')
@@ -35,7 +34,6 @@ describe('datepicker', () => {
     td = wrapper.find('.mx-panel-date td:nth-child(5)')
     expect(td.classes()).toContain('actived')
     expect(vm.text).toBe('2018-05-03')
-
   })
 
   it('click: clear icon', () => {
@@ -62,7 +60,7 @@ describe('datepicker', () => {
       },
       sync: false // sync bug
     })
-    
+
     const calendars = wrapper.findAll(CalendarPanel)
     const calendar1 = calendars.at(0)
     const calendar2 = calendars.at(1)
@@ -71,29 +69,29 @@ describe('datepicker', () => {
     const td2 = calendar2.findAll('.mx-panel-date tbody td')
 
     td1.at(14).trigger('click')
-    
+
     Vue.nextTick(() => {
       let emitted = wrapper.emittedByOrder()
       expect(emitted).toHaveLength(0)
       expect(td1.at(14).classes()).toContain('actived')
       expect(td2.at(13).classes()).toContain('disabled')
       expect(td2.at(14).classes()).not.toContain('disabled')
-  
+
       const date1 = new Date(td1.at(14).element.title)
       td2.at(16).trigger('click')
       Vue.nextTick(() => {
         emitted = wrapper.emittedByOrder()
-        
+
         const date2 = new Date(td2.at(16).element.title)
-  
+
         expect(td2.at(16).classes()).toContain('actived')
         expect(td1.at(15).classes()).toContain('inrange')
         expect(td1.at(16).classes()).toContain('inrange')
         expect(td1.at(17).classes()).toContain('disabled')
-    
+
         expect(emitted).toHaveLength(2)
         expect(emitted[0].args[0]).toEqual([date1, date2])
-        done() 
+        done()
       })
     })
   })
@@ -108,7 +106,6 @@ describe('datepicker', () => {
     })
     const vm = wrapper.vm
     expect(vm.text).toBe('2018-06-01 至 2018-06-10')
-
   })
 
   it('prop: confirm', () => {
@@ -140,7 +137,7 @@ describe('datepicker', () => {
     const btn = wrapper.find('.mx-datepicker-btn-confirm')
     expect(btn.text()).toBe('确定')
   })
-  
+
   it('prop: width', () => {
     wrapper = shallowMount(DatePicker, {
       propsData: {
@@ -231,10 +228,40 @@ describe('datepicker', () => {
     expect(shortcuts.exists()).toBe(false)
   })
 
+  it('type input should be right', (done) => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        format: 'YYYY-MM-DD'
+      },
+      sync: false
+    })
+    const input = wrapper.find('input')
+    input.setValue('2018-09-10')
+    input.trigger('input')
+    input.trigger('change')
+    const expectDate = new Date(2018, 8, 10)
+    wrapper.setProps({
+      range: true
+    })
+    Vue.nextTick(() => {
+      input.setValue('2018-09-10 ~ 2018-09-11')
+      input.trigger('input')
+      input.trigger('change')
+      const expectRange = [new Date(2018, 8, 10), new Date(2018, 8, 11)]
+      input.setValue('2018-09-10 ~ 2018-08-10')
+      input.trigger('input')
+      input.trigger('change')
+      expect(wrapper.emitted()).toEqual({
+        input: [[expectDate], [expectRange]],
+        change: [[expectDate], [expectRange]],
+        'input-error': [['2018-09-10 ~ 2018-08-10']]
+      })
+      done()
+    })
+  })
 })
 
 describe('calendar-panel', () => {
-
   it('click: prev/next month', () => {
     wrapper = mount(CalendarPanel)
 
@@ -275,7 +302,7 @@ describe('calendar-panel', () => {
 
   it('click: prev/next year', () => {
     wrapper = mount(CalendarPanel, {
-      value: new Date(2018,4,5)
+      value: new Date(2018, 4, 5)
     })
     const nextBtn = wrapper.find('.mx-icon-next-year')
     const lastBtn = wrapper.find('.mx-icon-last-year')
@@ -359,7 +386,7 @@ describe('calendar-panel', () => {
     }
   })
 
-  it('feat: when the time panel show, scroll to the right position', () => {
+  it('feat: when the time panel show, scroll to the right position', (done) => {
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2018, 4, 4),
@@ -379,6 +406,7 @@ describe('calendar-panel', () => {
     })
     setTimeout(() => {
       expect(list.scrollTop).toBe(0)
+      done()
     }, 0)
   })
 })
@@ -393,7 +421,6 @@ describe('date-panel', () => {
         firstDayOfWeek: i
       }
     })
-    const vm = wrapper.vm
     const lastMonth = new Date(2018, 3, 30)
     const lastMonthDay = 30
     const lastMonthLength = (lastMonth.getDay() + 7 - i) % 7 + 1
@@ -456,7 +483,6 @@ describe('year-panel', () => {
 })
 
 describe('time-panel', () => {
-
   it('click: pick time emitted the select event', () => {
     wrapper = mount(TimePanel, {
       propsData: {
@@ -479,7 +505,6 @@ describe('time-panel', () => {
     expect(wrapper.emitted()).toEqual({
       select: [[new Date(2018, 5, 5, 1)], [new Date(2018, 5, 5, 0, 1)], [new Date(2018, 5, 5, 0, 0, 1)]]
     })
-
   })
 
   it('prop: minuteStep', () => {
@@ -516,5 +541,4 @@ describe('time-panel', () => {
       select: [[new Date(2018, 5, 5, 1)]]
     })
   })
-
 })
