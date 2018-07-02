@@ -8,10 +8,10 @@
   <img src="https://travis-ci.org/mengxiong10/vue2-datepicker.svg?branch=master" alt="build:passed">
 </a>
 <a href="https://coveralls.io/github/mengxiong10/vue2-datepicker">
-  <img src="https://coveralls.io/repos/github/mengxiong10/vue2-datepicker/badge.svg?branch=master" alt="Badge">
+  <img src="https://img.shields.io/coveralls/github/mengxiong10/vue2-datepicker/master.svg" alt="Badge">
 </a>
 <a href="LICENSE">
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
 </a>
 
 ## Demo
