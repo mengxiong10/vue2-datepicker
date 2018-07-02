@@ -1,6 +1,7 @@
 /build/
 /config/
 /dist/
+/lib/
+/coverage/
 /*.js
-/__test__/
-/test/
+node_modules

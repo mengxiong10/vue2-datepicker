@@ -11,9 +11,10 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --open --config build/webpack.dev.config.js",
     "demo": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.demo.config.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config build/webpack.deploy.config.js",
+    "lint": "eslint src/**/* test/**/*",
     "test:push": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test": "jest",
-    "deploy": "npm test && npm run build"
+    "deploy": "npm run lint && npm test && npm run build"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -46,7 +47,7 @@
     "fecha": "^2.3.3"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.18",
+    "@vue/test-utils": "^1.0.0-beta.20",
     "autoprefixer": "^7.2.6",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",

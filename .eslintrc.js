@@ -7,6 +7,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    jest: true
   },
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
@@ -25,7 +26,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? ["error", { allow: ["warn", "error"] }] : 'off',
+    'no-console': ["error", { allow: ["warn", "error"] }],
     'camelcase': ['off', { properties: 'never' }],
     // "vue/max-attributes-per-line": [2, {
     //   "singleline": 1,

@@ -13,7 +13,7 @@ export default {
           name = component.$options.name
         }
       }
-      const lang = component && component.language || defaultLang
+      const lang = (component && component.language) || defaultLang
       const arr = path.split('.')
       let current = lang
       let value
