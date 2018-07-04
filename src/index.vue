@@ -272,8 +272,12 @@ export default {
       this.displayPopup()
     },
     stringify (date, format) {
-      format = format || this.format
-      return fecha.format(date, format)
+      try {
+        format = format || this.format
+        return fecha.format(new Date(date), format)
+      } catch (e) {
+        return ''
+      }
     },
     parseDate (value, format) {
       try {
