@@ -135,7 +135,7 @@ export default {
     const calendarMonth = now.getMonth()
     const firstYear = Math.floor(calendarYear / 10) * 10
     return {
-      panel: 'MONTH',
+      panel: 'DATE',
       dates: [],
       calendarMonth,
       calendarYear,
