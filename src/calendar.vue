@@ -176,7 +176,6 @@ export default {
   },
   methods: {
     handelPanelChange (panel) {
-      console.log('panel changed')
       if (panel === 'YEAR') {
         this.firstYear = Math.floor(this.calendarYear / 10) * 10
       } else if (panel === 'TIME') {
@@ -307,7 +306,6 @@ export default {
       this.firstYear = this.firstYear + flag * 10
     },
     showPanelDate () {
-      console.log('date')
       this.panel = 'DATE'
     },
     showPanelYear () {
