@@ -43,7 +43,7 @@ new Vue({  // eslint-disable-line
   },
   render (h) {
     const example1 = {
-      'base': '<date-picker v-model="value1" lang="en" :not-before="new Date()"></date-picker>',
+      'base': '<date-picker v-model="value1" lang="en" :not-before="new Date()" type="month"></date-picker>',
       'range': '<date-picker v-model="value2" range ></date-picker>'
     }
     const example2 = {

@@ -92,7 +92,7 @@ export default {
     // below user set
     type: {
       type: String,
-      default: 'date' // ['date', 'datetime']
+      default: 'date' // ['date', 'datetime'] zendy added 'month', 'year'
     },
     firstDayOfWeek: {
       default: 7,
@@ -135,7 +135,7 @@ export default {
     const calendarMonth = now.getMonth()
     const firstYear = Math.floor(calendarYear / 10) * 10
     return {
-      panel: 'DATE',
+      panel: 'MONTH',
       dates: [],
       calendarMonth,
       calendarYear,
@@ -176,6 +176,7 @@ export default {
   },
   methods: {
     handelPanelChange (panel) {
+      console.log('panel changed')
       if (panel === 'YEAR') {
         this.firstYear = Math.floor(this.calendarYear / 10) * 10
       } else if (panel === 'TIME') {
@@ -187,7 +188,14 @@ export default {
       }
     },
     init () {
-      this.panel = 'DATE'
+      if (this.type.toLowerCase() == 'month') {
+        this.panel = 'MONTH'
+      } else if (this.type.toLowerCase() == 'year') {
+        this.panel = 'YEAR'
+      } else {
+        this.panel = 'DATE'
+      }
+      
       this.updateNow(this.value)
     },
     // 根据value更新日历
@@ -248,10 +256,18 @@ export default {
     },
     selectYear (year) {
       this.changeCalendarYear(year)
+      if (this.type.toLowerCase() === 'year') {
+        return this.selectDate(this.now)
+      }
       this.showPanelMonth()
     },
     selectMonth (month) {
       this.changeCalendarMonth(month)
+
+      if (this.type.toLowerCase() === 'month') {
+        return this.selectDate(this.now)
+      }
+
       this.showPanelDate()
     },
     selectTime (time) {
@@ -291,6 +307,7 @@ export default {
       this.firstYear = this.firstYear + flag * 10
     },
     showPanelDate () {
+      console.log('date')
       this.panel = 'DATE'
     },
     showPanelYear () {
