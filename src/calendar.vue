@@ -187,9 +187,9 @@ export default {
       }
     },
     init () {
-      if (this.type.toLowerCase() == 'month') {
+      if (this.type.toLowerCase() === 'month') {
         this.panel = 'MONTH'
-      } else if (this.type.toLowerCase() == 'year') {
+      } else if (this.type.toLowerCase() === 'year') {
         this.panel = 'YEAR'
       } else {
         this.panel = 'DATE'
@@ -256,7 +256,7 @@ export default {
     selectYear (year) {
       this.changeCalendarYear(year)
       if (this.type.toLowerCase() === 'year') {
-        return this.selectDate(this.now)
+        return this.selectDate(new Date(this.now))
       }
       this.showPanelMonth()
     },
@@ -264,7 +264,7 @@ export default {
       this.changeCalendarMonth(month)
 
       if (this.type.toLowerCase() === 'month') {
-        return this.selectDate(this.now)
+        return this.selectDate(new Date(this.now))
       }
 
       this.showPanelDate()
