@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
+  },
+  'ca': {
+    'days': ['Dg', 'Dl', 'Dm', 'Dc', 'Dj', 'Dv', 'Ds'],
+    'months': ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
+    'pickers': ['propers 7 dies', 'propers 30 dies', '7 dies anteriors', '30 dies anteriors'],
+    'placeholder': {
+      'date': 'Selecciona una data',
+      'dateRange': 'Selecciona un rang de dates'
+    }
   }
 }
