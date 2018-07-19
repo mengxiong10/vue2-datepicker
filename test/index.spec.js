@@ -123,8 +123,12 @@ describe('datepicker', () => {
     expect(vm.popupVisible).toBe(true)
     expect(wrapper.emittedByOrder()).toHaveLength(0)
     btn.trigger('click')
-    expect(wrapper.emittedByOrder()).toHaveLength(3)
-    expect(vm.popupVisible).toBe(false)
+    if (vm.inline) {
+      expect(wrapper.emittedByOrder()).toHaveLength(3)
+      expect(vm.popupVisible).toBe(true)
+    } else {
+      expect(vm.popupVisible).toBe(false)
+    }
   })
 
   it('prop: confirmText', () => {
