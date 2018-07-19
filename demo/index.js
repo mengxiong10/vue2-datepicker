@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import Vue from 'vue'
 import DatePicker from '@/index'
 
@@ -15,7 +16,8 @@ new Vue({  // eslint-disable-line
       value6: '',
       value7: '',
       value8: '',
-      value9: ''
+      value9: '',
+      value10: new Date()
     }
   },
   methods: {
@@ -102,6 +104,9 @@ new Vue({  // eslint-disable-line
           format="YYYY-MM-DD"
           confirm></date-picker>`
     }
+    const example4 = {
+      'inline': '<date-picker v-model="value10" inline></date-picker>'
+    }
     const arr = [
       {
         exam: example1
@@ -113,6 +118,10 @@ new Vue({  // eslint-disable-line
       {
         exam: example3,
         tips: 'Recommend to use the confirm option when the type is "datetime" or "range" is true'
+      },
+      {
+       exam: example4,
+       tips: 'Inline example'
       }
     ]
     return (

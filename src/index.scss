@@ -19,6 +19,18 @@ $primary-color: #1284e7;
   width: 320px;
 }
 
+.mx-datepicker-inline {
+  width: auto;
+
+  .mx-datepicker-popup{
+    position: relative;
+  }
+
+  .mx-calendar{
+    float: none;
+  }
+}
+
 .mx-datepicker-popup {
   position: absolute;
   margin-top: 1px;

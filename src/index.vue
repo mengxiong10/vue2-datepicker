@@ -2,6 +2,7 @@
   <div
     class="mx-datepicker"
     :class="{
+      'mx-datepicker-inline': inline,
       'mx-datepicker-range': range,
       'disabled': disabled
     }"
@@ -169,13 +170,17 @@ export default {
     inputClass: {
       type: [String, Array],
       default: 'mx-input'
+    },
+    inline: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       currentValue: this.range ? [null, null] : null,
       userInput: null,
-      popupVisible: false,
+      popupVisible: this.inline,
       position: {}
     }
   },
@@ -363,9 +368,13 @@ export default {
         return
       }
       this.popupVisible = true
+      this.$emit('onShow')
     },
     closePopup () {
-      this.popupVisible = false
+      if (!this.inline) {
+        this.popupVisible = false
+        this.$emit('onClose')
+      }
     },
     displayPopup () {
       const dw = document.documentElement.clientWidth
