@@ -31,3 +31,13 @@
 * 移除了`custom-formatter`
 * `editable` 默认由false改成true, 现在日历范围也支持手动修改
 * 当选择年或月的面板的时候不会修改日期(因为当设置了`not-before`或者`not-after`的时候会引发很多问题和bug)
+
+<a name="2.1.0"></a>
+# [2.1.0]() (2018-07-24)
+
+### New features
+
+* Add `type` year and month
+
+### 新特性
+* 添加`type` 支持月和年的单独选择
