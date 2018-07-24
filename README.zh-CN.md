@@ -68,7 +68,7 @@ export default {
 
 | Prop                | Type          | Default     | Description                                         
 |---------------------|---------------|-------------|-----------------------------------------------------
-| type                | String        | 'date'      | 选择日期或日期时间(可选：date,datetime)                 
+| type                | String        | 'date'      | 选择日期或日期时间(可选：date,datetime,year,month)      
 | range               | Boolean       | false       | 如果是true， 显示日历范围选择     
 | format              | String        | YYYY-MM-DD  | 格式化显示日期 api类似moment.js     
 | lang                | String/Object | zh          | 选择语言或自定义 (en/zh/es/pt-br/fr/ru/de/it/cs)(custom) 

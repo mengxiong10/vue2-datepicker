@@ -409,6 +409,36 @@ describe('calendar-panel', () => {
       done()
     }, 0)
   })
+
+  it('prop: type year', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        type: 'year',
+        value: new Date(2018, 1, 1)
+      }
+    })
+    const td = wrapper.find('.mx-panel-year .cell:nth-child(1)')
+    td.trigger('click')
+    const expectDate = new Date(2010, 1, 1)
+    expect(wrapper.emitted()).toEqual({
+      'select-date': [[expectDate]]
+    })
+  })
+
+  it('prop: type month', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        type: 'month',
+        value: new Date(2018, 1, 1)
+      }
+    })
+    const td = wrapper.find('.mx-panel-month .cell:nth-child(1)')
+    td.trigger('click')
+    const expectDate = new Date(2018, 0, 1)
+    expect(wrapper.emitted()).toEqual({
+      'select-date': [[expectDate]]
+    })
+  })
 })
 
 describe('date-panel', () => {
