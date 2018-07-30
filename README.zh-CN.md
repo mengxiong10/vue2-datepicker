@@ -4,11 +4,14 @@
 
 > 一个基于Vue2.x的日期时间选择组件
 
-<a href="https://travis-ci.org/mengxiong10/vue2-datepicker">
+<a href="https://travis-ci.org/mengxiong10/vue2-datepicker" target="_blank">
   <img src="https://travis-ci.org/mengxiong10/vue2-datepicker.svg?branch=master" alt="build:passed">
 </a>
-<a href="https://coveralls.io/github/mengxiong10/vue2-datepicker">
+<a href="https://coveralls.io/github/mengxiong10/vue2-datepicker" target="_blank">
   <img src="https://coveralls.io/repos/github/mengxiong10/vue2-datepicker/badge.svg?branch=master&service=github" alt="Badge">
+</a>
+<a href="https://www.npmjs.com/package/vue2-datepicker" target="_blank">
+  <img src="https://img.shields.io/npm/v/vue2-datepicker.svg" alt="npm">
 </a>
 <a href="LICENSE">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
@@ -83,7 +86,7 @@ export default {
 | disabled-days       | Array/function| []          | 自定义禁止的日期                                        
 | shortcuts           | Boolean/Array | true        | 自定义范围选择的时候快捷选项(见下表)                 
 | time-picker-options | Object        | {}          | 自定义时间选择的开始，结束，步进(见下表)            
-| minute-step         | Number        | 0           | 设置分钟的步进， 设置后不显示秒的选择         
+| minute-step         | Number        | 0           | 设置分钟的步进， 设置大于0不显示秒的选择(0-60)         
 | first-day-of-week   | Number        | 7           | 设置日历星期几开头(1-7)                     
 | input-class         | String        | 'mx-input'  | 自定义输入框的类名                                
 | input-name          | String        | 'date'      | 自定义input 的 name 属性                                 

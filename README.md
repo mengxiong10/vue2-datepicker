@@ -4,11 +4,14 @@
 
 > A Datepicker Component For Vue2
 
-<a href="https://travis-ci.org/mengxiong10/vue2-datepicker">
+<a href="https://travis-ci.org/mengxiong10/vue2-datepicker" target="_blank">
   <img src="https://travis-ci.org/mengxiong10/vue2-datepicker.svg?branch=master" alt="build:passed">
 </a>
-<a href="https://coveralls.io/github/mengxiong10/vue2-datepicker">
+<a href="https://coveralls.io/github/mengxiong10/vue2-datepicker" target="_blank">
   <img src="https://coveralls.io/repos/github/mengxiong10/vue2-datepicker/badge.svg?branch=master&service=github" alt="Badge">
+</a>
+<a href="https://www.npmjs.com/package/vue2-datepicker" target="_blank">
+  <img src="https://img.shields.io/npm/v/vue2-datepicker.svg" alt="npm">
 </a>
 <a href="LICENSE">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
