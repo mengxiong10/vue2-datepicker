@@ -89,7 +89,7 @@ export default {
 | input-name          | String        | 'date'      | 自定义input 的 name 属性                                 
 | confirm-text        | String        | 'OK'        | 确认按钮的名称       
 | range-separator     | String        | '~'         | range 分隔符                            
-
+| minuteStep          | Number        | 0           | 如果设置为1，隐藏秒选项   
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)
 * Object (自定义)
