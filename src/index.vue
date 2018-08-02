@@ -18,6 +18,7 @@
         :name="inputName"
         :disabled="disabled"
         :readonly="!editable"
+        :required="required"
         :value="text"
         :placeholder="innerPlaceholder"
         @input="handleInput"
