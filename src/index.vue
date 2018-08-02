@@ -155,6 +155,10 @@ export default {
       type: Boolean,
       default: false
     },
+    required: {
+      type: Boolean,
+      default: false
+    },
     clearable: {
       type: Boolean,
       default: true
