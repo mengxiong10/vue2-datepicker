@@ -4,4 +4,3 @@ lib
 npm-debug.log
 yarn-error.log
 coverage
-package-lock.json
