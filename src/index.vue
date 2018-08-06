@@ -12,9 +12,10 @@
     <div class="mx-input-wrapper"
       @click="showPopup">
       <input
-        :class="inputClass"
         ref="input"
         type="text"
+        autocomplete="off"
+        :class="inputClass"
         :name="inputName"
         :disabled="disabled"
         :readonly="!editable"
