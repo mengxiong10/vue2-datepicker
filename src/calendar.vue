@@ -290,14 +290,34 @@ export default {
     changeCalendarMonth (month) {
       this.now = new Date(this.calendarYear, month)
     },
+    getSibling () {
+      const calendars = this.$parent.$children.filter(v => v.$options.name === this.$options.name)
+      const index = calendars.indexOf(this)
+      const sibling = calendars[index ^ 1]
+      return sibling
+    },
     handleIconMonth (flag) {
-      this.changeCalendarMonth(this.calendarMonth + flag)
+      const month = this.calendarMonth
+      this.changeCalendarMonth(month + flag)
+      this.$parent.$emit('change-calendar-month', {
+        month,
+        flag,
+        vm: this,
+        sibling: this.getSibling()
+      })
     },
     handleIconYear (flag) {
       if (this.panel === 'YEAR') {
         this.changePanelYears(flag)
       } else {
-        this.changeCalendarYear(this.calendarYear + flag)
+        const year = this.calendarYear
+        this.changeCalendarYear(year + flag)
+        this.$parent.$emit('change-calendar-year', {
+          year,
+          flag,
+          vm: this,
+          sibling: this.getSibling()
+        })
       }
     },
     handleBtnYear () {
