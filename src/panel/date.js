@@ -1,4 +1,5 @@
 import locale from '@/mixins/locale'
+import { formatDate } from '@/utils/index'
 
 export default {
   name: 'panelDate',
@@ -7,6 +8,10 @@ export default {
     value: null,
     startAt: null,
     endAt: null,
+    dateFormat: {
+      type: String,
+      default: 'YYYY-MM-DD'
+    },
     calendarMonth: {
       default: new Date().getMonth()
     },
@@ -96,11 +101,10 @@ export default {
           classes.push('inrange')
         }
       }
-
       return classes
     },
     getCellTitle ({ year, month, day }) {
-      return new Date(year, month, day).toLocaleDateString()
+      return formatDate(new Date(year, month, day), this.dateFormat)
     }
   },
   render (h) {

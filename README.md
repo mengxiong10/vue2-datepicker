@@ -92,6 +92,7 @@ export default {
 | input-name          | String        | 'date'      | the input name attr                                 |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button       |
 | range-separator     | String        | '~'         | the range separator text                            |
+| date-format         | String        | ''          | format the time header and tooltip                  |
 
 
 #### lang

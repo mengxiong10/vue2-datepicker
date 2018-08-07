@@ -49,11 +49,11 @@
       ref="calendar">
       <slot name="header">
         <div class="mx-shortcuts-wrapper"
-          v-if="range && innnerShortcuts.length">
+          v-if="range && innerShortcuts.length">
           <button
             type="button"
             class="mx-shortcuts"
-            v-for="(range, index) in innnerShortcuts"
+            v-for="(range, index) in innerShortcuts"
             :key="index"
             @click="selectRange(range)">{{range.text}}</button>
         </div>
@@ -61,6 +61,8 @@
       <calendar-panel
         v-if="!range"
         v-bind="$attrs"
+        :type="type"
+        :date-format="innerDateFormat"
         :value="currentValue"
         :visible="popupVisible"
         @select-date="selectDate"
@@ -70,6 +72,8 @@
         <calendar-panel
           style="box-shadow:1px 0 rgba(0, 0, 0, .1)"
           v-bind="$attrs"
+          :type="type"
+          :date-format="innerDateFormat"
           :value="currentValue[0]"
           :end-at="currentValue[1]"
           :start-at="null"
@@ -78,6 +82,8 @@
           @select-time="selectStartTime"></calendar-panel>
         <calendar-panel
           v-bind="$attrs"
+          :type="type"
+          :date-format="innerDateFormat"
           :value="currentValue[1]"
           :start-at="currentValue[0]"
           :end-at="null"
@@ -100,7 +106,7 @@
 <script>
 import fecha from 'fecha'
 import clickoutside from '@/directives/clickoutside'
-import { isValidDate, isValidRange, isDateObejct, isPlainObject } from '@/utils/index'
+import { isValidDate, isValidRange, isDateObejct, isPlainObject, formatDate, parseDate } from '@/utils/index'
 import CalendarPanel from './calendar.vue'
 import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
@@ -126,6 +132,13 @@ export default {
     format: {
       type: String,
       default: 'YYYY-MM-DD'
+    },
+    dateFormat: {
+      type: String // format the time header and date tooltip
+    },
+    type: {
+      type: String,
+      default: 'date' // ['date', 'datetime'] zendy added 'month', 'year'
     },
     range: {
       type: Boolean,
@@ -226,7 +239,7 @@ export default {
     showClearIcon () {
       return !this.disabled && this.clearable && (this.range ? isValidRange(this.value) : isValidDate(this.value))
     },
-    innnerShortcuts () {
+    innerShortcuts () {
       if (Array.isArray(this.shortcuts)) {
         return this.shortcuts
       }
@@ -265,6 +278,15 @@ export default {
         }
       ]
       return arr
+    },
+    innerDateFormat () {
+      if (this.dateFormat) {
+        return this.dateFormat
+      }
+      if (this.type === 'date') {
+        return this.format
+      }
+      return this.format.replace(/[Hh]+.*[msSaAZ]|\[.*?\]/g, '').trim() || 'YYYY-MM-DD'
     }
   },
   methods: {
@@ -273,20 +295,10 @@ export default {
       this.displayPopup()
     },
     stringify (date, format) {
-      try {
-        format = format || this.format
-        return fecha.format(new Date(date), format)
-      } catch (e) {
-        return ''
-      }
+      return formatDate(date, format || this.format)
     },
     parseDate (value, format) {
-      try {
-        format = format || this.format
-        return fecha.parse(value, format)
-      } catch (e) {
-        return false
-      }
+      return parseDate(value, format || this.format)
     },
     dateEqual (a, b) {
       return isDateObejct(a) && isDateObejct(b) && a.getTime() === b.getTime()

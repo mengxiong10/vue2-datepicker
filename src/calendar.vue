@@ -37,6 +37,7 @@
       <panel-date
         v-show="panel === 'DATE'"
         :value="value"
+        :date-format="dateFormat"
         :calendar-month="calendarMonth"
         :calendar-year="calendarYear"
         :start-at="startAt"
@@ -68,7 +69,7 @@
 </template>
 
 <script>
-import { isValidDate, isDateObejct } from '@/utils/index'
+import { isValidDate, isDateObejct, formatDate } from '@/utils/index'
 import locale from '@/mixins/locale'
 import scrollIntoView from '@/utils/scroll-into-view'
 import PanelDate from '@/panel/date'
@@ -93,12 +94,15 @@ export default {
       type: Boolean,
       default: false
     },
-
-    // below user set
     type: {
       type: String,
-      default: 'date' // ['date', 'datetime'] zendy added 'month', 'year'
+      default: 'date'
     },
+    dateFormat: {
+      type: String,
+      default: 'YYYY-MM-DD'
+    },
+    // below user set
     firstDayOfWeek: {
       default: 7,
       type: Number,
@@ -159,7 +163,7 @@ export default {
       }
     },
     timeHeader () {
-      return this.value && new Date(this.value).toLocaleDateString()
+      return this.value && formatDate(this.value, this.dateFormat)
     },
     yearHeader () {
       return this.firstYear + ' ~ ' + (this.firstYear + 10)

@@ -91,7 +91,8 @@ export default {
 | input-class         | String        | 'mx-input'  | 自定义输入框的类名                                
 | input-name          | String        | 'date'      | 自定义input 的 name 属性                                 
 | confirm-text        | String        | 'OK'        | 确认按钮的名称       
-| range-separator     | String        | '~'         | range 分隔符                            
+| range-separator     | String        | '~'         | range 分隔符         
+| date-format         | String        | ''          | 格式化时间组件头部和日历的tooltip,默认是format字段去除时间的格式化                   
 
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)

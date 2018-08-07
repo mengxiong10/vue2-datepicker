@@ -1,3 +1,5 @@
+import fecha from 'fecha'
+
 export function isPlainObject (obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
@@ -46,4 +48,20 @@ export function formatTime (time, type = '24') {
     result += time.hours >= 12 ? ' pm' : ' am'
   }
   return result
+}
+
+export function formatDate (date, format) {
+  try {
+    return fecha.format(new Date(date), format)
+  } catch (e) {
+    return ''
+  }
+}
+
+export function parseDate (value, format) {
+  try {
+    return fecha.parse(value, format)
+  } catch (e) {
+    return false
+  }
 }

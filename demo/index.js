@@ -56,7 +56,7 @@ new Vue({  // eslint-disable-line
           v-model="value3"
           lang="en"
           type="datetime"
-          format="YYYY-MM-DD HH:mm:ss"></date-picker>`,
+          format="[on] MM-DD-YYYY [at] HH:mm"></date-picker>`,
       'datetime with time-picker-options': `
         <date-picker
           v-model="value4"
