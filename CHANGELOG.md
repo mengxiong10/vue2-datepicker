@@ -1,4 +1,14 @@
-## Changelog
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.3.2...v2.4.0) (2018-08-08)
+
+
+### Features
+
+* add `type` time to show only time picker ([1046731](https://github.com/mengxiong10/vue2-datepicker/commit/1046731))
+
+### 新功能
+
+* 添加属性`type`为`time`的时候只显示时间组件
 
 <a name="2.3.2"></a>
 ## [2.3.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.2.0...v2.3.2) (2018-08-07)
