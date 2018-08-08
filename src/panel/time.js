@@ -19,13 +19,13 @@ export default {
   },
   computed: {
     currentHours () {
-      return new Date(this.value).getHours()
+      return this.value ? new Date(this.value).getHours() : 0
     },
     currentMinutes () {
-      return new Date(this.value).getMinutes()
+      return this.value ? new Date(this.value).getMinutes() : 0
     },
     currentSeconds () {
-      return new Date(this.value).getSeconds()
+      return this.value ? new Date(this.value).getSeconds() : 0
     }
   },
   methods: {

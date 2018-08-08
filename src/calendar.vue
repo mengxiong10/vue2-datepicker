@@ -31,7 +31,7 @@
       <a
         v-show="panel === 'TIME'"
         class="mx-time-header"
-        @click="showPanelDate">{{timeHeader}}</a>
+        @click="handleTimeHeader">{{timeHeader}}</a>
     </div>
     <div class="mx-calendar-content">
       <panel-date
@@ -163,6 +163,9 @@ export default {
       }
     },
     timeHeader () {
+      if (this.type === 'time') {
+        return this.$parent.format
+      }
       return this.value && formatDate(this.value, this.dateFormat)
     },
     yearHeader () {
@@ -199,10 +202,13 @@ export default {
       }
     },
     init () {
-      if (this.type.toLowerCase() === 'month') {
+      const type = this.type
+      if (type === 'month') {
         this.panel = 'MONTH'
-      } else if (this.type.toLowerCase() === 'year') {
+      } else if (type === 'year') {
         this.panel = 'YEAR'
+      } else if (type === 'time') {
+        this.panel = 'TIME'
       } else {
         this.panel = 'DATE'
       }
@@ -329,6 +335,12 @@ export default {
     },
     handleBtnMonth () {
       this.showPanelMonth()
+    },
+    handleTimeHeader () {
+      if (this.type === 'time') {
+        return
+      }
+      this.showPanelDate()
     },
     changePanelYears (flag) {
       this.firstYear = this.firstYear + flag * 10

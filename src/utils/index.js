@@ -12,7 +12,7 @@ export function isValidDate (date) {
   if (date === null || date === undefined) {
     return false
   }
-  return !!new Date(date).getTime()
+  return !isNaN(new Date(date).getTime())
 }
 
 export function isValidRange (date) {

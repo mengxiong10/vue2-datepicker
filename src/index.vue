@@ -61,7 +61,7 @@
       <calendar-panel
         v-if="!range"
         v-bind="$attrs"
-        :type="type"
+        :type="innerType"
         :date-format="innerDateFormat"
         :value="currentValue"
         :visible="popupVisible"
@@ -72,7 +72,7 @@
         <calendar-panel
           style="box-shadow:1px 0 rgba(0, 0, 0, .1)"
           v-bind="$attrs"
-          :type="type"
+          :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[0]"
           :end-at="currentValue[1]"
@@ -82,7 +82,7 @@
           @select-time="selectStartTime"></calendar-panel>
         <calendar-panel
           v-bind="$attrs"
-          :type="type"
+          :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[1]"
           :start-at="currentValue[0]"
@@ -138,7 +138,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'date' // ['date', 'datetime'] zendy added 'month', 'year'
+      default: 'date' // ['date', 'datetime'] zendy added 'month', 'year', mxie added "time"
     },
     range: {
       type: Boolean,
@@ -239,6 +239,9 @@ export default {
     showClearIcon () {
       return !this.disabled && this.clearable && (this.range ? isValidRange(this.value) : isValidDate(this.value))
     },
+    innerType () {
+      return String(this.type).toLowerCase()
+    },
     innerShortcuts () {
       if (Array.isArray(this.shortcuts)) {
         return this.shortcuts
@@ -283,7 +286,7 @@ export default {
       if (this.dateFormat) {
         return this.dateFormat
       }
-      if (this.type === 'date') {
+      if (this.innerType === 'date') {
         return this.format
       }
       return this.format.replace(/[Hh]+.*[msSaAZ]|\[.*?\]/g, '').trim() || 'YYYY-MM-DD'

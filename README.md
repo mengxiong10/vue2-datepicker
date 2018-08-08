@@ -71,7 +71,7 @@ export default {
 
 | Prop                | Type          | Default     | Description                                         |
 |---------------------|---------------|-------------|-----------------------------------------------------|
-| type                | String        | 'date'      | select date type (date/datetime/year/month)         |
+| type                | String        | 'date'      | select date type (date/datetime/year/month/time)    |
 | range               | Boolean       | false       | if true, the type is daterange or datetimerange     |
 | format              | String        | YYYY-MM-DD  | The parsing tokens are similar to the moment.js     |
 | lang                | String/Object | zh          | Translation (en/zh/es/pt-br/fr/ru/de/it/cs)(custom) |
