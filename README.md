@@ -153,8 +153,10 @@ export default {
 |-----------------|------------------------------|------------------------|
 | change          | When the value change        | the currentValue       |
 | input           | When the value change        | the currentValue       |
-| confirm         | When user click 'OK' button  | the currentValue       |
+| confirm         | When click 'OK' button       | the currentValue       |
+| clear           | When click 'clear' button    |                        |
 | input-error     | When user type a invalid Date| the input text         |
+
 
 ### Slots
 

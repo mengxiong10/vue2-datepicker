@@ -320,6 +320,7 @@ export default {
       const date = this.range ? [null, null] : null
       this.currentValue = date
       this.updateDate(true)
+      this.$emit('clear')
     },
     confirmDate () {
       const valid = this.range ? isValidRange(this.currentValue) : isValidDate(this.currentValue)
