@@ -15,7 +15,12 @@ export default {
       validator: val => val >= 0 && val <= 60
     },
     value: null,
-    timeType: Array,
+    timeType: {
+      type: Array,
+      default () {
+        return ['24', 'a']
+      }
+    },
     disabledTime: Function
   },
   computed: {
