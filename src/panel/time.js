@@ -15,6 +15,7 @@ export default {
       validator: val => val >= 0 && val <= 60
     },
     value: null,
+    timeType: Array,
     disabledTime: Function
   },
   computed: {
@@ -64,7 +65,7 @@ export default {
           }
           result.push({
             value,
-            label: formatTime(value)
+            label: formatTime(value, ...this.timeType)
           })
         }
       }

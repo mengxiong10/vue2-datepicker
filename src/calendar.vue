@@ -63,6 +63,7 @@
         :time-picker-options="timePickerOptions"
         :value="value"
         :disabled-time="isDisabledTime"
+        :time-type="timeType"
         @select="selectTime" />
     </div>
   </div>
@@ -161,6 +162,11 @@ export default {
         this.calendarYear = now.getFullYear()
         this.calendarMonth = now.getMonth()
       }
+    },
+    timeType () {
+      const h = /h+/.test(this.$parent.format) ? '12' : '24'
+      const a = /A/.test(this.$parent.format) ? 'A' : 'a'
+      return [h, a]
     },
     timeHeader () {
       if (this.type === 'time') {
