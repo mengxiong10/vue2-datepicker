@@ -201,9 +201,11 @@ export default {
         this.firstYear = Math.floor(this.calendarYear / 10) * 10
       } else if (panel === 'TIME') {
         this.$nextTick(() => {
-          [...this.$el.querySelectorAll('.mx-panel-time .mx-time-list')].forEach(el => {
+          const list = this.$el.querySelectorAll('.mx-panel-time .mx-time-list')
+          for (let i = 0, len = list.length; i < len; i++) {
+            const el = list[i]
             scrollIntoView(el, el.querySelector('.actived'))
-          })
+          }
         })
       }
     },
