@@ -64,7 +64,8 @@
         :value="value"
         :disabled-time="isDisabledTime"
         :time-type="timeType"
-        @select="selectTime" />
+        @select="selectTime"
+        @pick="pickTime" />
     </div>
   </div>
 </template>
@@ -323,7 +324,10 @@ export default {
       this.showPanelDate()
     },
     selectTime (time) {
-      this.$emit('select-time', time)
+      this.$emit('select-time', time, false)
+    },
+    pickTime (time) {
+      this.$emit('select-time', time, true)
     },
     changeCalendarYear (year) {
       this.now = new Date(year, this.calendarMonth)

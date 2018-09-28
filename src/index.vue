@@ -365,9 +365,9 @@ export default {
         this.updateDate()
       }
     },
-    selectTime (time) {
+    selectTime (time, close) {
       this.currentValue = time
-      this.updateDate()
+      this.updateDate() && close && this.closePopup()
     },
     selectStartTime (time) {
       this.selectStartDate(time)

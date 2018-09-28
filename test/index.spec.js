@@ -609,7 +609,7 @@ describe('time-panel', () => {
     cells.at(0).trigger('click')
     const emitted = wrapper.emitted()
     expect(emitted).toEqual({
-      select: [[new Date(2018, 5, 5, 1)]]
+      pick: [[new Date(2018, 5, 5, 1)]]
     })
   })
 })

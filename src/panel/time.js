@@ -44,6 +44,12 @@ export default {
       }
       this.$emit('select', new Date(time))
     },
+    pickTime (time) {
+      if (typeof this.disabledTime === 'function' && this.disabledTime(time)) {
+        return
+      }
+      this.$emit('pick', new Date(time))
+    },
     getTimeSelectOptions () {
       const result = []
       const options = this.timePickerOptions
@@ -96,7 +102,7 @@ export default {
               'actived': pickHours === this.currentHours && pickMinutes === this.currentMinutes,
               'disabled': disabledTime && disabledTime(time)
             }}
-            onClick={this.selectTime.bind(this, time)}>{picker.label}</li>
+            onClick={this.pickTime.bind(this, time)}>{picker.label}</li>
         )
       })
       return (
