@@ -1,7 +1,4 @@
-git checkout master
-git merge dev
-
-#!/usr/bin/env sh
+#!/bin/bash
 set -e
 
 if [[ -z $1 ]]; then

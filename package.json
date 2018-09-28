@@ -14,7 +14,7 @@
     "lint": "eslint src/**/* test/**/*",
     "test:push": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test": "jest",
-    "deploy": "sh build/release.sh"
+    "release": "bash build/release.sh"
   },
   "jest": {
     "moduleFileExtensions": [
