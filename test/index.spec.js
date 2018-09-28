@@ -352,7 +352,7 @@ describe('calendar-panel', () => {
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2018, 4, 2),
-        notBefore: new Date(2018, 4, 1, 12),
+        notBefore: new Date(2018, 4, 2, 12),
         notAfter: new Date(2018, 4, 31, 12)
       }
     })
@@ -360,10 +360,30 @@ describe('calendar-panel', () => {
     for (let i = 0; i < 42; i++) {
       const td = tds.at(i)
       const classes = td.classes()
-      if (i < 2 || i > 32) {
+      if (i < 3 || i > 32) {
         expect(classes).toContain('disabled')
       } else {
         expect(classes).not.toContain('disabled')
+      }
+    }
+    const months = wrapper.findAll('.mx-panel-month .cell')
+    for (let i = 0; i < 12; i++) {
+      const month = months.at(i)
+      const classes = month.classes()
+      if (i === 4) {
+        expect(classes).not.toContain('disabled')
+      } else {
+        expect(classes).toContain('disabled')
+      }
+    }
+    const years = wrapper.findAll('.mx-panel-year .cell')
+    for (let i = 0; i < years.length; i++) {
+      const year = years.at(i)
+      const classes = year.classes()
+      if (i === 8) {
+        expect(classes).not.toContain('disabled')
+      } else {
+        expect(classes).toContain('disabled')
       }
     }
   })
