@@ -97,7 +97,7 @@ export default {
     },
     type: {
       type: String,
-      default: 'date'
+      default: 'date' // ['date', 'datetime'] zendy added 'month', 'year', mxie added "time"
     },
     dateFormat: {
       type: String,
@@ -179,6 +179,12 @@ export default {
     },
     months () {
       return this.t('months')
+    },
+    notBeforeTime () {
+      return this.getCriticalTime(this.notBefore)
+    },
+    notAfterTime () {
+      return this.getCriticalTime(this.notAfter)
     }
   },
   watch: {
@@ -226,39 +232,56 @@ export default {
     updateNow (value) {
       this.now = value ? new Date(value) : new Date()
     },
-    isDisabledTime (date, startAt, endAt) {
-      const time = new Date(date).getTime()
-      const notBefore = this.notBefore && (time < new Date(this.notBefore))
-      const notAfter = this.notAfter && (time > new Date(this.notAfter))
-      startAt = startAt === undefined ? this.startAt : startAt
-      startAt = startAt && (time < new Date(startAt))
-      endAt = endAt === undefined ? this.endAt : endAt
-      endAt = endAt && (time > new Date(endAt))
-      return notBefore || notAfter || startAt || endAt
-    },
-    isDisabledDate (date, startAt, endAt) {
-      const time = new Date(date).getTime()
-      const notBefore = this.notBefore && (time < new Date(this.notBefore).setHours(0, 0, 0, 0))
-      const notAfter = this.notAfter && (time > new Date(this.notAfter).setHours(0, 0, 0, 0))
-      startAt = startAt === undefined ? this.startAt : startAt
-      startAt = startAt && (time < new Date(startAt).setHours(0, 0, 0, 0))
-      endAt = endAt === undefined ? this.endAt : endAt
-      endAt = endAt && (time > new Date(endAt).setHours(0, 0, 0, 0))
-      let disabledDays = false
-      if (Array.isArray(this.disabledDays)) {
-        disabledDays = this.disabledDays.some(v => new Date(v).setHours(0, 0, 0, 0) === time)
-      } else if (typeof this.disabledDays === 'function') {
-        disabledDays = this.disabledDays(new Date(date))
+    getCriticalTime (value) {
+      if (!value) {
+        return null
       }
-      return notBefore || notAfter || disabledDays || startAt || endAt
+      const date = new Date(value)
+      if (this.type === 'year') {
+        return new Date(date.getFullYear(), 0).getTime()
+      } else if (this.type === 'month') {
+        return new Date(date.getFullYear(), date.getMonth()).getTime()
+      } else if (this.type === 'date') {
+        return date.setHours(0, 0, 0, 0)
+      }
+      return date.getTime()
+    },
+    inBefore (time, startAt) {
+      startAt = startAt || this.startAt
+      return (this.notBeforeTime && time < this.notBeforeTime) ||
+        (startAt && time < this.getCriticalTime(startAt))
+    },
+    inAfter (time, endAt) {
+      endAt = endAt || this.endAt
+      return (this.notAfterTime && time > this.notAfterTime) ||
+        (endAt && time > this.getCriticalTime(endAt))
+    },
+    inDisabledDays (time) {
+      if (Array.isArray(this.disabledDays)) {
+        return this.disabledDays.some(v => this.getCriticalTime(v) === time)
+      } else if (typeof this.disabledDays === 'function') {
+        return this.disabledDays(new Date(time))
+      }
+      return false
     },
     isDisabledYear (year) {
-      const date = new Date(year, this.calendarMonth)
-      return this.isDisabledDate(date)
+      const time = new Date(year, 0).getTime()
+      const maxTime = new Date(year + 1, 0).getTime() - 1
+      return this.inBefore(maxTime) || this.inAfter(time) || (this.type === 'year' && this.inDisabledDays(time))
     },
     isDisabledMonth (month) {
-      const date = new Date(this.calendarYear, month)
-      return this.isDisabledDate(date)
+      const time = new Date(this.calendarYear, month).getTime()
+      const maxTime = new Date(this.calendarYear, month + 1).getTime() - 1
+      return this.inBefore(maxTime) || this.inAfter(time) || (this.type === 'month' && this.inDisabledDays(time))
+    },
+    isDisabledDate (date) {
+      const time = new Date(date).getTime()
+      const maxTime = new Date(date).setHours(23, 59, 59, 999)
+      return this.inBefore(maxTime) || this.inAfter(time) || this.inDisabledDays(time)
+    },
+    isDisabledTime (date, startAt, endAt) {
+      const time = new Date(date).getTime()
+      return this.inBefore(time, startAt) || this.inAfter(time, endAt) || this.inDisabledDays(time)
     },
     selectDate (date) {
       if (this.type === 'datetime') {

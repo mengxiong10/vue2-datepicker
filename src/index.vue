@@ -418,7 +418,7 @@ export default {
       const value = event.target.value
       if (this.editable && this.userInput !== null) {
         const calendar = this.$children[0]
-        const checkDate = calendar.type === 'date' ? calendar.isDisabledDate : calendar.isDisabledTime
+        const checkDate = calendar.isDisabledTime
         if (this.range) {
           const range = value.split(` ${this.rangeSeparator} `)
           if (range.length === 2) {
