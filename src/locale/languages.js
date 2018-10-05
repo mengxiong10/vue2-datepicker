@@ -101,7 +101,7 @@ export default {
   'ca': {
     'days': ['Dg', 'Dl', 'Dm', 'Dc', 'Dj', 'Dv', 'Ds'],
     'months': ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'],
-    'pickers': ['propers 7 dies', 'propers 30 dies', '7 dies anteriors', '30 dies anteriors'],
+    'pickers': ['7 dies següents', '30 dies següents', '7 dies anteriors', '30 dies anteriors'],
     'placeholder': {
       'date': 'Selecciona una data',
       'dateRange': 'Selecciona un rang de dates'
