@@ -74,7 +74,7 @@ export default {
 | type                | String        | 'date'      | select date type (date/datetime/year/month/time)    |
 | range               | Boolean       | false       | if true, the type is daterange or datetimerange     |
 | format              | String        | YYYY-MM-DD  | The parsing tokens are similar to the moment.js     |
-| lang                | String/Object | zh          | Translation (en/zh/es/pt-br/fr/ru/de/it/cs)(custom) |
+| lang                | String/Object | zh          | Translation (en/zh/es/pt-br/fr/ru/de/it/cs/ca)(custom) |
 | clearable           | Boolean       | true        | if false, don't show the clear icon                 |
 | confirm             | Boolean       | false       | if true, need click the button to change the value  |
 | editable            | Boolean       | true        | if false, user cann't type it                       |
@@ -171,7 +171,7 @@ export default {
 | header          | popup header             |
 | footer          | popup footer             |
 
-## ChangeLog 
+## ChangeLog
 
 [CHANGELOG](CHANGELOG.md)
 
