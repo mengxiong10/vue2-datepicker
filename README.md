@@ -156,6 +156,11 @@ export default {
 | confirm         | When click 'OK' button       | the currentValue       |
 | clear           | When click 'clear' button    |                        |
 | input-error     | When user type a invalid Date| the input text         |
+| panel-change    | When change the panel        | panel, oldPanel      |
+
+#### panel value
+`['NONE', 'DATE', 'YEAR', 'MONTH', 'TIME']`
+
 
 
 ### Slots

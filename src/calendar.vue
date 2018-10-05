@@ -146,7 +146,7 @@ export default {
     const calendarMonth = now.getMonth()
     const firstYear = Math.floor(calendarYear / 10) * 10
     return {
-      panel: 'DATE',
+      panel: 'NONE',
       dates: [],
       calendarMonth,
       calendarYear,
@@ -198,12 +198,12 @@ export default {
       handler: 'init'
     },
     panel: {
-      immediate: true,
       handler: 'handelPanelChange'
     }
   },
   methods: {
-    handelPanelChange (panel) {
+    handelPanelChange (panel, oldPanel) {
+      this.$parent.$emit('panel-change', panel, oldPanel)
       if (panel === 'YEAR') {
         this.firstYear = Math.floor(this.calendarYear / 10) * 10
       } else if (panel === 'TIME') {
@@ -216,16 +216,20 @@ export default {
         })
       }
     },
-    init () {
-      const type = this.type
-      if (type === 'month') {
-        this.panel = 'MONTH'
-      } else if (type === 'year') {
-        this.panel = 'YEAR'
-      } else if (type === 'time') {
-        this.panel = 'TIME'
+    init (val) {
+      if (val) {
+        const type = this.type
+        if (type === 'month') {
+          this.showPanelMonth()
+        } else if (type === 'year') {
+          this.showPanelYear()
+        } else if (type === 'time') {
+          this.showPanelTime()
+        } else {
+          this.showPanelDate()
+        }
       } else {
-        this.panel = 'DATE'
+        this.showPanelNone()
       }
       this.updateNow(this.value)
     },
@@ -303,8 +307,8 @@ export default {
             time = new Date(this.startAt)
           }
         }
-        this.$emit('select-time', time)
-        this.panel = 'TIME'
+        this.selectTime(time)
+        this.showPanelTime()
         return
       }
       this.$emit('select-date', date)
@@ -379,6 +383,12 @@ export default {
     },
     changePanelYears (flag) {
       this.firstYear = this.firstYear + flag * 10
+    },
+    showPanelNone () {
+      this.panel = 'NONE'
+    },
+    showPanelTime () {
+      this.panel = 'TIME'
     },
     showPanelDate () {
       this.panel = 'DATE'

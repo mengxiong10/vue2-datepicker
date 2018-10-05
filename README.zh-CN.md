@@ -154,6 +154,10 @@ export default {
 | input           | 日期改变的时候触发              | 选择的日期       |
 | confirm         | 点击确认按钮触发的事件           | 选择的日期       |
 | input-error     | 当用户输入的值无效时候触发       | 用户输入的字符串   |
+| panel-change    | 切换面板时触发                 | 当前面板，过去的面板|
+
+#### panel value
+`['NONE', 'DATE', 'YEAR', 'MONTH', 'TIME']`
 
 ## 许可证
 
