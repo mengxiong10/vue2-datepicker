@@ -77,12 +77,12 @@ describe('datepicker', () => {
       expect(td2.at(13).classes()).toContain('disabled')
       expect(td2.at(14).classes()).not.toContain('disabled')
 
-      const date1 = new Date(td1.at(14).element.title)
+      const date1 = new Date(td1.at(14).element.title).setHours(0, 0, 0, 0)
       td2.at(16).trigger('click')
       Vue.nextTick(() => {
         emitted = wrapper.emittedByOrder()
 
-        const date2 = new Date(td2.at(16).element.title)
+        const date2 = new Date(td2.at(16).element.title).setHours(0, 0, 0, 0)
 
         expect(td2.at(16).classes()).toContain('actived')
         expect(td1.at(15).classes()).toContain('inrange')
@@ -90,7 +90,7 @@ describe('datepicker', () => {
         expect(td1.at(17).classes()).toContain('disabled')
 
         expect(emitted).toHaveLength(2)
-        expect(emitted[0].args[0]).toEqual([date1, date2])
+        expect(emitted[0].args[0]).toEqual([new Date(date1), new Date(date2)])
         done()
       })
     })
@@ -259,6 +259,27 @@ describe('datepicker', () => {
       done()
     })
   })
+
+  it('prop: dateFormat', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        value: new Date('2018-08-08'),
+        format: '[on] MM-DD-YYYY [at] HH:mm',
+        type: 'datetime'
+      }
+    })
+    let ss = '08-08-2018'
+    const cell = wrapper.find('.mx-panel-date .actived')
+    const timeHeader = wrapper.find('.mx-time-header')
+    expect(cell.element.title).toBe(ss)
+    expect(timeHeader.text()).toBe(ss)
+    wrapper.setProps({
+      dateFormat: 'YYYY-MM-DD'
+    })
+    ss = '2018-08-08'
+    expect(cell.element.title).toBe(ss)
+    expect(timeHeader.text()).toBe(ss)
+  })
 })
 
 describe('calendar-panel', () => {
@@ -331,7 +352,7 @@ describe('calendar-panel', () => {
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2018, 4, 2),
-        notBefore: new Date(2018, 4, 1, 12),
+        notBefore: new Date(2018, 4, 2, 12),
         notAfter: new Date(2018, 4, 31, 12)
       }
     })
@@ -339,10 +360,30 @@ describe('calendar-panel', () => {
     for (let i = 0; i < 42; i++) {
       const td = tds.at(i)
       const classes = td.classes()
-      if (i < 2 || i > 32) {
+      if (i < 3 || i > 32) {
         expect(classes).toContain('disabled')
       } else {
         expect(classes).not.toContain('disabled')
+      }
+    }
+    const months = wrapper.findAll('.mx-panel-month .cell')
+    for (let i = 0; i < 12; i++) {
+      const month = months.at(i)
+      const classes = month.classes()
+      if (i === 4) {
+        expect(classes).not.toContain('disabled')
+      } else {
+        expect(classes).toContain('disabled')
+      }
+    }
+    const years = wrapper.findAll('.mx-panel-year .cell')
+    for (let i = 0; i < years.length; i++) {
+      const year = years.at(i)
+      const classes = year.classes()
+      if (i === 8) {
+        expect(classes).not.toContain('disabled')
+      } else {
+        expect(classes).toContain('disabled')
       }
     }
   })
@@ -358,7 +399,7 @@ describe('calendar-panel', () => {
     const tds = wrapper.findAll('.mx-panel-date td.disabled')
     expect(tds.length).toBe(disabledDays.length)
     for (let i = 0, len = tds.length; i < len; i++) {
-      const tdDate = new Date(tds.at(i).element.title).getTime()
+      const tdDate = new Date(tds.at(i).element.title).setHours(0, 0, 0, 0)
       const expectDate = new Date(disabledDays[i]).setHours(0, 0, 0, 0)
       expect(tdDate).toBe(expectDate)
     }
@@ -408,6 +449,36 @@ describe('calendar-panel', () => {
       expect(list.scrollTop).toBe(0)
       done()
     }, 0)
+  })
+
+  it('prop: type year', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        type: 'year',
+        value: new Date(2018, 1, 1)
+      }
+    })
+    const td = wrapper.find('.mx-panel-year .cell:nth-child(1)')
+    td.trigger('click')
+    const expectDate = new Date(2010, 1, 1)
+    expect(wrapper.emitted()).toEqual({
+      'select-date': [[expectDate]]
+    })
+  })
+
+  it('prop: type month', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        type: 'month',
+        value: new Date(2018, 1, 1)
+      }
+    })
+    const td = wrapper.find('.mx-panel-month .cell:nth-child(1)')
+    td.trigger('click')
+    const expectDate = new Date(2018, 0, 1)
+    expect(wrapper.emitted()).toEqual({
+      'select-date': [[expectDate]]
+    })
   })
 })
 
@@ -538,7 +609,7 @@ describe('time-panel', () => {
     cells.at(0).trigger('click')
     const emitted = wrapper.emitted()
     expect(emitted).toEqual({
-      select: [[new Date(2018, 5, 5, 1)]]
+      pick: [[new Date(2018, 5, 5, 1)]]
     })
   })
 })

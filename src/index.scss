@@ -216,6 +216,7 @@ $primary-color: #1284e7;
   width: 32px * 7;
   height: 32px * 7;
   .cell {
+    vertical-align: middle;
     cursor: pointer;
     &:hover {
       background-color: #eaf8fe;

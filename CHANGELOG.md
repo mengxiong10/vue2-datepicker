@@ -1,9 +1,60 @@
-## Changelog
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.3.2...v2.4.0) (2018-08-08)
+
+
+### Features
+
+* add `type` time to show only time picker ([1046731](https://github.com/mengxiong10/vue2-datepicker/commit/1046731))
+
+### 新功能
+
+* 添加属性`type`为`time`的时候只显示时间组件
+
+<a name="2.3.2"></a>
+## [2.3.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.2.0...v2.3.2) (2018-08-07)
+
+### Features
+
+* add prop `date-format` to format time header and date tooltip ([3c27647](https://github.com/mengxiong10/vue2-datepicker/commit/3c27647))
+
+### 新功能
+
+* 添加属性 `date-format` 格式化时间组件头部和日期的tooltip
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.1.0...v2.2.0) (2018-08-06)
+
+### Bug Fixes
+
+* set input autocomplete off ([264458c](https://github.com/mengxiong10/vue2-datepicker/commit/264458c))
+
+### Features
+
+* add event 'change-calendar-year' 'change-calendar-month' ([bc80708](https://github.com/mengxiong10/vue2-datepicker/commit/bc80708))
+
+### 修复bug
+* 设置input的autocomplete为off避免下拉框的干扰
+
+### 新功能
+
+* 添加时间'change-calendar-yeaer', 'change-calendar-month'方便联动两个窗口
+
+
+<a name="2.1.0"></a>
+# [2.1.0]() (2018-07-24)
+
+### Features
+
+* Add `type` year and month
+
+### 新特性
+* 添加`type` 支持月和年的单独选择
+
 
 <a name="2.0.0"></a>
 # [2.0.0]() (2018-06-16)
 
-### New features
+### Features
 
 * Add `clearable` used to show clear icon
 * Add slot `calendar-icon` to custom calendar icon

@@ -15,17 +15,23 @@ export default {
       validator: val => val >= 0 && val <= 60
     },
     value: null,
+    timeType: {
+      type: Array,
+      default () {
+        return ['24', 'a']
+      }
+    },
     disabledTime: Function
   },
   computed: {
     currentHours () {
-      return new Date(this.value).getHours()
+      return this.value ? new Date(this.value).getHours() : 0
     },
     currentMinutes () {
-      return new Date(this.value).getMinutes()
+      return this.value ? new Date(this.value).getMinutes() : 0
     },
     currentSeconds () {
-      return new Date(this.value).getSeconds()
+      return this.value ? new Date(this.value).getSeconds() : 0
     }
   },
   methods: {
@@ -37,6 +43,12 @@ export default {
         return
       }
       this.$emit('select', new Date(time))
+    },
+    pickTime (time) {
+      if (typeof this.disabledTime === 'function' && this.disabledTime(time)) {
+        return
+      }
+      this.$emit('pick', new Date(time))
     },
     getTimeSelectOptions () {
       const result = []
@@ -64,7 +76,7 @@ export default {
           }
           result.push({
             value,
-            label: formatTime(value)
+            label: formatTime(value, ...this.timeType)
           })
         }
       }
@@ -90,7 +102,7 @@ export default {
               'actived': pickHours === this.currentHours && pickMinutes === this.currentMinutes,
               'disabled': disabledTime && disabledTime(time)
             }}
-            onClick={this.selectTime.bind(this, time)}>{picker.label}</li>
+            onClick={this.pickTime.bind(this, time)}>{picker.label}</li>
         )
       })
       return (

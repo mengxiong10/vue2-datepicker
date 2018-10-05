@@ -1,3 +1,5 @@
+import fecha from 'fecha'
+
 export function isPlainObject (obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
@@ -10,7 +12,7 @@ export function isValidDate (date) {
   if (date === null || date === undefined) {
     return false
   }
-  return !!new Date(date).getTime()
+  return !isNaN(new Date(date).getTime())
 }
 
 export function isValidRange (date) {
@@ -36,14 +38,34 @@ export function parseTime (time) {
   return null
 }
 
-export function formatTime (time, type = '24') {
+export function formatTime (time, type = '24', a = 'a') {
   let hours = time.hours
   hours = (type === '24') ? hours : (hours % 12 || 12)
   hours = hours < 10 ? '0' + hours : hours
   let minutes = time.minutes < 10 ? '0' + time.minutes : time.minutes
   let result = hours + ':' + minutes
   if (type === '12') {
-    result += time.hours >= 12 ? ' pm' : ' am'
+    let suffix = time.hours >= 12 ? 'pm' : 'am'
+    if (a === 'A') {
+      suffix = suffix.toUpperCase()
+    }
+    result = `${result} ${suffix}`
   }
   return result
+}
+
+export function formatDate (date, format) {
+  try {
+    return fecha.format(new Date(date), format)
+  } catch (e) {
+    return ''
+  }
+}
+
+export function parseDate (value, format) {
+  try {
+    return fecha.parse(value, format)
+  } catch (e) {
+    return false
+  }
 }
