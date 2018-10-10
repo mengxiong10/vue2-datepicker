@@ -24,7 +24,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   performance: {
     hints: false
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'source-map'
 })
 
 module.exports = webpackConfig
