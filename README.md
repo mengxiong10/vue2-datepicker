@@ -82,7 +82,7 @@ export default {
 | placeholder         | String        |             | input placeholder text                              |
 | width               | String/Number | 210         | input size                                          |
 | append-to-body      | Boolean       | false       | append the popup to body                            |
-| popupStyle          | Object        |             | popup style(override the top, left style)           |
+| popup-style         | Object        |             | popup style(override the top, left style)           |
 | not-before          | String/Date   | ''          | Disable all dates before new Date(not-before)       |
 | not-after           | String/Date   | ''          | Disable all dates after new Date(not-after)         |
 | disabled-days       | Array/function| []          | Disable Days                                        |
