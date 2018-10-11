@@ -44,7 +44,7 @@
       </span>
     </div>
     <div class="mx-datepicker-popup"
-      :style="position"
+      :style="innerPopupStyle"
       v-show="popupVisible"
       ref="calendar">
       <slot name="header">
@@ -106,7 +106,7 @@
 <script>
 import fecha from 'fecha'
 import clickoutside from '@/directives/clickoutside'
-import { isValidDate, isValidRange, isDateObejct, isPlainObject, formatDate, parseDate } from '@/utils/index'
+import { isValidDate, isValidRange, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
 import CalendarPanel from './calendar.vue'
 import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
@@ -183,6 +183,13 @@ export default {
     inputClass: {
       type: [String, Array],
       default: 'mx-input'
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    },
+    popupStyle: {
+      type: Object
     }
   },
   data () {
@@ -290,7 +297,30 @@ export default {
         return this.format
       }
       return this.format.replace(/[Hh]+.*[msSaAZ]|\[.*?\]/g, '').trim() || 'YYYY-MM-DD'
+    },
+    innerPopupStyle () {
+      return { ...this.position, ...this.popupStyle }
     }
+  },
+  mounted () {
+    if (this.appendToBody) {
+      this.popupElm = this.$refs.calendar
+      document.body.appendChild(this.popupElm)
+    }
+    this._displayPopup = throttle(() => {
+      if (this.popupVisible) {
+        this.displayPopup()
+      }
+    }, 200)
+    window.addEventListener('resize', this._displayPopup)
+    window.addEventListener('scroll', this._displayPopup)
+  },
+  beforeDestroy () {
+    if (this.popupElm && this.popupElm.parentNode === document.body) {
+      document.body.removeChild(this.popupElm)
+    }
+    window.removeEventListener('resize', this._displayPopup)
+    window.removeEventListener('scroll', this._displayPopup)
   },
   methods: {
     initCalendar () {
@@ -384,31 +414,53 @@ export default {
     closePopup () {
       this.popupVisible = false
     },
+    getPopupSize (element) {
+      const originalDisplay = element.style.display
+      const originalVisibility = element.style.visibility
+      element.style.display = 'block'
+      element.style.visibility = 'hidden'
+      const styles = window.getComputedStyle(element)
+      const width = element.offsetWidth + parseInt(styles.marginLeft) + parseInt(styles.marginRight)
+      const height = element.offsetHeight + parseInt(styles.marginTop) + parseInt(styles.marginBottom)
+      const result = { width, height }
+      element.style.display = originalDisplay
+      element.style.visibility = originalVisibility
+      return result
+    },
     displayPopup () {
       const dw = document.documentElement.clientWidth
       const dh = document.documentElement.clientHeight
       const InputRect = this.$el.getBoundingClientRect()
-      const PopupRect = this.$refs.calendar.getBoundingClientRect()
-      this.position = {}
+      const PopupRect = this._popupRect || (this._popupRect = this.getPopupSize(this.$refs.calendar))
+      const position = {}
+      let offsetRelativeToInputX = 0
+      let offsetRelativeToInputY = 0
+      if (this.appendToBody) {
+        offsetRelativeToInputX = window.pageXOffset + InputRect.left
+        offsetRelativeToInputY = window.pageYOffset + InputRect.top
+      }
       if (
         dw - InputRect.left < PopupRect.width &&
         InputRect.right < PopupRect.width
       ) {
-        this.position.left = 1 - InputRect.left + 'px'
+        position.left = offsetRelativeToInputX - InputRect.left + 1 + 'px'
       } else if (InputRect.left + InputRect.width / 2 <= dw / 2) {
-        this.position.left = 0
+        position.left = offsetRelativeToInputX + 'px'
       } else {
-        this.position.right = 0
+        position.left = offsetRelativeToInputX + InputRect.width - PopupRect.width + 'px'
       }
       if (
-        InputRect.top <= PopupRect.height + 1 &&
-        dh - InputRect.bottom <= PopupRect.height + 1
+        InputRect.top <= PopupRect.height &&
+        dh - InputRect.bottom <= PopupRect.height
       ) {
-        this.position.top = dh - InputRect.top - PopupRect.height - 1 + 'px'
+        position.top = offsetRelativeToInputY + dh - InputRect.top - PopupRect.height + 'px'
       } else if (InputRect.top + InputRect.height / 2 <= dh / 2) {
-        this.position.top = '100%'
+        position.top = offsetRelativeToInputY + InputRect.height + 'px'
       } else {
-        this.position.bottom = '100%'
+        position.top = offsetRelativeToInputY - PopupRect.height + 'px'
+      }
+      if (position.top !== this.position.top || position.left !== this.position.left) {
+        this.position = position
       }
     },
     handleInput (event) {

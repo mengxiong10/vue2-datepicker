@@ -4,6 +4,7 @@ export default {
     el['@clickoutside'] = e => {
       if (
         !el.contains(e.target) &&
+        !(vnode.context.popupElm && vnode.context.popupElm.contains(e.target)) &&
         binding.expression &&
         vnode.context[binding.expression]
       ) {

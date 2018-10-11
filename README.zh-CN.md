@@ -80,7 +80,9 @@ export default {
 | editable            | Boolean       | true        | 如果是false, 用户不能手动输入更新日期                       
 | disabled            | Boolean       | false       | 禁用组件                               
 | placeholder         | String        |             | 输入框placeholder                              
-| width               | String/Number | 210         | 设置宽度                                          
+| width               | String/Number | 210         | 设置宽度                     
+| append-to-body      | Boolean       | false       | 弹出层放到body下面
+| popup-style         | Object        |             | 弹出层的样式(可以覆盖left,top样式)             
 | not-before          | String/Date   | ''          | 禁止选择这个时间之前的时间     
 | not-after           | String/Date   | ''          | 禁止选择这个时间之前=后的时间        
 | disabled-days       | Array/function| []          | 自定义禁止的日期                                        

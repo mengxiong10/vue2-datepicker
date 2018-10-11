@@ -13,6 +13,16 @@ afterEach(() => {
 })
 
 describe('datepicker', () => {
+  it('prop: appendToBody', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        appendToBody: true
+      }
+    })
+    const popup = wrapper.find('.mx-datepicker-popup')
+    expect(popup.element.parentNode).toBe(document.body)
+  })
+
   it('click: pick date', () => {
     wrapper = mount(DatePicker, {
       propsData: {

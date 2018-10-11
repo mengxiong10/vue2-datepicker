@@ -47,7 +47,7 @@ new Vue({  // eslint-disable-line
   render (h) {
     const example1 = {
       'base': '<date-picker v-model="value1" lang="en" :not-before="new Date()"></date-picker>',
-      'range': '<date-picker v-model="value2" range ></date-picker>',
+      'range': '<date-picker v-model="value2" range appendToBody></date-picker>',
       'month': '<date-picker v-model="value10" lang="en" type="month" format="YYYY-MM"></date-picker>',
       'year': '<date-picker v-model="value11" lang="en" type="year" format="YYYY"></date-picker>',
       'time': '<date-picker v-model="value12" lang="en" type="time" format="HH:mm:ss" placeholder="Select Time"></date-picker>'
@@ -64,6 +64,7 @@ new Vue({  // eslint-disable-line
           v-model="value4"
           lang="en"
           type="datetime"
+          appendToBody
           format="YYYY-MM-DD hh:mm:ss a"
           :time-picker-options="{
             start: '00:00',
