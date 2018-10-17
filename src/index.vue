@@ -46,6 +46,7 @@
     <div class="mx-datepicker-popup"
       :style="innerPopupStyle"
       v-show="popupVisible"
+      @click.stop.prevent
       ref="calendar">
       <slot name="header">
         <div class="mx-shortcuts-wrapper"
