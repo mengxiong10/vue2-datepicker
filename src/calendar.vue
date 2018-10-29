@@ -314,6 +314,8 @@ export default {
       this.$emit('select-date', date)
     },
     selectYear (year) {
+      this.$parent.$emit('calendar-change')
+      this.$parent.$emit('year-change', year)
       this.changeCalendarYear(year)
       if (this.type.toLowerCase() === 'year') {
         return this.selectDate(new Date(this.now))
@@ -321,6 +323,8 @@ export default {
       this.showPanelMonth()
     },
     selectMonth (month) {
+      this.$parent.$emit('calendar-change')
+      this.$parent.$emit('month-change', month)
       this.changeCalendarMonth(month)
       if (this.type.toLowerCase() === 'month') {
         return this.selectDate(new Date(this.now))
