@@ -151,19 +151,17 @@ export default {
 
 
 ### Events
-| Name            | Description                  |  Callback Arguments    |
-|-----------------|------------------------------|------------------------|
-| change          | When the value change        | the currentValue       |
-| input           | When the value change        | the currentValue       |
-| confirm         | When click 'OK' button       | the currentValue       |
-| clear           | When click 'clear' button    |                        |
-| input-error     | When user type a invalid Date| the input text         |
-| panel-change    | When change the panel        | panel, oldPanel      |
+| Name            | Description                                            |  Callback Arguments    |
+|-----------------|--------------------------------------------------------|------------------------|
+| input           | When the value change(v-model event)                   | the currentValue       |
+| change          | When the value change(same as input)                   | the currentValue       |
+| confirm         | When click 'confirm' button                            | the currentValue       |
+| clear           | When click 'clear' button                              |                        |
+| input-error     | When user type a invalid Date                          | the input text         |
+| panel-change    | When change the panel view(eg: from year to month view)| panel, oldPanel        |
 
 #### panel value
 `['NONE', 'DATE', 'YEAR', 'MONTH', 'TIME']`
-
-
 
 ### Slots
 
