@@ -81,8 +81,7 @@ describe('datepicker', () => {
     td1.at(14).trigger('click')
 
     Vue.nextTick(() => {
-      let emitted = wrapper.emittedByOrder()
-      expect(emitted).toHaveLength(0)
+      expect(wrapper.emitted().input).toBeUndefined()
       expect(td1.at(14).classes()).toContain('actived')
       expect(td2.at(13).classes()).toContain('disabled')
       expect(td2.at(14).classes()).not.toContain('disabled')
@@ -90,17 +89,15 @@ describe('datepicker', () => {
       const date1 = new Date(td1.at(14).element.title).setHours(0, 0, 0, 0)
       td2.at(16).trigger('click')
       Vue.nextTick(() => {
-        emitted = wrapper.emittedByOrder()
-
+        const emitted = wrapper.emitted()
         const date2 = new Date(td2.at(16).element.title).setHours(0, 0, 0, 0)
 
         expect(td2.at(16).classes()).toContain('actived')
         expect(td1.at(15).classes()).toContain('inrange')
         expect(td1.at(16).classes()).toContain('inrange')
         expect(td1.at(17).classes()).toContain('disabled')
-
-        expect(emitted).toHaveLength(2)
-        expect(emitted[0].args[0]).toEqual([new Date(date1), new Date(date2)])
+        expect(emitted.input).toHaveLength(1)
+        expect(emitted.input[0][0]).toEqual([new Date(date1), new Date(date2)])
         done()
       })
     })
@@ -261,11 +258,9 @@ describe('datepicker', () => {
       input.setValue('2018-09-10 ~ 2018-08-10')
       input.trigger('input')
       input.trigger('change')
-      expect(wrapper.emitted()).toEqual({
-        input: [[expectDate], [expectRange]],
-        change: [[expectDate], [expectRange]],
-        'input-error': [['2018-09-10 ~ 2018-08-10']]
-      })
+      const emitted = wrapper.emitted()
+      expect(emitted.input).toEqual([[expectDate], [expectRange]])
+      expect(emitted['input-error']).toEqual([['2018-09-10 ~ 2018-08-10']])
       done()
     })
   })
