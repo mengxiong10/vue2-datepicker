@@ -73,6 +73,7 @@
 <script>
 import { isValidDate, isDateObejct, formatDate } from '@/utils/index'
 import locale from '@/mixins/locale'
+import emitter from '@/mixins/emitter'
 import scrollIntoView from '@/utils/scroll-into-view'
 import PanelDate from '@/panel/date'
 import PanelYear from '@/panel/year'
@@ -82,7 +83,7 @@ import PanelTime from '@/panel/time'
 export default {
   name: 'CalendarPanel',
   components: { PanelDate, PanelYear, PanelMonth, PanelTime },
-  mixins: [locale],
+  mixins: [locale, emitter],
   props: {
     value: {
       default: null,
@@ -203,7 +204,7 @@ export default {
   },
   methods: {
     handelPanelChange (panel, oldPanel) {
-      this.$parent.$emit('panel-change', panel, oldPanel)
+      this.dispatch('DatePicker', 'panel-change', [panel, oldPanel])
       if (panel === 'YEAR') {
         this.firstYear = Math.floor(this.calendarYear / 10) * 10
       } else if (panel === 'TIME') {
@@ -231,11 +232,13 @@ export default {
       } else {
         this.showPanelNone()
       }
-      this.updateNow(this.value)
     },
     // 根据value更新日历
     updateNow (value) {
-      this.now = value ? new Date(value) : new Date()
+      const now = value ? new Date(value) : new Date()
+      const oldNow = new Date(this.now)
+      this.dispatch('DatePicker', 'calendar-change', [now, oldNow])
+      this.now = now
     },
     getCriticalTime (value) {
       if (!value) {
@@ -334,10 +337,10 @@ export default {
       this.$emit('select-time', time, true)
     },
     changeCalendarYear (year) {
-      this.now = new Date(year, this.calendarMonth)
+      this.updateNow(new Date(year, this.calendarMonth))
     },
     changeCalendarMonth (month) {
-      this.now = new Date(this.calendarYear, month)
+      this.updateNow(new Date(this.calendarYear, month))
     },
     getSibling () {
       const calendars = this.$parent.$children.filter(v => v.$options.name === this.$options.name)
