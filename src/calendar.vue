@@ -231,14 +231,17 @@ export default {
         }
       } else {
         this.showPanelNone()
+        this.updateNow(this.value)
       }
     },
     // 根据value更新日历
     updateNow (value) {
       const now = value ? new Date(value) : new Date()
       const oldNow = new Date(this.now)
-      this.dispatch('DatePicker', 'calendar-change', [now, oldNow])
       this.now = now
+      if (this.visible) {
+        this.dispatch('DatePicker', 'calendar-change', [now, oldNow])
+      }
     },
     getCriticalTime (value) {
       if (!value) {
