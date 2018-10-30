@@ -159,6 +159,7 @@ export default {
 | clear           | When click 'clear' button                              |                        |
 | input-error     | When user type a invalid Date                          | the input text         |
 | panel-change    | When change the panel view(eg: from year to month view)| panel, oldPanel        |
+| calendar-change | When calendar view year or month change                | now(Date), oldNow(Date)|
 
 #### panel value
 `['NONE', 'DATE', 'YEAR', 'MONTH', 'TIME']`
