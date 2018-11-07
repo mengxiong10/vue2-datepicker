@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
-  }
+  },
+  'hr': {
+    'days': ['Ned', 'Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub'],
+    'months': ['Siječanj', 'Siječanj', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'],
+    'pickers': ['sljedećih 7 dana', 'nsljedećih 30 dana', 'prethodnih 7 dana', 'prethodnih 30 dana'],
+    'placeholder': {
+      'date': 'Izaberite datum',
+      'dateRange': 'Izaberite raspon datuma'
+    }
+  },
 }
