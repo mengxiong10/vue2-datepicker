@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
+  },
+  'no': {
+    'days': ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'],
+    'months': ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
+    'pickers': ['neste 7 dager', 'neste 30 dager', 'forrige 7 dager', 'forrige 30 dager'],
+    'placeholder': {
+        'date': 'Velg Dato',
+        'dateRange': 'Velg Periode'
+    }
   }
 }
