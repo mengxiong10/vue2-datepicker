@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
-  }
+  },
+  'id': {
+    'days': ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+    'months': ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des'],
+    'pickers': ['7 hari berikutnya', '30 hari berikutnya', '7 hari sebelumnya', '30 hari sebelumnya'],
+    'placeholder': {
+      'date': 'Pilih tanggal',
+      'dateRange': 'Pilih rentang tanggal'
+    }
+  },
 }
