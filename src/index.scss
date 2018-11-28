@@ -1,0 +1,326 @@
+$default-color: #73879c;
+$primary-color: #1284e7;
+
+.mx-datepicker {
+  position: relative;
+  display: inline-block;
+  width: 210px;
+  color: $default-color;
+  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+  &.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+.mx-datepicker-range {
+  width: 320px;
+}
+
+.mx-datepicker-popup {
+  position: absolute;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 1000;
+}
+
+.mx-input-wrapper {
+  position: relative;
+  .mx-clear-wrapper {
+    display: none;
+  }
+  &:hover {
+    .mx-clear-wrapper {
+      display: block;
+    }
+  }
+}
+
+.mx-input {
+  display: inline-block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 30px;
+  padding-left: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  &:disabled,
+  &.disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.mx-input-append {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 100%;
+  padding: 6px;
+  background-color: #fff;
+  background-clip: content-box;
+}
+
+.mx-input-icon {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  font-style: normal;
+  color: #555;
+  text-align: center;
+  cursor: pointer;
+}
+
+.mx-calendar-icon {
+  width: 100%;
+  height: 100%;
+  color: #555;
+  stroke-width: 8px;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.mx-clear-icon {
+  &::before {
+    display: inline-block;
+    content: '\2716';
+    vertical-align: middle;
+  }
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.mx-range-wrapper {
+  width: 248px * 2;
+  overflow: hidden;
+}
+
+.mx-shortcuts-wrapper {
+  text-align: left;
+  padding: 0 12px;
+  line-height: 34px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  .mx-shortcuts {
+    background: none;
+    outline: none;
+    border: 0;
+    color: #48576a;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    cursor: pointer;
+    &:hover {
+      color: mix(#fff, $primary-color, 20%);
+    }
+    &:after {
+      content: '|';
+      margin: 0 10px;
+      color: #48576a;
+    }
+  }
+}
+
+.mx-datepicker-footer {
+  padding: 4px;
+  clear: both;
+  text-align: right;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.mx-datepicker-btn {
+  font-size: 12px;
+  line-height: 1;
+  padding: 7px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+.mx-datepicker-btn-confirm {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #73879c;
+  &:hover {
+    color: #1284e7;
+    border-color: #1284e7;
+  }
+}
+
+/* 日历组件 */
+.mx-calendar {
+  float: left;
+  color: $default-color;
+  padding: 6px 12px;
+  font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.mx-calendar-header {
+  padding: 0 4px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  overflow: hidden;
+  > a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: mix(#fff, $primary-color, 20%);
+    }
+  }
+  @at-root {
+    .mx-icon-last-month,
+    .mx-icon-next-month {
+      padding: 0 6px;
+      font-size: 20px;
+      line-height: 30px;
+    }
+    .mx-icon-last-month {
+      float: left;
+    }
+    .mx-icon-next-month {
+      float: right;
+    }
+    .mx-icon-last-year {
+      @extend .mx-icon-last-month
+    }
+    .mx-icon-next-year {
+      @extend .mx-icon-next-month
+    }
+  }
+}
+
+.mx-calendar-content {
+  width: 32px * 7;
+  height: 32px * 7;
+  .cell {
+    vertical-align: middle;
+    cursor: pointer;
+    &:hover {
+      background-color: #eaf8fe;
+    }
+    &.actived {
+      color: #fff;
+      background-color: $primary-color;
+    }
+    &.inrange {
+      background-color: #eaf8fe;
+    }
+    &.disabled {
+      cursor: not-allowed;
+      color: #ccc;
+      background-color: #f3f3f3;
+    }  
+  }
+}
+
+.mx-panel {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.mx-panel-date {
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  td, th {
+    font-size: 12px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+  }
+  td {
+    &.today {
+      color: mix(#fff, $primary-color, 10%);
+    }
+    &.last-month,
+    &.next-month {
+      color: #ddd;
+    }
+  }
+}
+
+.mx-panel-year {
+  padding: 7px 0;
+  .cell {
+    display: inline-block;
+    width: 40%;
+    margin: 1px 5%;
+    line-height: 40px;
+  }
+}
+
+.mx-panel-month {
+  .cell {
+    display: inline-block;
+    width: 30%;
+    line-height: 40px;
+    margin: 8px 1.5%;
+  }
+}
+
+.mx-time-list {
+  position: relative; // 定位 offsetParent
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid rgba(0,0,0,.05);
+  border-left: 1px solid rgba(0,0,0,.05);
+  overflow-y: auto;
+  .mx-time-picker-item {
+    display: block;
+    text-align: left;
+    padding-left: 10px;
+  }
+  &:first-child {
+    border-left: 0;
+  }
+  .cell {
+    width: 100%;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+  }
+  /* 滚动条滑块 */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
