@@ -258,12 +258,16 @@ export default {
       return date.getTime()
     },
     inBefore (time, startAt) {
-      startAt = startAt || this.startAt
+      if (startAt === undefined) {
+        startAt = this.startAt
+      }
       return (this.notBeforeTime && time < this.notBeforeTime) ||
         (startAt && time < this.getCriticalTime(startAt))
     },
     inAfter (time, endAt) {
-      endAt = endAt || this.endAt
+      if (endAt === undefined) {
+        endAt = this.endAt
+      }
       return (this.notAfterTime && time > this.notAfterTime) ||
         (endAt && time > this.getCriticalTime(endAt))
     },

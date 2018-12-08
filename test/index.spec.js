@@ -247,21 +247,40 @@ describe('datepicker', () => {
     input.trigger('input')
     input.trigger('change')
     const expectDate = new Date(2018, 8, 10)
-    wrapper.setProps({
-      range: true
-    })
     Vue.nextTick(() => {
-      input.setValue('2018-09-10 ~ 2018-09-11')
-      input.trigger('input')
-      input.trigger('change')
-      const expectRange = [new Date(2018, 8, 10), new Date(2018, 8, 11)]
-      input.setValue('2018-09-10 ~ 2018-08-10')
-      input.trigger('input')
-      input.trigger('change')
       const emitted = wrapper.emitted()
-      expect(emitted.input).toEqual([[expectDate], [expectRange]])
-      expect(emitted['input-error']).toEqual([['2018-09-10 ~ 2018-08-10']])
+      expect(emitted.input).toEqual([[expectDate]])
       done()
+    })
+  })
+
+  it('type range input should be right', (done) => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        format: 'YYYY-MM-DD',
+        range: true
+      },
+      sync: false
+    })
+    const input = wrapper.find('input')
+    input.setValue('2018-09-10 ~ 2018-09-11')
+    input.trigger('change')
+    const expectRange = [new Date(2018, 8, 10), new Date(2018, 8, 11)]
+    Vue.nextTick(() => {
+      input.setValue('2018-09-09 ~ 2018-09-12')
+      input.trigger('input')
+      input.trigger('change')
+      const expectRange2 = [new Date(2018, 8, 9), new Date(2018, 8, 12)]
+      Vue.nextTick(() => {
+        input.setValue('2018-09-10 ~ 2018-08-10')
+        input.trigger('input')
+        input.trigger('change')
+        const expectError = '2018-09-10 ~ 2018-08-10'
+        const emitted = wrapper.emitted()
+        expect(emitted.input).toEqual([[expectRange], [expectRange2]])
+        expect(emitted['input-error']).toEqual([[expectError]])
+        done()
+      })
     })
   })
 
