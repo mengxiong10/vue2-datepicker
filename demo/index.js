@@ -18,7 +18,8 @@ new Vue({  // eslint-disable-line
       value9: '',
       value10: new Date(),
       value11: new Date(),
-      value12: ''
+      value12: '',
+      value13: ''
     }
   },
   methods: {
@@ -101,13 +102,20 @@ new Vue({  // eslint-disable-line
           lang="en"
           format="YYYY-MM-DD hh:mm:ss"
           confirm></date-picker>`,
-      'range width confirm': `
+      'range with confirm': `
         <date-picker
           v-model="value8"
           range
           lang="en"
           format="YYYY-MM-DD"
-          confirm></date-picker>`
+          confirm></date-picker>`,
+      'range with half range': `
+        <date-picker
+          v-model="value13"
+          range
+          lang="en"
+          format="YYYY-MM-DD"
+          allow-half-range></date-picker>`
     }
     const arr = [
       {
