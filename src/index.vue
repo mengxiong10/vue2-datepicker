@@ -149,6 +149,10 @@ export default {
       type: String,
       default: '~'
     },
+    allowHalfRange: {
+      type: Boolean,
+      default: false
+    },
     width: {
       type: [String, Number],
       default: null
@@ -234,9 +238,22 @@ export default {
       if (!this.range) {
         return isValidDate(this.value) ? this.stringify(this.value) : ''
       }
-      return isValidRange(this.value)
-        ? `${this.stringify(this.value[0])} ${this.rangeSeparator} ${this.stringify(this.value[1])}`
-        : ''
+
+      if (!isValidRange(this.value, this.allowHalfRange)) {
+        return ''
+      }
+
+      if (this.value[0] && this.value[1]) {
+        return `${this.stringify(this.value[0])} ${this.rangeSeparator} ${this.stringify(this.value[1])}`
+      }
+
+      if (this.value[0]) {
+        return `${this.stringify(this.value[0])} ${this.rangeSeparator} `
+      }
+
+      if (this.value[1]) {
+        return ` ${this.rangeSeparator} ${this.stringify(this.value[1])}`
+      }
     },
     computedWidth () {
       if (typeof this.width === 'number' || (typeof this.width === 'string' && /^\d+$/.test(this.width))) {
@@ -245,7 +262,7 @@ export default {
       return this.width
     },
     showClearIcon () {
-      return !this.disabled && this.clearable && (this.range ? isValidRange(this.value) : isValidDate(this.value))
+      return !this.disabled && this.clearable && (this.range ? isValidRange(this.value, this.allowHalfRange) : isValidDate(this.value))
     },
     innerType () {
       return String(this.type).toLowerCase()
@@ -344,7 +361,10 @@ export default {
       if (typeof range.onClick === 'function') {
         return range.onClick(this)
       }
-      this.currentValue = [ new Date(range.start), new Date(range.end) ]
+      this.currentValue = [
+        isValidDate(range.start) ? new Date(range.start) : null,
+        isValidDate(range.end) ? new Date(range.end) : null
+      ]
       this.updateDate(true)
     },
     clearDate () {
@@ -354,7 +374,7 @@ export default {
       this.$emit('clear')
     },
     confirmDate () {
-      const valid = this.range ? isValidRange(this.currentValue) : isValidDate(this.currentValue)
+      const valid = this.range ? isValidRange(this.currentValue, this.allowHalfRange) : isValidDate(this.currentValue)
       if (valid) {
         this.updateDate(true)
       }
@@ -377,7 +397,14 @@ export default {
       if (!this.range) {
         this.currentValue = isValidDate(value) ? new Date(value) : null
       } else {
-        this.currentValue = isValidRange(value) ? [new Date(value[0]), new Date(value[1])] : [null, null]
+        if (isValidRange(value, this.allowHalfRange)) {
+          this.currentValue = [
+            isValidDate(value[0]) ? new Date(value[0]) : null,
+            isValidDate(value[1]) ? new Date(value[1]) : null
+          ]
+        } else {
+          this.currentValue = [null, null]
+        }
       }
     },
     selectDate (date) {
@@ -386,13 +413,13 @@ export default {
     },
     selectStartDate (date) {
       this.$set(this.currentValue, 0, date)
-      if (this.currentValue[1]) {
+      if (this.currentValue[1] || this.allowHalfRange) {
         this.updateDate()
       }
     },
     selectEndDate (date) {
       this.$set(this.currentValue, 1, date)
-      if (this.currentValue[0]) {
+      if (this.currentValue[0] || this.allowHalfRange) {
         this.updateDate()
       }
     },

@@ -15,14 +15,20 @@ export function isValidDate (date) {
   return !isNaN(new Date(date).getTime())
 }
 
-export function isValidRange (date) {
-  return (
-    Array.isArray(date) &&
-    date.length === 2 &&
-    isValidDate(date[0]) &&
-    isValidDate(date[1]) &&
-    (new Date(date[1]).getTime() >= new Date(date[0]).getTime())
-  )
+export function isValidRange (date, allowHalfRange = false) {
+  if (!Array.isArray(date) || date.length !== 2) {
+    return false
+  }
+
+  if (!allowHalfRange || (date[0] && date[1])) {
+    return (
+      isValidDate(date[0]) &&
+      isValidDate(date[1]) &&
+      (new Date(date[1]).getTime() >= new Date(date[0]).getTime())
+    )
+  }
+
+  return (isValidDate(date[0]) || isValidDate(date[1]))
 }
 
 export function parseTime (time) {
