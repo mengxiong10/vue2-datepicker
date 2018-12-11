@@ -1,4 +1,53 @@
-<a name="2.5.0"></a>
+## [2.6.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.2...v2.6.3) (2018-12-08)
+
+
+### 修复Bug
+
+* 修复手动输入范围时无法成功的问题 ([#209](https://github.com/mengxiong10/vue2-datepicker/issues/209)) ([97289d1](https://github.com/mengxiong10/vue2-datepicker/commit/97289d1))
+
+
+
+## [2.6.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.1...v2.6.2) (2018-10-30)
+
+
+### 修复Bug
+
+* `calendar-change`事件在正确的时候触发 ([b1a5a41](https://github.com/mengxiong10/vue2-datepicker/commit/b1a5a41))
+
+
+### 新功能
+
+* 添加 `calendar-change` 事件 ([ef9314e](https://github.com/mengxiong10/vue2-datepicker/commit/ef9314e))
+
+
+
+## [2.6.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.0...v2.6.1) (2018-10-17)
+
+
+### 修复Bug
+
+* 阻止组件的事件冒泡到外面 ([de177d8](https://github.com/mengxiong10/vue2-datepicker/commit/de177d8))
+
+
+### 新功能
+
+* script直接引用的时候自动注册组件 ([a310f59](https://github.com/mengxiong10/vue2-datepicker/commit/a310f59))
+
+
+
+# [2.6.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.5.0...v2.6.0) (2018-10-11)
+
+
+### 修复Bug
+
+* 修复快捷方式的颜色 ([ac4aa87](https://github.com/mengxiong10/vue2-datepicker/commit/ac4aa87))
+
+
+### 新功能
+
+*  添加属性 `appendToBody` ([e26e1f5](https://github.com/mengxiong10/vue2-datepicker/commit/e26e1f5))
+
+
 # [2.5.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.4.3...v2.5.0) (2018-10-05)
 
 ### 新功能
@@ -6,7 +55,6 @@
 * 添加 `panel-change` 事件 ([5cdba7b](https://github.com/mengxiong10/vue2-datepicker/commit/5cdba7b))
 
 
-<a name="2.4.3"></a>
 ## [2.4.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.4.0...v2.4.3) (2018-09-28)
 
 ### 修复Bug
@@ -29,14 +77,12 @@
 
 * 添加属性`type`为`time`的时候只显示时间组件
 
-<a name="2.3.2"></a>
 ## [2.3.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.2.0...v2.3.2) (2018-08-07)
 
 ### 新功能
 
 * 添加属性 `date-format` 格式化时间组件头部和日期的tooltip
 
-<a name="2.2.0"></a>
 # [2.2.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.1.0...v2.2.0) (2018-08-06)
 
 ### 修复bug
@@ -48,7 +94,6 @@
 * 添加时间'change-calendar-yeaer', 'change-calendar-month'方便联动两个窗口
 
 
-<a name="2.1.0"></a>
 # [2.1.0]() (2018-07-24)
 
 
@@ -57,7 +102,6 @@
 * 添加`type` 支持月和年的单独选择
 
 
-<a name="2.0.0"></a>
 # [2.0.0]() (2018-06-16)
 
 ### 新功能
