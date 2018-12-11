@@ -304,6 +304,33 @@ describe('datepicker', () => {
     expect(cell.element.title).toBe(ss)
     expect(timeHeader.text()).toBe(ss)
   })
+
+  it('method: showPopup', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        value: new Date('2018-08-08'),
+        format: '[on] MM-DD-YYYY [at] HH:mm',
+        type: 'datetime'
+      }
+    })
+    wrapper.vm.showPopup()
+    expect(wrapper.vm.popupVisible).toBe(true)
+    expect(wrapper.emitted('popup-open')).toBeTruthy()
+  })
+
+  it('method: closePopup', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        value: new Date('2018-08-08'),
+        format: '[on] MM-DD-YYYY [at] HH:mm',
+        type: 'datetime'
+      }
+    })
+    wrapper.setData({ popupVisible: true })
+    wrapper.vm.closePopup()
+    expect(wrapper.vm.popupVisible).toBe(false)
+    expect(wrapper.emitted('popup-close')).toBeTruthy()
+  })
 })
 
 describe('calendar-panel', () => {
