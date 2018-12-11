@@ -130,7 +130,7 @@ describe('datepicker', () => {
     expect(vm.popupVisible).toBe(true)
     expect(wrapper.emittedByOrder()).toHaveLength(0)
     btn.trigger('click')
-    expect(wrapper.emittedByOrder()).toHaveLength(3)
+    expect(wrapper.emittedByOrder()).toHaveLength(4)
     expect(vm.popupVisible).toBe(false)
   })
 
