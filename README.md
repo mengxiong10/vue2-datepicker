@@ -157,6 +157,8 @@ export default {
 | change          | When the value change(same as input)                   | the currentValue       |
 | confirm         | When click 'confirm' button                            | the currentValue       |
 | clear           | When click 'clear' button                              |                        |
+| popup-open      | When then popup open                                   |                        |
+| popup-close     | When then popup close                                  |                        |
 | input-error     | When user type a invalid Date                          | the input text         |
 | panel-change    | When change the panel view(eg: from year to month view)| panel, oldPanel        |
 | calendar-change | When calendar view year or month change                | now(Date), oldNow(Date)|

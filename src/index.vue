@@ -407,13 +407,15 @@ export default {
       this.selectEndDate(time)
     },
     showPopup () {
-      if (this.disabled) {
-        return
-      }
+      if (this.disabled) return
+      if (this.popupVisible) return
+
       this.popupVisible = true
+      this.$emit('popup-open')
     },
     closePopup () {
       this.popupVisible = false
+      this.$emit('popup-close')
     },
     getPopupSize (element) {
       const originalDisplay = element.style.display
