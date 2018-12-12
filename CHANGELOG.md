@@ -1,3 +1,12 @@
+## [2.6.4](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.3...v2.6.4) (2018-12-12)
+
+
+### Bug Fixes
+
+* fix the style ([14259fb](https://github.com/mengxiong10/vue2-datepicker/commit/14259fb))
+
+
+
 ## [2.6.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.2...v2.6.3) (2018-12-08)
 
 
