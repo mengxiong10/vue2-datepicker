@@ -17,17 +17,15 @@ module.exports = {
     'standard'
   ],
   // required to lint *.vue files
-  plugins: [
-    'vue'
-  ],
+  plugins: ['vue'],
   // add your custom rules here
   rules: {
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-console': ["error", { allow: ["warn", "error"] }],
-    'camelcase': ['off', { properties: 'never' }],
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    camelcase: ['off', { properties: 'never' }],
     // "vue/max-attributes-per-line": [2, {
     //   "singleline": 1,
     //   "multiline": {
@@ -35,11 +33,15 @@ module.exports = {
     //     "allowFirstLine": true
     //   }
     // }],
-    "vue/html-indent": ["error", 2, {
-      "attribute": 1,
-      "closeBracket": 0,
-      "alignAttributesVertically": false,
-      "ignores": []
-    }]
+    'vue/html-indent': [
+      'error',
+      2,
+      {
+        attribute: 1,
+        closeBracket: 0,
+        alignAttributesVertically: false,
+        ignores: []
+      }
+    ]
   }
 }
