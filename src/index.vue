@@ -17,6 +17,7 @@
         autocomplete="off"
         :class="inputClass"
         :name="inputName"
+        :id="inputId"
         :disabled="disabled"
         :readonly="!editable"
         :value="text"
@@ -180,6 +181,10 @@ export default {
     inputName: {
       type: String,
       default: 'date'
+    },
+    inputId: {
+      type: String,
+      default: 'date'     
     },
     inputClass: {
       type: [String, Array],
