@@ -1,3 +1,12 @@
+## [2.6.4](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.3...v2.6.4) (2018-12-19)
+
+
+### Bug Fixes
+
+* when clear input(not use clear button)  the date value not changed ([39d2c40](https://github.com/mengxiong10/vue2-datepicker/commit/39d2c40))
+
+
+
 ## [2.6.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.2...v2.6.3) (2018-12-08)
 
 
