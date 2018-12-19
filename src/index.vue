@@ -472,6 +472,10 @@ export default {
       if (this.editable && this.userInput !== null) {
         const calendar = this.$children[0]
         const checkDate = calendar.isDisabledTime
+        if (!value) {
+          this.clearDate()
+          return
+        }
         if (this.range) {
           const range = value.split(` ${this.rangeSeparator} `)
           if (range.length === 2) {

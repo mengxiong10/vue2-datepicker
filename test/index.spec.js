@@ -235,6 +235,25 @@ describe('datepicker', () => {
     expect(shortcuts.exists()).toBe(false)
   })
 
+  it('clear the value will set the value null', (done) => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        format: 'YYYY-MM-DD',
+        value: '2018-09-10'
+      },
+      sync: false
+    })
+    const input = wrapper.find('input')
+    input.setValue('')
+    input.trigger('input')
+    input.trigger('change')
+    Vue.nextTick(() => {
+      const emitted = wrapper.emitted()
+      expect(emitted.input).toEqual([[null]])
+      done()
+    })
+  })
+
   it('type input should be right', (done) => {
     wrapper = mount(DatePicker, {
       propsData: {
