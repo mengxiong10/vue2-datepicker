@@ -1,3 +1,18 @@
+# [2.7.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.3...v2.7.0) (2019-01-08)
+
+
+### Bug Fixes
+
+* when clear input(not use clear button)  the date value not changed ([39d2c40](https://github.com/mengxiong10/vue2-datepicker/commit/39d2c40))
+
+
+### Features
+
+* add class to .mx-calendar indicating the different panel ([#219](https://github.com/mengxiong10/vue2-datepicker/issues/219)) ([1d0a67b](https://github.com/mengxiong10/vue2-datepicker/commit/1d0a67b))
+* add prop inputAttr ([2381089](https://github.com/mengxiong10/vue2-datepicker/commit/2381089))
+
+
+
 ## [2.6.4](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.3...v2.6.4) (2018-12-19)
 
 
