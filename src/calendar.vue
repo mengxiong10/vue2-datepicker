@@ -1,5 +1,6 @@
 <template>
-  <div class="mx-calendar">
+  <div class="mx-calendar"
+    :class="'mx-calendar-panel-' + panel.toLowerCase()">
     <div class="mx-calendar-header">
       <a
         v-show="panel !== 'TIME'"
