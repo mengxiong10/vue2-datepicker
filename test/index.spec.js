@@ -13,6 +13,17 @@ afterEach(() => {
 })
 
 describe('datepicker', () => {
+  it('prop: inputAttr', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        inputAttr: { required: true, id: 'input' }
+      }
+    })
+    const input = wrapper.find('input').element
+    expect(input).toHaveProperty('required', true)
+    expect(input).toHaveProperty('id', 'input')
+  })
+
   it('prop: appendToBody', () => {
     wrapper = mount(DatePicker, {
       propsData: {
@@ -366,7 +377,9 @@ describe('calendar-panel', () => {
 
   it('click: prev/next year', () => {
     wrapper = mount(CalendarPanel, {
-      value: new Date(2018, 4, 5)
+      propsData: {
+        value: new Date(2018, 4, 5)
+      }
     })
     const nextBtn = wrapper.find('.mx-icon-next-year')
     const lastBtn = wrapper.find('.mx-icon-last-year')

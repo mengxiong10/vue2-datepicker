@@ -92,6 +92,7 @@ export default {
 | first-day-of-week   | Number        | 7           | set the first day of week (1-7)                     |
 | input-class         | String        | 'mx-input'  | the input class name                                |
 | input-name          | String        | 'date'      | the input name attr                                 |
+| input-attr          | Object        |             | the input attr(eg: { required: true, id: 'input'})  |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button       |
 | range-separator     | String        | '~'         | the range separator text                            |
 | date-format         | String        | ''          | format the time header and tooltip                  |

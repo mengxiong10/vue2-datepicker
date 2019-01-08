@@ -12,11 +12,12 @@
     <div class="mx-input-wrapper"
       @click="showPopup">
       <input
+        :class="inputClass"
+        :name="inputName"
+        v-bind="inputAttr"
         ref="input"
         type="text"
         autocomplete="off"
-        :class="inputClass"
-        :name="inputName"
         :disabled="disabled"
         :readonly="!editable"
         :value="text"
@@ -185,6 +186,7 @@ export default {
       type: [String, Array],
       default: 'mx-input'
     },
+    inputAttr: Object,
     appendToBody: {
       type: Boolean,
       default: false
