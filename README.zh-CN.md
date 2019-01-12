@@ -69,32 +69,52 @@ export default {
 ```
 ### Props
 
-| Prop                | Type          | Default     | Description                                         
-|---------------------|---------------|-------------|-----------------------------------------------------
-| type                | String        | 'date'      | 选择日期或日期时间(可选：date,datetime,year,month,time)      
-| range               | Boolean       | false       | 如果是true， 显示日历范围选择     
-| format              | String        | YYYY-MM-DD  | 格式化显示日期 api类似moment.js     
-| lang                | String/Object | zh          | 选择语言或自定义 (en/zh/es/pt-br/fr/ru/de/it/cs)(custom) 
-| clearable           | Boolean       | true        | 如果设置false, 不显示清除图标                 
-| confirm             | Boolean       | false       | 如果是true， 显示确认按钮且需要确认才更新时间  
-| editable            | Boolean       | true        | 如果是false, 用户不能手动输入更新日期                       
-| disabled            | Boolean       | false       | 禁用组件                               
-| placeholder         | String        |             | 输入框placeholder                              
-| width               | String/Number | 210         | 设置宽度                     
-| append-to-body      | Boolean       | false       | 弹出层放到body下面
-| popup-style         | Object        |             | 弹出层的样式(可以覆盖left,top样式)             
-| not-before          | String/Date   | ''          | 禁止选择这个时间之前的时间     
-| not-after           | String/Date   | ''          | 禁止选择这个时间之前=后的时间        
-| disabled-days       | Array/function| []          | 自定义禁止的日期                                        
-| shortcuts           | Boolean/Array | true        | 自定义范围选择的时候快捷选项(见下表)                 
-| time-picker-options | Object        | {}          | 自定义时间选择的开始，结束，步进(见下表)            
-| minute-step         | Number        | 0           | 设置分钟的步进， 设置大于0不显示秒的选择(0-60)         
-| first-day-of-week   | Number        | 7           | 设置日历星期几开头(1-7)                     
-| input-class         | String        | 'mx-input'  | 自定义输入框的类名                                
-| input-name          | String        | 'date'      | 自定义input 的 name 属性                                 
-| confirm-text        | String        | 'OK'        | 确认按钮的名称       
-| range-separator     | String        | '~'         | range 分隔符         
-| date-format         | String        | ''          | 格式化时间组件头部和日历的tooltip,默认是format字段去除时间的格式化                   
+| 属性                | 类型           |  可选值                | 默认值      | 描述     
+|---------------------|---------------| ---------------------- |-------------| -----------
+| type                | String        | date,datetime,year,month,time        | 'date'      | 选择日期或日期时间    
+| range               | Boolean       | -                      | false       | 如果是true， 显示日历范围选择     
+| format              | String        | -                      | YYYY-MM-DD  | 格式化显示日期 api类似moment.js   
+| value-type          | String/Object | date/format/timestamp  | 'date'      | 设置绑定值的格式([详情](#value-type)) |  
+| lang                | String/Object | en/zh/es/pt-br/fr/ru/de/it/cs| zh    | 选择语言或自定义 ([自定义](#lang)) 
+| clearable           | Boolean       | -                      | true        | 如果设置false, 不显示清除图标                 
+| confirm             | Boolean       | -                      | false      | 如果是true， 显示确认按钮且需要确认才更新时间  
+| editable            | Boolean       | -                      | true        | 如果是false, 用户不能手动输入更新日期                       
+| disabled            | Boolean       | -                      | false       | 禁用组件                               
+| placeholder         | String        | -                      |             | 输入框placeholder                              
+| width               | String/Number | -                      | 210         | 设置宽度                     
+| append-to-body      | Boolean       | -                      | false       | 弹出层放到body下面
+| popup-style         | Object        | -                      |             | 弹出层的样式(可以覆盖left,top样式)             
+| not-before          | String/Date   | -                      | ''          | 禁止选择这个时间之前的时间     
+| not-after           | String/Date   | -                      | ''          | 禁止选择这个时间之前=后的时间        
+| disabled-days       | Array/function| -                      | []          | 自定义禁止的日期                                        
+| shortcuts           | Boolean/Array | -                      | true        | 自定义范围选择的时候快捷选项(见下表)                 
+| time-picker-options | Object        | -                      | {}          | 自定义时间选择的开始，结束，步进(见下表)            
+| minute-step         | Number        | 0 - 60                 | 0           | 设置分钟的步进， 设置大于0不显示秒的选择(0-60)         
+| first-day-of-week   | Number        | 1 - 7                  | 7           | 设置日历星期几开头                 
+| input-class         | String        | -                      | 'mx-input'  | 自定义input元素的类名                                
+| input-attr          | Object        |  —                     |             | 自定义input元是的属性(eg: { required: true, id: 'input', name:'date'})     
+| confirm-text        | String        | -                      | 'OK'        | 确认按钮的名称       
+| range-separator     | String        | -                      | '~'         | range 分隔符         
+| date-format         | String        | -                      | ''          | 格式化时间组件头部和日历的tooltip,默认是format字段去除时间的格式化  
+
+
+#### value-type
+设置绑定值的格式
+
+| 可选值           | 描述                              
+|-----------------|--------------------------------------- 
+| date            | 返回的绑定值是Date对象       
+| timestamp       | 返回的绑定值是时间戳数字  
+| format          | 返回的绑定值是通过`format`属性格式化的值 
+
+高级: 也可以传入一个自定义实现包含2个函数的对象
+```js
+{
+  value2date: (value: any) => Date,  // 转化绑定值到日历时间对象
+  date2value: (date: Date) => any   // 转化日历时间对象到绑定值
+}
+
+```
 
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)

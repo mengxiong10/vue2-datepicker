@@ -69,34 +69,51 @@ export default {
 ```
 ### Props
 
-| Prop                | Type          | Default     | Description                                         |
-|---------------------|---------------|-------------|-----------------------------------------------------|
-| type                | String        | 'date'      | select date type (date/datetime/year/month/time)    |
-| range               | Boolean       | false       | if true, the type is daterange or datetimerange     |
-| format              | String        | YYYY-MM-DD  | The parsing tokens are similar to the moment.js     |
-| lang                | String/Object | zh          | Translation ([custom](#lang))(en/zh/es/pt-br/fr/ru/de/it/cs) |
-| clearable           | Boolean       | true        | if false, don't show the clear icon                 |
-| confirm             | Boolean       | false       | if true, need click the button to change the value  |
-| editable            | Boolean       | true        | if false, user cann't type it                       |
-| disabled            | Boolean       | false       | Disable the component                               |
-| placeholder         | String        |             | input placeholder text                              |
-| width               | String/Number | 210         | input size                                          |
-| append-to-body      | Boolean       | false       | append the popup to body                            |
-| popupStyle          | Object        |             | popup style(override the top, left style)           |
-| not-before          | String/Date   | ''          | Disable all dates before new Date(not-before)       |
-| not-after           | String/Date   | ''          | Disable all dates after new Date(not-after)         |
-| disabled-days       | Array/function| []          | Disable Days                                        |
-| shortcuts           | Boolean/Array | true        | the shortcuts for the range picker                  |
-| time-picker-options | Object        | {}          | set timePickerOptions(start, step, end)             |
-| minute-step         | Number        | 0           | if > 0 don't show the second picker(0 - 60)         |
-| first-day-of-week   | Number        | 7           | set the first day of week (1-7)                     |
-| input-class         | String        | 'mx-input'  | the input class name                                |
-| input-name          | String        | 'date'      | the input name attr                                 |
-| input-attr          | Object        |             | the input attr(eg: { required: true, id: 'input'})  |
-| confirm-text        | String        | 'OK'        | the default text to display on confirm button       |
-| range-separator     | String        | '~'         | the range separator text                            |
-| date-format         | String        | ''          | format the time header and tooltip                  |
+| Prop                | Type          | Accepted Values | Default     | Description                                         |
+|---------------------|---------------|-----------------|-------------|-----------------------------------------------------|
+| type                | String        | date/datetime/year/month/time  | 'date'      | select date type                     |
+| range               | Boolean       |  —               | false       | if true, the type is daterange or datetimerange     |
+| format              | String        |  —               | YYYY-MM-DD  | The parsing tokens are similar to the moment.js     |
+| value-type          | String/Object | date/format/timestamp | 'date' | type of binding value. If not specified, the binding value will be a Date object(see [detail](#value-type)) |
+| lang                | String/Object |  en/zh/es/pt-br/fr/ru/de/it/cs | zh   | Translation (set [how to custom](#lang)) |
+| clearable           | Boolean       |  —               | true        | if false, don't show the clear icon                 |
+| confirm             | Boolean       |  —               | false       | if true, need click the button to change the value  |
+| editable            | Boolean       |  —               | true        | if false, user cann't type it                       |
+| disabled            | Boolean       |  —               | false       | Disable the component                               |
+| placeholder         | String        |  —               |             | input placeholder text                              |
+| width               | String/Number |  —               | 210         | input size                                          |
+| append-to-body      | Boolean       |  —               | false       | append the popup to body                            |
+| popupStyle          | Object        |  —               |             | popup style(override the top, left style)           |
+| not-before          | String/Date   |  —               | ''          | Disable all dates before new Date(not-before)       |
+| not-after           | String/Date   |  —               | ''          | Disable all dates after new Date(not-after)         |
+| disabled-days       | Array/function|  —               | []          | Disable Days                                        |
+| shortcuts           | Boolean/Array |  —               | true        | the shortcuts for the range picker                  |
+| time-picker-options | Object        |  —               | {}          | set timePickerOptions(start, step, end)             |
+| minute-step         | Number        |  0 - 60          | 0           | if > 0 don't show the second picker                 |
+| first-day-of-week   | Number        |  1 - 7           | 7           | set the first day of week                           |
+| input-class         | String        |  —               | 'mx-input'  | the input class name                                |
+| input-attr          | Object        |  —               |             | the input attr(eg: { required: true, id: 'input'})  |
+| confirm-text        | String        |  —               | 'OK'        | the default text to display on confirm button       |
+| range-separator     | String        |  —               | '~'         | the range separator text                            |
+| date-format         | String        |  —               | ''          | format the time header and tooltip                  |
 
+#### value-type
+set the format of binding value
+
+| Value           | Description                               |
+|-----------------|-------------------------------------------|     
+| date            | binding value will be a Date object       |
+| timestamp       | binding value will be a timestamp number  |
+| format          | binding value will be the format string   |
+
+Advanced: You can also customize objects to implement two functions.
+```js
+{
+  value2date: (value: any) => Date,  // transform the binding value to calendar Date Object
+  date2value: (date: Date) => any   // transform the calendar Date Object to binding value
+}
+
+```
 
 #### lang
 * String (en/zh/es/pt-br/fr/ru/de/it/cs)

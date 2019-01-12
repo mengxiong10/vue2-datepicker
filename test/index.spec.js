@@ -5,6 +5,7 @@ import CalendarPanel from '../src/calendar.vue'
 import DatePanel from '../src/panel/date'
 import TimePanel from '../src/panel/time'
 import YearPanel from '../src/panel/year'
+import { transformDate, transformDateRange } from '../src/utils/transform'
 
 let wrapper
 
@@ -13,6 +14,35 @@ afterEach(() => {
 })
 
 describe('datepicker', () => {
+  it('prop: valueType', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        value: new Date(2018, 4, 2)
+      }
+    })
+    const vm = wrapper.vm
+    expect(vm.transform).toBe(transformDate.date)
+    wrapper.setProps({ valueType: 'timestamp' })
+    expect(vm.transform).toBe(transformDate.timestamp)
+    wrapper.setProps({ valueType: 'format' })
+    expect(vm.transform).toBe(transformDate.format)
+
+    wrapper.setProps({ valueType: 'date', range: true })
+    expect(vm.transform).toBe(transformDateRange.date)
+    wrapper.setProps({ valueType: 'timestamp' })
+    expect(vm.transform).toBe(transformDateRange.timestamp)
+    wrapper.setProps({ valueType: 'format' })
+    expect(vm.transform).toBe(transformDateRange.format)
+
+    const fn = (date) => date
+    wrapper.setProps({ valueType: {
+      date2value: fn,
+      value2date: fn
+    }})
+    expect(vm.transform).toHaveProperty('date2value', fn)
+    expect(vm.transform).toHaveProperty('value2date', fn)
+  })
+
   it('prop: inputAttr', () => {
     wrapper = mount(DatePicker, {
       propsData: {

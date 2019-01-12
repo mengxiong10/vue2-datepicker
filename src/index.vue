@@ -109,6 +109,7 @@
 import fecha from 'fecha'
 import clickoutside from '@/directives/clickoutside'
 import { isValidDate, isValidRange, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
+import { transformDate, transformDateRange } from '@/utils/transform'
 import CalendarPanel from './calendar.vue'
 import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
@@ -123,6 +124,12 @@ export default {
   },
   props: {
     value: null,
+    valueType: {
+      default: 'date',
+      validator: function (value) {
+        return ['timestamp', 'format', 'date'].indexOf(value) !== -1 || isPlainObject(value)
+      }
+    },
     placeholder: {
       type: String,
       default: null
@@ -217,6 +224,14 @@ export default {
     }
   },
   computed: {
+    transform () {
+      const obj = this.range ? transformDateRange : transformDate
+      const type = this.valueType
+      if (isPlainObject(type)) {
+        return { ...obj.date, ...type }
+      }
+      return obj[type] || obj.date
+    },
     language () {
       if (isPlainObject(this.lang)) {
         return { ...Languages.en, ...this.lang }
@@ -233,11 +248,12 @@ export default {
       if (this.userInput !== null) {
         return this.userInput
       }
+      const date = this.transform.value2date(this.value, this.format)
       if (!this.range) {
-        return isValidDate(this.value) ? this.stringify(this.value) : ''
+        return date ? this.stringify(date) : ''
       }
-      return isValidRange(this.value)
-        ? `${this.stringify(this.value[0])} ${this.rangeSeparator} ${this.stringify(this.value[1])}`
+      return Array.isArray(date) && date[0] && date[1]
+        ? `${this.stringify(date[0])} ${this.rangeSeparator} ${this.stringify(date[1])}`
         : ''
     },
     computedWidth () {
@@ -264,28 +280,28 @@ export default {
         {
           text: pickers[0],
           onClick (self) {
-            self.currentValue = [ new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7) ]
+            self.currentValue = [new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7)]
             self.updateDate(true)
           }
         },
         {
           text: pickers[1],
           onClick (self) {
-            self.currentValue = [ new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 30) ]
+            self.currentValue = [new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 30)]
             self.updateDate(true)
           }
         },
         {
           text: pickers[2],
           onClick (self) {
-            self.currentValue = [ new Date(Date.now() - 3600 * 1000 * 24 * 7), new Date() ]
+            self.currentValue = [new Date(Date.now() - 3600 * 1000 * 24 * 7), new Date()]
             self.updateDate(true)
           }
         },
         {
           text: pickers[3],
           onClick (self) {
-            self.currentValue = [ new Date(Date.now() - 3600 * 1000 * 24 * 30), new Date() ]
+            self.currentValue = [new Date(Date.now() - 3600 * 1000 * 24 * 30), new Date()]
             self.updateDate(true)
           }
         }
@@ -346,7 +362,7 @@ export default {
       if (typeof range.onClick === 'function') {
         return range.onClick(this)
       }
-      this.currentValue = [ new Date(range.start), new Date(range.end) ]
+      this.currentValue = [new Date(range.start), new Date(range.end)]
       this.updateDate(true)
     },
     clearDate () {
@@ -360,7 +376,7 @@ export default {
       if (valid) {
         this.updateDate(true)
       }
-      this.$emit('confirm', this.currentValue)
+      this.emitDate('confirm')
       this.closePopup()
     },
     updateDate (confirm = false) {
@@ -371,16 +387,15 @@ export default {
       if (equal) {
         return false
       }
-      this.$emit('input', this.currentValue)
-      this.$emit('change', this.currentValue)
+      this.emitDate('input')
+      this.emitDate('change')
       return true
     },
+    emitDate (eventName) {
+      this.$emit(eventName, this.transform.date2value(this.currentValue, this.format))
+    },
     handleValueChange (value) {
-      if (!this.range) {
-        this.currentValue = isValidDate(value) ? new Date(value) : null
-      } else {
-        this.currentValue = isValidRange(value) ? [new Date(value[0]), new Date(value[1])] : [null, null]
-      }
+      this.currentValue = this.transform.value2date(value, this.format)
     },
     selectDate (date) {
       this.currentValue = date
@@ -484,7 +499,7 @@ export default {
             const start = this.parseDate(range[0], this.format)
             const end = this.parseDate(range[1], this.format)
             if (start && end && !checkDate(start, null, end) && !checkDate(end, start, null)) {
-              this.currentValue = [ start, end ]
+              this.currentValue = [start, end]
               this.updateDate(true)
               this.closePopup()
               return

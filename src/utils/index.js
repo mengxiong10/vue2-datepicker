@@ -66,7 +66,7 @@ export function parseDate (value, format) {
   try {
     return fecha.parse(value, format)
   } catch (e) {
-    return false
+    return null
   }
 }
 
