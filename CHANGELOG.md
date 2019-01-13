@@ -1,3 +1,12 @@
+# [2.8.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.7.0...v2.8.0) (2019-01-13)
+
+
+### Features
+
+* add `valueType` to format binding value ([dd6f2ea](https://github.com/mengxiong10/vue2-datepicker/commit/dd6f2ea))
+
+
+
 # [2.7.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.6.3...v2.7.0) (2019-01-08)
 
 
