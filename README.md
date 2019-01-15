@@ -41,6 +41,17 @@ export default {
       time1: '',
       time2: '',
       time3: '',
+      // custom lang
+      lang: {
+        days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
+        placeholder: {
+          date: 'Select Date',
+          dateRange: 'Select Date Range'
+        }
+      },
+      // custom range shortcuts
       shortcuts: [
         {
           text: 'Today',
@@ -64,38 +75,39 @@ export default {
     <date-picker v-model="time1" :first-day-of-week="1"></date-picker>
     <date-picker v-model="time2" type="datetime" :time-picker-options="timePickerOptions"></date-picker>
     <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker>
+    <date-picker v-model="value" :lang="lang"></date-picker>
   </div>
 </template>
 ```
 ### Props
 
-| Prop                | Type          | Accepted Values | Default     | Description                                         |
-|---------------------|---------------|-----------------|-------------|-----------------------------------------------------|
-| type                | String        | date/datetime/year/month/time  | 'date'      | select date type                     |
-| range               | Boolean       |  —               | false       | if true, the type is daterange or datetimerange     |
-| format              | String        |  —               | YYYY-MM-DD  | The parsing tokens are similar to the moment.js     |
-| value-type          | String/Object | date/format/timestamp | 'date' | type of binding value. If not specified, the binding value will be a Date object(see [detail](#value-type)) |
-| lang                | String/Object |  en/zh/es/pt-br/fr/ru/de/it/cs | zh   | Translation (set [how to custom](#lang)) |
-| clearable           | Boolean       |  —               | true        | if false, don't show the clear icon                 |
-| confirm             | Boolean       |  —               | false       | if true, need click the button to change the value  |
-| editable            | Boolean       |  —               | true        | if false, user cann't type it                       |
-| disabled            | Boolean       |  —               | false       | Disable the component                               |
-| placeholder         | String        |  —               |             | input placeholder text                              |
-| width               | String/Number |  —               | 210         | input size                                          |
-| append-to-body      | Boolean       |  —               | false       | append the popup to body                            |
-| popupStyle          | Object        |  —               |             | popup style(override the top, left style)           |
-| not-before          | String/Date   |  —               | ''          | Disable all dates before new Date(not-before)       |
-| not-after           | String/Date   |  —               | ''          | Disable all dates after new Date(not-after)         |
-| disabled-days       | Array/function|  —               | []          | Disable Days                                        |
-| shortcuts           | Boolean/Array |  —               | true        | the shortcuts for the range picker                  |
-| time-picker-options | Object        |  —               | {}          | set timePickerOptions(start, step, end)             |
-| minute-step         | Number        |  0 - 60          | 0           | if > 0 don't show the second picker                 |
-| first-day-of-week   | Number        |  1 - 7           | 7           | set the first day of week                           |
-| input-class         | String        |  —               | 'mx-input'  | the input class name                                |
-| input-attr          | Object        |  —               |             | the input attr(eg: { required: true, id: 'input'})  |
-| confirm-text        | String        |  —               | 'OK'        | the default text to display on confirm button       |
-| range-separator     | String        |  —               | '~'         | the range separator text                            |
-| date-format         | String        |  —               | ''          | format the time header and tooltip                  |
+| Prop | Description  | Type  | Default |
+|------|--------------|-------|---------|
+| type | select date type  | 'date' \| 'datetime' \| 'year' \| 'month' \| 'time' | 'date' |
+| range | if true, the type is daterange or datetimerange | `boolean` | false |
+| format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) | 'YYYY-MM-DD'  |  
+| value-type | type of binding value. If not specified, the binding value will be a Date object | [value-type](#value-type) | 'date' |
+| lang | Translation | [lang](#lang) | 'zh' |
+| clearable | if false, don't show the clear icon | `boolean` | true |
+| confirm | if true, need click the button to change the value | `boolean` | false |
+| editable | if false, user cann't type it | `boolean` | true |
+| disabled | Disable the component | `boolean` | false |
+| placeholder | input placeholder text | `string` | — |
+| width  | input size  | `string`\|`number` | 210 |
+| append-to-body | append the popup to body | `boolean` | false |
+| popupStyle | popup style(override the top, left style) | `object` | — |
+| not-before | Disable all dates before new Date(not-before) | `string`\|`Date` | ''|
+| not-after | Disable all dates after new Date(not-after) | `string`\|`Date`| '' |
+| disabled-days | Disable Days | `(date) => boolean` | - |
+| shortcuts | the shortcuts for the range picker | [shortcuts](#shortcuts) | true |
+| time-picker-options | custom time-picker | [time-picker-options](#time-picker-options) | null |           
+| minute-step | if > 0 don't show the second picker | 0 - 60 | 0 |
+| first-day-of-week | set the first day of week | 1 - 7  | 7 |
+| input-class | the input class name | `string` | 'mx-input' |
+| input-attr | the input attr(eg: { required: true, id: 'input'}) | `object` | — |
+| confirm-text | the default text to display on confirm button | `string` | 'OK' |
+| range-separator | the range separator text | `string` | '~' |
+| date-format | format the time header and tooltip | `string` | '' |
 
 #### value-type
 set the format of binding value
@@ -114,59 +126,29 @@ Advanced: You can also customize objects to implement two functions.
 }
 
 ```
-
 #### lang
-* String (en/zh/es/pt-br/fr/ru/de/it/cs)
-* Object (custom)
 
-```html
-<script>
-export default {
-  data() {
-    return {
-      value: '',
-      lang: {
-        days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
-        placeholder: {
-          date: 'Select Date',
-          dateRange: 'Select Date Range'
-        }
-      }
-    }
-  }
-}
-</script>
-
-<template>
-  <date-picker v-model="value" :lang="lang"></date-picker>
-</template>
-
-```
+| Type |
+|------|
+| 'en'\|'zh'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
+| { days: string[]; months: string[]; picker: string[]; placeholder: { date: string; dateRange: string  } } |
 
 #### shortcuts
-* true -      show the default shortcuts
-* false -     hide the shortcuts
-* Object[] -  custom shortcuts, [{text, start, end}]
-* Object[] -  custom shortcuts, [{text, onClick}]
+the shortcuts for the range picker
 
-| Prop            | Type          |  Description           |
-|-----------------|---------------|------------------------|
-| text            | String        | Text                   |
-| start           | Date          | Start Date             |
-| end             | Date          | End Date               |
-| onClick         | Function      | click handler          |
+| Value           | Description |
+|-----------------|-------------|     
+| true            | show the default shortcuts |
+| false           | hide the defaualt shortcuts  |
+| [{text: string, onClick: () => any }] | custom shortcuts |
 
 #### time-picker-options
-* Object[] -  custom time-picker, [{start, step, end}]
+custom time-picker
 
-| Prop            | Type          |  Description           |
-|-----------------|---------------|------------------------|
-| start           | String        | startTime (eg '00:00') |
-| step            | String        | stepTime  (eg '00:30') |
-| end             | String        | endTime   (eg '23:30') |
-
+| Type |
+|------|
+| {start: '00:00', step:'00:30' , end: '23:30'} |
+| () => Array<{ label: string; values: { hours: number; minutes: number } }> |
 
 ### Events
 | Name            | Description                                            |  Callback Arguments    |
@@ -176,11 +158,18 @@ export default {
 | confirm         | When click 'confirm' button                            | the currentValue       |
 | clear           | When click 'clear' button                              |                        |
 | input-error     | When user type a invalid Date                          | the input text         |
-| panel-change    | When change the panel view(eg: from year to month view)| panel, oldPanel        |
+| panel-change    | When change the panel view(eg: from year to month view)| [panel](#panel), [oldPanel](#panel) |
 | calendar-change | When calendar view year or month change                | now(Date), oldNow(Date)|
 
-#### panel value
-`['NONE', 'DATE', 'YEAR', 'MONTH', 'TIME']`
+#### panel
+
+| Value | Description          |
+|-------|----------------------|     
+| NONE  | when panel is closed |
+| DATE  | when panel is date   |
+| YEAR  | when panel is year   |
+| MONTH | when panel is month  |
+| TIME  | when panel is time   |
 
 ### Slots
 
