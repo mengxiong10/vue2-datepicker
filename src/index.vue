@@ -63,6 +63,7 @@
       <calendar-panel
         v-if="!range"
         v-bind="$attrs"
+        ref="calendarPanel"
         :type="innerType"
         :date-format="innerDateFormat"
         :value="currentValue"
@@ -74,6 +75,7 @@
         <calendar-panel
           style="box-shadow:1px 0 rgba(0, 0, 0, .1)"
           v-bind="$attrs"
+          ref="calendarPanel"
           :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[0]"
@@ -487,8 +489,7 @@ export default {
     handleChange (event) {
       const value = event.target.value
       if (this.editable && this.userInput !== null) {
-        const calendar = this.$children[0]
-        const checkDate = calendar.isDisabledTime
+        const checkDate = this.$refs.calendarPanel.isDisabledTime
         if (!value) {
           this.clearDate()
           return
