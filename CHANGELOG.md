@@ -1,3 +1,13 @@
+## [2.8.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.8.0...v2.8.1) (2019-01-24)
+
+
+### Bug Fixes
+
+* clickoutside event listener change capturing to bubbling ([054758e](https://github.com/mengxiong10/vue2-datepicker/commit/054758e))
+* use refs instead of children array ([f43e3a3](https://github.com/mengxiong10/vue2-datepicker/commit/f43e3a3))
+
+
+
 # [2.8.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.7.0...v2.8.0) (2019-01-13)
 
 
