@@ -11,9 +11,9 @@ export default {
         binding.value()
       }
     }
-    document.addEventListener('click', el['@clickoutside'], true)
+    document.addEventListener('click', el['@clickoutside'], false)
   },
   unbind (el) {
-    document.removeEventListener('click', el['@clickoutside'], true)
+    document.removeEventListener('click', el['@clickoutside'], false)
   }
 }

@@ -10,7 +10,7 @@
     }"
     v-clickoutside="closePopup">
     <div class="mx-input-wrapper"
-      @click="showPopup">
+      @click.stop="showPopup">
       <input
         :class="inputClass"
         :name="inputName"
