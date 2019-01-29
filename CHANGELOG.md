@@ -1,3 +1,12 @@
+# [2.9.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.8.1...v2.9.0) (2019-01-29)
+
+
+### Features
+
+* support custom format function ([c801516](https://github.com/mengxiong10/vue2-datepicker/commit/c801516))
+
+
+
 ## [2.8.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.8.0...v2.8.1) (2019-01-24)
 
 
