@@ -85,7 +85,7 @@ export default {
 |------|--------------|-------|---------|
 | type | 选择日期类型  | 'date' \| 'datetime' \| 'year' \| 'month' \| 'time' | 'date' |
 | range | 如果是true, 显示日历范围选择  | `boolean` | false |
-| format | 格式化显示日期, 值类似moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) | 'YYYY-MM-DD'  |  
+| format | 格式化显示日期, 值类似moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD'  |  
 | value-type | 设置绑定值的格式, 默认返回日期对象 | [value-type](#value-type) | 'date' |
 | lang | 选择语言或自定义 | [lang](#lang) | 'zh' |
 | clearable | 如果设置false, 不显示清除图标 | `boolean` | true |

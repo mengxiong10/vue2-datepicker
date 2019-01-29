@@ -110,8 +110,8 @@
 <script>
 import fecha from 'fecha'
 import clickoutside from '@/directives/clickoutside'
-import { isValidDate, isValidRange, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
-import { transformDate, transformDateRange } from '@/utils/transform'
+import { isValidDate, isValidRangeDate, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
+import { transformDate } from '@/utils/transform'
 import CalendarPanel from './calendar.vue'
 import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
@@ -141,7 +141,7 @@ export default {
       default: 'zh'
     },
     format: {
-      type: String,
+      type: [String, Object],
       default: 'YYYY-MM-DD'
     },
     dateFormat: {
@@ -227,12 +227,17 @@ export default {
   },
   computed: {
     transform () {
-      const obj = this.range ? transformDateRange : transformDate
       const type = this.valueType
       if (isPlainObject(type)) {
-        return { ...obj.date, ...type }
+        return { ...transformDate.date, ...type }
       }
-      return obj[type] || obj.date
+      if (type === 'format') {
+        return {
+          value2date: this.parse.bind(this),
+          date2value: this.stringify.bind(this)
+        }
+      }
+      return transformDate[type] || transformDate.date
     },
     language () {
       if (isPlainObject(this.lang)) {
@@ -250,12 +255,14 @@ export default {
       if (this.userInput !== null) {
         return this.userInput
       }
-      const date = this.transform.value2date(this.value, this.format)
+      const { value2date } = this.transform
       if (!this.range) {
-        return date ? this.stringify(date) : ''
+        return this.isValidValue(this.value)
+          ? this.stringify(value2date(this.value))
+          : ''
       }
-      return Array.isArray(date) && date[0] && date[1]
-        ? `${this.stringify(date[0])} ${this.rangeSeparator} ${this.stringify(date[1])}`
+      return this.isValidRangeValue(this.value)
+        ? `${this.stringify(value2date(this.value[0]))} ${this.rangeSeparator} ${this.stringify(value2date(this.value[1]))}`
         : ''
     },
     computedWidth () {
@@ -265,7 +272,7 @@ export default {
       return this.width
     },
     showClearIcon () {
-      return !this.disabled && this.clearable && (this.range ? isValidRange(this.value) : isValidDate(this.value))
+      return !this.disabled && this.clearable && (this.range ? this.isValidRangeValue(this.value) : this.isValidValue(this.value))
     },
     innerType () {
       return String(this.type).toLowerCase()
@@ -314,6 +321,9 @@ export default {
       if (this.dateFormat) {
         return this.dateFormat
       }
+      if (typeof this.format !== 'string') {
+        return 'YYYY-MM-DD'
+      }
       if (this.innerType === 'date') {
         return this.format
       }
@@ -348,11 +358,24 @@ export default {
       this.handleValueChange(this.value)
       this.displayPopup()
     },
-    stringify (date, format) {
-      return formatDate(date, format || this.format)
+    stringify (date) {
+      return (isPlainObject(this.format) && typeof this.format.stringify === 'function')
+        ? this.format.stringify(date)
+        : formatDate(date, this.format)
     },
-    parseDate (value, format) {
-      return parseDate(value, format || this.format)
+    parse (value) {
+      return (isPlainObject(this.format) && typeof this.format.parse === 'function')
+        ? this.format.parse(value)
+        : parseDate(value, this.format)
+    },
+    isValidValue (value) {
+      const { value2date } = this.transform
+      return isValidDate(value2date(value))
+    },
+    isValidRangeValue (value) {
+      const { value2date } = this.transform
+      return Array.isArray(value) && value.length === 2 && this.isValidValue(value[0]) &&
+        this.isValidValue(value[1]) && (value2date(value[1]).getTime() >= value2date(value[0]).getTime())
     },
     dateEqual (a, b) {
       return isDateObejct(a) && isDateObejct(b) && a.getTime() === b.getTime()
@@ -374,7 +397,7 @@ export default {
       this.$emit('clear')
     },
     confirmDate () {
-      const valid = this.range ? isValidRange(this.currentValue) : isValidDate(this.currentValue)
+      const valid = this.range ? isValidRangeDate(this.currentValue) : isValidDate(this.currentValue)
       if (valid) {
         this.updateDate(true)
       }
@@ -394,10 +417,19 @@ export default {
       return true
     },
     emitDate (eventName) {
-      this.$emit(eventName, this.transform.date2value(this.currentValue, this.format))
+      const { date2value } = this.transform
+      const value = this.range
+        ? this.currentValue.map(date2value)
+        : date2value(this.currentValue)
+      this.$emit(eventName, value)
     },
     handleValueChange (value) {
-      this.currentValue = this.transform.value2date(value, this.format)
+      const { value2date } = this.transform
+      if (this.range) {
+        this.currentValue = this.isValidRangeValue(value) ? value.map(value2date) : [null, null]
+      } else {
+        this.currentValue = this.isValidValue(value) ? value2date(value) : null
+      }
     },
     selectDate (date) {
       this.currentValue = date
@@ -497,8 +529,8 @@ export default {
         if (this.range) {
           const range = value.split(` ${this.rangeSeparator} `)
           if (range.length === 2) {
-            const start = this.parseDate(range[0], this.format)
-            const end = this.parseDate(range[1], this.format)
+            const start = this.parse(range[0])
+            const end = this.parse(range[1])
             if (start && end && !checkDate(start, null, end) && !checkDate(end, start, null)) {
               this.currentValue = [start, end]
               this.updateDate(true)
@@ -507,7 +539,7 @@ export default {
             }
           }
         } else {
-          const date = this.parseDate(value, this.format)
+          const date = this.parse(value)
           if (date && !checkDate(date, null, null)) {
             this.currentValue = date
             this.updateDate(true)

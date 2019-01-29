@@ -85,7 +85,7 @@ export default {
 |------|--------------|-------|---------|
 | type | select date type  | 'date' \| 'datetime' \| 'year' \| 'month' \| 'time' | 'date' |
 | range | if true, the type is daterange or datetimerange | `boolean` | false |
-| format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) | 'YYYY-MM-DD'  |  
+| format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD' |  
 | value-type | type of binding value. If not specified, the binding value will be a Date object | [value-type](#value-type) | 'date' |
 | lang | Translation | [lang](#lang) | 'zh' |
 | clearable | if false, don't show the clear icon | `boolean` | true |

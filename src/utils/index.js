@@ -15,7 +15,7 @@ export function isValidDate (date) {
   return !isNaN(new Date(date).getTime())
 }
 
-export function isValidRange (date) {
+export function isValidRangeDate (date) {
   return (
     Array.isArray(date) &&
     date.length === 2 &&
