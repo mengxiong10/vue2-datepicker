@@ -1,3 +1,12 @@
+## [2.9.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.9.0...v2.9.1) (2019-02-01)
+
+
+### Bug Fixes
+
+* stringify function returns a error value,when date is null ([#244](https://github.com/mengxiong10/vue2-datepicker/issues/244)) ([92243ab](https://github.com/mengxiong10/vue2-datepicker/commit/92243ab))
+
+
+
 # [2.9.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.8.1...v2.9.0) (2019-01-29)
 
 
