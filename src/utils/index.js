@@ -55,6 +55,9 @@ export function formatTime (time, type = '24', a = 'a') {
 }
 
 export function formatDate (date, format) {
+  if (!date) {
+    return ''
+  }
   try {
     return fecha.format(new Date(date), format)
   } catch (e) {
