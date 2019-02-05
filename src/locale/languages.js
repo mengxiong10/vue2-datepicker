@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
+  },
+  'tr': {
+    'days': ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cts'],
+    'months': ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+    'pickers': ['sonraki 7 gün', 'sonraki 30 gün', 'önceki 7 gün', 'önceki 30 gün'],
+    'placeholder': {
+      'date': 'Tarihi Seçin',
+      'dateRange': 'Tarih Aralığını Seçin'
+    }
   }
 }
