@@ -1,3 +1,12 @@
+## [2.9.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.9.1...v2.9.2) (2019-02-10)
+
+
+### Bug Fixes
+
+* the display error of the year panel header ([#245](https://github.com/mengxiong10/vue2-datepicker/issues/245)) ([7bc2785](https://github.com/mengxiong10/vue2-datepicker/commit/7bc2785))
+
+
+
 ## [2.9.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.9.0...v2.9.1) (2019-02-01)
 
 
