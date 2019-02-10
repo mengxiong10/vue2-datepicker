@@ -178,7 +178,7 @@ export default {
       return this.value && formatDate(this.value, this.dateFormat)
     },
     yearHeader () {
-      return this.firstYear + ' ~ ' + (this.firstYear + 10)
+      return this.firstYear + ' ~ ' + (this.firstYear + 9)
     },
     months () {
       return this.t('months')
