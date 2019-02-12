@@ -45,9 +45,9 @@ export default {
     }
   },
   'pt-br': {
-    'days': ['Dom', 'Seg', 'Ter', 'Qua', 'Quin', 'Sex', 'Sáb'],
-    'months': ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-    'pickers': ['próximos 7 dias', 'próximos 30 dias', '7 dias anteriores', ' 30 dias anteriores'],
+    'days': ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+    'months': ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    'pickers': ['próximos 7 dias', 'próximos 30 dias', '7 dias atrás', ' 30 dias atrás'],
     'placeholder': {
       'date': 'Selecione uma data',
       'dateRange': 'Selecione um período'
