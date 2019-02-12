@@ -1,3 +1,13 @@
+# [2.10.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.9.2...v2.10.0) (2019-02-12)
+
+
+### Features
+
+* add prop `default-value` for calendar default date ([#94](https://github.com/mengxiong10/vue2-datepicker/issues/94)) ([4ff6945](https://github.com/mengxiong10/vue2-datepicker/commit/4ff6945))
+* show the popup on focus and close it on blur ([3bcedf5](https://github.com/mengxiong10/vue2-datepicker/commit/3bcedf5))
+
+
+
 ## [2.9.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.9.1...v2.9.2) (2019-02-10)
 
 
