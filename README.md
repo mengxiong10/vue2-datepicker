@@ -160,6 +160,8 @@ custom time-picker
 | input-error     | When user type a invalid Date                          | the input text         |
 | panel-change    | When change the panel view(eg: from year to month view)| [panel](#panel), [oldPanel](#panel) |
 | calendar-change | When calendar view year or month change                | now(Date), oldNow(Date)|
+| focus           | When input focus                                       |                        |
+| blur            | When input blur                                        |                        |
 
 #### panel
 

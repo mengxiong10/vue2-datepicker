@@ -22,6 +22,9 @@
         :readonly="!editable"
         :value="text"
         :placeholder="innerPlaceholder"
+        @keydown="handleKeydown"
+        @focus="handleFocus"
+        @blur="handleBlur"
         @input="handleInput"
         @change="handleChange">
       <span class="mx-input-append">
@@ -222,6 +225,7 @@ export default {
         this.initCalendar()
       } else {
         this.userInput = null
+        this.blur()
       }
     }
   },
@@ -515,11 +519,31 @@ export default {
         this.position = position
       }
     },
+    blur () {
+      this.$refs.input.blur()
+    },
+    handleBlur (event) {
+      this.$emit('blur', event)
+    },
+    handleFocus (event) {
+      if (!this.popupVisible) {
+        this.popupVisible = true
+      }
+      this.$emit('focus', event)
+    },
+    handleKeydown (event) {
+      const keyCode = event.keyCode
+      // Tab 9 or Enter 13
+      if (keyCode === 9 || keyCode === 13) {
+        this.popupVisible = false
+        event.stopPropagation()
+      }
+    },
     handleInput (event) {
       this.userInput = event.target.value
     },
-    handleChange (event) {
-      const value = event.target.value
+    handleChange () {
+      const value = this.text
       if (this.editable && this.userInput !== null) {
         const checkDate = this.$refs.calendarPanel.isDisabledTime
         if (!value) {

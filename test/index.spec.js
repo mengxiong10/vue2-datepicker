@@ -14,6 +14,28 @@ afterEach(() => {
 })
 
 describe('datepicker', () => {
+  it('popup open when input focus', () => {
+    wrapper = mount(DatePicker)
+    const vm = wrapper.vm
+    wrapper.find('input').trigger('focus')
+    expect(vm.popupVisible).toBe(true)
+    expect(wrapper.emitted().focus).toBeTruthy()
+  })
+
+  it('popup close when type tab or enter', () => {
+    wrapper = mount(DatePicker)
+    const vm = wrapper.vm
+    const input = wrapper.find('input')
+    input.trigger('focus')
+    input.trigger('keydown', { keyCode: 9 })
+    expect(vm.popupVisible).toBe(false)
+    input.trigger('focus')
+    input.trigger('keydown', { keyCode: 13 })
+    expect(vm.popupVisible).toBe(false)
+    input.trigger('blur')
+    expect(wrapper.emitted().blur).toBeTruthy()
+  })
+
   it('prop: valueType', () => {
     wrapper = mount(DatePicker, {
       propsData: {
@@ -160,9 +182,9 @@ describe('datepicker', () => {
     wrapper.setData({ popupVisible: true })
     vm.selectDate(new Date(2018, 5, 5))
     expect(vm.popupVisible).toBe(true)
-    expect(wrapper.emittedByOrder()).toHaveLength(0)
+    expect(wrapper.emitted().input).toBeUndefined()
     btn.trigger('click')
-    expect(wrapper.emittedByOrder()).toHaveLength(3)
+    expect(wrapper.emitted().input[0][0]).toEqual(new Date(2018, 5, 5))
     expect(vm.popupVisible).toBe(false)
   })
 

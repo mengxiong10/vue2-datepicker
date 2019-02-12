@@ -159,6 +159,8 @@ export default {
 | input-error     | 当用户输入的值无效时候触发       | 用户输入的字符串         
 | panel-change    | 切换面板时触发                 | [panel](#panel), [oldPanel](#panel)      
 | calendar-change | 日历的年或月改变时触发           | 当前日历时间，过去日历时间
+| focus           | 当输入框获得焦点                |
+| blur            | 当输入框失去焦点                |
 
 #### panel
 
