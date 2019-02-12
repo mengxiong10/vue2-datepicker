@@ -380,6 +380,18 @@ describe('datepicker', () => {
 })
 
 describe('calendar-panel', () => {
+  it('prop: defaultValue', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        value: null,
+        defaultValue: '2018-10-01'
+      }
+    })
+    const vm = wrapper.vm
+    expect(vm.calendarYear).toBe(2018)
+    expect(vm.calendarMonth).toBe(9)
+  })
+
   it('click: prev/next month', () => {
     wrapper = mount(CalendarPanel)
 

@@ -95,6 +95,7 @@ export default {
 | placeholder | input placeholder text | `string` | — |
 | width  | input size  | `string`\|`number` | 210 |
 | append-to-body | append the popup to body | `boolean` | false |
+| default-value | default date of the calendar | `Date` | new Date() |
 | popupStyle | popup style(override the top, left style) | `object` | — |
 | not-before | Disable all dates before new Date(not-before) | `string`\|`Date` | ''|
 | not-after | Disable all dates after new Date(not-after) | `string`\|`Date`| '' |

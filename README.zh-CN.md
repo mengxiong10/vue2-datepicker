@@ -95,6 +95,7 @@ export default {
 | placeholder | 输入框placeholder | `string` | — |
 | width  | 设置宽度  | `string`\|`number` | 210 |
 | append-to-body | 弹出层元素插入body下面 | `boolean` | false |
+| default-value | 日历的默认值 | `Date` | new Date() |
 | popupStyle | 弹出层的样式(可以覆盖left,top样式) | `object` | — |
 | not-before | 禁止选择这个时间之前的时间 | `string`\|`Date` | ''|
 | not-after | 禁止选择这个时间之前=后的时间 | `string`\|`Date`| '' |

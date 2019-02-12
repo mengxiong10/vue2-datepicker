@@ -107,6 +107,11 @@ export default {
       default: 'YYYY-MM-DD'
     },
     // below user set
+    defaultValue: {
+      validator: function (val) {
+        return isValidDate(val)
+      }
+    },
     firstDayOfWeek: {
       default: 7,
       type: Number,
@@ -143,7 +148,7 @@ export default {
     }
   },
   data () {
-    const now = new Date()
+    const now = this.getNow(this.value)
     const calendarYear = now.getFullYear()
     const calendarMonth = now.getMonth()
     const firstYear = Math.floor(calendarYear / 10) * 10
@@ -235,13 +240,17 @@ export default {
         this.updateNow(this.value)
       }
     },
+    getNow (value) {
+      return value ? new Date(value) : (
+        (this.defaultValue && isValidDate(this.defaultValue)) ? new Date(this.defaultValue) : new Date()
+      )
+    },
     // 根据value更新日历
     updateNow (value) {
-      const now = value ? new Date(value) : new Date()
-      const oldNow = new Date(this.now)
-      this.now = now
-      if (this.visible) {
-        this.dispatch('DatePicker', 'calendar-change', [now, oldNow])
+      const oldNow = this.now
+      this.now = this.getNow(value)
+      if (this.visible && this.now !== oldNow) {
+        this.dispatch('DatePicker', 'calendar-change', [new Date(this.now), new Date(oldNow)])
       }
     },
     getCriticalTime (value) {
