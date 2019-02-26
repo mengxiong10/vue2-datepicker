@@ -1,6 +1,6 @@
 # vue2-datepicker
 
-[English Version](https://github.com/mengxiong10/vue2-datepicker/blob/master/README_CN.md)
+[English Version](https://github.com/mengxiong10/vue2-datepicker/blob/master/README.md)
 
 > 一个基于Vue2.x的日期时间选择组件
 
