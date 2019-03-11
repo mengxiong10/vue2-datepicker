@@ -5,19 +5,19 @@
       <a
         v-show="panel !== 'TIME'"
         class="mx-icon-last-year"
-        @click="handleIconYear(-1)">&laquo;</a>
+        @click="handleIconYear(-1)">&#171;</a>
       <a
         v-show="panel === 'DATE'"
         class="mx-icon-last-month"
-        @click="handleIconMonth(-1)">&lsaquo;</a>
+        @click="handleIconMonth(-1)">&#8249;</a>
       <a
         v-show="panel !== 'TIME'"
         class="mx-icon-next-year"
-        @click="handleIconYear(1)">&raquo;</a>
+        @click="handleIconYear(1)">&#187;</a>
       <a
         v-show="panel === 'DATE'"
         class="mx-icon-next-month"
-        @click="handleIconMonth(1)">&rsaquo;</a>
+        @click="handleIconMonth(1)">&#8250;</a>
       <a
         v-show="panel === 'DATE'"
         class="mx-current-month"
