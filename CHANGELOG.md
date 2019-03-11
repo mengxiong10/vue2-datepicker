@@ -1,3 +1,12 @@
+## [2.10.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.0...v2.10.1) (2019-03-11)
+
+
+### Performance Improvements
+
+* change the entity name to entity number ([dbbba6b](https://github.com/mengxiong10/vue2-datepicker/commit/dbbba6b))
+
+
+
 # [2.10.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.9.2...v2.10.0) (2019-02-12)
 
 
