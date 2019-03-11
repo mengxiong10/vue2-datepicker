@@ -66,6 +66,9 @@ $primary-color: #1284e7;
   &:focus {
     outline: none;
   }
+  &::-ms-clear {
+    display: none;
+  }
 }
 
 .mx-input-append {
