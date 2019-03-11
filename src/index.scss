@@ -39,6 +39,9 @@ $primary-color: #1284e7;
     .mx-clear-wrapper {
       display: block;
     }
+    .mx-clear-wrapper + .mx-input-append {
+      display: none;
+    }
   }
 }
 
@@ -72,8 +75,6 @@ $primary-color: #1284e7;
   width: 30px;
   height: 100%;
   padding: 6px;
-  background-color: #fff;
-  background-clip: content-box;
 }
 
 .mx-input-icon {

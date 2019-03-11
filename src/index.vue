@@ -27,6 +27,14 @@
         @blur="handleBlur"
         @input="handleInput"
         @change="handleChange">
+      <span
+        v-if="showClearIcon"
+        class="mx-input-append mx-clear-wrapper"
+        @click.stop="clearDate">
+        <slot name="mx-clear-icon">
+          <i class="mx-input-icon mx-clear-icon"></i>
+        </slot>
+      </span>
       <span class="mx-input-append">
         <slot name="calendar-icon">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 200 200" class="mx-calendar-icon">
@@ -36,14 +44,6 @@
             <line x1="13" x2="187" y1="70" y2="70" />
             <text x="50%" y="135" font-size="90" stroke-width="1" text-anchor="middle" dominant-baseline="middle">{{new Date().getDate()}}</text>
           </svg>
-        </slot>
-      </span>
-      <span
-        v-if="showClearIcon"
-        class="mx-input-append mx-clear-wrapper"
-        @click.stop="clearDate">
-        <slot name="mx-clear-icon">
-          <i class="mx-input-icon mx-clear-icon"></i>
         </slot>
       </span>
     </div>
