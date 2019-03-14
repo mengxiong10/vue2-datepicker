@@ -535,6 +535,9 @@ export default {
       const keyCode = event.keyCode
       // Tab 9 or Enter 13
       if (keyCode === 9 || keyCode === 13) {
+        // ie emit the watch before the change event
+        this.handleChange()
+        this.userInput = null
         this.popupVisible = false
         event.stopPropagation()
       }
@@ -543,8 +546,8 @@ export default {
       this.userInput = event.target.value
     },
     handleChange () {
-      const value = this.text
       if (this.editable && this.userInput !== null) {
+        const value = this.text
         const checkDate = this.$refs.calendarPanel.isDisabledTime
         if (!value) {
           this.clearDate()
