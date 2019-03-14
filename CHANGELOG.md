@@ -1,3 +1,18 @@
+## [2.10.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.1...v2.10.2) (2019-03-14)
+
+
+### Bug Fixes
+
+* pick minute will affect the hour ([#168](https://github.com/mengxiong10/vue2-datepicker/issues/168)) ([2afed88](https://github.com/mengxiong10/vue2-datepicker/commit/2afed88))
+* remove the append background ([e7775d6](https://github.com/mengxiong10/vue2-datepicker/commit/e7775d6))
+
+
+### Performance Improvements
+
+* remove IE 10's clear button X ([6a990d8](https://github.com/mengxiong10/vue2-datepicker/commit/6a990d8))
+
+
+
 ## [2.10.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.0...v2.10.1) (2019-03-11)
 
 
