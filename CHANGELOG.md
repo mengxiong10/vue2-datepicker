@@ -1,3 +1,12 @@
+## [2.10.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.2...v2.10.3) (2019-03-14)
+
+
+### Bug Fixes
+
+* type input don't change the value ([#266](https://github.com/mengxiong10/vue2-datepicker/issues/266)) ([aa20a1e](https://github.com/mengxiong10/vue2-datepicker/commit/aa20a1e))
+
+
+
 ## [2.10.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.1...v2.10.2) (2019-03-14)
 
 
