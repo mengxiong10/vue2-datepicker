@@ -151,6 +151,15 @@ custom time-picker
 | {start: '00:00', step:'00:30' , end: '23:30'} |
 | () => Array<{ label: string; values: { hours: number; minutes: number } }> |
 
+### Change what day starts the week
+
+Use the `first-day-of-week` attribute for this.
+
+- Start on Sunday: `<date-picker v-model="time" :first-day-of-week="0"></date-picker>`
+- Start on Monday: `<date-picker v-model="time" :first-day-of-week="1"></date-picker>`
+- Start on Tuesday: `<date-picker v-model="time" :first-day-of-week="2"></date-picker>`
+- Etc..
+
 ### Events
 | Name            | Description                                            |  Callback Arguments    |
 |-----------------|--------------------------------------------------------|------------------------|
