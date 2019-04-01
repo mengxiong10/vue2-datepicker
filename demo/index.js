@@ -1,9 +1,10 @@
+/* eslint-disable no-new */
 import Vue from 'vue'
 import DatePicker from '@/index'
 
 Vue.use(DatePicker)
 
-new Vue({  // eslint-disable-line
+new Vue({
   el: '#app',
   data () {
     return {
@@ -46,7 +47,7 @@ new Vue({  // eslint-disable-line
   },
   render (h) {
     const example1 = {
-      'base': '<date-picker v-model="value1" lang="en" :not-before="new Date()"></date-picker>',
+      'base': '<date-picker v-model="value1" lang="en" ></date-picker>',
       'range': '<date-picker v-model="value2" range appendToBody></date-picker>',
       'month': '<date-picker v-model="value10" lang="en" type="month" format="YYYY-MM"></date-picker>',
       'year': '<date-picker v-model="value11" lang="en" type="year" format="YYYY"></date-picker>',
