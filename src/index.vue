@@ -10,7 +10,7 @@
     }"
     v-clickoutside="closePopup">
     <div class="mx-input-wrapper"
-      @click.stop="showPopup">
+      @click="showPopup">
       <input
         :class="inputClass"
         :name="inputName"
@@ -50,7 +50,7 @@
     <div class="mx-datepicker-popup"
       :style="innerPopupStyle"
       v-show="popupVisible"
-      @click.stop.prevent
+      @click.prevent
       ref="calendar">
       <slot name="header">
         <div class="mx-shortcuts-wrapper"
@@ -165,6 +165,13 @@ export default {
     width: {
       type: [String, Number],
       default: null
+    },
+    clickOutsideMode: {
+      type: String,
+      default: 'allExceptDatePickers',
+      validator: function (value) {
+        return ['all', 'allExceptDatePickers'].indexOf(value) !== -1
+      }
     },
     confirmText: {
       type: String,
