@@ -38,11 +38,11 @@ export default {
     stringifyText (value) {
       return ('00' + value).slice(String(value).length)
     },
-    selectTime (time) {
+    selectTime (time, type) {
       if (typeof this.disabledTime === 'function' && this.disabledTime(time)) {
         return
       }
-      this.$emit('select', new Date(time))
+      this.$emit('select', new Date(time), type)
     },
     pickTime (time) {
       if (typeof this.disabledTime === 'function' && this.disabledTime(time)) {
@@ -129,7 +129,7 @@ export default {
             actived: i === this.currentHours,
             disabled: disabledTime && disabledTime(time)
           }}
-          onClick={this.selectTime.bind(this, time)}
+          onClick={this.selectTime.bind(this, time, 'hour')}
         >
           {this.stringifyText(i)}
         </li>
@@ -148,7 +148,7 @@ export default {
             actived: value === this.currentMinutes,
             disabled: disabledTime && disabledTime(time)
           }}
-          onClick={this.selectTime.bind(this, time)}
+          onClick={this.selectTime.bind(this, time, 'minute')}
         >
           {this.stringifyText(value)}
         </li>
@@ -164,7 +164,7 @@ export default {
             actived: i === this.currentSeconds,
             disabled: disabledTime && disabledTime(time)
           }}
-          onClick={this.selectTime.bind(this, time)}
+          onClick={this.selectTime.bind(this, time, 'second')}
         >
           {this.stringifyText(i)}
         </li>

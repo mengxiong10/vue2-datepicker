@@ -347,8 +347,8 @@ export default {
       }
       this.showPanelDate()
     },
-    selectTime (time) {
-      this.$emit('select-time', time, false)
+    selectTime (time, type) {
+      this.$emit('select-time', time, false, type)
     },
     pickTime (time) {
       this.$emit('select-time', time, true)

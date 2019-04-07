@@ -685,7 +685,7 @@ describe('time-panel', () => {
     minutes.at(1).trigger('click')
     seconds.at(1).trigger('click')
     expect(wrapper.emitted()).toEqual({
-      select: [[new Date(2018, 5, 5, 1)], [new Date(2018, 5, 5, 0, 1)], [new Date(2018, 5, 5, 0, 0, 1)]]
+      select: [[new Date(2018, 5, 5, 1), 'hour'], [new Date(2018, 5, 5, 0, 1), 'minute'], [new Date(2018, 5, 5, 0, 0, 1), 'second']]
     })
   })
 

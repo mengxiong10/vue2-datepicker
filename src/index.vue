@@ -170,6 +170,13 @@ export default {
       type: String,
       default: 'OK'
     },
+    closeOn: {
+      type: String,
+      default: 'none',
+      validator: function (value) {
+        return ['none', 'hour', 'minute', 'second'].indexOf(value) !== -1
+      }
+    },
     confirm: {
       type: Boolean,
       default: false
@@ -451,15 +458,16 @@ export default {
         this.updateDate()
       }
     },
-    selectTime (time, close) {
+    selectTime (time, close, type) {
       this.currentValue = time
-      this.updateDate() && close && this.closePopup()
+      this.updateDate() && (close || (this.closeOn === type)) && this.closePopup()
     },
     selectStartTime (time) {
       this.selectStartDate(time)
     },
-    selectEndTime (time) {
+    selectEndTime (time, close, type) {
       this.selectEndDate(time)
+      if (this.closeOn === type) this.closePopup()
     },
     showPopup () {
       if (this.disabled) {

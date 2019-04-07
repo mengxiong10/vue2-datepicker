@@ -103,6 +103,7 @@ export default {
 | shortcuts | the shortcuts for the range picker | [shortcuts](#shortcuts) | true |
 | time-picker-options | custom time-picker | [time-picker-options](#time-picker-options) | null |           
 | minute-step | if > 0 don't show the second picker | 0 - 60 | 0 |
+| close-on | closes the popup when the user clicks on the specified time type | 'none' \| 'hour' \| 'minute' \| 'second' | 'none' |
 | first-day-of-week | set the first day of week | 1 - 7  | 7 |
 | input-class | the input class name | `string` | 'mx-input' |
 | input-attr | the input attr(eg: { required: true, id: 'input'}) | `object` | — |
