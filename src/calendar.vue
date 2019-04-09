@@ -106,6 +106,7 @@ export default {
       type: String,
       default: 'YYYY-MM-DD'
     },
+    index: Number,
     // below user set
     defaultValue: {
       validator: function (val) {
@@ -338,6 +339,7 @@ export default {
       if (this.type.toLowerCase() === 'year') {
         return this.selectDate(new Date(this.now))
       }
+      this.dispatch('DatePicker', 'select-year', [year, this.index])
       this.showPanelMonth()
     },
     selectMonth (month) {
@@ -345,6 +347,7 @@ export default {
       if (this.type.toLowerCase() === 'month') {
         return this.selectDate(new Date(this.now))
       }
+      this.dispatch('DatePicker', 'select-month', [month, this.index])
       this.showPanelDate()
     },
     selectTime (time) {

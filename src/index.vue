@@ -67,6 +67,7 @@
         v-if="!range"
         v-bind="$attrs"
         ref="calendarPanel"
+        :index="-1"
         :type="innerType"
         :date-format="innerDateFormat"
         :value="currentValue"
@@ -79,6 +80,7 @@
           style="box-shadow:1px 0 rgba(0, 0, 0, .1)"
           v-bind="$attrs"
           ref="calendarPanel"
+          :index="0"
           :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[0]"
@@ -89,6 +91,7 @@
           @select-time="selectStartTime"></calendar-panel>
         <calendar-panel
           v-bind="$attrs"
+          :index="1"
           :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[1]"
