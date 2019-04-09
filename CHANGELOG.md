@@ -1,3 +1,17 @@
+# [2.11.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.3...v2.11.0) (2019-04-09)
+
+
+### Bug Fixes
+
+* clickoutside bad when use append-to-body ([#291](https://github.com/mengxiong10/vue2-datepicker/issues/291)) ([9bb6046](https://github.com/mengxiong10/vue2-datepicker/commit/9bb6046))
+
+
+### Features
+
+*  `select-year` and `select-month`  ([#290](https://github.com/mengxiong10/vue2-datepicker/issues/290)) ([20d1f19](https://github.com/mengxiong10/vue2-datepicker/commit/20d1f19))
+
+
+
 ## [2.10.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.2...v2.10.3) (2019-03-14)
 
 
