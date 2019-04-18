@@ -13,6 +13,7 @@
       @click.stop="showPopup">
       <input
         :class="inputClass"
+        :id="inputName"
         :name="inputName"
         v-bind="inputAttr"
         ref="input"
