@@ -15,7 +15,7 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "test:push": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test": "jest",
-    "release": "bash build/release.sh"
+    "release": "bash build/git.sh && bash build/release.sh"
   },
   "repository": {
     "type": "git",
