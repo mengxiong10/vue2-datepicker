@@ -1,3 +1,12 @@
+## [2.11.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.11.0...v2.11.1) (2019-04-30)
+
+
+### Bug Fixes
+
+* close popup after select range ([5823f85](https://github.com/mengxiong10/vue2-datepicker/commit/5823f85))
+
+
+
 # [2.11.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.3...v2.11.0) (2019-04-09)
 
 
