@@ -392,10 +392,15 @@ export default {
     },
     selectRange (range) {
       if (typeof range.onClick === 'function') {
-        return range.onClick(this)
+        const close = range.onClick(this)
+        if (close !== false) {
+          this.closePopup()
+        }
+      } else {
+        this.currentValue = [new Date(range.start), new Date(range.end)]
+        this.updateDate(true)
+        this.closePopup()
       }
-      this.currentValue = [new Date(range.start), new Date(range.end)]
-      this.updateDate(true)
     },
     clearDate () {
       const date = this.range ? [null, null] : null
