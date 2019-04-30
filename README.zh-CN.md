@@ -72,7 +72,7 @@ export default {
 
 <template>
   <div>
-    <date-picker v-model="time1" :first-day-of-week="1"></date-picker>
+    <date-picker v-model="time1" valueType="format" :first-day-of-week="1"></date-picker>
     <date-picker v-model="time2" type="datetime" :time-picker-options="timePickerOptions"></date-picker>
     <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker>
     <date-picker v-model="value" :lang="lang"></date-picker>

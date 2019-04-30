@@ -47,7 +47,7 @@ new Vue({
   },
   render (h) {
     const example1 = {
-      'base': '<date-picker v-model="value1" lang="en" ></date-picker>',
+      'base': '<date-picker v-model="value1" valueType="format" lang="en" ></date-picker>',
       'range': '<date-picker v-model="value2" range appendToBody></date-picker>',
       'month': '<date-picker v-model="value10" lang="en" type="month" format="YYYY-MM"></date-picker>',
       'year': '<date-picker v-model="value11" lang="en" type="year" format="YYYY"></date-picker>',
