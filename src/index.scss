@@ -141,6 +141,9 @@ $primary-color: #1284e7;
       margin: 0 10px;
       color: #48576a;
     }
+    &:last-child::after {
+      display: none;
+    }
   }
 }
 
