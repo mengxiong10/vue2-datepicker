@@ -85,7 +85,7 @@ export default {
 |------|--------------|-------|---------|
 | type | select date type  | 'date' \| 'datetime' \| 'year' \| 'month' \| 'time' | 'date' |
 | range | if true, the type is daterange or datetimerange | `boolean` | false |
-| format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD' |  
+| format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD' |
 | value-type | type of binding value. If not specified, the binding value will be a Date object | [value-type](#value-type) | 'date' |
 | lang | Translation | [lang](#lang) | 'zh' |
 | clearable | if false, don't show the clear icon | `boolean` | true |
@@ -101,7 +101,7 @@ export default {
 | not-after | Disable all dates after new Date(not-after) | `string`\|`Date`| '' |
 | disabled-days | Disable Days | `(date) => boolean` | - |
 | shortcuts | the shortcuts for the range picker | [shortcuts](#shortcuts) | true |
-| time-picker-options | custom time-picker | [time-picker-options](#time-picker-options) | null |           
+| time-picker-options | custom time-picker | [time-picker-options](#time-picker-options) | null |
 | minute-step | if > 0 don't show the second picker | 0 - 60 | 0 |
 | first-day-of-week | set the first day of week | 1 - 7  | 7 |
 | input-class | the input class name | `string` | 'mx-input' |
@@ -114,7 +114,7 @@ export default {
 set the format of binding value
 
 | Value           | Description                               |
-|-----------------|-------------------------------------------|     
+|-----------------|-------------------------------------------|
 | date            | binding value will be a Date object       |
 | timestamp       | binding value will be a timestamp number  |
 | format          | binding value will be the format string   |
@@ -138,7 +138,7 @@ Advanced: You can also customize objects to implement two functions.
 the shortcuts for the range picker
 
 | Value           | Description |
-|-----------------|-------------|     
+|-----------------|-------------|
 | true            | show the default shortcuts |
 | false           | hide the defaualt shortcuts  |
 | [{text: string, onClick: () => any }] | custom shortcuts |
@@ -167,7 +167,7 @@ custom time-picker
 #### panel
 
 | Value | Description          |
-|-------|----------------------|     
+|-------|----------------------|
 | NONE  | when panel is closed |
 | DATE  | when panel is date   |
 | YEAR  | when panel is year   |
@@ -177,15 +177,21 @@ custom time-picker
 ### Slots
 
 | Name            | Description              |
-|-----------------|--------------------------|     
+|-----------------|--------------------------|
 | calendar-icon   | custom the calender icon |
 | header          | popup header             |
 | footer          | popup footer             |
 
-## ChangeLog 
+## ChangeLog
 
 [CHANGELOG](CHANGELOG.md)
 
+
+## Donate
+
+If you find this project useful, you can buy author a glass of juice
+
+[Paypal Me](https://www.paypal.me/mengxiong10)
 
 ## License
 

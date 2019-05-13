@@ -85,7 +85,7 @@ export default {
 |------|--------------|-------|---------|
 | type | 选择日期类型  | 'date' \| 'datetime' \| 'year' \| 'month' \| 'time' | 'date' |
 | range | 如果是true, 显示日历范围选择  | `boolean` | false |
-| format | 格式化显示日期, 值类似moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD'  |  
+| format | 格式化显示日期, 值类似moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD'  |
 | value-type | 设置绑定值的格式, 默认返回日期对象 | [value-type](#value-type) | 'date' |
 | lang | 选择语言或自定义 | [lang](#lang) | 'zh' |
 | clearable | 如果设置false, 不显示清除图标 | `boolean` | true |
@@ -101,7 +101,7 @@ export default {
 | not-after | 禁止选择这个时间之前=后的时间 | `string`\|`Date`| '' |
 | disabled-days | 自定义禁止的日期 | `(date) => boolean` | - |
 | shortcuts | 自定义范围选择的时候快捷选项 | [shortcuts](#shortcuts) | true |
-| time-picker-options | 自定义时间选择的开始，结束，步进 | [time-picker-options](#time-picker-options) | null |           
+| time-picker-options | 自定义时间选择的开始，结束，步进 | [time-picker-options](#time-picker-options) | null |
 | minute-step | 设置分钟的步进， 设置大于0不显示秒的选择(0-60) | 0 - 60 | 0 |
 | first-day-of-week | 设置日历星期几开头 | 1 - 7  | 7 |
 | input-class | 自定义input元素的类名 | `string` | 'mx-input' |
@@ -114,7 +114,7 @@ export default {
 设置绑定值的格式
 
 | 可选值           | 描述                               |
-|-----------------|-------------------------------------------|     
+|-----------------|-------------------------------------------|
 | date            | 返回的绑定值是Date对象       |
 | timestamp       | 返回的绑定值是时间戳数字  |
 | format          | 返回的绑定值是通过`format`属性格式化的值   |
@@ -137,7 +137,7 @@ export default {
 #### shortcuts
 
 | 可选值           | 描述 |
-|-----------------|-------------|     
+|-----------------|-------------|
 | true            | 显示默认快捷选择 |
 | false           | 隐藏默认快捷选择  |
 | [{text: string, onClick: () => any }] | 自定义快捷选择 |
@@ -151,14 +151,14 @@ export default {
 | () => Array<{ label: string; values: { hours: number; minutes: number } }> |
 
 ### 事件
-| Name            | 说明                          |  回调参数       
+| Name            | 说明                          |  回调参数
 |-----------------|----------------------------- |----------------
-| change          | 日期改变的时候触发              | 选择的日期            
-| input           | 日期改变的时候触发              | 选择的日期             
-| confirm         | 点击确认按钮触发的事件           | 选择的日期 
-| clear           | 清空时候触发                    |          
-| input-error     | 当用户输入的值无效时候触发       | 用户输入的字符串         
-| panel-change    | 切换面板时触发                 | [panel](#panel), [oldPanel](#panel)      
+| change          | 日期改变的时候触发              | 选择的日期
+| input           | 日期改变的时候触发              | 选择的日期
+| confirm         | 点击确认按钮触发的事件           | 选择的日期
+| clear           | 清空时候触发                    |
+| input-error     | 当用户输入的值无效时候触发       | 用户输入的字符串
+| panel-change    | 切换面板时触发                 | [panel](#panel), [oldPanel](#panel)
 | calendar-change | 日历的年或月改变时触发           | 当前日历时间，过去日历时间
 | focus           | 当输入框获得焦点                |
 | blur            | 当输入框失去焦点                |
@@ -166,7 +166,7 @@ export default {
 #### panel
 
 | 值    | 描述          |
-|-------|----------------------|     
+|-------|----------------------|
 | NONE  | 当面板关闭时的值 |
 | DATE  | 当面板是日期选择时的值   |
 | YEAR  | 当面板是年选择时的值   |
@@ -176,14 +176,20 @@ export default {
 ### Slots
 
 | 名称            | 描述                      |
-|-----------------|--------------------------|     
+|-----------------|--------------------------|
 | calendar-icon   | 图标自定义                |
 | header          | 日历头部自定义            |
 | footer          | 日历尾部自定义            |
 
-## 日志 
+## 日志
 
 [CHANGELOG](CHANGELOG.md)
+
+## 捐赠
+
+如果这个项目帮到了你, 你可以请作者喝杯果汁
+
+[Paypal Me](https://www.paypal.me/mengxiong10)
 
 
 ## 许可证
