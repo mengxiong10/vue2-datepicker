@@ -38,6 +38,7 @@ $primary-color: #1284e7;
     position: relative;
     box-shadow: none;
     z-index: unset;
+    width: 248px;
   }
 
   &:not(.mx-datepicker-hidden-input) {
@@ -61,6 +62,10 @@ $primary-color: #1284e7;
 
   &.mx-datepicker-range {
     width: 498px;
+
+    .mx-datepicker-popup {
+      width: 498px;
+    }
   }
 }
 
