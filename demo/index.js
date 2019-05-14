@@ -19,7 +19,13 @@ new Vue({
       value9: '',
       value10: new Date(),
       value11: new Date(),
-      value12: ''
+      value12: '',
+      value13: '',
+      value14: '',
+      value15: '',
+      value16: '',
+      value17: '',
+      value18: ''
     }
   },
   methods: {
@@ -110,6 +116,27 @@ new Vue({
           format="YYYY-MM-DD"
           confirm></date-picker>`
     }
+    const example4 = {
+      'base static': '<date-picker v-model="value13" valueType="format" lang="en" static></date-picker>',
+      'base static with input': '<date-picker v-model="value14" valueType="format" lang="en" static :hide-input="false"></date-picker>',
+      'range static': '<date-picker v-model="value15" lang="en"range static></date-picker>',
+      'range static with input': '<date-picker v-model="value16" lang="en" range static :hide-input="false"></date-picker>',
+      'static with confirm': `
+        <date-picker
+          v-model="value17"
+          format="YYYY-MM-DD"
+          lang="en"
+          static
+          confirm></date-picker>`,
+      'static with input and confirm': `
+        <date-picker
+          v-model="value18"
+          format="YYYY-MM-DD"
+          lang="en"
+          static
+          :hide-input="false"
+          confirm></date-picker>`
+    }
     const arr = [
       {
         exam: example1
@@ -121,6 +148,9 @@ new Vue({
       {
         exam: example3,
         tips: 'Recommend to use the confirm option when the type is "datetime" or "range" is true'
+      },
+      {
+        exam: example4
       }
     ]
     return (
