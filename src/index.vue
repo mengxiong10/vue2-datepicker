@@ -3,13 +3,16 @@
     class="mx-datepicker"
     :class="{
       'mx-datepicker-range': range,
-      'disabled': disabled
+      'disabled': disabled,
+      'mx-datepicker-static': static,
+      'mx-datepicker-hidden-input': !showInput
     }"
     :style="{
       'width': computedWidth
     }"
     v-clickoutside="closePopup">
-    <div class="mx-input-wrapper"
+    <div v-if="showInput"
+      class="mx-input-wrapper"
       @click.stop="showPopup">
       <input
         :class="inputClass"
@@ -48,7 +51,7 @@
       </span>
     </div>
     <div class="mx-datepicker-popup"
-      :style="innerPopupStyle"
+      :style="[innerPopupStyle]"
       v-show="popupVisible"
       @click.stop.prevent
       ref="calendar">
@@ -208,6 +211,14 @@ export default {
     },
     popupStyle: {
       type: Object
+    },
+    static: {
+      type: Boolean,
+      default: false
+    },
+    hideInput: {
+      type: Boolean,
+      default: null
     }
   },
   data () {
@@ -215,7 +226,8 @@ export default {
       currentValue: this.range ? [null, null] : null,
       userInput: null,
       popupVisible: false,
-      position: {}
+      position: {},
+      showInput: true
     }
   },
   watch: {
@@ -230,6 +242,9 @@ export default {
         this.userInput = null
         this.blur()
       }
+    },
+    hideInput (val) {
+      this.showInput = !val
     }
   },
   computed: {
@@ -352,6 +367,13 @@ export default {
     }, 200)
     window.addEventListener('resize', this._displayPopup)
     window.addEventListener('scroll', this._displayPopup)
+    if (this.static) {
+      this.showInput = false
+      this.showPopup()
+    }
+    if (this.hideInput !== null) {
+      this.showInput = !this.hideInput
+    }
   },
   beforeDestroy () {
     if (this.popupElm && this.popupElm.parentNode === document.body) {
@@ -476,6 +498,9 @@ export default {
       this.popupVisible = true
     },
     closePopup () {
+      if (this.static) {
+        return
+      }
       this.popupVisible = false
     },
     getPopupSize (element) {
@@ -487,6 +512,9 @@ export default {
       const styles = window.getComputedStyle(element)
       const width = element.offsetWidth + parseInt(styles.marginLeft) + parseInt(styles.marginRight)
       let height = element.offsetHeight + parseInt(styles.marginTop) + parseInt(styles.marginBottom)
+      if (!this.showInput) {
+        height = height - 2
+      }
       if (height < 224) {
         childrens.forEach((children) => {
           const childrenStyles = window.getComputedStyle(children)
@@ -529,6 +557,11 @@ export default {
         position.top = offsetRelativeToInputY + InputRect.height + 'px'
       } else {
         position.top = offsetRelativeToInputY - PopupRect.height + 'px'
+      }
+      if (this.static) {
+        position.top = 0 + 'px'
+        position.left = 0 + 'px'
+        position.height = PopupRect.height + 'px'
       }
       if (position.top !== this.position.top || position.left !== this.position.left) {
         this.position = position

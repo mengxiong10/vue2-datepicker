@@ -16,8 +16,52 @@ $primary-color: #1284e7;
     cursor: not-allowed;
   }
 }
+
 .mx-datepicker-range {
   width: 320px;
+}
+
+.mx-datepicker-hidden-input {
+  .mx-datepicker-popup {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    box-shadow: none;
+    display: inline-flex;
+    flex-direction: column;
+  }
+}
+
+.mx-datepicker-static {
+  width: 250px;
+
+  .mx-datepicker-popup {
+    position: relative;
+    box-shadow: none;
+    z-index: unset;
+  }
+
+  &:not(.mx-datepicker-hidden-input) {
+    .mx-datepicker-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    &.mx-datepicker-range {
+      .mx-shortcuts-wrapper {
+        position: absolute;
+      }
+
+      .mx-range-wrapper {
+        position: absolute;
+        top: 35px;
+      }
+    }
+  }
+
+  &.mx-datepicker-range {
+    width: 498px;
+  }
 }
 
 .mx-datepicker-popup {
