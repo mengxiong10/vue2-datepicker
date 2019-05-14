@@ -479,13 +479,20 @@ export default {
       this.popupVisible = false
     },
     getPopupSize (element) {
+      const childrens = element.querySelectorAll(':scope > *')
       const originalDisplay = element.style.display
       const originalVisibility = element.style.visibility
       element.style.display = 'block'
       element.style.visibility = 'hidden'
       const styles = window.getComputedStyle(element)
       const width = element.offsetWidth + parseInt(styles.marginLeft) + parseInt(styles.marginRight)
-      const height = element.offsetHeight + parseInt(styles.marginTop) + parseInt(styles.marginBottom)
+      let height = element.offsetHeight + parseInt(styles.marginTop) + parseInt(styles.marginBottom)
+      if (height < 224) {
+        childrens.forEach((children) => {
+          const childrenStyles = window.getComputedStyle(children)
+          height = height + children.offsetHeight + parseInt(childrenStyles.marginTop) + parseInt(childrenStyles.marginBottom)
+        })
+      }
       const result = { width, height }
       element.style.display = originalDisplay
       element.style.visibility = originalVisibility
