@@ -67,7 +67,7 @@ export function formatDate (date, format) {
 
 export function parseDate (value, format) {
   try {
-    return fecha.parse(value, format)
+    return fecha.parse(value, format) || null
   } catch (e) {
     return null
   }
