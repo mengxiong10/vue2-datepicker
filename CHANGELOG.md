@@ -1,3 +1,14 @@
+## [2.11.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.11.1...v2.11.2) (2019-05-15)
+
+
+### Bug Fixes
+
+* fecha.parse invalid return false ([#309](https://github.com/mengxiong10/vue2-datepicker/issues/309)) ([96812ab](https://github.com/mengxiong10/vue2-datepicker/commit/96812ab))
+* remove last shortcut "|" ([c6a6300](https://github.com/mengxiong10/vue2-datepicker/commit/c6a6300))
+* test suites in another timezone failed ([#300](https://github.com/mengxiong10/vue2-datepicker/issues/300)) ([ec69590](https://github.com/mengxiong10/vue2-datepicker/commit/ec69590))
+
+
+
 ## [2.11.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.11.0...v2.11.1) (2019-04-30)
 
 
