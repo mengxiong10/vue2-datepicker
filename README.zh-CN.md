@@ -189,7 +189,9 @@ export default {
 
 如果这个项目帮到了你, 你可以请作者喝杯果汁
 
-[Paypal Me](https://www.paypal.me/mengxiong10)
+[PayPal](https://www.paypal.me/mengxiong10) |
+[支付宝](https://user-images.githubusercontent.com/14135808/57742967-be1ac000-76f5-11e9-9607-c0854e0fdd11.png) |
+[微信](https://user-images.githubusercontent.com/14135808/57743255-e2c36780-76f6-11e9-8bb8-7720a2607dc1.png)
 
 
 ## 许可证

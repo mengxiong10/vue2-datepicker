@@ -191,7 +191,9 @@ custom time-picker
 
 If you find this project useful, you can buy author a glass of juice
 
-[Paypal Me](https://www.paypal.me/mengxiong10)
+[PayPal](https://www.paypal.me/mengxiong10) |
+[AliPay](https://user-images.githubusercontent.com/14135808/57742967-be1ac000-76f5-11e9-9607-c0854e0fdd11.png) |
+[WeChat](https://user-images.githubusercontent.com/14135808/57743255-e2c36780-76f6-11e9-8bb8-7720a2607dc1.png)
 
 ## License
 
