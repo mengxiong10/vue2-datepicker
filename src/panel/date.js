@@ -122,6 +122,8 @@ export default {
           <td
             class="cell"
             {...attrs}
+            data-year={date.year}
+            data-month={date.month}
             title={this.getCellTitle(date)}
             onClick={this.selectDate.bind(this, date)}>
             {date.day}

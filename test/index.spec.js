@@ -139,13 +139,13 @@ describe('datepicker', () => {
       expect(td1.at(14).classes()).toContain('actived')
       expect(td2.at(13).classes()).toContain('disabled')
       expect(td2.at(14).classes()).not.toContain('disabled')
-
-      const date1 = new Date(td1.at(14).element.title).setHours(0, 0, 0, 0)
+      const el1 = td1.at(14).element
+      const date1 = new Date(+el1.dataset.year, +el1.dataset.month, +el1.textContent)
       td2.at(16).trigger('click')
       Vue.nextTick(() => {
         const emitted = wrapper.emitted()
-        const date2 = new Date(td2.at(16).element.title).setHours(0, 0, 0, 0)
-
+        const el2 = td2.at(16).element
+        const date2 = new Date(+el2.dataset.year, +el2.dataset.month, +el2.textContent)
         expect(td2.at(16).classes()).toContain('actived')
         expect(td1.at(15).classes()).toContain('inrange')
         expect(td1.at(16).classes()).toContain('inrange')
@@ -161,7 +161,7 @@ describe('datepicker', () => {
     wrapper = shallowMount(DatePicker, {
       propsData: {
         range: true,
-        value: [new Date('2018-06-01'), new Date('2018-06-10')],
+        value: [new Date(2018, 5, 1), new Date(2018, 5, 10)],
         rangeSeparator: '至'
       }
     })
@@ -360,21 +360,18 @@ describe('datepicker', () => {
   it('prop: dateFormat', () => {
     wrapper = mount(DatePicker, {
       propsData: {
-        value: new Date('2018-08-08'),
+        value: new Date(2018, 7, 8),
         format: '[on] MM-DD-YYYY [at] HH:mm',
         type: 'datetime'
       }
     })
     let ss = '08-08-2018'
-    const cell = wrapper.find('.mx-panel-date .actived')
     const timeHeader = wrapper.find('.mx-time-header')
-    expect(cell.element.title).toBe(ss)
     expect(timeHeader.text()).toBe(ss)
     wrapper.setProps({
       dateFormat: 'YYYY-MM-DD'
     })
     ss = '2018-08-08'
-    expect(cell.element.title).toBe(ss)
     expect(timeHeader.text()).toBe(ss)
   })
 })
@@ -384,7 +381,7 @@ describe('calendar-panel', () => {
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: null,
-        defaultValue: '2018-10-01'
+        defaultValue: new Date(2018, 9, 1)
       }
     })
     const vm = wrapper.vm
@@ -500,7 +497,7 @@ describe('calendar-panel', () => {
   })
 
   it('prop: disabledDays(Array)', () => {
-    const disabledDays = ['2018-05-01', new Date(2018, 4, 3)]
+    const disabledDays = [new Date(2018, 4, 1), new Date(2018, 4, 3)]
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2018, 4, 2),
@@ -510,9 +507,10 @@ describe('calendar-panel', () => {
     const tds = wrapper.findAll('.mx-panel-date td.disabled')
     expect(tds.length).toBe(disabledDays.length)
     for (let i = 0, len = tds.length; i < len; i++) {
-      const tdDate = new Date(tds.at(i).element.title).setHours(0, 0, 0, 0)
-      const expectDate = new Date(disabledDays[i]).setHours(0, 0, 0, 0)
-      expect(tdDate).toBe(expectDate)
+      const el = tds.at(i).element
+      const tdDate = new Date(+el.dataset.year, +el.dataset.month, +el.textContent)
+      const expectDate = new Date(disabledDays[i])
+      expect(tdDate).toEqual(expectDate)
     }
   })
 
