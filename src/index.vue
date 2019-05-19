@@ -165,6 +165,10 @@ export default {
       type: String,
       default: '~'
     },
+    includedEndDate: {
+      type: Boolean,
+      default: false
+    },
     width: {
       type: [String, Number],
       default: null
@@ -454,6 +458,9 @@ export default {
       }
     },
     selectEndDate (date) {
+      if (this.innerType === 'date' && this.includedEndDate) {
+        date = date.setHours(23, 59, 59, 999)
+      }
       this.$set(this.currentValue, 1, date)
       if (this.currentValue[0]) {
         this.updateDate()
