@@ -72,6 +72,7 @@
         :date-format="innerDateFormat"
         :value="currentValue"
         :visible="popupVisible"
+        :range-separator-header="rangeSeparator"
         @select-date="selectDate"
         @select-time="selectTime"></calendar-panel>
       <div class="mx-range-wrapper"
@@ -87,6 +88,7 @@
           :end-at="currentValue[1]"
           :start-at="null"
           :visible="popupVisible"
+          :range-separator-calender="rangeSeparator"
           @select-date="selectStartDate"
           @select-time="selectStartTime"></calendar-panel>
         <calendar-panel
@@ -98,6 +100,7 @@
           :start-at="currentValue[0]"
           :end-at="null"
           :visible="popupVisible"
+          :range-separator-calender="rangeSeparator"
           @select-date="selectEndDate"
           @select-time="selectEndTime"></calendar-panel>
       </div>

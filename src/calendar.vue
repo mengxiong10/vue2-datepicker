@@ -146,6 +146,10 @@ export default {
       default () {
         return null
       }
+    },
+    rangeSeparatorCalender: {
+      type: String,
+      default: '~'
     }
   },
   data () {
@@ -184,7 +188,7 @@ export default {
       return this.value && formatDate(this.value, this.dateFormat)
     },
     yearHeader () {
-      return this.firstYear + ' ~ ' + (this.firstYear + 9)
+      return this.firstYear + this.rangeSeparatorCalender + (this.firstYear + 9)
     },
     months () {
       return this.t('months')
