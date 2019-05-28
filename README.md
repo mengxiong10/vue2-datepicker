@@ -140,8 +140,9 @@ the shortcuts for the range picker
 | Value           | Description |
 |-----------------|-------------|
 | true            | show the default shortcuts |
-| false           | hide the defaualt shortcuts  |
-| [{text: string, onClick: () => any }] | custom shortcuts |
+| false           | hide the default shortcuts  |
+| [{text: string, onClick: (datepicker) => any }] | custom shortcuts with full customisation of event. if `false` is returned, the pop-up will not close |
+| [{text: string, start: Date, end: Date}] | custom shortcuts updating current widget start and end dates |
 
 #### time-picker-options
 custom time-picker
