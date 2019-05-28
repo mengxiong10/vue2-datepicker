@@ -399,7 +399,9 @@ export default {
       } else {
         this.currentValue = [new Date(range.start), new Date(range.end)]
         this.updateDate(true)
-        this.closePopup()
+        if (!this.confirm) {
+          this.closePopup()
+        }
       }
     },
     clearDate () {
