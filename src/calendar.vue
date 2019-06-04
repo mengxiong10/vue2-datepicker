@@ -149,7 +149,7 @@ export default {
     },
     rangeSeparatorCalender: {
       type: String,
-      default: '~'
+      default: ' ~ '
     }
   },
   data () {
