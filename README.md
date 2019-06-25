@@ -102,6 +102,7 @@ export default {
 | disabled-days | Disable Days | `(date) => boolean` | - |
 | shortcuts | the shortcuts for the range picker | [shortcuts](#shortcuts) | true |
 | time-picker-options | custom time-picker | [time-picker-options](#time-picker-options) | null |
+| time-select-options | custom time-select | [time-select-options](#time-select-options) | null |
 | minute-step | if > 0 don't show the second picker | 0 - 60 | 0 |
 | first-day-of-week | set the first day of week | 1 - 7  | 7 |
 | input-class | the input class name | `string` | 'mx-input' |
@@ -150,6 +151,13 @@ custom time-picker
 |------|
 | {start: '00:00', step:'00:30' , end: '23:30'} |
 | () => Array<{ label: string; values: { hours: number; minutes: number } }> |
+
+#### time-select-options
+custom time-select for columns
+
+| Type |
+|------|
+| {hours: [9, 10, 11], minutes: [10, 20], seconds: [10, 20] } |
 
 ### Events
 | Name            | Description                                            |  Callback Arguments    |

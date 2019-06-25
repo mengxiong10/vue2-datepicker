@@ -19,7 +19,8 @@ new Vue({
       value9: '',
       value10: new Date(),
       value11: new Date(),
-      value12: ''
+      value12: '',
+      value13: ''
     }
   },
   methods: {
@@ -79,6 +80,18 @@ new Vue({
           type="datetime"
           format="YYYY-MM-DD hh:mm:ss a"
           :minute-step="10"
+          ></date-picker>`,
+      'datetime with time-select-options': `
+        <date-picker
+          v-model="value13"
+          lang="en"
+          type="datetime"
+          format="YYYY-MM-DD hh:mm:ss a"
+          :time-select-options="{
+            hours: [9, 10, 11, 12, 13, 14, 15, 16],
+            minutes: [0, 10,20,30,40,50],
+            seconds: []
+          }"
           ></date-picker>`,
       'datetime range': `
         <date-picker

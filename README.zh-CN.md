@@ -102,6 +102,7 @@ export default {
 | disabled-days | 自定义禁止的日期 | `(date) => boolean` | - |
 | shortcuts | 自定义范围选择的时候快捷选项 | [shortcuts](#shortcuts) | true |
 | time-picker-options | 自定义时间选择的开始，结束，步进 | [time-picker-options](#time-picker-options) | null |
+| time-select-options | 自定义时间列的选择 | [time-select-options](#time-select-options) | null |
 | minute-step | 设置分钟的步进， 设置大于0不显示秒的选择(0-60) | 0 - 60 | 0 |
 | first-day-of-week | 设置日历星期几开头 | 1 - 7  | 7 |
 | input-class | 自定义input元素的类名 | `string` | 'mx-input' |
@@ -149,6 +150,13 @@ export default {
 |------|
 | {start: '00:00', step:'00:30' , end: '23:30'} |
 | () => Array<{ label: string; values: { hours: number; minutes: number } }> |
+
+#### time-select-options
+自定义时间选择列
+
+| 可选值 |
+|------|
+| {hours: [9, 10, 11], minutes: [10, 20], seconds: [10, 20] } |
 
 ### 事件
 | Name            | 说明                          |  回调参数

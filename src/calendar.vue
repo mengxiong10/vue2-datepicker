@@ -1,38 +1,22 @@
 <template>
-  <div class="mx-calendar"
-    :class="'mx-calendar-panel-' + panel.toLowerCase()">
+  <div class="mx-calendar" :class="'mx-calendar-panel-' + panel.toLowerCase()">
     <div class="mx-calendar-header">
-      <a
-        v-show="panel !== 'TIME'"
-        class="mx-icon-last-year"
-        @click="handleIconYear(-1)">&#171;</a>
-      <a
-        v-show="panel === 'DATE'"
-        class="mx-icon-last-month"
-        @click="handleIconMonth(-1)">&#8249;</a>
-      <a
-        v-show="panel !== 'TIME'"
-        class="mx-icon-next-year"
-        @click="handleIconYear(1)">&#187;</a>
-      <a
-        v-show="panel === 'DATE'"
-        class="mx-icon-next-month"
-        @click="handleIconMonth(1)">&#8250;</a>
+      <a v-show="panel !== 'TIME'" class="mx-icon-last-year" @click="handleIconYear(-1)">&#171;</a>
+      <a v-show="panel === 'DATE'" class="mx-icon-last-month" @click="handleIconMonth(-1)">&#8249;</a>
+      <a v-show="panel !== 'TIME'" class="mx-icon-next-year" @click="handleIconYear(1)">&#187;</a>
+      <a v-show="panel === 'DATE'" class="mx-icon-next-month" @click="handleIconMonth(1)">&#8250;</a>
       <a
         v-show="panel === 'DATE'"
         class="mx-current-month"
-        @click="handleBtnMonth">{{months[calendarMonth]}}</a>
+        @click="handleBtnMonth"
+      >{{months[calendarMonth]}}</a>
       <a
         v-show="panel === 'DATE' || panel === 'MONTH'"
         class="mx-current-year"
-        @click="handleBtnYear">{{calendarYear}}</a>
-      <a
-        v-show="panel === 'YEAR'"
-        class="mx-current-year">{{yearHeader}}</a>
-      <a
-        v-show="panel === 'TIME'"
-        class="mx-time-header"
-        @click="handleTimeHeader">{{timeHeader}}</a>
+        @click="handleBtnYear"
+      >{{calendarYear}}</a>
+      <a v-show="panel === 'YEAR'" class="mx-current-year">{{yearHeader}}</a>
+      <a v-show="panel === 'TIME'" class="mx-time-header" @click="handleTimeHeader">{{timeHeader}}</a>
     </div>
     <div class="mx-calendar-content">
       <panel-date
@@ -45,28 +29,33 @@
         :end-at="endAt"
         :first-day-of-week="firstDayOfWeek"
         :disabled-date="isDisabledDate"
-        @select="selectDate"/>
+        @select="selectDate"
+      />
       <panel-year
         v-show="panel === 'YEAR'"
         :value="value"
         :disabled-year="isDisabledYear"
         :first-year="firstYear"
-        @select="selectYear" />
+        @select="selectYear"
+      />
       <panel-month
         v-show="panel === 'MONTH'"
         :value="value"
         :disabled-month="isDisabledMonth"
         :calendar-year="calendarYear"
-        @select="selectMonth" />
+        @select="selectMonth"
+      />
       <panel-time
         v-show="panel === 'TIME'"
         :minute-step="minuteStep"
         :time-picker-options="timePickerOptions"
+        :time-select-options="timeSelectOptions"
         :value="value"
         :disabled-time="isDisabledTime"
         :time-type="timeType"
         @select="selectTime"
-        @pick="pickTime" />
+        @pick="pickTime"
+      />
     </div>
   </div>
 </template>
@@ -140,6 +129,12 @@ export default {
       type: Number,
       default: 0,
       validator: val => val >= 0 && val <= 60
+    },
+    timeSelectOptions: {
+      type: Object,
+      default () {
+        return null
+      }
     },
     timePickerOptions: {
       type: [Object, Function],
@@ -242,16 +237,21 @@ export default {
       }
     },
     getNow (value) {
-      return value ? new Date(value) : (
-        (this.defaultValue && isValidDate(this.defaultValue)) ? new Date(this.defaultValue) : new Date()
-      )
+      return value
+        ? new Date(value)
+        : this.defaultValue && isValidDate(this.defaultValue)
+          ? new Date(this.defaultValue)
+          : new Date()
     },
     // 根据value更新日历
     updateNow (value) {
       const oldNow = this.now
       this.now = this.getNow(value)
       if (this.visible && this.now !== oldNow) {
-        this.dispatch('DatePicker', 'calendar-change', [new Date(this.now), new Date(oldNow)])
+        this.dispatch('DatePicker', 'calendar-change', [
+          new Date(this.now),
+          new Date(oldNow)
+        ])
       }
     },
     getCriticalTime (value) {
@@ -272,15 +272,19 @@ export default {
       if (startAt === undefined) {
         startAt = this.startAt
       }
-      return (this.notBeforeTime && time < this.notBeforeTime) ||
+      return (
+        (this.notBeforeTime && time < this.notBeforeTime) ||
         (startAt && time < this.getCriticalTime(startAt))
+      )
     },
     inAfter (time, endAt) {
       if (endAt === undefined) {
         endAt = this.endAt
       }
-      return (this.notAfterTime && time > this.notAfterTime) ||
+      return (
+        (this.notAfterTime && time > this.notAfterTime) ||
         (endAt && time > this.getCriticalTime(endAt))
+      )
     },
     inDisabledDays (time) {
       if (Array.isArray(this.disabledDays)) {
@@ -293,21 +297,37 @@ export default {
     isDisabledYear (year) {
       const time = new Date(year, 0).getTime()
       const maxTime = new Date(year + 1, 0).getTime() - 1
-      return this.inBefore(maxTime) || this.inAfter(time) || (this.type === 'year' && this.inDisabledDays(time))
+      return (
+        this.inBefore(maxTime) ||
+        this.inAfter(time) ||
+        (this.type === 'year' && this.inDisabledDays(time))
+      )
     },
     isDisabledMonth (month) {
       const time = new Date(this.calendarYear, month).getTime()
       const maxTime = new Date(this.calendarYear, month + 1).getTime() - 1
-      return this.inBefore(maxTime) || this.inAfter(time) || (this.type === 'month' && this.inDisabledDays(time))
+      return (
+        this.inBefore(maxTime) ||
+        this.inAfter(time) ||
+        (this.type === 'month' && this.inDisabledDays(time))
+      )
     },
     isDisabledDate (date) {
       const time = new Date(date).getTime()
       const maxTime = new Date(date).setHours(23, 59, 59, 999)
-      return this.inBefore(maxTime) || this.inAfter(time) || this.inDisabledDays(time)
+      return (
+        this.inBefore(maxTime) ||
+        this.inAfter(time) ||
+        this.inDisabledDays(time)
+      )
     },
     isDisabledTime (date, startAt, endAt) {
       const time = new Date(date).getTime()
-      return this.inBefore(time, startAt) || this.inAfter(time, endAt) || this.inDisabledDays(time)
+      return (
+        this.inBefore(time, startAt) ||
+        this.inAfter(time, endAt) ||
+        this.inDisabledDays(time)
+      )
     },
     selectDate (date) {
       if (this.type === 'datetime') {
@@ -321,10 +341,16 @@ export default {
         }
         if (this.isDisabledTime(time)) {
           time.setHours(0, 0, 0, 0)
-          if (this.notBefore && time.getTime() < new Date(this.notBefore).getTime()) {
+          if (
+            this.notBefore &&
+            time.getTime() < new Date(this.notBefore).getTime()
+          ) {
             time = new Date(this.notBefore)
           }
-          if (this.startAt && time.getTime() < new Date(this.startAt).getTime()) {
+          if (
+            this.startAt &&
+            time.getTime() < new Date(this.startAt).getTime()
+          ) {
             time = new Date(this.startAt)
           }
         }
@@ -363,7 +389,9 @@ export default {
       this.updateNow(new Date(this.calendarYear, month))
     },
     getSibling () {
-      const calendars = this.$parent.$children.filter(v => v.$options.name === this.$options.name)
+      const calendars = this.$parent.$children.filter(
+        v => v.$options.name === this.$options.name
+      )
       const index = calendars.indexOf(this)
       const sibling = calendars[index ^ 1]
       return sibling
