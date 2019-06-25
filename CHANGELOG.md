@@ -1,3 +1,12 @@
+# [2.12.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.11.2...v2.12.0) (2019-06-25)
+
+
+### Features
+
+* add the prop `time-select-options` ([#227](https://github.com/mengxiong10/vue2-datepicker/issues/227)) ([a55b4b6](https://github.com/mengxiong10/vue2-datepicker/commit/a55b4b6))
+
+
+
 ## [2.11.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.11.1...v2.11.2) (2019-05-15)
 
 
