@@ -121,6 +121,7 @@ import { transformDate } from '@/utils/transform'
 import CalendarPanel from './calendar.vue'
 import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
+import FechaLanguages from '@/locale/fecha.i18n'
 
 export default {
   fecha,
@@ -259,6 +260,7 @@ export default {
       return this.range ? this.t('placeholder.dateRange') : this.t('placeholder.date')
     },
     text () {
+      fecha.i18n = FechaLanguages[this.lang] ? { ...FechaLanguages.en, ...FechaLanguages[this.lang] } : FechaLanguages.en
       if (this.userInput !== null) {
         return this.userInput
       }
