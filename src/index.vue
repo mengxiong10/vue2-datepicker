@@ -566,7 +566,6 @@ export default {
       // Tab 9 or Enter 13
       if (keyCode === 9 || keyCode === 13) {
         // ie emit the watch before the change event
-        event.stopPropagation()
         this.handleChange()
         this.userInput = null
         this.closePopup()
