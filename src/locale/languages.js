@@ -99,7 +99,7 @@ export default {
     }
   },
   'nl': {
-    'days': ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
+    'days': ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za'],
     'months': ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
     'pickers': ['volgende 7 dagen', 'volgende 30 dagen', 'vorige 7 dagen', 'vorige 30 dagen'],
     'placeholder': {
