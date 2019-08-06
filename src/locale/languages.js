@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
+  },
+  'nl': {
+    'days': ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'],
+    'months': ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
+    'pickers': ['volgende 7 dagen', 'volgende 30 dagen', 'vorige 7 dagen', 'vorige 30 dagen'],
+    'placeholder': {
+      'date': 'Datum selecteren',
+      'dateRange': 'Selecteer een periode'
+    }
   }
 }
