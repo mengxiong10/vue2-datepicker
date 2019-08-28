@@ -144,7 +144,7 @@ export default {
     },
     lang: {
       type: [String, Object],
-      default: 'zhs'
+      default: 'cns'
     },
     format: {
       type: [String, Object],

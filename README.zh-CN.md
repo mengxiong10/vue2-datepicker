@@ -87,7 +87,7 @@ export default {
 | range | 如果是true, 显示日历范围选择  | `boolean` | false |
 | format | 格式化显示日期, 值类似moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD'  |
 | value-type | 设置绑定值的格式, 默认返回日期对象 | [value-type](#value-type) | 'date' |
-| lang | 选择语言或自定义 | [lang](#lang) | 'zhs' |
+| lang | 选择语言或自定义 | [lang](#lang) | 'cns' |
 | clearable | 如果设置false, 不显示清除图标 | `boolean` | true |
 | confirm | 如果是true， 显示确认按钮且需要确认才更新时间 | `boolean` | false |
 | editable | 如果是false, 用户不能手动输入更新日期 | `boolean` | true |
@@ -132,7 +132,7 @@ export default {
 
 | 可选值 |
 |------|
-| 'en'\|'zhs'\|'zht'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
+| 'en'\|'cns'\|'cnt'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
 | { days: string[]; months: string[]; picker: string[]; placeholder: { date: string; dateRange: string  } } |
 
 #### shortcuts

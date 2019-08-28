@@ -1,6 +1,6 @@
 import Languages from '@/locale/languages'
 
-const defaultLang = Languages.zhs
+const defaultLang = Languages.cns
 
 export default {
   methods: {

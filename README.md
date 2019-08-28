@@ -87,7 +87,7 @@ export default {
 | range | if true, the type is daterange or datetimerange | `boolean` | false |
 | format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD' |
 | value-type | type of binding value. If not specified, the binding value will be a Date object | [value-type](#value-type) | 'date' |
-| lang | Translation | [lang](#lang) | 'zhs' |
+| lang | Translation | [lang](#lang) | 'cns' |
 | clearable | if false, don't show the clear icon | `boolean` | true |
 | confirm | if true, need click the button to change the value | `boolean` | false |
 | editable | if false, user cann't type it | `boolean` | true |
@@ -132,7 +132,7 @@ Advanced: You can also customize objects to implement two functions.
 
 | Type |
 |------|
-| 'en'\|'zhs'\|'zht'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
+| 'en'\|'cns'\|'cnt'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
 | { days: string[]; months: string[]; picker: string[]; placeholder: { date: string; dateRange: string  } } |
 
 #### shortcuts
