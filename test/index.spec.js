@@ -255,7 +255,7 @@ describe('datepicker', () => {
     const el = wrapper.find('.mx-current-month')
     expect(el.text()).toBe('Jun')
     wrapper.setProps({
-      lang: 'zh'
+      lang: 'zhs'
     })
     expect(el.text()).toBe('6月')
   })
