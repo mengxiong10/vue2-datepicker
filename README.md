@@ -132,7 +132,7 @@ Advanced: You can also customize objects to implement two functions.
 
 | Type |
 |------|
-| 'en'\|'zhc'\|'zht'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
+| 'en'\|'zhs'\|'zht'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
 | { days: string[]; months: string[]; picker: string[]; placeholder: { date: string; dateRange: string  } } |
 
 #### shortcuts
