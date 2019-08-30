@@ -81,9 +81,9 @@ export default {
     }
   },
   'cs': {
-    'days': ['Ned', 'Pon', 'Úte', 'Stř', 'Čtv', 'Pát', 'Sob'],
-    'months': ['Led', 'Úno', 'Bře', 'Dub', 'Kvě', 'Čer', 'Čerc', 'Srp', 'Zář', 'Říj', 'Lis', 'Pro'],
-    'pickers': ['příštích 7 dní', 'příštích 30 dní', 'předchozích 7 dní', 'předchozích 30 dní'],
+    'days': ['Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So'],
+    'months': ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'],
+    'pickers': ['následujících 7 dní', 'následujících 30 dní', 'předchozích 7 dní', 'předchozích 30 dní'],
     'placeholder': {
       'date': 'Vyberte datum',
       'dateRange': 'Vyberte časové rozmezí'
