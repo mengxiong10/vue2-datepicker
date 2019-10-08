@@ -6,7 +6,8 @@ $primary-color: #1284e7;
   display: inline-block;
   width: 210px;
   color: $default-color;
-  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif;
+  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei',
+    sans-serif;
   * {
     box-sizing: border-box;
   }
@@ -38,6 +39,9 @@ $primary-color: #1284e7;
     .mx-clear-wrapper {
       display: block;
     }
+    .mx-clear-wrapper + .mx-input-append {
+      display: none;
+    }
   }
 }
 
@@ -62,6 +66,9 @@ $primary-color: #1284e7;
   &:focus {
     outline: none;
   }
+  &::-ms-clear {
+    display: none;
+  }
 }
 
 .mx-input-append {
@@ -71,8 +78,6 @@ $primary-color: #1284e7;
   width: 30px;
   height: 100%;
   padding: 6px;
-  background-color: #fff;
-  background-clip: content-box;
 }
 
 .mx-input-icon {
@@ -136,6 +141,9 @@ $primary-color: #1284e7;
       margin: 0 10px;
       color: #48576a;
     }
+    &:last-child::after {
+      display: none;
+    }
   }
 }
 
@@ -170,7 +178,7 @@ $primary-color: #1284e7;
   float: left;
   color: $default-color;
   padding: 6px 12px;
-  font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,sans-serif;
+  font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, sans-serif;
   * {
     box-sizing: border-box;
   }
@@ -196,6 +204,7 @@ $primary-color: #1284e7;
       padding: 0 6px;
       font-size: 20px;
       line-height: 30px;
+      user-select: none;
     }
     .mx-icon-last-month {
       float: left;
@@ -204,10 +213,10 @@ $primary-color: #1284e7;
       float: right;
     }
     .mx-icon-last-year {
-      @extend .mx-icon-last-month
+      @extend .mx-icon-last-month;
     }
     .mx-icon-next-year {
-      @extend .mx-icon-next-month
+      @extend .mx-icon-next-month;
     }
   }
 }
@@ -232,7 +241,7 @@ $primary-color: #1284e7;
       cursor: not-allowed;
       color: #ccc;
       background-color: #f3f3f3;
-    }  
+    }
   }
 }
 
@@ -246,7 +255,8 @@ $primary-color: #1284e7;
   table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0;
-  td, th {
+  td,
+  th {
     font-size: 12px;
     width: 32px;
     height: 32px;
@@ -292,8 +302,8 @@ $primary-color: #1284e7;
   list-style: none;
   width: 100%;
   height: 100%;
-  border-top: 1px solid rgba(0,0,0,.05);
-  border-left: 1px solid rgba(0,0,0,.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
   overflow-y: auto;
   .mx-time-picker-item {
     display: block;

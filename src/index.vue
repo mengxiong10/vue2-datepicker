@@ -10,19 +10,31 @@
     }"
     v-clickoutside="closePopup">
     <div class="mx-input-wrapper"
-      @click="showPopup">
+      @click.stop="showPopup">
       <input
+        :class="inputClass"
+        :name="inputName"
+        v-bind="inputAttr"
         ref="input"
         type="text"
         autocomplete="off"
-        :class="inputClass"
-        :name="inputName"
         :disabled="disabled"
         :readonly="!editable"
         :value="text"
         :placeholder="innerPlaceholder"
+        @keydown="handleKeydown"
+        @focus="handleFocus"
+        @blur="handleBlur"
         @input="handleInput"
         @change="handleChange">
+      <span
+        v-if="showClearIcon"
+        class="mx-input-append mx-clear-wrapper"
+        @click.stop="clearDate">
+        <slot name="mx-clear-icon">
+          <i class="mx-input-icon mx-clear-icon"></i>
+        </slot>
+      </span>
       <span class="mx-input-append">
         <slot name="calendar-icon">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 200 200" class="mx-calendar-icon">
@@ -32,14 +44,6 @@
             <line x1="13" x2="187" y1="70" y2="70" />
             <text x="50%" y="135" font-size="90" stroke-width="1" text-anchor="middle" dominant-baseline="middle">{{new Date().getDate()}}</text>
           </svg>
-        </slot>
-      </span>
-      <span
-        v-if="showClearIcon"
-        class="mx-input-append mx-clear-wrapper"
-        @click.stop="clearDate">
-        <slot name="mx-clear-icon">
-          <i class="mx-input-icon mx-clear-icon"></i>
         </slot>
       </span>
     </div>
@@ -62,6 +66,8 @@
       <calendar-panel
         v-if="!range"
         v-bind="$attrs"
+        ref="calendarPanel"
+        :index="-1"
         :type="innerType"
         :date-format="innerDateFormat"
         :value="currentValue"
@@ -73,6 +79,8 @@
         <calendar-panel
           style="box-shadow:1px 0 rgba(0, 0, 0, .1)"
           v-bind="$attrs"
+          ref="calendarPanel"
+          :index="0"
           :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[0]"
@@ -83,6 +91,7 @@
           @select-time="selectStartTime"></calendar-panel>
         <calendar-panel
           v-bind="$attrs"
+          :index="1"
           :type="innerType"
           :date-format="innerDateFormat"
           :value="currentValue[1]"
@@ -107,7 +116,8 @@
 <script>
 import fecha from 'fecha'
 import clickoutside from '@/directives/clickoutside'
-import { isValidDate, isValidRange, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
+import { isValidDate, isValidRangeDate, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
+import { transformDate } from '@/utils/transform'
 import CalendarPanel from './calendar.vue'
 import locale from '@/mixins/locale'
 import Languages from '@/locale/languages'
@@ -122,6 +132,12 @@ export default {
   },
   props: {
     value: null,
+    valueType: {
+      default: 'date',
+      validator: function (value) {
+        return ['timestamp', 'format', 'date'].indexOf(value) !== -1 || isPlainObject(value)
+      }
+    },
     placeholder: {
       type: String,
       default: null
@@ -131,7 +147,7 @@ export default {
       default: 'zh'
     },
     format: {
-      type: String,
+      type: [String, Object],
       default: 'YYYY-MM-DD'
     },
     dateFormat: {
@@ -185,6 +201,7 @@ export default {
       type: [String, Array],
       default: 'mx-input'
     },
+    inputAttr: Object,
     appendToBody: {
       type: Boolean,
       default: false
@@ -211,10 +228,24 @@ export default {
         this.initCalendar()
       } else {
         this.userInput = null
+        this.blur()
       }
     }
   },
   computed: {
+    transform () {
+      const type = this.valueType
+      if (isPlainObject(type)) {
+        return { ...transformDate.date, ...type }
+      }
+      if (type === 'format') {
+        return {
+          value2date: this.parse.bind(this),
+          date2value: this.stringify.bind(this)
+        }
+      }
+      return transformDate[type] || transformDate.date
+    },
     language () {
       if (isPlainObject(this.lang)) {
         return { ...Languages.en, ...this.lang }
@@ -231,11 +262,14 @@ export default {
       if (this.userInput !== null) {
         return this.userInput
       }
+      const { value2date } = this.transform
       if (!this.range) {
-        return isValidDate(this.value) ? this.stringify(this.value) : ''
+        return this.isValidValue(this.value)
+          ? this.stringify(value2date(this.value))
+          : ''
       }
-      return isValidRange(this.value)
-        ? `${this.stringify(this.value[0])} ${this.rangeSeparator} ${this.stringify(this.value[1])}`
+      return this.isValidRangeValue(this.value)
+        ? `${this.stringify(value2date(this.value[0]))} ${this.rangeSeparator} ${this.stringify(value2date(this.value[1]))}`
         : ''
     },
     computedWidth () {
@@ -245,7 +279,7 @@ export default {
       return this.width
     },
     showClearIcon () {
-      return !this.disabled && this.clearable && (this.range ? isValidRange(this.value) : isValidDate(this.value))
+      return !this.disabled && this.clearable && (this.range ? this.isValidRangeValue(this.value) : this.isValidValue(this.value))
     },
     innerType () {
       return String(this.type).toLowerCase()
@@ -262,28 +296,28 @@ export default {
         {
           text: pickers[0],
           onClick (self) {
-            self.currentValue = [ new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7) ]
+            self.currentValue = [new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 7)]
             self.updateDate(true)
           }
         },
         {
           text: pickers[1],
           onClick (self) {
-            self.currentValue = [ new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 30) ]
+            self.currentValue = [new Date(), new Date(Date.now() + 3600 * 1000 * 24 * 30)]
             self.updateDate(true)
           }
         },
         {
           text: pickers[2],
           onClick (self) {
-            self.currentValue = [ new Date(Date.now() - 3600 * 1000 * 24 * 7), new Date() ]
+            self.currentValue = [new Date(Date.now() - 3600 * 1000 * 24 * 7), new Date()]
             self.updateDate(true)
           }
         },
         {
           text: pickers[3],
           onClick (self) {
-            self.currentValue = [ new Date(Date.now() - 3600 * 1000 * 24 * 30), new Date() ]
+            self.currentValue = [new Date(Date.now() - 3600 * 1000 * 24 * 30), new Date()]
             self.updateDate(true)
           }
         }
@@ -293,6 +327,9 @@ export default {
     innerDateFormat () {
       if (this.dateFormat) {
         return this.dateFormat
+      }
+      if (typeof this.format !== 'string') {
+        return 'YYYY-MM-DD'
       }
       if (this.innerType === 'date') {
         return this.format
@@ -328,11 +365,24 @@ export default {
       this.handleValueChange(this.value)
       this.displayPopup()
     },
-    stringify (date, format) {
-      return formatDate(date, format || this.format)
+    stringify (date) {
+      return (isPlainObject(this.format) && typeof this.format.stringify === 'function')
+        ? this.format.stringify(date)
+        : formatDate(date, this.format)
     },
-    parseDate (value, format) {
-      return parseDate(value, format || this.format)
+    parse (value) {
+      return (isPlainObject(this.format) && typeof this.format.parse === 'function')
+        ? this.format.parse(value)
+        : parseDate(value, this.format)
+    },
+    isValidValue (value) {
+      const { value2date } = this.transform
+      return isValidDate(value2date(value))
+    },
+    isValidRangeValue (value) {
+      const { value2date } = this.transform
+      return Array.isArray(value) && value.length === 2 && this.isValidValue(value[0]) &&
+        this.isValidValue(value[1]) && (value2date(value[1]).getTime() >= value2date(value[0]).getTime())
     },
     dateEqual (a, b) {
       return isDateObejct(a) && isDateObejct(b) && a.getTime() === b.getTime()
@@ -342,10 +392,15 @@ export default {
     },
     selectRange (range) {
       if (typeof range.onClick === 'function') {
-        return range.onClick(this)
+        const close = range.onClick(this)
+        if (close !== false) {
+          this.closePopup()
+        }
+      } else {
+        this.currentValue = [new Date(range.start), new Date(range.end)]
+        this.updateDate(true)
+        this.closePopup()
       }
-      this.currentValue = [ new Date(range.start), new Date(range.end) ]
-      this.updateDate(true)
     },
     clearDate () {
       const date = this.range ? [null, null] : null
@@ -354,11 +409,11 @@ export default {
       this.$emit('clear')
     },
     confirmDate () {
-      const valid = this.range ? isValidRange(this.currentValue) : isValidDate(this.currentValue)
+      const valid = this.range ? isValidRangeDate(this.currentValue) : isValidDate(this.currentValue)
       if (valid) {
         this.updateDate(true)
       }
-      this.$emit('confirm', this.currentValue)
+      this.emitDate('confirm')
       this.closePopup()
     },
     updateDate (confirm = false) {
@@ -369,15 +424,23 @@ export default {
       if (equal) {
         return false
       }
-      this.$emit('input', this.currentValue)
-      this.$emit('change', this.currentValue)
+      this.emitDate('input')
+      this.emitDate('change')
       return true
     },
+    emitDate (eventName) {
+      const { date2value } = this.transform
+      const value = this.range
+        ? this.currentValue.map(date2value)
+        : date2value(this.currentValue)
+      this.$emit(eventName, value)
+    },
     handleValueChange (value) {
-      if (!this.range) {
-        this.currentValue = isValidDate(value) ? new Date(value) : null
+      const { value2date } = this.transform
+      if (this.range) {
+        this.currentValue = this.isValidRangeValue(value) ? value.map(value2date) : [null, null]
       } else {
-        this.currentValue = isValidRange(value) ? [new Date(value[0]), new Date(value[1])] : [null, null]
+        this.currentValue = this.isValidValue(value) ? value2date(value) : null
       }
     },
     selectDate (date) {
@@ -464,28 +527,54 @@ export default {
         this.position = position
       }
     },
+    blur () {
+      this.$refs.input.blur()
+    },
+    handleBlur (event) {
+      this.$emit('blur', event)
+    },
+    handleFocus (event) {
+      if (!this.popupVisible) {
+        this.showPopup()
+      }
+      this.$emit('focus', event)
+    },
+    handleKeydown (event) {
+      const keyCode = event.keyCode
+      // Tab 9 or Enter 13
+      if (keyCode === 9 || keyCode === 13) {
+        // ie emit the watch before the change event
+        event.stopPropagation()
+        this.handleChange()
+        this.userInput = null
+        this.closePopup()
+      }
+    },
     handleInput (event) {
       this.userInput = event.target.value
     },
-    handleChange (event) {
-      const value = event.target.value
+    handleChange () {
       if (this.editable && this.userInput !== null) {
-        const calendar = this.$children[0]
-        const checkDate = calendar.isDisabledTime
+        const value = this.text
+        const checkDate = this.$refs.calendarPanel.isDisabledTime
+        if (!value) {
+          this.clearDate()
+          return
+        }
         if (this.range) {
           const range = value.split(` ${this.rangeSeparator} `)
           if (range.length === 2) {
-            const start = this.parseDate(range[0], this.format)
-            const end = this.parseDate(range[1], this.format)
+            const start = this.parse(range[0])
+            const end = this.parse(range[1])
             if (start && end && !checkDate(start, null, end) && !checkDate(end, start, null)) {
-              this.currentValue = [ start, end ]
+              this.currentValue = [start, end]
               this.updateDate(true)
               this.closePopup()
               return
             }
           }
         } else {
-          const date = this.parseDate(value, this.format)
+          const date = this.parse(value)
           if (date && !checkDate(date, null, null)) {
             this.currentValue = date
             this.updateDate(true)

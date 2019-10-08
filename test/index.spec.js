@@ -5,6 +5,7 @@ import CalendarPanel from '../src/calendar.vue'
 import DatePanel from '../src/panel/date'
 import TimePanel from '../src/panel/time'
 import YearPanel from '../src/panel/year'
+import { transformDate } from '../src/utils/transform'
 
 let wrapper
 
@@ -13,6 +14,59 @@ afterEach(() => {
 })
 
 describe('datepicker', () => {
+  it('popup open when input focus', () => {
+    wrapper = mount(DatePicker)
+    const vm = wrapper.vm
+    wrapper.find('input').trigger('focus')
+    expect(vm.popupVisible).toBe(true)
+    expect(wrapper.emitted().focus).toBeTruthy()
+  })
+
+  it('popup close when type tab or enter', () => {
+    wrapper = mount(DatePicker)
+    const vm = wrapper.vm
+    const input = wrapper.find('input')
+    input.trigger('focus')
+    input.trigger('keydown', { keyCode: 9 })
+    expect(vm.popupVisible).toBe(false)
+    input.trigger('focus')
+    input.trigger('keydown', { keyCode: 13 })
+    expect(vm.popupVisible).toBe(false)
+    input.trigger('blur')
+    expect(wrapper.emitted().blur).toBeTruthy()
+  })
+
+  it('prop: valueType', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        value: new Date(2018, 4, 2)
+      }
+    })
+    const vm = wrapper.vm
+    expect(vm.transform).toBe(transformDate.date)
+    wrapper.setProps({ valueType: 'timestamp' })
+    expect(vm.transform).toBe(transformDate.timestamp)
+
+    const fn = (date) => date
+    wrapper.setProps({ valueType: {
+      date2value: fn,
+      value2date: fn
+    }})
+    expect(vm.transform).toHaveProperty('date2value', fn)
+    expect(vm.transform).toHaveProperty('value2date', fn)
+  })
+
+  it('prop: inputAttr', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        inputAttr: { required: true, id: 'input' }
+      }
+    })
+    const input = wrapper.find('input').element
+    expect(input).toHaveProperty('required', true)
+    expect(input).toHaveProperty('id', 'input')
+  })
+
   it('prop: appendToBody', () => {
     wrapper = mount(DatePicker, {
       propsData: {
@@ -85,13 +139,13 @@ describe('datepicker', () => {
       expect(td1.at(14).classes()).toContain('actived')
       expect(td2.at(13).classes()).toContain('disabled')
       expect(td2.at(14).classes()).not.toContain('disabled')
-
-      const date1 = new Date(td1.at(14).element.title).setHours(0, 0, 0, 0)
+      const el1 = td1.at(14).element
+      const date1 = new Date(+el1.dataset.year, +el1.dataset.month, +el1.textContent)
       td2.at(16).trigger('click')
       Vue.nextTick(() => {
         const emitted = wrapper.emitted()
-        const date2 = new Date(td2.at(16).element.title).setHours(0, 0, 0, 0)
-
+        const el2 = td2.at(16).element
+        const date2 = new Date(+el2.dataset.year, +el2.dataset.month, +el2.textContent)
         expect(td2.at(16).classes()).toContain('actived')
         expect(td1.at(15).classes()).toContain('inrange')
         expect(td1.at(16).classes()).toContain('inrange')
@@ -107,7 +161,7 @@ describe('datepicker', () => {
     wrapper = shallowMount(DatePicker, {
       propsData: {
         range: true,
-        value: [new Date('2018-06-01'), new Date('2018-06-10')],
+        value: [new Date(2018, 5, 1), new Date(2018, 5, 10)],
         rangeSeparator: '至'
       }
     })
@@ -128,9 +182,9 @@ describe('datepicker', () => {
     wrapper.setData({ popupVisible: true })
     vm.selectDate(new Date(2018, 5, 5))
     expect(vm.popupVisible).toBe(true)
-    expect(wrapper.emittedByOrder()).toHaveLength(0)
+    expect(wrapper.emitted().input).toBeUndefined()
     btn.trigger('click')
-    expect(wrapper.emittedByOrder()).toHaveLength(3)
+    expect(wrapper.emitted().input[0][0]).toEqual(new Date(2018, 5, 5))
     expect(vm.popupVisible).toBe(false)
   })
 
@@ -235,6 +289,25 @@ describe('datepicker', () => {
     expect(shortcuts.exists()).toBe(false)
   })
 
+  it('clear the value will set the value null', (done) => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        format: 'YYYY-MM-DD',
+        value: '2018-09-10'
+      },
+      sync: false
+    })
+    const input = wrapper.find('input')
+    input.setValue('')
+    input.trigger('input')
+    input.trigger('change')
+    Vue.nextTick(() => {
+      const emitted = wrapper.emitted()
+      expect(emitted.input).toEqual([[null]])
+      done()
+    })
+  })
+
   it('type input should be right', (done) => {
     wrapper = mount(DatePicker, {
       propsData: {
@@ -247,47 +320,75 @@ describe('datepicker', () => {
     input.trigger('input')
     input.trigger('change')
     const expectDate = new Date(2018, 8, 10)
-    wrapper.setProps({
-      range: true
-    })
     Vue.nextTick(() => {
-      input.setValue('2018-09-10 ~ 2018-09-11')
-      input.trigger('input')
-      input.trigger('change')
-      const expectRange = [new Date(2018, 8, 10), new Date(2018, 8, 11)]
-      input.setValue('2018-09-10 ~ 2018-08-10')
-      input.trigger('input')
-      input.trigger('change')
       const emitted = wrapper.emitted()
-      expect(emitted.input).toEqual([[expectDate], [expectRange]])
-      expect(emitted['input-error']).toEqual([['2018-09-10 ~ 2018-08-10']])
+      expect(emitted.input).toEqual([[expectDate]])
       done()
+    })
+  })
+
+  it('type range input should be right', (done) => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        format: 'YYYY-MM-DD',
+        range: true
+      },
+      sync: false
+    })
+    const input = wrapper.find('input')
+    input.setValue('2018-09-10 ~ 2018-09-11')
+    input.trigger('change')
+    const expectRange = [new Date(2018, 8, 10), new Date(2018, 8, 11)]
+    Vue.nextTick(() => {
+      input.setValue('2018-09-09 ~ 2018-09-12')
+      input.trigger('input')
+      input.trigger('change')
+      const expectRange2 = [new Date(2018, 8, 9), new Date(2018, 8, 12)]
+      Vue.nextTick(() => {
+        input.setValue('2018-09-10 ~ 2018-08-10')
+        input.trigger('input')
+        input.trigger('change')
+        const expectError = '2018-09-10 ~ 2018-08-10'
+        const emitted = wrapper.emitted()
+        expect(emitted.input).toEqual([[expectRange], [expectRange2]])
+        expect(emitted['input-error']).toEqual([[expectError]])
+        done()
+      })
     })
   })
 
   it('prop: dateFormat', () => {
     wrapper = mount(DatePicker, {
       propsData: {
-        value: new Date('2018-08-08'),
+        value: new Date(2018, 7, 8),
         format: '[on] MM-DD-YYYY [at] HH:mm',
         type: 'datetime'
       }
     })
     let ss = '08-08-2018'
-    const cell = wrapper.find('.mx-panel-date .actived')
     const timeHeader = wrapper.find('.mx-time-header')
-    expect(cell.element.title).toBe(ss)
     expect(timeHeader.text()).toBe(ss)
     wrapper.setProps({
       dateFormat: 'YYYY-MM-DD'
     })
     ss = '2018-08-08'
-    expect(cell.element.title).toBe(ss)
     expect(timeHeader.text()).toBe(ss)
   })
 })
 
 describe('calendar-panel', () => {
+  it('prop: defaultValue', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        value: null,
+        defaultValue: new Date(2018, 9, 1)
+      }
+    })
+    const vm = wrapper.vm
+    expect(vm.calendarYear).toBe(2018)
+    expect(vm.calendarMonth).toBe(9)
+  })
+
   it('click: prev/next month', () => {
     wrapper = mount(CalendarPanel)
 
@@ -328,7 +429,9 @@ describe('calendar-panel', () => {
 
   it('click: prev/next year', () => {
     wrapper = mount(CalendarPanel, {
-      value: new Date(2018, 4, 5)
+      propsData: {
+        value: new Date(2018, 4, 5)
+      }
     })
     const nextBtn = wrapper.find('.mx-icon-next-year')
     const lastBtn = wrapper.find('.mx-icon-last-year')
@@ -394,7 +497,7 @@ describe('calendar-panel', () => {
   })
 
   it('prop: disabledDays(Array)', () => {
-    const disabledDays = ['2018-05-01', new Date(2018, 4, 3)]
+    const disabledDays = [new Date(2018, 4, 1), new Date(2018, 4, 3)]
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2018, 4, 2),
@@ -404,9 +507,10 @@ describe('calendar-panel', () => {
     const tds = wrapper.findAll('.mx-panel-date td.disabled')
     expect(tds.length).toBe(disabledDays.length)
     for (let i = 0, len = tds.length; i < len; i++) {
-      const tdDate = new Date(tds.at(i).element.title).setHours(0, 0, 0, 0)
-      const expectDate = new Date(disabledDays[i]).setHours(0, 0, 0, 0)
-      expect(tdDate).toBe(expectDate)
+      const el = tds.at(i).element
+      const tdDate = new Date(+el.dataset.year, +el.dataset.month, +el.textContent)
+      const expectDate = new Date(disabledDays[i])
+      expect(tdDate).toEqual(expectDate)
     }
   })
 

@@ -9,6 +9,12 @@ export default {
         return null
       }
     },
+    timeSelectOptions: {
+      type: Object,
+      default () {
+        return null
+      }
+    },
     minuteStep: {
       type: Number,
       default: 0,
@@ -50,7 +56,7 @@ export default {
       }
       this.$emit('pick', new Date(time))
     },
-    getTimeSelectOptions () {
+    getTimePickerOptions () {
       const result = []
       const options = this.timePickerOptions
       if (!options) {
@@ -72,7 +78,8 @@ export default {
           let hours = Math.floor(timeMinutes / 60)
           let minutes = timeMinutes % 60
           let value = {
-            hours, minutes
+            hours,
+            minutes
           }
           result.push({
             value,
@@ -82,13 +89,15 @@ export default {
       }
       return result
     }
-
   },
   render (h) {
-    const date = new Date(this.value)
-    const disabledTime = typeof this.disabledTime === 'function' && this.disabledTime
+    const date = this.value
+      ? new Date(this.value)
+      : new Date().setHours(0, 0, 0, 0)
+    const disabledTime =
+      typeof this.disabledTime === 'function' && this.disabledTime
 
-    let pickers = this.getTimeSelectOptions()
+    let pickers = this.getTimePickerOptions()
     if (Array.isArray(pickers) && pickers.length) {
       pickers = pickers.map(picker => {
         const pickHours = picker.value.hours
@@ -98,77 +107,99 @@ export default {
           <li
             class={{
               'mx-time-picker-item': true,
-              'cell': true,
-              'actived': pickHours === this.currentHours && pickMinutes === this.currentMinutes,
-              'disabled': disabledTime && disabledTime(time)
+              cell: true,
+              actived:
+                pickHours === this.currentHours &&
+                pickMinutes === this.currentMinutes,
+              disabled: disabledTime && disabledTime(time)
             }}
-            onClick={this.pickTime.bind(this, time)}>{picker.label}</li>
+            onClick={this.pickTime.bind(this, time)}
+          >
+            {picker.label}
+          </li>
         )
       })
       return (
         <div class="mx-panel mx-panel-time">
-          <ul class="mx-time-list">
-            {pickers}
-          </ul>
+          <ul class="mx-time-list">{pickers}</ul>
         </div>
       )
     }
 
-    const hours = Array.apply(null, { length: 24 }).map((_, i) => {
-      const time = new Date(date).setHours(i)
-      return <li
-        class={{
-          'cell': true,
-          'actived': i === this.currentHours,
-          'disabled': disabledTime && disabledTime(time)
-        }}
-        onClick={this.selectTime.bind(this, time)}
-      >{this.stringifyText(i)}</li>
-    })
+    const minuteStep = this.minuteStep || 1
+    const minuteLength = parseInt(60 / minuteStep)
+    let hours = Array.apply(null, { length: 24 }).map((_, i) => i)
+    let minutes = Array.apply(null, { length: minuteLength }).map(
+      (_, i) => i * minuteStep
+    )
+    let seconds =
+      this.minuteStep === 0
+        ? Array.apply(null, { length: 60 }).map((_, i) => i)
+        : []
+    let columns = { hours, minutes, seconds }
 
-    const step = this.minuteStep || 1
-    const length = parseInt(60 / step)
-    const minutes = Array.apply(null, { length }).map((_, i) => {
-      const value = i * step
-      const time = new Date(date).setMinutes(value)
-      return <li
-        class={{
-          'cell': true,
-          'actived': value === this.currentMinutes,
-          'disabled': disabledTime && disabledTime(time)
-        }}
-        onClick={this.selectTime.bind(this, time)}
-      >{this.stringifyText(value)}</li>
-    })
-
-    const seconds = Array.apply(null, { length: 60 }).map((_, i) => {
-      const time = new Date(date).setSeconds(i)
-      return <li
-        class={{
-          'cell': true,
-          'actived': i === this.currentSeconds,
-          'disabled': disabledTime && disabledTime(time)
-        }}
-        onClick={this.selectTime.bind(this, time)}
-      >{this.stringifyText(i)}</li>
-    })
-
-    let times = [hours, minutes]
-    if (this.minuteStep === 0) {
-      times.push(seconds)
+    if (this.timeSelectOptions && typeof this.timeSelectOptions === 'object') {
+      columns = { ...columns, ...this.timeSelectOptions }
     }
 
+    const hoursColumn = columns.hours.map(v => {
+      const time = new Date(date).setHours(v)
+      return (
+        <li
+          class={{
+            cell: true,
+            actived: v === this.currentHours,
+            disabled: disabledTime && disabledTime(time)
+          }}
+          onClick={this.selectTime.bind(this, time)}
+        >
+          {this.stringifyText(v)}
+        </li>
+      )
+    })
+
+    const minutesColumn = columns.minutes.map(v => {
+      const time = new Date(date).setMinutes(v)
+      return (
+        <li
+          class={{
+            cell: true,
+            actived: v === this.currentMinutes,
+            disabled: disabledTime && disabledTime(time)
+          }}
+          onClick={this.selectTime.bind(this, time)}
+        >
+          {this.stringifyText(v)}
+        </li>
+      )
+    })
+
+    const secondsColumn = columns.seconds.map(v => {
+      const time = new Date(date).setSeconds(v)
+      return (
+        <li
+          class={{
+            cell: true,
+            actived: v === this.currentSeconds,
+            disabled: disabledTime && disabledTime(time)
+          }}
+          onClick={this.selectTime.bind(this, time)}
+        >
+          {this.stringifyText(v)}
+        </li>
+      )
+    })
+
+    let times = [hoursColumn, minutesColumn, secondsColumn].filter(
+      v => v.length > 0
+    )
+
     times = times.map(list => (
-      <ul class="mx-time-list"
-        style={{ width: 100 / times.length + '%' }}>
+      <ul class="mx-time-list" style={{ width: 100 / times.length + '%' }}>
         {list}
       </ul>
     ))
 
-    return (
-      <div class="mx-panel mx-panel-time">
-        {times}
-      </div>
-    )
+    return <div class="mx-panel mx-panel-time">{times}</div>
   }
 }

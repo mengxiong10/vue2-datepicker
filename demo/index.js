@@ -1,9 +1,10 @@
+/* eslint-disable no-new */
 import Vue from 'vue'
 import DatePicker from '@/index'
 
 Vue.use(DatePicker)
 
-new Vue({  // eslint-disable-line
+new Vue({
   el: '#app',
   data () {
     return {
@@ -18,7 +19,8 @@ new Vue({  // eslint-disable-line
       value9: '',
       value10: new Date(),
       value11: new Date(),
-      value12: ''
+      value12: '',
+      value13: ''
     }
   },
   methods: {
@@ -46,7 +48,7 @@ new Vue({  // eslint-disable-line
   },
   render (h) {
     const example1 = {
-      'base': '<date-picker v-model="value1" lang="en" :not-before="new Date()"></date-picker>',
+      'base': '<date-picker v-model="value1" valueType="format" lang="en" ></date-picker>',
       'range': '<date-picker v-model="value2" range appendToBody></date-picker>',
       'month': '<date-picker v-model="value10" lang="en" type="month" format="YYYY-MM"></date-picker>',
       'year': '<date-picker v-model="value11" lang="en" type="year" format="YYYY"></date-picker>',
@@ -78,6 +80,18 @@ new Vue({  // eslint-disable-line
           type="datetime"
           format="YYYY-MM-DD hh:mm:ss a"
           :minute-step="10"
+          ></date-picker>`,
+      'datetime with time-select-options': `
+        <date-picker
+          v-model="value13"
+          lang="en"
+          type="datetime"
+          format="YYYY-MM-DD hh:mm:ss a"
+          :time-select-options="{
+            hours: [9, 10, 11, 12, 13, 14, 15, 16],
+            minutes: [0, 10,20,30,40,50],
+            seconds: []
+          }"
           ></date-picker>`,
       'datetime range': `
         <date-picker

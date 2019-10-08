@@ -15,7 +15,7 @@ export function isValidDate (date) {
   return !isNaN(new Date(date).getTime())
 }
 
-export function isValidRange (date) {
+export function isValidRangeDate (date) {
   return (
     Array.isArray(date) &&
     date.length === 2 &&
@@ -55,6 +55,9 @@ export function formatTime (time, type = '24', a = 'a') {
 }
 
 export function formatDate (date, format) {
+  if (!date) {
+    return ''
+  }
   try {
     return fecha.format(new Date(date), format)
   } catch (e) {
@@ -64,9 +67,9 @@ export function formatDate (date, format) {
 
 export function parseDate (value, format) {
   try {
-    return fecha.parse(value, format)
+    return fecha.parse(value, format) || null
   } catch (e) {
-    return false
+    return null
   }
 }
 

@@ -5,3 +5,4 @@
 /coverage/
 /*.js
 node_modules
+/src/index.scss
