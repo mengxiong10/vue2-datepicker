@@ -1,3 +1,18 @@
+# [2.13.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.12.0...v2.13.0) (2019-10-14)
+
+
+### Bug Fixes
+
+* removed stoppropagation ([864ab83](https://github.com/mengxiong10/vue2-datepicker/commit/864ab835ca93322eb103fa1e00770976b7d95c41))
+* the clickoutside don't work sometimes ([#326](https://github.com/mengxiong10/vue2-datepicker/issues/326)) ([d9619f8](https://github.com/mengxiong10/vue2-datepicker/commit/d9619f815c6a87052b353b800c7e597a8dea816a))
+
+
+### Features
+
+* add prop `icon-day` to set calendar icon day ([62c3d60](https://github.com/mengxiong10/vue2-datepicker/commit/62c3d60dd93c15a3c3c8d433836f3bb364d30bb7))
+
+
+
 # [2.12.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.11.2...v2.12.0) (2019-06-25)
 
 
