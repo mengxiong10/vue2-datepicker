@@ -110,6 +110,7 @@ export default {
 | confirm-text | the default text to display on confirm button | `string` | 'OK' |
 | range-separator | the range separator text | `string` | '~' |
 | date-format | format the time header and tooltip | `string` | '' |
+| icon-day | set the number of calendar icon | `string`\|`number` | '' |
 
 #### value-type
 set the format of binding value

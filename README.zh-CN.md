@@ -110,6 +110,7 @@ export default {
 | confirm-text | 确认按钮的名称 | `string` | 'OK' |
 | range-separator | range 分隔符 | `string` | '~' |
 | date-format | 格式化时间组件头部和日历的tooltip,默认是format字段去除时间的格式化  | `string` | '' |
+| icon-day | 设置日历图标的数字 | `string`\|`number` | '' |
 
 #### value-type
 设置绑定值的格式
