@@ -42,7 +42,7 @@
             <line x1="46" x2="46" y1="8" y2="50" />
             <line x1="154" x2="154" y1="8" y2="50" />
             <line x1="13" x2="187" y1="70" y2="70" />
-            <text x="50%" y="135" font-size="90" stroke-width="1" text-anchor="middle" dominant-baseline="middle">{{new Date().getDate()}}</text>
+            <text x="50%" y="135" font-size="90" stroke-width="1" text-anchor="middle" dominant-baseline="middle">{{iconDay}}</text>
           </svg>
         </slot>
       </span>
@@ -204,6 +204,9 @@ export default {
     },
     popupStyle: {
       type: Object
+    },
+    iconDay: {
+      type: [Number, String]
     }
   },
   data () {
