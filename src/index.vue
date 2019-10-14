@@ -8,7 +8,7 @@
     :style="{
       'width': computedWidth
     }"
-    v-clickoutside="closePopup">
+  >
     <div class="mx-input-wrapper"
       @click.stop="showPopup">
       <input
@@ -115,7 +115,6 @@
 
 <script>
 import fecha from 'fecha'
-import clickoutside from '@/directives/clickoutside'
 import { isValidDate, isValidRangeDate, isDateObejct, isPlainObject, formatDate, parseDate, throttle } from '@/utils/index'
 import { transformDate } from '@/utils/transform'
 import CalendarPanel from './calendar.vue'
@@ -127,9 +126,6 @@ export default {
   name: 'DatePicker',
   components: { CalendarPanel },
   mixins: [locale],
-  directives: {
-    clickoutside
-  },
   props: {
     value: null,
     valueType: {
@@ -345,6 +341,30 @@ export default {
       this.popupElm = this.$refs.calendar
       document.body.appendChild(this.popupElm)
     }
+    // clickoutside close popup
+    let mousedownTarget
+    this._bindDocmentMousedown = evt => {
+      mousedownTarget = evt.target
+    }
+    this._bindDocumentMouseup = evt => {
+      const mouseupTarget = evt.target
+      const el = this.$el
+      const { popupElm } = this
+      if (
+        !mousedownTarget ||
+        !mouseupTarget ||
+        el.contains(mousedownTarget) ||
+        el.contains(mouseupTarget) ||
+        (popupElm && (popupElm.contains(mousedownTarget) || popupElm.contains(mouseupTarget)))
+      ) {
+        return
+      }
+      this.closePopup()
+      mousedownTarget = null
+    }
+    document.addEventListener('mousedown', this._bindDocmentMousedown)
+    document.addEventListener('mouseup', this._bindDocumentMouseup)
+
     this._displayPopup = throttle(() => {
       if (this.popupVisible) {
         this.displayPopup()
@@ -357,6 +377,8 @@ export default {
     if (this.popupElm && this.popupElm.parentNode === document.body) {
       document.body.removeChild(this.popupElm)
     }
+    document.removeEventListener('mousedown', this._bindDocmentMousedown)
+    document.removeEventListener('mouseup', this._bindDocumentMouseup)
     window.removeEventListener('resize', this._displayPopup)
     window.removeEventListener('scroll', this._displayPopup)
   },
