@@ -36,7 +36,7 @@ export default {
     }
   },
   'es': {
-    'days': ['Dom', 'Lun', 'mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    'days': ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
     'months': ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
     'pickers': ['próximos 7 días', 'próximos 30 días', '7 días anteriores', '30 días anteriores'],
     'placeholder': {
