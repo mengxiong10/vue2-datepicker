@@ -1,3 +1,12 @@
+## [2.13.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.0...v2.13.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* the Spanish Language error ([#361](https://github.com/mengxiong10/vue2-datepicker/issues/361)) ([04e1032](https://github.com/mengxiong10/vue2-datepicker/commit/04e10328eabfac6e10fe4a49e7579f2eff7a1736))
+
+
+
 # [2.13.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.12.0...v2.13.0) (2019-10-14)
 
 
