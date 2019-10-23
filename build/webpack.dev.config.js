@@ -19,7 +19,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       index: './demo/index.html'
     },
     noInfo: true,
-    port: 9000
+    port: 9000,
+    host: '0.0.0.0'
   },
   performance: {
     hints: false
