@@ -108,7 +108,7 @@ describe('datepicker', () => {
     })
     const vm = wrapper.vm
     const clear = wrapper.find('.mx-clear-wrapper')
-    clear.trigger('click')
+    clear.trigger('mousedown')
     const emitted = wrapper.emitted()
     expect(emitted.input[0][0]).toBe(null)
     wrapper.setProps({ value: null })
