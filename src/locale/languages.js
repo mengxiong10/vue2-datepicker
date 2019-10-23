@@ -18,7 +18,7 @@ export default {
     }
   },
   'ro': {
-    'days': ['Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm', 'Dum'],
+    'days': ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'],
     'months': ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Noi', 'Dec'],
     'pickers': ['urmatoarele 7 zile', 'urmatoarele 30 zile', 'ultimele 7 zile', 'ultimele 30 zile'],
     'placeholder': {
