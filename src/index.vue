@@ -1,6 +1,8 @@
 <template>
   <div
     class="mx-datepicker"
+    @mousedown="showPopup"
+    @touchstart="showPopup"
     :class="{
       'mx-datepicker-range': range,
       'disabled': disabled
@@ -9,8 +11,7 @@
       'width': computedWidth
     }"
   >
-    <div class="mx-input-wrapper"
-      @click.stop="showPopup">
+    <div class="mx-input-wrapper">
       <input
         :class="inputClass"
         :name="inputName"
@@ -30,7 +31,7 @@
       <span
         v-if="showClearIcon"
         class="mx-input-append mx-clear-wrapper"
-        @click.stop="clearDate">
+        @mousedown.stop="clearDate">
         <slot name="mx-clear-icon">
           <i class="mx-input-icon mx-clear-icon"></i>
         </slot>
@@ -362,11 +363,17 @@ export default {
       ) {
         return
       }
-      this.closePopup()
       mousedownTarget = null
+      this.closePopup()
     }
-    document.addEventListener('mousedown', this._bindDocmentMousedown)
-    document.addEventListener('mouseup', this._bindDocumentMouseup)
+    this._startEvt = 'mousedown'
+    this._endEvt = 'mouseup'
+    if ('ontouchend' in document) {
+      this._startEvt = 'touchstart'
+      this._endEvt = 'touchend'
+    }
+    document.addEventListener(this._startEvt, this._bindDocmentMousedown)
+    document.addEventListener(this._endEvt, this._bindDocumentMouseup)
 
     this._displayPopup = throttle(() => {
       if (this.popupVisible) {
@@ -380,8 +387,8 @@ export default {
     if (this.popupElm && this.popupElm.parentNode === document.body) {
       document.body.removeChild(this.popupElm)
     }
-    document.removeEventListener('mousedown', this._bindDocmentMousedown)
-    document.removeEventListener('mouseup', this._bindDocumentMouseup)
+    document.removeEventListener(this._startEvt, this._bindDocmentMousedown)
+    document.removeEventListener(this._endEvt, this._bindDocumentMouseup)
     window.removeEventListener('resize', this._displayPopup)
     window.removeEventListener('scroll', this._displayPopup)
   },
