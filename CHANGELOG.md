@@ -1,3 +1,13 @@
+## [2.13.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.1...v2.13.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* compatible with mobile click events ([#334](https://github.com/mengxiong10/vue2-datepicker/issues/334)) ([57d57fc](https://github.com/mengxiong10/vue2-datepicker/commit/57d57fc645d670e88c60141d2238066c2ed1ce8f))
+* fix the ro language ([43c59e6](https://github.com/mengxiong10/vue2-datepicker/commit/43c59e6b40ac71dd9ea988d0b51269e99dff7b22))
+
+
+
 ## [2.13.1](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.0...v2.13.1) (2019-10-22)
 
 
