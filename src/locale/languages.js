@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
-  }
+  },
+  'hu': {
+    'days': ['Vas', 'Hét', 'Ked', 'Sze', 'Csü', 'Pén', 'Szo'],
+    'months': ['Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Sze', 'Okt', 'Nov', 'Dec'],
+    'pickers': ['következő 7 nap', 'következő 30 nap', 'előző 7 nap', 'következő 30 nap'],
+    'placeholder': {
+      'date': 'Válassz dátumot',
+      'dateRange': 'Válassz időszakot'
+    }
+  },
 }
