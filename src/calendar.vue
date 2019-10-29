@@ -196,6 +196,9 @@ export default {
       immediate: true,
       handler: 'updateNow'
     },
+    defaultValue: {
+      handler: 'updateNow'
+    },
     visible: {
       immediate: true,
       handler: 'init'
