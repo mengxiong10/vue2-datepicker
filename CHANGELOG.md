@@ -1,3 +1,12 @@
+## [2.13.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.2...v2.13.3) (2019-10-29)
+
+
+### Bug Fixes
+
+* defaultValue should update calendar ([#364](https://github.com/mengxiong10/vue2-datepicker/issues/364)) ([5e463bd](https://github.com/mengxiong10/vue2-datepicker/commit/5e463bd3cf973b5257a58810f980c46e26824426))
+
+
+
 ## [2.13.2](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.1...v2.13.2) (2019-10-23)
 
 
