@@ -235,8 +235,7 @@ export default {
           this.showPanelDate()
         }
       } else {
-        this.showPanelNone()
-        this.updateNow(this.value)
+        this.initPanel()
       }
     },
     getNow (value) {
@@ -452,6 +451,22 @@ export default {
     },
     showPanelMonth () {
       this.panel = 'MONTH'
+    },
+    initPanel () {
+      let initalDate = null
+
+      if (this.value) {
+        initalDate = this.value
+      } else if (this.notBefore) {
+        const notBeforeDate = new Date(this.notBefore)
+
+        if (notBeforeDate > new Date()) {
+          initalDate = notBeforeDate
+        }
+      }
+
+      this.showPanelNone()
+      this.updateNow(initalDate)
     }
   }
 }
