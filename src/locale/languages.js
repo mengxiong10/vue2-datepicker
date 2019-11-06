@@ -97,5 +97,14 @@ export default {
       'date': 'Izberite datum',
       'dateRange': 'Izberite razpon med 2 datumoma'
     }
+  },
+  'pl': {
+    'days': ['N', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So'],
+    'months': ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'],
+    'pickers': ['kolejne 7 dni', 'kolejne 30 dni', 'poprzednie 7 dni', 'poprzednie 30 dni'],
+    'placeholder': {
+      'date': 'Wybierz datę',
+      'dateRange': 'Wybierz zakres dat'
+    }
   }
 }
