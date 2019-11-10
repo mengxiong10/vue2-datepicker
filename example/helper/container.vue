@@ -59,6 +59,13 @@ body {
   display: flex;
   height: 100%;
 }
+
+@media screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 .sidebar {
   border-right: 1px solid #ebedf0;
   width: 280px;
@@ -90,12 +97,14 @@ body {
 .main {
   flex: 1;
   overflow: auto;
-}
-
-.content {
-  padding: 20px;
+  max-width: 100%;
   p {
     margin: 10px 0;
   }
+}
+.content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
 }
 </style>
