@@ -1,6 +1,7 @@
 language: node_js
 node_js: 10.16.3
-script: "npm run test:push"
+script: 'npm test'
+after_script: npm run cov
 branches:
   only:
   - master

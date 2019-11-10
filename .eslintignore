@@ -1,8 +1,7 @@
-/build/
-/config/
-/dist/
-/lib/
-/coverage/
-/*.js
+
+dist
+lib
+es
 node_modules
-/src/index.scss
+/locale
+/index.*

@@ -18,6 +18,7 @@
 </a>
 
 ## Demo
+
 <https://mengxiong10.github.io/vue2-datepicker/demo/index.html>
 
 ![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
@@ -32,177 +33,184 @@ $ npm install vue2-datepicker --save
 
 ```html
 <script>
-import DatePicker from 'vue2-datepicker'
+  import DatePicker from 'vue2-datepicker';
+  import 'vue2-datepicker/index.css';
 
-export default {
-  components: { DatePicker },
-  data() {
-    return {
-      time1: '',
-      time2: '',
-      time3: '',
-      // custom lang
-      lang: {
-        days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        pickers: ['next 7 days', 'next 30 days', 'previous 7 days', 'previous 30 days'],
-        placeholder: {
-          date: 'Select Date',
-          dateRange: 'Select Date Range'
-        }
-      },
-      // custom range shortcuts
-      shortcuts: [
-        {
-          text: 'Today',
-          onClick: () => {
-            this.time3 = [ new Date(), new Date() ]
-          }
-        }
-      ],
-      timePickerOptions:{
-        start: '00:00',
-        step: '00:30',
-        end: '23:30'
-      }
-    }
-  }
-}
+  export default {
+    components: { DatePicker },
+    data() {
+      return {
+        time1: null,
+        time2: null,
+        time3: null,
+      };
+    },
+  };
 </script>
 
 <template>
   <div>
-    <date-picker v-model="time1" valueType="format" :first-day-of-week="1"></date-picker>
-    <date-picker v-model="time2" type="datetime" :time-picker-options="timePickerOptions"></date-picker>
-    <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker>
-    <date-picker v-model="value" :lang="lang"></date-picker>
+    <date-picker v-model="time1" valueType="format"></date-picker>
+    <date-picker v-model="time2" type="datetime"></date-picker>
+    <date-picker v-model="time3" range></date-picker>
   </div>
 </template>
 ```
+
 ### Props
 
-| Prop | Description  | Type  | Default |
-|------|--------------|-------|---------|
-| type | select date type  | 'date' \| 'datetime' \| 'year' \| 'month' \| 'time' | 'date' |
-| range | if true, the type is daterange or datetimerange | `boolean` | false |
-| format | format the Date. The parsing tokens are similar to the moment.js | [token](https://github.com/taylorhakes/fecha#formatting-tokens) \| [`object`](https://github.com/mengxiong10/vue2-datepicker/issues/232#issuecomment-458558141) | 'YYYY-MM-DD' |
-| value-type | type of binding value. If not specified, the binding value will be a Date object | [value-type](#value-type) | 'date' |
-| lang | Translation | [lang](#lang) | 'zh' |
-| clearable | if false, don't show the clear icon | `boolean` | true |
-| confirm | if true, need click the button to change the value | `boolean` | false |
-| editable | if false, user cann't type it | `boolean` | true |
-| disabled | Disable the component | `boolean` | false |
-| placeholder | input placeholder text | `string` | — |
-| width  | input size  | `string`\|`number` | 210 |
-| append-to-body | append the popup to body | `boolean` | false |
-| default-value | default date of the calendar | `Date` | new Date() |
-| popupStyle | popup style(override the top, left style) | `object` | — |
-| not-before | Disable all dates before new Date(not-before) | `string`\|`Date` | ''|
-| not-after | Disable all dates after new Date(not-after) | `string`\|`Date`| '' |
-| disabled-days | Disable Days | `(date) => boolean` | - |
-| shortcuts | the shortcuts for the range picker | [shortcuts](#shortcuts) | true |
-| time-picker-options | custom time-picker | [time-picker-options](#time-picker-options) | null |
-| time-select-options | custom time-select | [time-select-options](#time-select-options) | null |
-| minute-step | if > 0 don't show the second picker | 0 - 60 | 0 |
-| first-day-of-week | set the first day of week | 1 - 7  | 7 |
-| input-class | the input class name | `string` | 'mx-input' |
-| input-attr | the input attr(eg: { required: true, id: 'input'}) | `object` | — |
-| confirm-text | the default text to display on confirm button | `string` | 'OK' |
-| range-separator | the range separator text | `string` | '~' |
-| date-format | format the time header and tooltip | `string` | '' |
-| icon-day | set the number of calendar icon | `string`\|`number` | '' |
+| Prop                | Description                                    | Type                                        | Default        |
+| ------------------- | ---------------------------------------------- | ------------------------------------------- | -------------- |
+| type                | select the type of picker                      | date \|datetime\|year\|month\|time\|week    | 'date'         |
+| range               | if true, pick the range date                   | `boolean`                                   | false          |
+| format              | to set the date format. similar to moment.js   | [token](#token)                             | 'YYYY-MM-DD'   |
+| value-type          | data type of the binding value                 | [value-type](#value-type)                   | 'date'         |
+| default-value       | default date of the calendar                   | `Date`                                      | new Date()     |
+| lang                | override the default locale                    | `object`                                    |                |
+| placeholder         | input placeholder text                         | `string`                                    | ''             |
+| editable            | whether the input is editable                  | `boolean`                                   | true           |
+| clearable           | if false, don't show the clear icon            | `boolean`                                   | true           |
+| confirm             | if true, need click the button to change value | `boolean`                                   | false          |
+| confirm-text        | the text of confirm button                     | `string`                                    | 'OK'           |
+| disabled            | disable the component                          | `boolean`                                   | false          |
+| disabled-date       | specify the date that cannot be selected       | `(date) => boolean`                         | -              |
+| disabled-time       | specify the time that cannot be selected       | `(date) => boolean`                         | -              |
+| append-to-body      | append the popup to body                       | `boolean`                                   | true           |
+| inline              | without input                                  | `boolean`                                   | false          |
+| input-class         | input classname                                | `string`                                    | 'mx-input'     |
+| input-attr          | input attrs(eg: { name: 'date', id: 'foo'})    | `object`                                    | —              |
+| open                | open state of picker                           | `boolean`                                   | -              |
+| popupStyle          | popup style                                    | `object`                                    | —              |
+| popupClass          | popup classes                                  |                                             | —              |
+| shortcuts           | set shortcuts to select                        | `Array<{text, onClick}>`                    | -              |
+| title-format        | format of the tooltip in calendar cell         | [token](#token)                             | 'YYYY-MM-DD'   |
+| range-separator     | text of range separator                        | `string`                                    | ' ~ '          |
+| show-week-number    | determine whether show week number             | `boolean`                                   | false          |
+| hour-step           | interval between hours in time picker          | 1 - 60                                      | 1              |
+| minute-step         | interval between minutes in time picker        | 1 - 60                                      | 1              |
+| second-step         | interval between seconds in time picker        | 1 - 60                                      | 1              |
+| hour-options        | custom hour column                             | `Array<number>`                             | -              |
+| minute-options      | custom minute column                           | `Array<number>`                             | -              |
+| second-options      | custom second column                           | `Array<number>`                             | -              |
+| show-hour           | whether show hour column                       | `boolean`                                   | base on format |
+| show-minute         | whether show minute column                     | `boolean`                                   | base on format |
+| show-second         | whether show second column                     | `boolean`                                   | base on format |
+| use12h              | whether show ampm column                       | `boolean`                                   | base on format |
+| show-time-header    | whether show header of time picker             | `boolean`                                   | false          |
+| time-title-format   | format of the time header                      | [token](#token)                             | 'YYYY-MM-DD'   |
+| time-picker-options | set fixed time list to select                  | [time-picker-options](#time-picker-options) | null           |
+
+#### Token
+
+| Uint                       | Token | output                                 |
+| -------------------------- | ----- | -------------------------------------- |
+| Year                       | YY    | 70 71 ... 10 11                        |
+|                            | YYYY  | 1970 1971 ... 2010 2011                |
+| Month                      | M     | 1 2 ... 11 12                          |
+|                            | MM    | 01 02 ... 11 12                        |
+|                            | MMM   | Jan Feb ... Nov Dec                    |
+|                            | MMMM  | January February ... November December |
+| Day of Month               | D     | 1 2 ... 30 31                          |
+|                            | DD    | 01 02 ... 30 31                        |
+| Day of Week                | d     | 0 1 ... 5 6                            |
+|                            | dd    | Su Mo ... Fr Sa                        |
+|                            | ddd   | Sun Mon ... Fri Sat                    |
+|                            | dddd  | Sunday Monday ... Friday Saturday      |
+| AM/PM                      | A     | AM PM                                  |
+|                            | a     | am pm                                  |
+| Hour                       | H     | 0 1 ... 22 23                          |
+|                            | HH    | 00 01 ... 22 23                        |
+|                            | h     | 1 2 ... 12                             |
+|                            | hh    | 01 02 ... 12                           |
+| Minute                     | m     | 0 1 ... 58 59                          |
+|                            | mm    | 00 01 ... 58 59                        |
+| Second                     | s     | 0 1 ... 58 59                          |
+|                            | ss    | 00 01 ... 58 59                        |
+| Fractional Second          | S     | 0 1 ... 8 9                            |
+|                            | SS    | 00 01 ... 98 99                        |
+|                            | SSS   | 000 001 ... 998 999                    |
+| Time Zone                  | Z     | -07:00 -06:00 ... +06:00 +07:00        |
+|                            | ZZ    | -0700 -0600 ... +0600 +0700            |
+| Week of Year               | w     | 1 2 ... 52 53                          |
+|                            | ww    | 01 02 ... 52 53                        |
+| Unix Timestamp             | X     | 1360013296                             |
+| Unix Millisecond Timestamp | x     | 1360013296123                          |
 
 #### value-type
+
 set the format of binding value
 
-| Value           | Description                               |
-|-----------------|-------------------------------------------|
-| date            | binding value will be a Date object       |
-| timestamp       | binding value will be a timestamp number  |
-| format          | binding value will be the format string   |
-
-Advanced: You can also customize objects to implement two functions.
-```js
-{
-  value2date: (value: any) => Date,  // transform the binding value to calendar Date Object
-  date2value: (date: Date) => any   // transform the calendar Date Object to binding value
-}
-
-```
-#### lang
-
-| Type |
-|------|
-| 'en'\|'zh'\|'es'\|'pt-br'\|'fr'\|'ru'\|'de'\|'it'\|'cs' |
-| { days: string[]; months: string[]; picker: string[]; placeholder: { date: string; dateRange: string  } } |
+| Value             | Description                                          |
+| ----------------- | ---------------------------------------------------- |
+| 'date'            | return a Date object                                 |
+| 'timestamp'       | return a timestamp number                            |
+| 'format'          | returns a string formatted using pattern of `format` |
+| token(MM/DD/YYYY) | returns a string formatted using this pattern        |
 
 #### shortcuts
+
 the shortcuts for the range picker
 
-| Value           | Description |
-|-----------------|-------------|
-| true            | show the default shortcuts |
-| false           | hide the defaualt shortcuts  |
-| [{text: string, onClick: () => any }] | custom shortcuts |
+```js
+[
+  { text: 'today', onClick: () => new Date() },
+  {
+    text: 'Yesterday',
+    onClick: () => {
+      const date = new Date();
+      date.setTime(date.getTime() - 3600 * 1000 * 24);
+      return date;
+    },
+  },
+];
+```
+
+| Attribute | Description                               |
+| --------- | ----------------------------------------- |
+| text      | title of the shortcut                     |
+| onClick   | callback function , need to return a Date |
 
 #### time-picker-options
-custom time-picker
 
-| Type |
-|------|
-| {start: '00:00', step:'00:30' , end: '23:30'} |
-| () => Array<{ label: string; values: { hours: number; minutes: number } }> |
+set fixed time list to select;
 
-#### time-select-options
-custom time-select for columns
+```js
+{start: '00:00', step:'00:30' , end: '23:30'}
+```
 
-| Type |
-|------|
-| {hours: [9, 10, 11], minutes: [10, 20], seconds: [10, 20] } |
+| Attribute | Description |
+| --------- | ----------- |
+| start     | start time  |
+| step      | step time   |
+| end       | end time    |
 
 ### Events
-| Name            | Description                                            |  Callback Arguments    |
-|-----------------|--------------------------------------------------------|------------------------|
-| input           | When the value change(v-model event)                   | the currentValue       |
-| change          | When the value change(same as input)                   | the currentValue       |
-| confirm         | When click 'confirm' button                            | the currentValue       |
-| clear           | When click 'clear' button                              |                        |
-| input-error     | When user type a invalid Date                          | the input text         |
-| panel-change    | When change the panel view(eg: from year to month view)| [panel](#panel), [oldPanel](#panel) |
-| calendar-change | When calendar view year or month change                | now(Date), oldNow(Date)|
-| focus           | When input focus                                       |                        |
-| blur            | When input blur                                        |                        |
 
-#### panel
-
-| Value | Description          |
-|-------|----------------------|
-| NONE  | when panel is closed |
-| DATE  | when panel is date   |
-| YEAR  | when panel is year   |
-| MONTH | when panel is month  |
-| TIME  | when panel is time   |
+| Name        | Description                          | Callback Arguments     |
+| ----------- | ------------------------------------ | ---------------------- |
+| input       | When the value change(v-model event) | the currentValue       |
+| change      | When the value change(same as input) | the currentValue, type |
+| open        | When panel opening                   |                        |
+| close       | When panel closing                   |                        |
+| confirm     | When click 'confirm' button          | the currentValue       |
+| clear       | When click 'clear' button            |                        |
+| input-error | When user type a invalid Date        | the input text         |
+| focus       | When input focus                     |                        |
+| blur        | When input blur                      |                        |
 
 ### Slots
 
-| Name            | Description              |
-|-----------------|--------------------------|
-| calendar-icon   | custom the calender icon |
-| header          | popup header             |
-| footer          | popup footer             |
+| Name          | Description              |
+| ------------- | ------------------------ |
+| icon-calendar | custom the calender icon |
+| icon-clear    | custom the clear icon    |
+| header        | popup header             |
+| footer        | popup footer             |
+| sidebar       | popup sidebar            |
 
 ## ChangeLog
 
 [CHANGELOG](CHANGELOG.md)
-
-
-## Donate
-
-If you find this project useful, you can buy author a glass of juice
-
-[PayPal](https://www.paypal.me/mengxiong10) |
-[AliPay](https://user-images.githubusercontent.com/14135808/57742967-be1ac000-76f5-11e9-9607-c0854e0fdd11.png) |
-[WeChat](https://user-images.githubusercontent.com/14135808/57743255-e2c36780-76f6-11e9-8bb8-7720a2607dc1.png)
 
 ## License
 

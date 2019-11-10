@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker prop: attrs of input 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="test"
+      name="test"
+      placeholder="test placeholder"
+      type="number"
+    />
+     
+    <!---->
+     
+    <i
+      class="mx-icon-calendar"
+    >
+      <icon-calendar-stub />
+    </i>
+  </div>
+   
+  <popup-stub
+    appendtobody="true"
+  >
+    <!---->
+     
+    <div
+      class="mx-datepicker-content-wrapper"
+    >
+      <!---->
+       
+      <div
+        class="mx-datepicker-content"
+      >
+        <div />
+      </div>
+    </div>
+     
+    <!---->
+  </popup-stub>
+</div>
+`;
+
+exports[`DatePicker prop: clearable 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="mx-input"
+      name="date"
+      placeholder=""
+      type="text"
+    />
+     
+    <!---->
+     
+    <i
+      class="mx-icon-calendar"
+    >
+      <icon-calendar-stub />
+    </i>
+  </div>
+   
+  <popup-stub
+    appendtobody="true"
+  >
+    <!---->
+     
+    <div
+      class="mx-datepicker-content-wrapper"
+    >
+      <!---->
+       
+      <div
+        class="mx-datepicker-content"
+      >
+        <div />
+      </div>
+    </div>
+     
+    <!---->
+  </popup-stub>
+</div>
+`;
+
+exports[`DatePicker prop: editable 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="mx-input"
+      name="date"
+      placeholder=""
+      readonly="readonly"
+      type="text"
+    />
+     
+    <i
+      class="mx-icon-clear"
+    >
+      <icon-close-stub />
+    </i>
+     
+    <i
+      class="mx-icon-calendar"
+    >
+      <icon-calendar-stub />
+    </i>
+  </div>
+   
+  <popup-stub
+    appendtobody="true"
+  >
+    <!---->
+     
+    <div
+      class="mx-datepicker-content-wrapper"
+    >
+      <!---->
+       
+      <div
+        class="mx-datepicker-content"
+      >
+        <div />
+      </div>
+    </div>
+     
+    <!---->
+  </popup-stub>
+</div>
+`;

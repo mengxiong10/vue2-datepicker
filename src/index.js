@@ -1,13 +1,15 @@
-import DatePicker from './index.vue'
-import './index.scss'
+/* istanbul ignore file */
+import DatePicker from './date-picker.vue';
+import { locale } from './locale';
 
-DatePicker.install = function (Vue) {
-  Vue.component(DatePicker.name, DatePicker)
-}
+DatePicker.locale = locale;
 
-/* istanbul ignore if */
+DatePicker.install = function install(Vue) {
+  Vue.component(DatePicker.name, DatePicker);
+};
+
 if (typeof window !== 'undefined' && window.Vue) {
-  DatePicker.install(window.Vue)
+  DatePicker.install(window.Vue);
 }
 
-export default DatePicker
+export default DatePicker;

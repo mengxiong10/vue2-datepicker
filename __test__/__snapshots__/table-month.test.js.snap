@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableMonth correct render 1`] = `
+<table
+  class="mx-table mx-table-month"
+  getclasses="month => {
+          if (month === 9) {
+            return 'active';
+          }
+
+          return '';
+        }"
+>
+  <tr>
+    <td
+      class="cell"
+      data-month="0"
+    >
+      <div>
+        Jan
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="1"
+    >
+      <div>
+        Feb
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="2"
+    >
+      <div>
+        Mar
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td
+      class="cell"
+      data-month="3"
+    >
+      <div>
+        Apr
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="4"
+    >
+      <div>
+        May
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="5"
+    >
+      <div>
+        Jun
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td
+      class="cell"
+      data-month="6"
+    >
+      <div>
+        Jul
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="7"
+    >
+      <div>
+        Aug
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="8"
+    >
+      <div>
+        Sep
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td
+      class="cell"
+      data-month="9"
+    >
+      <div>
+        Oct
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="10"
+    >
+      <div>
+        Nov
+      </div>
+    </td>
+    <td
+      class="cell"
+      data-month="11"
+    >
+      <div>
+        Dec
+      </div>
+    </td>
+  </tr>
+</table>
+`;

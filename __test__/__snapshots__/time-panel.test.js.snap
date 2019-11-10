@@ -1,0 +1,1747 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimePanel render: correct 12hours in the fixed time list 1`] = `
+<div
+  class="mx-time"
+>
+  <!---->
+   
+  <div
+    class="mx-time-content"
+  >
+    <div
+      class="mx-scrollbar"
+      style="position: relative; overflow: hidden;"
+    >
+      <div
+        class="mx-scrollbar-wrap"
+        style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+      >
+        <ul
+          class="mx-time-list"
+        >
+          <li
+            class="cell"
+          >
+            
+      08:30 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      09:00 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      09:30 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      10:00 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      10:30 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      11:00 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      11:30 AM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      12:00 PM
+    
+          </li>
+          <li
+            class="cell active"
+          >
+            
+      12:30 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      01:00 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      01:30 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      02:00 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      02:30 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      03:00 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      03:30 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      04:00 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      04:30 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      05:00 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      05:30 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      06:00 PM
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      06:30 PM
+    
+          </li>
+        </ul>
+      </div>
+       
+      <div
+        class="mx-scrollbar-track"
+      >
+        <div
+          class="mx-scrollbar-thumb"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TimePanel render: correct classes of the columns 1`] = `
+<div
+  class="mx-time"
+>
+  <!---->
+   
+  <div
+    class="mx-time-content"
+  >
+    <div
+      class="mx-time-columns"
+    >
+      <div
+        class="mx-scrollbar mx-time-column"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          class="mx-scrollbar-wrap"
+          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        >
+          <ul
+            data-type="hour"
+          >
+            <li
+              class="cell disabled"
+              data-value="1570120230000"
+            >
+              
+        00
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570123830000"
+            >
+              
+        01
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570127430000"
+            >
+              
+        02
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570131030000"
+            >
+              
+        03
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570134630000"
+            >
+              
+        04
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570138230000"
+            >
+              
+        05
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570141830000"
+            >
+              
+        06
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570145430000"
+            >
+              
+        07
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570149030000"
+            >
+              
+        08
+      
+            </li>
+            <li
+              class="cell disabled"
+              data-value="1570152630000"
+            >
+              
+        09
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570156230000"
+            >
+              
+        10
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570159830000"
+            >
+              
+        11
+      
+            </li>
+            <li
+              class="cell active"
+              data-value="1570163430000"
+            >
+              
+        12
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570167030000"
+            >
+              
+        13
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570170630000"
+            >
+              
+        14
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570174230000"
+            >
+              
+        15
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570177830000"
+            >
+              
+        16
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570181430000"
+            >
+              
+        17
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570185030000"
+            >
+              
+        18
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570188630000"
+            >
+              
+        19
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570192230000"
+            >
+              
+        20
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570195830000"
+            >
+              
+        21
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570199430000"
+            >
+              
+        22
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570203030000"
+            >
+              
+        23
+      
+            </li>
+          </ul>
+        </div>
+         
+        <div
+          class="mx-scrollbar-track"
+        >
+          <div
+            class="mx-scrollbar-thumb"
+          />
+        </div>
+      </div>
+      <div
+        class="mx-scrollbar mx-time-column"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          class="mx-scrollbar-wrap"
+          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        >
+          <ul
+            data-type="minute"
+          >
+            <li
+              class="cell"
+              data-value="1570161630000"
+            >
+              
+        00
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161690000"
+            >
+              
+        01
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161750000"
+            >
+              
+        02
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161810000"
+            >
+              
+        03
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161870000"
+            >
+              
+        04
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161930000"
+            >
+              
+        05
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161990000"
+            >
+              
+        06
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162050000"
+            >
+              
+        07
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162110000"
+            >
+              
+        08
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162170000"
+            >
+              
+        09
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162230000"
+            >
+              
+        10
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162290000"
+            >
+              
+        11
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162350000"
+            >
+              
+        12
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162410000"
+            >
+              
+        13
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162470000"
+            >
+              
+        14
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162530000"
+            >
+              
+        15
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162590000"
+            >
+              
+        16
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162650000"
+            >
+              
+        17
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162710000"
+            >
+              
+        18
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162770000"
+            >
+              
+        19
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162830000"
+            >
+              
+        20
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162890000"
+            >
+              
+        21
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570162950000"
+            >
+              
+        22
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163010000"
+            >
+              
+        23
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163070000"
+            >
+              
+        24
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163130000"
+            >
+              
+        25
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163190000"
+            >
+              
+        26
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163250000"
+            >
+              
+        27
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163310000"
+            >
+              
+        28
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163370000"
+            >
+              
+        29
+      
+            </li>
+            <li
+              class="cell active"
+              data-value="1570163430000"
+            >
+              
+        30
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163490000"
+            >
+              
+        31
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163550000"
+            >
+              
+        32
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163610000"
+            >
+              
+        33
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163670000"
+            >
+              
+        34
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163730000"
+            >
+              
+        35
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163790000"
+            >
+              
+        36
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163850000"
+            >
+              
+        37
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163910000"
+            >
+              
+        38
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163970000"
+            >
+              
+        39
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164030000"
+            >
+              
+        40
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164090000"
+            >
+              
+        41
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164150000"
+            >
+              
+        42
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164210000"
+            >
+              
+        43
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164270000"
+            >
+              
+        44
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164330000"
+            >
+              
+        45
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164390000"
+            >
+              
+        46
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164450000"
+            >
+              
+        47
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164510000"
+            >
+              
+        48
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164570000"
+            >
+              
+        49
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164630000"
+            >
+              
+        50
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164690000"
+            >
+              
+        51
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164750000"
+            >
+              
+        52
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164810000"
+            >
+              
+        53
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164870000"
+            >
+              
+        54
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164930000"
+            >
+              
+        55
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570164990000"
+            >
+              
+        56
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570165050000"
+            >
+              
+        57
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570165110000"
+            >
+              
+        58
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570165170000"
+            >
+              
+        59
+      
+            </li>
+          </ul>
+        </div>
+         
+        <div
+          class="mx-scrollbar-track"
+        >
+          <div
+            class="mx-scrollbar-thumb"
+          />
+        </div>
+      </div>
+      <div
+        class="mx-scrollbar mx-time-column"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          class="mx-scrollbar-wrap"
+          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        >
+          <ul
+            data-type="second"
+          >
+            <li
+              class="cell"
+              data-value="1570163400000"
+            >
+              
+        00
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163401000"
+            >
+              
+        01
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163402000"
+            >
+              
+        02
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163403000"
+            >
+              
+        03
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163404000"
+            >
+              
+        04
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163405000"
+            >
+              
+        05
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163406000"
+            >
+              
+        06
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163407000"
+            >
+              
+        07
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163408000"
+            >
+              
+        08
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163409000"
+            >
+              
+        09
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163410000"
+            >
+              
+        10
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163411000"
+            >
+              
+        11
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163412000"
+            >
+              
+        12
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163413000"
+            >
+              
+        13
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163414000"
+            >
+              
+        14
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163415000"
+            >
+              
+        15
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163416000"
+            >
+              
+        16
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163417000"
+            >
+              
+        17
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163418000"
+            >
+              
+        18
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163419000"
+            >
+              
+        19
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163420000"
+            >
+              
+        20
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163421000"
+            >
+              
+        21
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163422000"
+            >
+              
+        22
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163423000"
+            >
+              
+        23
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163424000"
+            >
+              
+        24
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163425000"
+            >
+              
+        25
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163426000"
+            >
+              
+        26
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163427000"
+            >
+              
+        27
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163428000"
+            >
+              
+        28
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163429000"
+            >
+              
+        29
+      
+            </li>
+            <li
+              class="cell active"
+              data-value="1570163430000"
+            >
+              
+        30
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163431000"
+            >
+              
+        31
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163432000"
+            >
+              
+        32
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163433000"
+            >
+              
+        33
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163434000"
+            >
+              
+        34
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163435000"
+            >
+              
+        35
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163436000"
+            >
+              
+        36
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163437000"
+            >
+              
+        37
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163438000"
+            >
+              
+        38
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163439000"
+            >
+              
+        39
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163440000"
+            >
+              
+        40
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163441000"
+            >
+              
+        41
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163442000"
+            >
+              
+        42
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163443000"
+            >
+              
+        43
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163444000"
+            >
+              
+        44
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163445000"
+            >
+              
+        45
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163446000"
+            >
+              
+        46
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163447000"
+            >
+              
+        47
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163448000"
+            >
+              
+        48
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163449000"
+            >
+              
+        49
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163450000"
+            >
+              
+        50
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163451000"
+            >
+              
+        51
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163452000"
+            >
+              
+        52
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163453000"
+            >
+              
+        53
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163454000"
+            >
+              
+        54
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163455000"
+            >
+              
+        55
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163456000"
+            >
+              
+        56
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163457000"
+            >
+              
+        57
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163458000"
+            >
+              
+        58
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570163459000"
+            >
+              
+        59
+      
+            </li>
+          </ul>
+        </div>
+         
+        <div
+          class="mx-scrollbar-track"
+        >
+          <div
+            class="mx-scrollbar-thumb"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TimePanel render: correct classes of the fixed time list 1`] = `
+<div
+  class="mx-time"
+>
+  <!---->
+   
+  <div
+    class="mx-time-content"
+  >
+    <div
+      class="mx-scrollbar"
+      style="position: relative; overflow: hidden;"
+    >
+      <div
+        class="mx-scrollbar-wrap"
+        style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+      >
+        <ul
+          class="mx-time-list"
+        >
+          <li
+            class="cell disabled"
+          >
+            
+      08:30
+    
+          </li>
+          <li
+            class="cell disabled"
+          >
+            
+      09:00
+    
+          </li>
+          <li
+            class="cell disabled"
+          >
+            
+      09:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      10:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      10:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      11:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      11:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      12:00
+    
+          </li>
+          <li
+            class="cell active"
+          >
+            
+      12:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      13:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      13:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      14:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      14:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      15:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      15:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      16:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      16:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      17:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      17:30
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      18:00
+    
+          </li>
+          <li
+            class="cell"
+          >
+            
+      18:30
+    
+          </li>
+        </ul>
+      </div>
+       
+      <div
+        class="mx-scrollbar-track"
+      >
+        <div
+          class="mx-scrollbar-thumb"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TimePanel render: correct columns by format 1`] = `
+<div
+  class="mx-time"
+>
+  <!---->
+   
+  <div
+    class="mx-time-content"
+  >
+    <div
+      class="mx-time-columns"
+    >
+      <div
+        class="mx-scrollbar mx-time-column"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          class="mx-scrollbar-wrap"
+          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        >
+          <ul
+            data-type="hour"
+          >
+            <li
+              class="cell"
+              data-value="1570147200000"
+            >
+              
+        08
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570150800000"
+            >
+              
+        09
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570154400000"
+            >
+              
+        10
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570158000000"
+            >
+              
+        11
+      
+            </li>
+          </ul>
+        </div>
+         
+        <div
+          class="mx-scrollbar-track"
+        >
+          <div
+            class="mx-scrollbar-thumb"
+          />
+        </div>
+      </div>
+      <div
+        class="mx-scrollbar mx-time-column"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          class="mx-scrollbar-wrap"
+          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        >
+          <ul
+            data-type="minute"
+          >
+            <li
+              class="cell active"
+              data-value="1570118400000"
+            >
+              
+        00
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570120200000"
+            >
+              
+        30
+      
+            </li>
+          </ul>
+        </div>
+         
+        <div
+          class="mx-scrollbar-track"
+        >
+          <div
+            class="mx-scrollbar-thumb"
+          />
+        </div>
+      </div>
+      <div
+        class="mx-scrollbar mx-time-column"
+        style="position: relative; overflow: hidden;"
+      >
+        <div
+          class="mx-scrollbar-wrap"
+          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        >
+          <ul
+            data-type="ampm"
+          >
+            <li
+              class="cell active"
+              data-value="1570118400000"
+            >
+              
+        AM
+      
+            </li>
+            <li
+              class="cell"
+              data-value="1570161600000"
+            >
+              
+        PM
+      
+            </li>
+          </ul>
+        </div>
+         
+        <div
+          class="mx-scrollbar-track"
+        >
+          <div
+            class="mx-scrollbar-thumb"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

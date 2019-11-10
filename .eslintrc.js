@@ -1,47 +1,37 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
   env: {
     browser: true,
-    jest: true
+    jest: true,
+    es6: true,
   },
-  extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential',
-    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard'
-  ],
-  // required to lint *.vue files
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.vue'],
+      },
+    },
+    'import/extensions': ['.js', '.jsx', '.vue'],
+  },
+  extends: ['airbnb-base', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
+
   plugins: ['vue'],
-  // add your custom rules here
+
   rules: {
-    // allow async-await
-    'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-console': ['error', { allow: ['warn', 'error'] }],
-    camelcase: ['off', { properties: 'never' }],
-    // "vue/max-attributes-per-line": [2, {
-    //   "singleline": 1,
-    //   "multiline": {
-    //     "max": 1,
-    //     "allowFirstLine": true
-    //   }
-    // }],
-    'vue/html-indent': [
-      'error',
-      2,
-      {
-        attribute: 1,
-        closeBracket: 0,
-        alignAttributesVertically: false,
-        ignores: []
-      }
-    ]
-  }
-}
+    'no-plusplus': 'off',
+    'no-underscore-dangle': 'off',
+    'no-param-reassign': 'off',
+    'no-restricted-globals': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': [2, { ignore: ['vue2-datepicker'] }],
+    'vue/require-default-prop': 'off',
+    'vue/require-prop-types': 'off',
+    'vue/no-v-html': 'off',
+  },
+};
