@@ -57,6 +57,41 @@ $ npm install vue2-datepicker --save
 </template>
 ```
 
+## 国际化
+
+v3.x 默认语言是英文. 可以引入语言包切换到中文.
+
+```js
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
+import 'vue2-datepicker/locale/zh-cn';
+```
+
+还可以通过`lang`去覆盖默认语言选项.
+[完整配置](https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md)
+
+```html
+<script>
+  export default {
+    data() {
+      return {
+        lang: {
+          formatLocale: {
+            firstDayOfWeek: 1,
+          },
+          monthBeforeYear: false,
+        },
+      };
+    },
+  };
+</script>
+
+<template>
+  <date-picker :lang="lang"></date-picker>
+</template>
+```
+
 ### Props
 
 | 属性                | 描述                                             | 类型                                        | 默认值         |

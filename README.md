@@ -57,6 +57,43 @@ $ npm install vue2-datepicker --save
 </template>
 ```
 
+## Internationalization
+
+The default language of v3.x is English. If you need other locales.
+You can import locale file.
+Once you import a locale, it becomes the active locale.
+
+```js
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
+import 'vue2-datepicker/locale/zh-cn';
+```
+
+You can override the default locale by `lang`.
+[Full config](https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md)
+
+```html
+<script>
+  export default {
+    data() {
+      return {
+        lang: {
+          formatLocale: {
+            firstDayOfWeek: 1,
+          },
+          monthBeforeYear: false,
+        },
+      };
+    },
+  };
+</script>
+
+<template>
+  <date-picker :lang="lang"></date-picker>
+</template>
+```
+
 ### Props
 
 | Prop                | Description                                    | Type                                        | Default        |
