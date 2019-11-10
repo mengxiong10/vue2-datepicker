@@ -16,7 +16,7 @@ describe('DatePicker', () => {
     expect(wrapper.find('.mx-datepicker-popup').exists()).toBe(false);
     // expect click input should show the popup
     const input = wrapper.find('input');
-    input.trigger('click');
+    input.trigger('mousedown');
     expect(wrapper.find('.mx-datepicker-popup').exists()).toBe(true);
     // expect click out side should hide the popup
     const bodyWrapper = createWrapper(document.body);
@@ -176,12 +176,7 @@ describe('DatePicker', () => {
     expect(vm.text).toBe('2019/10/20');
     vm.emitValue(emitValue);
     const emitted = wrapper.emitted();
-    expect(emitted.input).toEqual([
-      [emitValue],
-      ['2019/10/22'],
-      [emitValue.getTime()],
-      ['22/10/2019'],
-    ]);
+    expect(emitted.input).toEqual([[emitValue], ['2019/10/22'], [emitValue.getTime()], ['22/10/2019']]);
   });
 
   it('prop: shortcut', () => {
