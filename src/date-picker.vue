@@ -7,7 +7,7 @@
       disabled: disabled,
     }"
   >
-    <div v-if="!inline" class="mx-input-wrapper" @click="openPopup">
+    <div v-if="!inline" class="mx-input-wrapper" @mousedown="openPopup" @touchstart="openPopup">
       <input
         ref="input"
         v-bind="{ name: 'date', type: 'text', autocomplete: 'off', ...inputAttr }"
@@ -22,7 +22,7 @@
         @input="handleInputInput"
         @change="handleInputChange"
       />
-      <i v-if="showClearIcon" class="mx-icon-clear" @click.stop="handleClear">
+      <i v-if="showClearIcon" class="mx-icon-clear" @mousedown.stop="handleClear">
         <slot name="icon-clear">
           <icon-close></icon-close>
         </slot>
