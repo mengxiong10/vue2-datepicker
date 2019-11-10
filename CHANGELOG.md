@@ -1,3 +1,13 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.0-beta.1...v3.0.0) (2019-11-10)
+
+
+### Bug Fixes
+
+* compatible with mobile click events ([73ef846](https://github.com/mengxiong10/vue2-datepicker/commit/73ef846))
+
+
+
 ## [2.13.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.2...v2.13.3) (2019-10-29)
 
 
