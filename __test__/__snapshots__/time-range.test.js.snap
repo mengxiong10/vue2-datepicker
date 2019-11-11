@@ -28,166 +28,6 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             >
               <li
                 class="cell"
-                data-value="1570120200000"
-              >
-                
-        12
-      
-              </li>
-              <li
-                class="cell"
-                data-value="1570127400000"
-              >
-                
-        02
-      
-              </li>
-              <li
-                class="cell"
-                data-value="1570134600000"
-              >
-                
-        04
-      
-              </li>
-              <li
-                class="cell"
-                data-value="1570141800000"
-              >
-                
-        06
-      
-              </li>
-              <li
-                class="cell active"
-                data-value="1570149000000"
-              >
-                
-        08
-      
-              </li>
-              <li
-                class="cell"
-                data-value="1570156200000"
-              >
-                
-        10
-      
-              </li>
-            </ul>
-          </div>
-           
-          <div
-            class="mx-scrollbar-track"
-          >
-            <div
-              class="mx-scrollbar-thumb"
-            />
-          </div>
-        </div>
-        <div
-          class="mx-scrollbar mx-time-column"
-          style="position: relative; overflow: hidden;"
-        >
-          <div
-            class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
-          >
-            <ul
-              data-type="minute"
-            >
-              <li
-                class="cell"
-                data-value="1570147200000"
-              >
-                
-        00
-      
-              </li>
-              <li
-                class="cell active"
-                data-value="1570149000000"
-              >
-                
-        30
-      
-              </li>
-            </ul>
-          </div>
-           
-          <div
-            class="mx-scrollbar-track"
-          >
-            <div
-              class="mx-scrollbar-thumb"
-            />
-          </div>
-        </div>
-        <div
-          class="mx-scrollbar mx-time-column"
-          style="position: relative; overflow: hidden;"
-        >
-          <div
-            class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
-          >
-            <ul
-              data-type="ampm"
-            >
-              <li
-                class="cell active"
-                data-value="1570149000000"
-              >
-                
-        AM
-      
-              </li>
-              <li
-                class="cell"
-                data-value="1570192200000"
-              >
-                
-        PM
-      
-              </li>
-            </ul>
-          </div>
-           
-          <div
-            class="mx-scrollbar-track"
-          >
-            <div
-              class="mx-scrollbar-thumb"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="mx-time"
-  >
-    <!---->
-     
-    <div
-      class="mx-time-content"
-    >
-      <div
-        class="mx-time-columns"
-      >
-        <div
-          class="mx-scrollbar mx-time-column"
-          style="position: relative; overflow: hidden;"
-        >
-          <div
-            class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
-          >
-            <ul
-              data-type="hour"
-            >
-              <li
-                class="cell"
                 data-value="1570163400000"
               >
                 
@@ -203,7 +43,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
       
               </li>
               <li
-                class="cell"
+                class="cell active"
                 data-value="1570177800000"
               >
                 
@@ -211,7 +51,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
       
               </li>
               <li
-                class="cell active"
+                class="cell"
                 data-value="1570185000000"
               >
                 
@@ -258,7 +98,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             >
               <li
                 class="cell"
-                data-value="1570183200000"
+                data-value="1570176000000"
               >
                 
         00
@@ -266,7 +106,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell active"
-                data-value="1570185000000"
+                data-value="1570177800000"
               >
                 
         30
@@ -295,8 +135,8 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               data-type="ampm"
             >
               <li
-                class="cell disabled"
-                data-value="1570141800000"
+                class="cell"
+                data-value="1570134600000"
               >
                 
         AM
@@ -304,7 +144,167 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell active"
-                data-value="1570185000000"
+                data-value="1570177800000"
+              >
+                
+        PM
+      
+              </li>
+            </ul>
+          </div>
+           
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="mx-time"
+  >
+    <!---->
+     
+    <div
+      class="mx-time-content"
+    >
+      <div
+        class="mx-time-columns"
+      >
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          >
+            <ul
+              data-type="hour"
+            >
+              <li
+                class="cell"
+                data-value="1570206600000"
+              >
+                
+        12
+      
+              </li>
+              <li
+                class="cell active"
+                data-value="1570213800000"
+              >
+                
+        02
+      
+              </li>
+              <li
+                class="cell"
+                data-value="1570221000000"
+              >
+                
+        04
+      
+              </li>
+              <li
+                class="cell"
+                data-value="1570228200000"
+              >
+                
+        06
+      
+              </li>
+              <li
+                class="cell"
+                data-value="1570235400000"
+              >
+                
+        08
+      
+              </li>
+              <li
+                class="cell"
+                data-value="1570242600000"
+              >
+                
+        10
+      
+              </li>
+            </ul>
+          </div>
+           
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          >
+            <ul
+              data-type="minute"
+            >
+              <li
+                class="cell"
+                data-value="1570212000000"
+              >
+                
+        00
+      
+              </li>
+              <li
+                class="cell active"
+                data-value="1570213800000"
+              >
+                
+        30
+      
+              </li>
+            </ul>
+          </div>
+           
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          >
+            <ul
+              data-type="ampm"
+            >
+              <li
+                class="cell active"
+                data-value="1570213800000"
+              >
+                
+        AM
+      
+              </li>
+              <li
+                class="cell"
+                data-value="1570257000000"
               >
                 
         PM

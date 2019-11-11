@@ -11,7 +11,7 @@ describe('TimePanel', () => {
   it('render: correct classes of the columns', () => {
     wrapper = mount(TimePanel, {
       propsData: {
-        value: new Date(2019, 9, 4, 12, 30, 30),
+        value: new Date(Date.UTC(2019, 9, 4, 12, 30, 30)),
         disabledTime: date => date.getHours() < 10,
       },
     });
@@ -21,7 +21,7 @@ describe('TimePanel', () => {
   it('render: correct columns by format', () => {
     wrapper = mount(TimePanel, {
       propsData: {
-        value: new Date(2019, 9, 4),
+        value: new Date(Date.UTC(2019, 9, 4)),
         format: 'hh:mm a',
         minuteStep: 30,
         hourOptions: Array.from({ length: 10 }).map((_, i) => i + 8),
@@ -33,7 +33,7 @@ describe('TimePanel', () => {
   it('render: correct classes of the fixed time list', () => {
     wrapper = mount(TimePanel, {
       propsData: {
-        value: new Date(2019, 10, 9, 12, 30),
+        value: new Date(Date.UTC(2019, 10, 9, 12, 30)),
         disabledTime: date => date.getHours() < 10,
         timePickerOptions: {
           start: '08:30',
@@ -49,7 +49,7 @@ describe('TimePanel', () => {
   it('render: correct 12hours in the fixed time list', () => {
     wrapper = mount(TimePanel, {
       propsData: {
-        value: new Date(2019, 10, 9, 12, 30),
+        value: new Date(Date.UTC(2019, 10, 9, 12, 30)),
         timePickerOptions: {
           start: '08:30',
           step: '00:30',
