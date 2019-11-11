@@ -41,6 +41,30 @@
 - Change slot `calendar-icon` to `icon-calendar`.
 - `appendToBody` default value changes from false to true.
 - Remove `not-before` and `not-after`, use `disabledDate` instead.
+
+  ```html
+  <template>
+    <date-picker :disabled-date="notBeforeToday"></date-picker>
+    <date-picker :disabled-date="notAfterToday"></date-picker>
+  </template>
+  <script>
+    export default {
+      methods: {
+        notBeforeToday(date) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return date.getTime() < today.getTime();
+        },
+        notAfterToday(date) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return date.getTime() > today.getTime();
+        },
+      },
+    };
+  </script>
+  ```
+
 - Remove `width`, use `style="{ width: '' }"` instead.
 - modify `shortcuts` api.
 
