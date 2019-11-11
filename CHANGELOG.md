@@ -1,19 +1,12 @@
 <a name="3.0.1"></a>
-## [3.0.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.0...v3.0.1) (2019-11-11)
 
+## [3.0.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.0...v3.0.1) (2019-11-11)
 
 ### Bug Fixes
 
-* clear event not triggering ([#369](https://github.com/mengxiong10/vue2-datepicker/issues/369)) ([06e158e](https://github.com/mengxiong10/vue2-datepicker/commit/06e158e))
-* ie compatibility ([99a4abd](https://github.com/mengxiong10/vue2-datepicker/commit/99a4abd))
-* update date-format-parse to fix negative year ([5ca30f8](https://github.com/mengxiong10/vue2-datepicker/commit/5ca30f8))
-
-
-### Features
-
-* export the inner components ([6060330](https://github.com/mengxiong10/vue2-datepicker/commit/6060330))
-
-
+- clear event not triggering ([#369](https://github.com/mengxiong10/vue2-datepicker/issues/369)) ([06e158e](https://github.com/mengxiong10/vue2-datepicker/commit/06e158e))
+- ie compatibility ([99a4abd](https://github.com/mengxiong10/vue2-datepicker/commit/99a4abd))
+- update date-format-parse to fix negative year ([5ca30f8](https://github.com/mengxiong10/vue2-datepicker/commit/5ca30f8))
 
 <a name="3.0.0"></a>
 
@@ -48,6 +41,7 @@
 - Change slot `calendar-icon` to `icon-calendar`.
 - `appendToBody` default value changes from false to true.
 - Remove `not-before` and `not-after`, use `disabledDate` instead.
+- Remove `width`, use `style="{ width: '' }"` instead.
 - modify `shortcuts` api.
 
 ## [2.13.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.2...v2.13.3) (2019-10-29)
