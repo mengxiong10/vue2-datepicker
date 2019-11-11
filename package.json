@@ -10,7 +10,7 @@
     "/locale",
     "/index.*"
   ],
-  "version": "3.0.0",
+  "version": "3.0.1",
   "scripts": {
     "dev": "parcel ./example/dev.html --open --port 2235",
     "build:index": "rollup -c",

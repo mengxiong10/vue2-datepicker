@@ -1,3 +1,20 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.0...v3.0.1) (2019-11-11)
+
+
+### Bug Fixes
+
+* clear event not triggering ([#369](https://github.com/mengxiong10/vue2-datepicker/issues/369)) ([06e158e](https://github.com/mengxiong10/vue2-datepicker/commit/06e158e))
+* ie compatibility ([99a4abd](https://github.com/mengxiong10/vue2-datepicker/commit/99a4abd))
+* update date-format-parse to fix negative year ([5ca30f8](https://github.com/mengxiong10/vue2-datepicker/commit/5ca30f8))
+
+
+### Features
+
+* export the inner components ([6060330](https://github.com/mengxiong10/vue2-datepicker/commit/6060330))
+
+
+
 <a name="3.0.0"></a>
 
 # [3.0.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.0-beta.1...v3.0.0) (2019-11-10)
