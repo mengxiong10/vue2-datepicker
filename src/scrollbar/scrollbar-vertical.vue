@@ -9,7 +9,7 @@
     <div
       ref="wrap"
       class="mx-scrollbar-wrap"
-      :style="{ overflow: 'hidden scroll', height: '100%', marginRight: `-${scrollbarWidth}px` }"
+      :style="{ marginRight: `-${scrollbarWidth}px` }"
       @scroll="handleScroll"
     >
       <slot></slot>

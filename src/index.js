@@ -18,6 +18,13 @@ if (typeof window !== 'undefined' && window.Vue) {
   DatePicker.install(window.Vue);
 }
 
-export { CalendarPanel, CalendarRange, TimePanel, TimeRange, DatetimePanel, DatetimeRange };
+Object.assign(DatePicker, {
+  CalendarPanel,
+  CalendarRange,
+  TimePanel,
+  TimeRange,
+  DatetimePanel,
+  DatetimeRange,
+});
 
 export default DatePicker;

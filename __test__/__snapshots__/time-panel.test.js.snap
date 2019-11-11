@@ -15,7 +15,7 @@ exports[`TimePanel render: correct 12hours in the fixed time list 1`] = `
     >
       <div
         class="mx-scrollbar-wrap"
-        style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        style="margin-right: -0px;"
       >
         <ul
           class="mx-time-list"
@@ -200,7 +200,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
       >
         <div
           class="mx-scrollbar-wrap"
-          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          style="margin-right: -0px;"
         >
           <ul
             data-index="0"
@@ -415,7 +415,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
       >
         <div
           class="mx-scrollbar-wrap"
-          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          style="margin-right: -0px;"
         >
           <ul
             data-index="1"
@@ -918,7 +918,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
       >
         <div
           class="mx-scrollbar-wrap"
-          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          style="margin-right: -0px;"
         >
           <ul
             data-index="2"
@@ -1435,7 +1435,7 @@ exports[`TimePanel render: correct classes of the fixed time list 1`] = `
     >
       <div
         class="mx-scrollbar-wrap"
-        style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+        style="margin-right: -0px;"
       >
         <ul
           class="mx-time-list"
@@ -1620,7 +1620,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
       >
         <div
           class="mx-scrollbar-wrap"
-          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          style="margin-right: -0px;"
         >
           <ul
             data-index="0"
@@ -1675,7 +1675,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
       >
         <div
           class="mx-scrollbar-wrap"
-          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          style="margin-right: -0px;"
         >
           <ul
             data-index="1"
@@ -1714,7 +1714,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
       >
         <div
           class="mx-scrollbar-wrap"
-          style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+          style="margin-right: -0px;"
         >
           <ul
             data-index="2"

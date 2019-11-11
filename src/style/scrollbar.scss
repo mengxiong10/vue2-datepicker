@@ -7,6 +7,12 @@
   }
 }
 
+.mx-scrollbar-wrap {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .mx-scrollbar-track {
   position: absolute;
   top: 2px;

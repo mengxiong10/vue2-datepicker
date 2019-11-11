@@ -21,7 +21,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
         >
           <div
             class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+            style="margin-right: -0px;"
           >
             <ul
               data-index="0"
@@ -92,7 +92,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
         >
           <div
             class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+            style="margin-right: -0px;"
           >
             <ul
               data-index="1"
@@ -131,7 +131,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
         >
           <div
             class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+            style="margin-right: -0px;"
           >
             <ul
               data-index="2"
@@ -184,7 +184,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
         >
           <div
             class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+            style="margin-right: -0px;"
           >
             <ul
               data-index="0"
@@ -255,7 +255,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
         >
           <div
             class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+            style="margin-right: -0px;"
           >
             <ul
               data-index="1"
@@ -294,7 +294,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
         >
           <div
             class="mx-scrollbar-wrap"
-            style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
+            style="margin-right: -0px;"
           >
             <ul
               data-index="2"
