@@ -44,7 +44,7 @@
   "homepage": "https://github.com/mengxiong10/vue2-datepicker#readme",
   "dependencies": {
     "date-fns": "^2.0.1",
-    "date-format-parse": "^0.2.3"
+    "date-format-parse": "^0.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
