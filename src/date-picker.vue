@@ -364,6 +364,7 @@ export default {
     },
     handleClear() {
       this.emitValue(null);
+      this.$emit('clear');
     },
     handleConfirmDate() {
       const value = this.emitValue(this.currentValue);

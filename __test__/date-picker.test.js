@@ -176,7 +176,12 @@ describe('DatePicker', () => {
     expect(vm.text).toBe('2019/10/20');
     vm.emitValue(emitValue);
     const emitted = wrapper.emitted();
-    expect(emitted.input).toEqual([[emitValue], ['2019/10/22'], [emitValue.getTime()], ['22/10/2019']]);
+    expect(emitted.input).toEqual([
+      [emitValue],
+      ['2019/10/22'],
+      [emitValue.getTime()],
+      ['22/10/2019'],
+    ]);
   });
 
   it('prop: shortcut', () => {
@@ -268,5 +273,17 @@ describe('DatePicker', () => {
 
     const popup = wrapper.find('.mx-datepicker-popup');
     expect(popup.element.parentNode).toBe(document.body);
+  });
+
+  it('feat: should emit clear event when click clear button', () => {
+    wrapper = shallowMount(DatePicker, {
+      propsData: {
+        value: new Date(2019, 10, 9),
+      },
+    });
+    const clearButton = wrapper.find('.mx-icon-clear');
+    clearButton.trigger('mousedown');
+    const emitted = wrapper.emitted();
+    expect(emitted.clear).toBeTruthy();
   });
 });
