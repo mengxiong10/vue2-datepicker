@@ -24,11 +24,12 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
           >
             <ul
+              data-index="0"
               data-type="hour"
             >
               <li
                 class="cell"
-                data-value="1570163400000"
+                data-index="0"
               >
                 
         12
@@ -36,15 +37,15 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell"
-                data-value="1570170600000"
+                data-index="1"
               >
                 
         02
       
               </li>
               <li
-                class="cell active"
-                data-value="1570177800000"
+                class="cell"
+                data-index="2"
               >
                 
         04
@@ -52,15 +53,15 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell"
-                data-value="1570185000000"
+                data-index="3"
               >
                 
         06
       
               </li>
               <li
-                class="cell"
-                data-value="1570192200000"
+                class="cell active"
+                data-index="4"
               >
                 
         08
@@ -68,7 +69,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell"
-                data-value="1570199400000"
+                data-index="5"
               >
                 
         10
@@ -94,11 +95,12 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
           >
             <ul
+              data-index="1"
               data-type="minute"
             >
               <li
                 class="cell"
-                data-value="1570176000000"
+                data-index="0"
               >
                 
         00
@@ -106,7 +108,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell active"
-                data-value="1570177800000"
+                data-index="1"
               >
                 
         30
@@ -132,19 +134,20 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
           >
             <ul
+              data-index="2"
               data-type="ampm"
             >
               <li
-                class="cell"
-                data-value="1570134600000"
+                class="cell active"
+                data-index="0"
               >
                 
         AM
       
               </li>
               <li
-                class="cell active"
-                data-value="1570177800000"
+                class="cell"
+                data-index="1"
               >
                 
         PM
@@ -184,19 +187,20 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
           >
             <ul
+              data-index="0"
               data-type="hour"
             >
               <li
                 class="cell"
-                data-value="1570206600000"
+                data-index="0"
               >
                 
         12
       
               </li>
               <li
-                class="cell active"
-                data-value="1570213800000"
+                class="cell"
+                data-index="1"
               >
                 
         02
@@ -204,15 +208,15 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell"
-                data-value="1570221000000"
+                data-index="2"
               >
                 
         04
       
               </li>
               <li
-                class="cell"
-                data-value="1570228200000"
+                class="cell active"
+                data-index="3"
               >
                 
         06
@@ -220,7 +224,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell"
-                data-value="1570235400000"
+                data-index="4"
               >
                 
         08
@@ -228,7 +232,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell"
-                data-value="1570242600000"
+                data-index="5"
               >
                 
         10
@@ -254,11 +258,12 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
           >
             <ul
+              data-index="1"
               data-type="minute"
             >
               <li
                 class="cell"
-                data-value="1570212000000"
+                data-index="0"
               >
                 
         00
@@ -266,7 +271,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               </li>
               <li
                 class="cell active"
-                data-value="1570213800000"
+                data-index="1"
               >
                 
         30
@@ -292,19 +297,20 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
             style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
           >
             <ul
+              data-index="2"
               data-type="ampm"
             >
               <li
-                class="cell active"
-                data-value="1570213800000"
+                class="cell disabled"
+                data-index="0"
               >
                 
         AM
       
               </li>
               <li
-                class="cell"
-                data-value="1570257000000"
+                class="cell active"
+                data-index="1"
               >
                 
         PM

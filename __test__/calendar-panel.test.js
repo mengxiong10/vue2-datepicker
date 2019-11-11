@@ -56,7 +56,7 @@ describe('CalendarPanel', () => {
       wrapper = shallowMount(CalendarPanel, {
         propsData: {
           type,
-          value: new Date(Date.UTC(2019, 9, 1, 10)),
+          value: new Date(2019, 9, 1, 10),
         },
       });
       expect(wrapper.element).toMatchSnapshot();

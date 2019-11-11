@@ -14,10 +14,7 @@ describe('TimeRange', () => {
         format: 'hh:mm a',
         minuteStep: 30,
         hourStep: 2,
-        value: [
-          new Date(Date.UTC(2019, 9, 4, 8, 30, 0)),
-          new Date(Date.UTC(2019, 9, 4, 18, 30, 0)),
-        ],
+        value: [new Date(2019, 9, 4, 8, 30, 0), new Date(2019, 9, 4, 18, 30, 0)],
       },
     });
     expect(wrapper.element).toMatchSnapshot();

@@ -77,7 +77,7 @@ exports[`TimePanel render: correct 12hours in the fixed time list 1`] = `
     
           </li>
           <li
-            class="cell"
+            class="cell active"
           >
             
       12:30 PM
@@ -203,11 +203,12 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
           style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
         >
           <ul
+            data-index="0"
             data-type="hour"
           >
             <li
               class="cell disabled"
-              data-value="1570120230000"
+              data-index="0"
             >
               
         00
@@ -215,7 +216,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570123830000"
+              data-index="1"
             >
               
         01
@@ -223,7 +224,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570127430000"
+              data-index="2"
             >
               
         02
@@ -231,7 +232,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570131030000"
+              data-index="3"
             >
               
         03
@@ -239,7 +240,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570134630000"
+              data-index="4"
             >
               
         04
@@ -247,7 +248,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570138230000"
+              data-index="5"
             >
               
         05
@@ -255,7 +256,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570141830000"
+              data-index="6"
             >
               
         06
@@ -263,7 +264,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570145430000"
+              data-index="7"
             >
               
         07
@@ -271,7 +272,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570149030000"
+              data-index="8"
             >
               
         08
@@ -279,7 +280,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell disabled"
-              data-value="1570152630000"
+              data-index="9"
             >
               
         09
@@ -287,7 +288,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570156230000"
+              data-index="10"
             >
               
         10
@@ -295,15 +296,15 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570159830000"
+              data-index="11"
             >
               
         11
       
             </li>
             <li
-              class="cell"
-              data-value="1570163430000"
+              class="cell active"
+              data-index="12"
             >
               
         12
@@ -311,7 +312,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570167030000"
+              data-index="13"
             >
               
         13
@@ -319,7 +320,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570170630000"
+              data-index="14"
             >
               
         14
@@ -327,7 +328,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570174230000"
+              data-index="15"
             >
               
         15
@@ -335,7 +336,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570177830000"
+              data-index="16"
             >
               
         16
@@ -343,7 +344,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570181430000"
+              data-index="17"
             >
               
         17
@@ -351,7 +352,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570185030000"
+              data-index="18"
             >
               
         18
@@ -359,15 +360,15 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570188630000"
+              data-index="19"
             >
               
         19
       
             </li>
             <li
-              class="cell active"
-              data-value="1570192230000"
+              class="cell"
+              data-index="20"
             >
               
         20
@@ -375,7 +376,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570195830000"
+              data-index="21"
             >
               
         21
@@ -383,7 +384,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570199430000"
+              data-index="22"
             >
               
         22
@@ -391,7 +392,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570203030000"
+              data-index="23"
             >
               
         23
@@ -417,11 +418,12 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
           style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
         >
           <ul
+            data-index="1"
             data-type="minute"
           >
             <li
               class="cell"
-              data-value="1570190430000"
+              data-index="0"
             >
               
         00
@@ -429,7 +431,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190490000"
+              data-index="1"
             >
               
         01
@@ -437,7 +439,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190550000"
+              data-index="2"
             >
               
         02
@@ -445,7 +447,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190610000"
+              data-index="3"
             >
               
         03
@@ -453,7 +455,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190670000"
+              data-index="4"
             >
               
         04
@@ -461,7 +463,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190730000"
+              data-index="5"
             >
               
         05
@@ -469,7 +471,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190790000"
+              data-index="6"
             >
               
         06
@@ -477,7 +479,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190850000"
+              data-index="7"
             >
               
         07
@@ -485,7 +487,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190910000"
+              data-index="8"
             >
               
         08
@@ -493,7 +495,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190970000"
+              data-index="9"
             >
               
         09
@@ -501,7 +503,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191030000"
+              data-index="10"
             >
               
         10
@@ -509,7 +511,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191090000"
+              data-index="11"
             >
               
         11
@@ -517,7 +519,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191150000"
+              data-index="12"
             >
               
         12
@@ -525,7 +527,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191210000"
+              data-index="13"
             >
               
         13
@@ -533,7 +535,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191270000"
+              data-index="14"
             >
               
         14
@@ -541,7 +543,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191330000"
+              data-index="15"
             >
               
         15
@@ -549,7 +551,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191390000"
+              data-index="16"
             >
               
         16
@@ -557,7 +559,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191450000"
+              data-index="17"
             >
               
         17
@@ -565,7 +567,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191510000"
+              data-index="18"
             >
               
         18
@@ -573,7 +575,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191570000"
+              data-index="19"
             >
               
         19
@@ -581,7 +583,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191630000"
+              data-index="20"
             >
               
         20
@@ -589,7 +591,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191690000"
+              data-index="21"
             >
               
         21
@@ -597,7 +599,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191750000"
+              data-index="22"
             >
               
         22
@@ -605,7 +607,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191810000"
+              data-index="23"
             >
               
         23
@@ -613,7 +615,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191870000"
+              data-index="24"
             >
               
         24
@@ -621,7 +623,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191930000"
+              data-index="25"
             >
               
         25
@@ -629,7 +631,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570191990000"
+              data-index="26"
             >
               
         26
@@ -637,7 +639,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192050000"
+              data-index="27"
             >
               
         27
@@ -645,7 +647,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192110000"
+              data-index="28"
             >
               
         28
@@ -653,7 +655,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192170000"
+              data-index="29"
             >
               
         29
@@ -661,7 +663,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell active"
-              data-value="1570192230000"
+              data-index="30"
             >
               
         30
@@ -669,7 +671,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192290000"
+              data-index="31"
             >
               
         31
@@ -677,7 +679,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192350000"
+              data-index="32"
             >
               
         32
@@ -685,7 +687,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192410000"
+              data-index="33"
             >
               
         33
@@ -693,7 +695,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192470000"
+              data-index="34"
             >
               
         34
@@ -701,7 +703,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192530000"
+              data-index="35"
             >
               
         35
@@ -709,7 +711,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192590000"
+              data-index="36"
             >
               
         36
@@ -717,7 +719,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192650000"
+              data-index="37"
             >
               
         37
@@ -725,7 +727,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192710000"
+              data-index="38"
             >
               
         38
@@ -733,7 +735,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192770000"
+              data-index="39"
             >
               
         39
@@ -741,7 +743,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192830000"
+              data-index="40"
             >
               
         40
@@ -749,7 +751,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192890000"
+              data-index="41"
             >
               
         41
@@ -757,7 +759,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192950000"
+              data-index="42"
             >
               
         42
@@ -765,7 +767,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193010000"
+              data-index="43"
             >
               
         43
@@ -773,7 +775,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193070000"
+              data-index="44"
             >
               
         44
@@ -781,7 +783,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193130000"
+              data-index="45"
             >
               
         45
@@ -789,7 +791,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193190000"
+              data-index="46"
             >
               
         46
@@ -797,7 +799,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193250000"
+              data-index="47"
             >
               
         47
@@ -805,7 +807,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193310000"
+              data-index="48"
             >
               
         48
@@ -813,7 +815,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193370000"
+              data-index="49"
             >
               
         49
@@ -821,7 +823,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193430000"
+              data-index="50"
             >
               
         50
@@ -829,7 +831,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193490000"
+              data-index="51"
             >
               
         51
@@ -837,7 +839,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193550000"
+              data-index="52"
             >
               
         52
@@ -845,7 +847,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193610000"
+              data-index="53"
             >
               
         53
@@ -853,7 +855,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193670000"
+              data-index="54"
             >
               
         54
@@ -861,7 +863,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193730000"
+              data-index="55"
             >
               
         55
@@ -869,7 +871,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193790000"
+              data-index="56"
             >
               
         56
@@ -877,7 +879,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193850000"
+              data-index="57"
             >
               
         57
@@ -885,7 +887,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193910000"
+              data-index="58"
             >
               
         58
@@ -893,7 +895,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570193970000"
+              data-index="59"
             >
               
         59
@@ -919,11 +921,12 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
           style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
         >
           <ul
+            data-index="2"
             data-type="second"
           >
             <li
               class="cell"
-              data-value="1570192200000"
+              data-index="0"
             >
               
         00
@@ -931,7 +934,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192201000"
+              data-index="1"
             >
               
         01
@@ -939,7 +942,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192202000"
+              data-index="2"
             >
               
         02
@@ -947,7 +950,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192203000"
+              data-index="3"
             >
               
         03
@@ -955,7 +958,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192204000"
+              data-index="4"
             >
               
         04
@@ -963,7 +966,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192205000"
+              data-index="5"
             >
               
         05
@@ -971,7 +974,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192206000"
+              data-index="6"
             >
               
         06
@@ -979,7 +982,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192207000"
+              data-index="7"
             >
               
         07
@@ -987,7 +990,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192208000"
+              data-index="8"
             >
               
         08
@@ -995,7 +998,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192209000"
+              data-index="9"
             >
               
         09
@@ -1003,7 +1006,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192210000"
+              data-index="10"
             >
               
         10
@@ -1011,7 +1014,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192211000"
+              data-index="11"
             >
               
         11
@@ -1019,7 +1022,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192212000"
+              data-index="12"
             >
               
         12
@@ -1027,7 +1030,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192213000"
+              data-index="13"
             >
               
         13
@@ -1035,7 +1038,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192214000"
+              data-index="14"
             >
               
         14
@@ -1043,7 +1046,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192215000"
+              data-index="15"
             >
               
         15
@@ -1051,7 +1054,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192216000"
+              data-index="16"
             >
               
         16
@@ -1059,7 +1062,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192217000"
+              data-index="17"
             >
               
         17
@@ -1067,7 +1070,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192218000"
+              data-index="18"
             >
               
         18
@@ -1075,7 +1078,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192219000"
+              data-index="19"
             >
               
         19
@@ -1083,7 +1086,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192220000"
+              data-index="20"
             >
               
         20
@@ -1091,7 +1094,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192221000"
+              data-index="21"
             >
               
         21
@@ -1099,7 +1102,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192222000"
+              data-index="22"
             >
               
         22
@@ -1107,7 +1110,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192223000"
+              data-index="23"
             >
               
         23
@@ -1115,7 +1118,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192224000"
+              data-index="24"
             >
               
         24
@@ -1123,7 +1126,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192225000"
+              data-index="25"
             >
               
         25
@@ -1131,7 +1134,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192226000"
+              data-index="26"
             >
               
         26
@@ -1139,7 +1142,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192227000"
+              data-index="27"
             >
               
         27
@@ -1147,7 +1150,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192228000"
+              data-index="28"
             >
               
         28
@@ -1155,7 +1158,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192229000"
+              data-index="29"
             >
               
         29
@@ -1163,7 +1166,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell active"
-              data-value="1570192230000"
+              data-index="30"
             >
               
         30
@@ -1171,7 +1174,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192231000"
+              data-index="31"
             >
               
         31
@@ -1179,7 +1182,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192232000"
+              data-index="32"
             >
               
         32
@@ -1187,7 +1190,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192233000"
+              data-index="33"
             >
               
         33
@@ -1195,7 +1198,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192234000"
+              data-index="34"
             >
               
         34
@@ -1203,7 +1206,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192235000"
+              data-index="35"
             >
               
         35
@@ -1211,7 +1214,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192236000"
+              data-index="36"
             >
               
         36
@@ -1219,7 +1222,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192237000"
+              data-index="37"
             >
               
         37
@@ -1227,7 +1230,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192238000"
+              data-index="38"
             >
               
         38
@@ -1235,7 +1238,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192239000"
+              data-index="39"
             >
               
         39
@@ -1243,7 +1246,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192240000"
+              data-index="40"
             >
               
         40
@@ -1251,7 +1254,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192241000"
+              data-index="41"
             >
               
         41
@@ -1259,7 +1262,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192242000"
+              data-index="42"
             >
               
         42
@@ -1267,7 +1270,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192243000"
+              data-index="43"
             >
               
         43
@@ -1275,7 +1278,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192244000"
+              data-index="44"
             >
               
         44
@@ -1283,7 +1286,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192245000"
+              data-index="45"
             >
               
         45
@@ -1291,7 +1294,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192246000"
+              data-index="46"
             >
               
         46
@@ -1299,7 +1302,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192247000"
+              data-index="47"
             >
               
         47
@@ -1307,7 +1310,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192248000"
+              data-index="48"
             >
               
         48
@@ -1315,7 +1318,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192249000"
+              data-index="49"
             >
               
         49
@@ -1323,7 +1326,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192250000"
+              data-index="50"
             >
               
         50
@@ -1331,7 +1334,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192251000"
+              data-index="51"
             >
               
         51
@@ -1339,7 +1342,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192252000"
+              data-index="52"
             >
               
         52
@@ -1347,7 +1350,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192253000"
+              data-index="53"
             >
               
         53
@@ -1355,7 +1358,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192254000"
+              data-index="54"
             >
               
         54
@@ -1363,7 +1366,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192255000"
+              data-index="55"
             >
               
         55
@@ -1371,7 +1374,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192256000"
+              data-index="56"
             >
               
         56
@@ -1379,7 +1382,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192257000"
+              data-index="57"
             >
               
         57
@@ -1387,7 +1390,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192258000"
+              data-index="58"
             >
               
         58
@@ -1395,7 +1398,7 @@ exports[`TimePanel render: correct classes of the columns 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570192259000"
+              data-index="59"
             >
               
         59
@@ -1494,7 +1497,7 @@ exports[`TimePanel render: correct classes of the fixed time list 1`] = `
     
           </li>
           <li
-            class="cell"
+            class="cell active"
           >
             
       12:30
@@ -1620,11 +1623,12 @@ exports[`TimePanel render: correct columns by format 1`] = `
           style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
         >
           <ul
+            data-index="0"
             data-type="hour"
           >
             <li
-              class="cell active"
-              data-value="1570147200000"
+              class="cell"
+              data-index="0"
             >
               
         08
@@ -1632,7 +1636,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570150800000"
+              data-index="1"
             >
               
         09
@@ -1640,7 +1644,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570154400000"
+              data-index="2"
             >
               
         10
@@ -1648,7 +1652,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570158000000"
+              data-index="3"
             >
               
         11
@@ -1674,11 +1678,12 @@ exports[`TimePanel render: correct columns by format 1`] = `
           style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
         >
           <ul
+            data-index="1"
             data-type="minute"
           >
             <li
               class="cell active"
-              data-value="1570147200000"
+              data-index="0"
             >
               
         00
@@ -1686,7 +1691,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570149000000"
+              data-index="1"
             >
               
         30
@@ -1712,11 +1717,12 @@ exports[`TimePanel render: correct columns by format 1`] = `
           style="overflow: hidden scroll; height: 100%; margin-right: -0px;"
         >
           <ul
+            data-index="2"
             data-type="ampm"
           >
             <li
               class="cell active"
-              data-value="1570147200000"
+              data-index="0"
             >
               
         AM
@@ -1724,7 +1730,7 @@ exports[`TimePanel render: correct columns by format 1`] = `
             </li>
             <li
               class="cell"
-              data-value="1570190400000"
+              data-index="1"
             >
               
         PM

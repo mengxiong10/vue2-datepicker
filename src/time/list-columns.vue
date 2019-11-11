@@ -1,12 +1,12 @@
 <template>
   <div class="mx-time-columns">
     <scrollbar-vertical v-for="(col, i) in columns" :key="i" class="mx-time-column">
-      <ul :data-type="col.type" @click="handleSelect">
+      <ul :data-type="col.type" :data-index="i" @click="handleSelect">
         <li
-          v-for="item in col.list"
+          v-for="(item, j) in col.list"
           :key="item.value"
           class="cell"
-          :data-value="item.value"
+          :data-index="j"
           :class="getClasses(item.value)"
         >
           {{ item.text }}
@@ -177,7 +177,9 @@ export default {
       const { target, currentTarget } = evt;
       if (target.tagName.toUpperCase() !== 'LI') return;
       const type = currentTarget.getAttribute('data-type');
-      const value = parseInt(target.getAttribute('data-value'), 10);
+      const colIndex = parseInt(currentTarget.getAttribute('data-index'), 10);
+      const cellIndex = parseInt(target.getAttribute('data-index'), 10);
+      const { value } = this.columns[colIndex].list[cellIndex];
       this.$emit('select', value, type);
     },
   },
