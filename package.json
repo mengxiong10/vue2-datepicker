@@ -12,7 +12,7 @@
   ],
   "version": "3.0.0",
   "scripts": {
-    "dev": "parcel ./example/index.html --open --port 2235",
+    "dev": "parcel ./example/dev.html --open --port 2235",
     "build:index": "rollup -c",
     "build:locale": "rollup -c rollup.locale.config.js",
     "build:css": "sass --style=compressed --no-source-map src/style/index.scss index.css",
