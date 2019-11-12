@@ -1,3 +1,4 @@
+// need to compile node_modules (eg: vue-runtime-helps)
 module.exports = api => {
   api.cache(false);
   return {
