@@ -3,6 +3,9 @@
   "description": "A Datepicker Component For Vue2",
   "main": "index.js",
   "module": "index.esm.js",
+  "alias": {
+    "vue2-datepicker": "./src/index.js"
+  },
   "files": [
     "/locale",
     "/index.*"
