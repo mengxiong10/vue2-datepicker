@@ -18,32 +18,45 @@
 </template>
 
 <script>
+function rafThrottle(fn) {
+  let isRunning = false;
+  return function fnBinfRaf(...args) {
+    if (isRunning) return;
+    isRunning = true;
+    requestAnimationFrame(() => {
+      isRunning = false;
+      fn.apply(this, args);
+    });
+  };
+}
+
 export default {
+  name: 'Container',
   props: {
     menus: Array,
   },
   data() {
     return {
-      offset: [],
       activeIndex: 0,
+      handleScroll: rafThrottle(this.scroll),
     };
   },
-  mounted() {
-    const scrollEl = this.$refs.main;
-    const els = document.querySelectorAll('.card-title');
-    const { top } = scrollEl.getBoundingClientRect();
-    const offset = [];
-    for (let i = 0; i < els.length; i++) {
-      const el = els[i];
-      offset.push(el.getBoundingClientRect().top - top);
-    }
-    this.offset = offset;
+  computed: {
+    menuIds() {
+      return this.menus.map(v => v.id);
+    },
   },
   methods: {
-    handleScroll(evt) {
-      const value = evt.currentTarget.scrollTop - 10;
-      const index = this.offset.findIndex(v => v > value);
-      this.activeIndex = index;
+    scroll() {
+      for (let i = 0; i < this.menuIds.length; i++) {
+        const id = this.menuIds[i];
+        const el = document.getElementById(id);
+        const { top } = el.getBoundingClientRect();
+        if (top >= 0) {
+          this.activeIndex = i;
+          break;
+        }
+      }
     },
   },
 };

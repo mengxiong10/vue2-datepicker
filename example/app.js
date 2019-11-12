@@ -113,8 +113,24 @@ const titleAndDescMap = transformMd(en);
 
 const App = {
   name: 'App',
+  data() {
+    return {
+      currentId: this.getCurrentId(),
+    };
+  },
   mounted() {
     hljs.initHighlighting();
+    window.onhashchange = () => {
+      this.currentId = this.getCurrentId();
+    };
+    if (this.currentId) {
+      document.getElementById(this.currentId).scrollIntoView();
+    }
+  },
+  methods: {
+    getCurrentId() {
+      return location.hash.slice(1);
+    },
   },
   render(h) {
     const menus = components.map(item => {
@@ -130,6 +146,7 @@ const App = {
           const props = {
             id,
             code,
+            active: id === this.currentId,
             ...titleAndDescMap[id],
           };
           return <Card {...{ props }}>{h(component)}</Card>;

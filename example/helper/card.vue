@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" :class="{ active }">
     <section :id="id" class="card-title" v-html="title"></section>
     <section class="card-description markdown-body" v-html="description"></section>
     <section class="card-demo markdown-body">
@@ -27,6 +27,10 @@ export default {
     title: String,
     description: String,
     code: String,
+    active: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -52,8 +56,10 @@ $border-color: #ebedf0;
   color: #314659;
   border: 1px solid $border-color;
   border-radius: 4px;
-  & + & {
-    margin-top: 60px;
+  margin-bottom: 60px;
+  margin-top: 20px;
+  &.active {
+    border-color: #1284e7;
   }
 }
 
