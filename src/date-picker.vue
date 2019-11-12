@@ -363,7 +363,7 @@ export default {
       }
     },
     handleClear() {
-      this.emitValue(null);
+      this.emitValue(this.range ? [null, null] : null);
       this.$emit('clear');
     },
     handleConfirmDate() {

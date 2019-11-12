@@ -285,5 +285,19 @@ describe('DatePicker', () => {
     clearButton.trigger('mousedown');
     const emitted = wrapper.emitted();
     expect(emitted.clear).toBeTruthy();
+    expect(emitted.input[0][0]).toBe(null);
+  });
+
+  it('feat: should emit [null, null] when clear range', () => {
+    wrapper = shallowMount(DatePicker, {
+      propsData: {
+        range: true,
+        value: [new Date(2019, 10, 9), new Date(2019, 11, 9)],
+      },
+    });
+    const clearButton = wrapper.find('.mx-icon-clear');
+    clearButton.trigger('mousedown');
+    const emitted = wrapper.emitted();
+    expect(emitted.input[0][0]).toEqual([null, null]);
   });
 });
