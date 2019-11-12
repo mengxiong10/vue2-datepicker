@@ -20,6 +20,7 @@
     "clean": "rimraf locale index.*",
     "lint": "eslint src/**/*.{js,vue}",
     "deploy:build": "parcel build ./example/index.html --public-url ./ --out-dir _site --no-source-maps --no-minify",
+    "deploy": "bash build/gh-pages-deploy.sh",
     "format": "prettier --write src/**/*",
     "test": "jest",
     "cov": "jest --coverage --coverageReporters=text-lcov | coveralls",
