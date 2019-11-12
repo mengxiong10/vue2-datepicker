@@ -114,7 +114,7 @@ const titleAndDescMap = transformMd(en);
 const App = {
   name: 'App',
   mounted() {
-    hljs.initHighlightingOnLoad();
+    hljs.initHighlighting();
   },
   render(h) {
     const menus = components.map(item => {
