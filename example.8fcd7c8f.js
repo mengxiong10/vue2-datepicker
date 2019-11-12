@@ -2498,7 +2498,7 @@ var titleAndDescMap = transformMd(_en.default);
 var App = {
   name: 'App',
   mounted: function mounted() {
-    _highlight.default.initHighlightingOnLoad();
+    _highlight.default.initHighlighting();
   },
   render: function render(h) {
     var menus = components.map(function (item) {
