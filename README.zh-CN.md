@@ -115,8 +115,8 @@ import 'vue2-datepicker/locale/zh-cn';
 | input-class         | 输入框的类                                       | `string`                                    | 'mx-input'     |
 | input-attr          | 输入框的其他属性(eg: { name: 'date', id: 'foo'}) | `object`                                    | —              |
 | open                | 控制弹出层的显示                                 | `boolean`                                   | -              |
-| popupStyle          | 弹出层的样式                                     | `object`                                    | —              |
-| popupClass          | 弹出层的类                                       |                                             | —              |
+| popup-style         | 弹出层的样式                                     | `object`                                    | —              |
+| popup-class         | 弹出层的类                                       |                                             | —              |
 | shortcuts           | 设置快捷选择                                     | `Array<{text, onClick}>`                    | -              |
 | title-format        | 日历单元格的 tooltip                             | [token](#token)                             | 'YYYY-MM-DD'   |
 | range-separator     | 范围分隔符                                       | `string`                                    | ' ~ '          |
@@ -141,6 +141,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | -------------------------- | ---- | -------------------------------------- |
 | Year                       | YY   | 70 71 ... 10 11                        |
 |                            | YYYY | 1970 1971 ... 2010 2011                |
+|                            | Y    | -1000 ...20 ... 1970 ... 9999 +10000   |
 | Month                      | M    | 1 2 ... 11 12                          |
 |                            | MM   | 01 02 ... 11 12                        |
 |                            | MMM  | Jan Feb ... Nov Dec                    |
@@ -170,6 +171,33 @@ import 'vue2-datepicker/locale/zh-cn';
 |                            | ww   | 01 02 ... 52 53                        |
 | Unix Timestamp             | X    | 1360013296                             |
 | Unix Millisecond Timestamp | x    | 1360013296123                          |
+
+#### custom format
+
+`format` 接受一个对象去自定义格式化
+
+```html
+<date-picker :format="momentForamt" />
+```
+
+```js
+data() {
+  return {
+    // 使用moment.js 替换默认
+    momentForamt: {
+      // Date to String
+      stringify: (date) => {
+        return date ? moment(date).format('LL') : ''
+      },
+      // String to Date
+      parse: (value) => {
+        return value ? moment(value, 'LL').toDate() : null
+      }
+    }
+  }
+}
+
+```
 
 #### value-type
 
@@ -221,17 +249,17 @@ import 'vue2-datepicker/locale/zh-cn';
 
 ### 事件
 
-| 名称        | 描述                 | 回调函数的参数         |
-| ----------- | -------------------- | ---------------------- |
-| input       | 当选择日期的事件触发 | 选择的日期             |
-| change      | 当选择日期的事件触发 | 选择的日期, 选择的类型 |
-| open        | 当弹出层打开时候     |                        |
-| close       | 当弹出层关闭时候     |                        |
-| confirm     | 当点击确认按钮       | 选择的日期             |
-| clear       | 当点击清除按钮       |                        |
-| input-error | 当输入一个无效的时间 | 输入的值               |
-| focus       | 当输入框有焦点       |                        |
-| blur        | 当输入框失焦         |                        |
+| 名称        | 描述                 | 回调函数的参数                               |
+| ----------- | -------------------- | -------------------------------------------- |
+| input       | 当选择日期的事件触发 | date                                         |
+| change      | 当选择日期的事件触发 | date, type(date, hour, minute, second, ampm) |
+| open        | 当弹出层打开时候     |                                              |
+| close       | 当弹出层关闭时候     |                                              |
+| confirm     | 当点击确认按钮       | date                                         |
+| clear       | 当点击清除按钮       |                                              |
+| input-error | 当输入一个无效的时间 | 输入的值                                     |
+| focus       | 当输入框有焦点       |                                              |
+| blur        | 当输入框失焦         |                                              |
 
 ### Slots
 

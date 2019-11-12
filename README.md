@@ -117,8 +117,8 @@ You can override the default locale by `lang`.
 | input-class         | input classname                                | `string`                                    | 'mx-input'     |
 | input-attr          | input attrs(eg: { name: 'date', id: 'foo'})    | `object`                                    | —              |
 | open                | open state of picker                           | `boolean`                                   | -              |
-| popupStyle          | popup style                                    | `object`                                    | —              |
-| popupClass          | popup classes                                  |                                             | —              |
+| popup-style         | popup style                                    | `object`                                    | —              |
+| popup-class         | popup classes                                  |                                             | —              |
 | shortcuts           | set shortcuts to select                        | `Array<{text, onClick}>`                    | -              |
 | title-format        | format of the tooltip in calendar cell         | [token](#token)                             | 'YYYY-MM-DD'   |
 | range-separator     | text of range separator                        | `string`                                    | ' ~ '          |
@@ -143,6 +143,7 @@ You can override the default locale by `lang`.
 | -------------------------- | ----- | -------------------------------------- |
 | Year                       | YY    | 70 71 ... 10 11                        |
 |                            | YYYY  | 1970 1971 ... 2010 2011                |
+|                            | Y     | -1000 ...20 ... 1970 ... 9999 +10000   |
 | Month                      | M     | 1 2 ... 11 12                          |
 |                            | MM    | 01 02 ... 11 12                        |
 |                            | MMM   | Jan Feb ... Nov Dec                    |
@@ -172,6 +173,33 @@ You can override the default locale by `lang`.
 |                            | ww    | 01 02 ... 52 53                        |
 | Unix Timestamp             | X     | 1360013296                             |
 | Unix Millisecond Timestamp | x     | 1360013296123                          |
+
+#### custom format
+
+the `format` accepts an object to customize formatting.
+
+```html
+<date-picker :format="momentForamt" />
+```
+
+```js
+data() {
+  return {
+    // Use moment.js instead of the default
+    momentForamt: {
+      // Date to String
+      stringify: (date) => {
+        return date ? moment(date).format('LL') : ''
+      },
+      // String to Date
+      parse: (value) => {
+        return value ? moment(value, 'LL').toDate() : null
+      }
+    }
+  }
+}
+
+```
 
 #### value-type
 
@@ -223,17 +251,17 @@ set fixed time list to select;
 
 ### Events
 
-| Name        | Description                          | Callback Arguments     |
-| ----------- | ------------------------------------ | ---------------------- |
-| input       | When the value change(v-model event) | the currentValue       |
-| change      | When the value change(same as input) | the currentValue, type |
-| open        | When panel opening                   |                        |
-| close       | When panel closing                   |                        |
-| confirm     | When click 'confirm' button          | the currentValue       |
-| clear       | When click 'clear' button            |                        |
-| input-error | When user type a invalid Date        | the input text         |
-| focus       | When input focus                     |                        |
-| blur        | When input blur                      |                        |
+| Name        | Description                          | Callback Arguments                           |
+| ----------- | ------------------------------------ | -------------------------------------------- |
+| input       | When the value change(v-model event) | date                                         |
+| change      | When the value change(same as input) | date, type(date, hour, minute, second, ampm) |
+| open        | When panel opening                   |                                              |
+| close       | When panel closing                   |                                              |
+| confirm     | When click 'confirm' button          | date                                         |
+| clear       | When click 'clear' button            |                                              |
+| input-error | When user type a invalid Date        | the input text                               |
+| focus       | When input focus                     |                                              |
+| blur        | When input blur                      |                                              |
 
 ### Slots
 
