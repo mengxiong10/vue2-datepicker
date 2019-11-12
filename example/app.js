@@ -20,7 +20,8 @@ import MinuteStep from './demo/MinuteStep.vue';
 import FixedTimeList from './demo/FixedTimeList.vue';
 import Disabled from './demo/Disabled.vue';
 
-import en from './en.md';
+import docEn from './en.md';
+import docZhCN from './zh-cn.md';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
@@ -109,12 +110,25 @@ function transformMd(text) {
   return result;
 }
 
-const titleAndDescMap = transformMd(en);
+const docMap = {
+  en: transformMd(docEn),
+  'zh-cn': transformMd(docZhCN),
+};
 
 const App = {
   name: 'App',
+  props: {
+    changeLocale: {
+      type: Function,
+      default() {
+        return '';
+      },
+    },
+  },
   data() {
     return {
+      lang: 'en',
+      hackReset: true,
       currentId: this.getCurrentId(),
     };
   },
@@ -131,26 +145,50 @@ const App = {
     getCurrentId() {
       return location.hash.slice(1);
     },
+    handleChangeLocale() {
+      const lang = this.lang === 'en' ? 'zh-cn' : 'en';
+      this.lang = lang;
+      this.changeLocale(lang);
+      this.hackReset = false;
+      this.$nextTick(() => {
+        this.hackReset = true;
+      });
+    },
   },
   render(h) {
+    const doc = docMap[this.lang] || docMap.en;
     const menus = components.map(item => {
       return {
         id: item.id,
-        ...titleAndDescMap[item.id],
+        ...doc[item.id],
       };
     });
     return (
       <Container menus={menus}>
-        {components.map(item => {
-          const { component, id, code } = item;
-          const props = {
-            id,
-            code,
-            active: id === this.currentId,
-            ...titleAndDescMap[id],
-          };
-          return <Card {...{ props }}>{h(component)}</Card>;
-        })}
+        <div style={{ textAlign: 'right' }}>
+          <a
+            style="margin-right: 10px"
+            class="mx-btn-text mx-btn"
+            href="https://github.com/mengxiong10/vue2-datepicker"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          <button onClick={this.handleChangeLocale} class="mx-btn">
+            {this.lang === 'en' ? '中文' : 'English'}
+          </button>
+        </div>
+        {this.hackReset &&
+          components.map(item => {
+            const { component, id, code } = item;
+            const props = {
+              id,
+              code,
+              active: id === this.currentId,
+              ...doc[id],
+            };
+            return <Card {...{ props }}>{h(component)}</Card>;
+          })}
       </Container>
     );
   },

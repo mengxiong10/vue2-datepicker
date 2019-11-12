@@ -1,4 +1,4 @@
-import { locale as getLocale } from '../locale';
+import { getLocale } from '../locale';
 
 export default {
   inject: {

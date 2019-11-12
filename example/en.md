@@ -39,13 +39,13 @@ Disabled part of dates and time by `disabledDate` and `disabledTime` respectivel
 ### Shortcut
 
 You can set `shortcuts` to improve user experience.
-You can also use the header slot or the footer slot
+Use the header slot or the footer slot to render extra element in panel for customized requirements.
 
 <!-- ControlTimePanel -->
 
-### Control TimePanel visible
+### Control TimePanel visible(datetime mode)
 
-Determing whether the time panel is displayed by `showTimePanel`.
+The display or hiding of the time panel can be controlled by `showTimePanel`.
 The time panel is displayed after the date is selected by default.
 
 <!-- ControlOpen -->
@@ -53,21 +53,21 @@ The time panel is displayed after the date is selected by default.
 ### Control Open
 
 You can use the prop `open` to control the visible of popup.
-The time picker doesn't automatically close by default.
-This example automatically close the popup when the seconds is selected.
+This example shows how to close the popup when the seconds is selected.
 
 <!-- HideSeconds -->
 
-### Hide Seconds & Show AM/PM
+### Hide seconds selection & display AMPM selection
 
-The columns of the time Picker is displayed according to the value of format by default.
+The columns of the time Picker is displayed according to the value of format(HH:mm:ss) by default.
 You can also set `showHour` `showMinute` `showSecond` to override the default value
 
 <!-- MinuteStep -->
 
 ### Interval and custom time options
 
-Show stepped options by `hourStep` `minuteStep` `secondStep` or show custom options by `hourOptions` `minuteOptions` `secondOptions`
+Set stepped time options by `hourStep` `minuteStep` `secondStep`
+Set custom time options by `hourOptions` `minuteOptions` `secondOptions`.
 
 <!-- FixedTimeList -->
 

@@ -1,5 +1,5 @@
 import { format } from 'date-format-parse';
-import { locale as getLocale } from '../locale';
+import { getLocale } from '../locale';
 
 export default {
   inject: {

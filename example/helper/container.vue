@@ -6,6 +6,7 @@
         :key="menu.id"
         :class="{ active: activeIndex === i }"
         :href="`#${menu.id}`"
+        :title="menu.title"
         >{{ menu.title }}</a
       >
     </div>
@@ -118,6 +119,6 @@ body {
 .content {
   box-sizing: border-box;
   width: 100%;
-  padding: 20px;
+  padding: 10px 20px;
 }
 </style>

@@ -88,7 +88,7 @@
 import { parse, format } from 'date-format-parse';
 import { isValidDate, isValidRangeDate, getValidDate } from './util/date';
 import { pick, isObject, mergeDeep } from './util/base';
-import { locale as getLocale } from './locale';
+import { getLocale } from './locale';
 import Popup from './popup';
 import IconCalendar from './icon/icon-calendar';
 import IconClose from './icon/icon-close';
