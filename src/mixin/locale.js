@@ -9,7 +9,7 @@ export default {
   methods: {
     t(path) {
       const arr = path.split('.');
-      let current = this.locale;
+      let current = this.locale || getLocale();
       let value;
       for (let i = 0, len = arr.length; i < len; i++) {
         const prop = arr[i];
