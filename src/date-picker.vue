@@ -256,20 +256,11 @@ export default {
       }
       return this.value2date(this.value);
     },
-    innerValueValid() {
-      if (!this.range && isValidDate(this.innerValue)) {
-        return true;
-      }
-      if (this.range && isValidRangeDate(this.innerValue)) {
-        return true;
-      }
-      return false;
-    },
     text() {
       if (this.userInput !== null) {
         return this.userInput;
       }
-      if (!this.innerValueValid) {
+      if (!this.isValidValue(this.innerValue)) {
         return '';
       }
       const fmt = this.format;
@@ -279,7 +270,7 @@ export default {
       return this.formatDate(this.innerValue, fmt);
     },
     showClearIcon() {
-      return !this.disabled && this.clearable && this.innerValueValid;
+      return !this.disabled && this.clearable && this.text;
     },
     locale() {
       if (isObject(this.lang)) {
@@ -355,6 +346,10 @@ export default {
         this.closePopup();
       }
     },
+    isValidValue(value) {
+      const validate = this.range ? isValidRangeDate : isValidDate;
+      return validate(value);
+    },
     handleSelectDate(val, type) {
       if (this.confirm) {
         this.currentValue = val;
@@ -402,15 +397,10 @@ export default {
         this.handleClear();
         return;
       }
-      let date = null;
-      if (this.range) {
-        date = text.split(this.rangeSeparator).map(v => this.parseDate(v, this.format));
-        date = isValidRangeDate(date) ? date : null;
-      } else {
-        date = this.parseDate(text, this.format);
-        date = isValidDate(date) ? date : null;
-      }
-      if (date !== null) {
+      const date = this.range
+        ? text.split(this.rangeSeparator).map(v => this.parseDate(v, this.format))
+        : this.parseDate(text, this.format);
+      if (this.isValidValue(date)) {
         this.emitValue(date);
         this.blur();
       } else {
