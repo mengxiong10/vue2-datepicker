@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "date-fns": "^2.0.1",
-    "date-format-parse": "^0.2.4"
+    "date-format-parse": "^0.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
