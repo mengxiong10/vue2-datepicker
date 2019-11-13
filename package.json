@@ -43,6 +43,9 @@
     "url": "https://github.com/mengxiong10/vue2-datepicker/issues"
   },
   "homepage": "https://github.com/mengxiong10/vue2-datepicker#readme",
+  "peerDependencies": {
+    "vue": "^2.5.0"
+  },
   "dependencies": {
     "date-fns": "^2.0.1",
     "date-format-parse": "^0.2.4"
