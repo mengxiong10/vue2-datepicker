@@ -70,7 +70,7 @@ import 'vue2-datepicker/index.css';
 import 'vue2-datepicker/locale/zh-cn';
 ```
 
-You can override the default locale by `lang`.
+You can also override some of the default locale by `lang`.
 [Full config](https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md)
 
 ```html

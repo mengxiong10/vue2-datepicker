@@ -68,7 +68,7 @@ import 'vue2-datepicker/index.css';
 import 'vue2-datepicker/locale/zh-cn';
 ```
 
-还可以通过`lang`去覆盖默认语言选项.
+还可以通过`lang`去覆盖一些默认语言选项.
 [完整配置](https://github.com/mengxiong10/vue2-datepicker/blob/master/locale.md)
 
 ```html
