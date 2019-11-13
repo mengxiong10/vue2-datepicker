@@ -21,7 +21,7 @@
 
 <https://mengxiong10.github.io/vue2-datepicker/index.html>
 
-![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
+![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.png)
 
 ## 安装
 
