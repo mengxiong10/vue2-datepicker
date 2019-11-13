@@ -25,7 +25,11 @@ Support to select a date range.
 
 ### DisabledDate & DisabledTime
 
-Disabled part of dates and time by `disabledDate` and `disabledTime` respectively
+Disabled part of dates and time by `disabledDate` and `disabledTime` respectively.
+
+You should let the value of `defaultValue` not be disabled, when you use `disabledDate` or `disabledTime`.
+
+The default value of `defaultValue` is `new Date().setHour(0,0,0,0)`.
 
 <!-- Disabled -->
 
@@ -39,6 +43,7 @@ Disabled part of dates and time by `disabledDate` and `disabledTime` respectivel
 ### Shortcut
 
 You can set `shortcuts` to improve user experience.
+
 Use the header slot or the footer slot to render extra element in panel for customized requirements.
 
 <!-- ControlTimePanel -->
@@ -46,6 +51,7 @@ Use the header slot or the footer slot to render extra element in panel for cust
 ### Control TimePanel visible(datetime mode)
 
 The display or hiding of the time panel can be controlled by `showTimePanel`.
+
 The time panel is displayed after the date is selected by default.
 
 <!-- ControlOpen -->
@@ -53,6 +59,7 @@ The time panel is displayed after the date is selected by default.
 ### Control Open
 
 You can use the prop `open` to control the visible of popup.
+
 This example shows how to close the popup when the seconds is selected.
 
 <!-- HideSeconds -->
@@ -60,6 +67,7 @@ This example shows how to close the popup when the seconds is selected.
 ### Hide seconds selection & display AMPM selection
 
 The columns of the time Picker is displayed according to the value of format(HH:mm:ss) by default.
+
 You can also set `showHour` `showMinute` `showSecond` to override the default value
 
 <!-- MinuteStep -->
@@ -67,6 +75,7 @@ You can also set `showHour` `showMinute` `showSecond` to override the default va
 ### Interval and custom time options
 
 Set stepped time options by `hourStep` `minuteStep` `secondStep`
+
 Set custom time options by `hourOptions` `minuteOptions` `secondOptions`.
 
 <!-- FixedTimeList -->

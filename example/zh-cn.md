@@ -25,7 +25,11 @@
 
 ### 不可选择的日期和时间
 
-可用 `disabledDate` 和 `disabledTime` 分别禁止选择部分日期和时间
+可用 `disabledDate` 和 `disabledTime` 分别禁止选择部分日期和时间.
+
+当你使用`disabledDate` 或 `disabledTime`的时候, 应该设置`defaultValue`的值是不被禁止选择的.
+
+`defaultValue`的默认值是`new Date().setHour(0,0,0,0)`
 
 <!-- Disabled -->
 
@@ -39,6 +43,7 @@
 ### 快捷选项
 
 可以通过设置 `shortcuts` 提升用户体验.
+
 也可以使用 slot header 或者 footer 去设置额外的元素.
 
 <!-- ControlTimePanel -->
@@ -46,6 +51,7 @@
 ### 控制时间选择的显示和隐藏(日期时间模式)
 
 时间选择的显示可以通过 `showTimePanel` 控制.
+
 默认情况下选择一个日期后时间面板就自动显示.
 
 <!-- ControlOpen -->
@@ -53,6 +59,7 @@
 ### 控制弹窗打开
 
 可以通过 `open` 去控制弹窗的显示
+
 下面的例子说明怎么关闭弹窗当选择秒的时候
 
 <!-- HideSeconds -->
@@ -60,6 +67,7 @@
 ### 隐藏秒和显示 am/pm
 
 时间选择的列是自动显示通过 `format`的设置.
+
 你可以通过 `showHour` `showMinute` `showSecond` 覆盖默认值
 
 <!-- MinuteStep -->
@@ -67,6 +75,7 @@
 ### 间隔的时间和自定义时间选择
 
 设置间隔的时间通过`hourStep` `minuteStep` `secondStep`.
+
 设置自定义的选择通过`hourOptions` `minuteOptions` `secondOptions`.
 
 <!-- FixedTimeList -->
