@@ -43,6 +43,19 @@ describe('CalendarPanel', () => {
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2010, 0));
   });
 
+  it('feat: when year >= 0 && year < 100, should be emit right', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        type: 'year',
+        defaultValue: new Date().setFullYear(11),
+      },
+    });
+    const tds = wrapper.findAll('.mx-table-year td > div');
+    tds.at(0).trigger('click');
+    const expectedDate = new Date(10, 0).setFullYear(10);
+    expect(wrapper.emitted().select[0][0].getTime()).toBe(expectedDate);
+  });
+
   it('feat: active class', () => {
     wrapper = mount(CalendarPanel);
     const td = wrapper.find('.mx-table-date td:nth-child(6)');

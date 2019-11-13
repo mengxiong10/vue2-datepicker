@@ -31,6 +31,7 @@ import { getWeek } from 'date-format-parse';
 import localeMixin from '../mixin/locale';
 import formatMixin from '../mixin/format';
 import { chunk } from '../util/base';
+import { createDate } from '../util/date';
 
 export default {
   name: 'TableDate',
@@ -84,7 +85,7 @@ export default {
       const month = this.calendarMonth;
 
       // change to the last day of the last month
-      const calendar = new Date(year, month, 0);
+      const calendar = createDate(year, month, 0);
       const lastDayInLastMonth = calendar.getDate();
       // getDay() 0 is Sunday, 1 is Monday
       const firstDayInLastMonth =
@@ -124,13 +125,13 @@ export default {
       const year = this.calendarYear;
       const month = this.calendarMonth;
       const format = this.titleFormat;
-      const date = new Date(year, month, day);
+      const date = createDate(year, month, day);
       return this.formatDate(date, format);
     },
     getWeekNumber(day) {
       const year = this.calendarYear;
       const month = this.calendarMonth;
-      const date = new Date(year, month, day);
+      const date = createDate(year, month, day);
       return getWeek(date, this.t('formatLocale'));
     },
   },

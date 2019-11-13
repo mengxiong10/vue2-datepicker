@@ -98,7 +98,7 @@ import {
 } from 'date-fns';
 import localeMixin from '../mixin/locale';
 import formatMixin from '../mixin/format';
-import { getValidDate, isValidDate } from '../util/date';
+import { getValidDate, isValidDate, createDate } from '../util/date';
 import TableDate from './table-date';
 import TableMonth from './table-month';
 import TableYear from './table-year';
@@ -114,7 +114,7 @@ export default {
   props: {
     value: {},
     defaultValue: {
-      validator: value => isValidDate(value),
+      type: [Date, Number],
       default() {
         const date = new Date();
         date.setHours(0, 0, 0, 0);
@@ -272,12 +272,12 @@ export default {
     },
     getCellDate(value, type) {
       if (type === 'year') {
-        return new Date(value, 0);
+        return createDate(value, 0);
       }
       if (type === 'month') {
-        return new Date(this.calendarYear, value);
+        return createDate(this.calendarYear, value);
       }
-      return new Date(this.calendarYear, this.calendarMonth, value);
+      return createDate(this.calendarYear, this.calendarMonth, value);
     },
     getDateClasses(day) {
       const cellDate = this.getCellDate(day, 'date');
