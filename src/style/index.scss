@@ -183,6 +183,13 @@
   font-size: 14px;
 }
 
+.mx-calendar-decade-separator {
+  margin: 0 2px;
+  &:after {
+    content: '~';
+  }
+}
+
 .mx-calendar-content {
   position: relative;
   width: 224px;

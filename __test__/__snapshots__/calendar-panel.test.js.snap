@@ -14,7 +14,7 @@ exports[`CalendarPanel prop: type=date 1`] = `
         class="mx-icon-double-left"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-left"
     >
@@ -22,7 +22,7 @@ exports[`CalendarPanel prop: type=date 1`] = `
         class="mx-icon-left"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-double-right"
     >
@@ -30,7 +30,7 @@ exports[`CalendarPanel prop: type=date 1`] = `
         class="mx-icon-double-right"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-right"
     >
@@ -38,27 +38,27 @@ exports[`CalendarPanel prop: type=date 1`] = `
         class="mx-icon-right"
       />
     </button>
-     
+
     <span
       class="mx-calendar-header-label"
     >
       <button
         class="mx-btn mx-btn-text mx-btn-current-month"
       >
-        
+
           Oct
-        
+
       </button>
       <button
         class="mx-btn mx-btn-text mx-btn-current-year"
       >
-        
+
           2019
-        
+
       </button>
     </span>
   </div>
-   
+
   <div
     class="mx-calendar-content"
   >
@@ -67,12 +67,12 @@ exports[`CalendarPanel prop: type=date 1`] = `
       getcellclasses="function () { [native code] }"
       style="display: none;"
     />
-     
+
     <table-month-stub
       getcellclasses="function () { [native code] }"
       style="display: none;"
     />
-     
+
     <table-date-stub
       calendarmonth="9"
       calendaryear="2019"
@@ -98,7 +98,7 @@ exports[`CalendarPanel prop: type=month 1`] = `
         class="mx-icon-double-left"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-left"
       style="display: none;"
@@ -107,7 +107,7 @@ exports[`CalendarPanel prop: type=month 1`] = `
         class="mx-icon-left"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-double-right"
     >
@@ -115,7 +115,7 @@ exports[`CalendarPanel prop: type=month 1`] = `
         class="mx-icon-double-right"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-right"
       style="display: none;"
@@ -124,20 +124,20 @@ exports[`CalendarPanel prop: type=month 1`] = `
         class="mx-icon-right"
       />
     </button>
-     
+
     <span
       class="mx-calendar-header-label"
     >
       <button
         class="mx-btn mx-btn-text"
       >
-        
+
         2019
-      
+
       </button>
     </span>
   </div>
-   
+
   <div
     class="mx-calendar-content"
   >
@@ -146,11 +146,11 @@ exports[`CalendarPanel prop: type=month 1`] = `
       getcellclasses="function () { [native code] }"
       style="display: none;"
     />
-     
+
     <table-month-stub
       getcellclasses="function () { [native code] }"
     />
-     
+
     <!---->
   </div>
 </div>
@@ -170,7 +170,7 @@ exports[`CalendarPanel prop: type=year 1`] = `
         class="mx-icon-double-left"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-left"
       style="display: none;"
@@ -179,7 +179,7 @@ exports[`CalendarPanel prop: type=year 1`] = `
         class="mx-icon-left"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-double-right"
     >
@@ -187,7 +187,7 @@ exports[`CalendarPanel prop: type=year 1`] = `
         class="mx-icon-double-right"
       />
     </button>
-     
+
     <button
       class="mx-btn mx-btn-text mx-btn-icon-right"
       style="display: none;"
@@ -196,16 +196,24 @@ exports[`CalendarPanel prop: type=year 1`] = `
         class="mx-icon-right"
       />
     </button>
-     
+
     <span
       class="mx-calendar-header-label"
     >
       <span>
-        2010 ~ 2019
+        2010
+      </span>
+
+      <span
+        class="mx-calendar-decade-separator"
+      />
+
+      <span>
+        2019
       </span>
     </span>
   </div>
-   
+
   <div
     class="mx-calendar-content"
   >
@@ -213,9 +221,9 @@ exports[`CalendarPanel prop: type=year 1`] = `
       decade="2010"
       getcellclasses="function () { [native code] }"
     />
-     
+
     <!---->
-     
+
     <!---->
   </div>
 </div>

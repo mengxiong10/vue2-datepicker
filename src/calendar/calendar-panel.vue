@@ -36,13 +36,17 @@
         <i class="mx-icon-right"></i>
       </button>
       <span class="mx-calendar-header-label">
-        <span v-if="panel === 'year'">{{ yearHeader }}</span>
+        <template v-if="panel === 'year'">
+          <span>{{ calendarDecade }}</span>
+          <span class="mx-calendar-decade-separator"></span>
+          <span>{{ calendarDecade + 9 }}</span>
+        </template>
         <button
           v-else-if="panel === 'month'"
           class="mx-btn mx-btn-text"
           @click="handelPanelChange('year')"
         >
-          {{ monthHeader }}
+          {{ calendarYear }}
         </button>
         <template v-else-if="panel === 'date'">
           <button
@@ -176,12 +180,6 @@ export default {
     },
     showIconArrow() {
       return this.panel === 'date';
-    },
-    yearHeader() {
-      return `${this.calendarDecade} ~ ${this.calendarDecade + 9}`;
-    },
-    monthHeader() {
-      return this.calendarYear;
     },
     dateHeader() {
       const monthBeforeYear = this.t('monthBeforeYear');
