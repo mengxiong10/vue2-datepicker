@@ -8,20 +8,22 @@
     }"
   >
     <div v-if="!inline" class="mx-input-wrapper" @mousedown="openPopup" @touchstart="openPopup">
-      <input
-        ref="input"
-        v-bind="{ name: 'date', type: 'text', autocomplete: 'off', ...inputAttr }"
-        :class="inputClass"
-        :disabled="disabled"
-        :readonly="!editable"
-        :value="text"
-        :placeholder="placeholder"
-        @keydown="handleInputKeydown"
-        @focus="handleInputFocus"
-        @blur="handleInputBlur"
-        @input="handleInputInput"
-        @change="handleInputChange"
-      />
+      <slot name="input">
+        <input
+          ref="input"
+          v-bind="{ name: 'date', type: 'text', autocomplete: 'off', ...inputAttr }"
+          :class="inputClass"
+          :disabled="disabled"
+          :readonly="!editable"
+          :value="text"
+          :placeholder="placeholder"
+          @keydown="handleInputKeydown"
+          @focus="handleInputFocus"
+          @blur="handleInputBlur"
+          @input="handleInputInput"
+          @change="handleInputChange"
+        />
+      </slot>
       <i v-if="showClearIcon" class="mx-icon-clear" @mousedown.stop="handleClear">
         <slot name="icon-clear">
           <icon-close></icon-close>
