@@ -1,3 +1,20 @@
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.1...v3.0.2) (2019-11-14)
+
+
+### Bug Fixes
+
+* compatible with vue old version inject ([c03632f](https://github.com/mengxiong10/vue2-datepicker/commit/c03632f))
+* should return `[null, null]` when clear range ([635631f](https://github.com/mengxiong10/vue2-datepicker/commit/635631f))
+* when year < 100 && year >= 0 should be right ([8c546cc](https://github.com/mengxiong10/vue2-datepicker/commit/8c546cc))
+
+
+### Features
+
+* add prop `partial-update` ([07f4271](https://github.com/mengxiong10/vue2-datepicker/commit/07f4271))
+
+
+
 <a name="3.0.1"></a>
 
 ## [3.0.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.0...v3.0.1) (2019-11-11)
