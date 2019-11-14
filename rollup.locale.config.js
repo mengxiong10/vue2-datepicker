@@ -22,7 +22,7 @@ const plugins = [
 const umd = fileList.map(file => {
   const input = path.join(localePath, file);
   const external = ['vue2-datepicker'];
-  const name = path.basename(file, '.js').replace(/-/g, '');
+  const name = path.basename(file, '.js').replace(/-(\w+)/g, (m, p1) => p1.toUpperCase());
   return {
     input,
     plugins,
