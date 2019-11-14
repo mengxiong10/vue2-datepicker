@@ -63,4 +63,17 @@ describe('CalendarRange', () => {
     await flushPromises();
     expect(wrapper.vm.calendars).toEqual([new Date(2019, 6, 1), new Date(2019, 7, 1)]);
   });
+
+  it('partialUpdate should be false', () => {
+    wrapper = mount(CalendarRange, {
+      propsData: {
+        partialUpdate: true,
+      },
+    });
+    const panels = wrapper.findAll(CalendarPanel);
+    const startPanel = panels.at(0);
+    const endPanel = panels.at(1);
+    expect(startPanel.vm.partialUpdate).toBe(false);
+    expect(endPanel.vm.partialUpdate).toBe(false);
+  });
 });

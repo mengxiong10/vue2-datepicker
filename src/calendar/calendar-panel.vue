@@ -146,6 +146,11 @@ export default {
       default: 'YYYY-MM-DD',
     },
     calendar: Date,
+    // update date when select year or month
+    partialUpdate: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     const panels = ['date', 'year', 'month'];
@@ -252,6 +257,10 @@ export default {
         const nextCalendar = setYear(this.innerCalendar, year);
         this.updateCalendar(nextCalendar);
         this.handelPanelChange('month');
+        if (this.partialUpdate && this.innerValue[0]) {
+          const date = setYear(this.innerValue[0], year);
+          this.emitDate(date, 'year');
+        }
       }
     },
     handleSelectMonth(month) {
@@ -262,6 +271,10 @@ export default {
         const nextCalendar = setMonth(this.innerCalendar, month);
         this.updateCalendar(nextCalendar);
         this.handelPanelChange('date');
+        if (this.partialUpdate && this.innerValue[0]) {
+          const date = setMonth(setYear(this.innerValue[0], this.calendarYear), month);
+          this.emitDate(date, 'month');
+        }
       }
     },
     handleSelectDate(day) {

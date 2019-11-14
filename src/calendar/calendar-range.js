@@ -3,6 +3,7 @@ import CalendarPanel from './calendar-panel';
 import { getValidDate, isValidDate, isValidRangeDate } from '../util/date';
 
 export default {
+  name: 'CalendarRange',
   components: { CalendarPanel },
   props: {
     ...CalendarPanel.props,
@@ -107,6 +108,8 @@ export default {
         calendar,
         value: this.innerValue,
         getClasses: this.getRangeClasses,
+        // don't update when range is true
+        partialUpdate: false,
       };
       const on = {
         select: this.handleSelect,

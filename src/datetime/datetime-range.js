@@ -42,22 +42,20 @@ export default {
     handleSelect(dates, type) {
       if (type === 'date') {
         this.openTimePanel();
-        let datetimes = dates.map((v, i) => {
-          const datetime = new Date(v);
-          const time = isValidRangeDate(this.value) ? this.value[i] : new Date(this.defaultValue);
-          datetime.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
-          return datetime;
-        });
-        if (datetimes[1].getTime() < datetimes[0].getTime()) {
-          datetimes = [datetimes[0], datetimes[0]];
-        }
-        if (datetimes.some(this.disabledTime)) {
-          this.currentValue = dates;
-        } else {
-          this.emitDate(datetimes, type);
-        }
+      }
+      let datetimes = dates.map((v, i) => {
+        const datetime = new Date(v);
+        const time = isValidRangeDate(this.value) ? this.value[i] : new Date(this.defaultValue);
+        datetime.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
+        return datetime;
+      });
+      if (datetimes[1].getTime() < datetimes[0].getTime()) {
+        datetimes = [datetimes[0], datetimes[0]];
+      }
+      if (datetimes.some(this.disabledTime)) {
+        this.currentValue = dates;
       } else {
-        this.emitDate(dates, type);
+        this.emitDate(datetimes, type);
       }
     },
   },
@@ -65,6 +63,7 @@ export default {
     const calendarProps = {
       props: {
         ...pick(this, Object.keys(CalendarRange.props)),
+        type: 'date',
         value: this.currentValue,
       },
       on: {
@@ -78,7 +77,7 @@ export default {
         showTimeHeader: true,
       },
       on: {
-        select: this.handleSelect,
+        select: this.emitDate,
         'title-click': this.closeTimePanel,
       },
     };

@@ -64,43 +64,6 @@ describe('CalendarPanel', () => {
     expect(td.classes()).toContain('active');
   });
 
-  const renderType = type => {
-    it(`prop: type=${type}`, () => {
-      wrapper = shallowMount(CalendarPanel, {
-        propsData: {
-          type,
-          value: new Date(2019, 9, 1, 10),
-        },
-      });
-      expect(wrapper.element).toMatchSnapshot();
-    });
-  };
-  ['date', 'month', 'year'].forEach(renderType);
-
-  it('prop: disabledDate', () => {
-    const disabledDate = date => {
-      return date < new Date(2019, 9, 1) || date > new Date(2019, 9, 20);
-    };
-    wrapper = mount(CalendarPanel, {
-      propsData: {
-        value: new Date(2019, 9, 4),
-        disabledDate,
-      },
-    });
-    const tds = wrapper.findAll('.mx-table-date td');
-    for (let i = 0; i < 42; i++) {
-      const td = tds.at(i);
-      const classes = td.classes();
-      if (i < 2 || i > 21) {
-        expect(classes).toContain('disabled');
-      } else {
-        expect(classes).not.toContain('disabled');
-      }
-    }
-    tds.at(1).trigger('click');
-    expect(wrapper.emitted().select).toBeUndefined();
-  });
-
   it('feat: click prev/next month', () => {
     wrapper = shallowMount(CalendarPanel);
 
@@ -166,5 +129,62 @@ describe('CalendarPanel', () => {
     lastBtn.trigger('click');
     lastBtn.trigger('click');
     expect(vm.calendarDecade).toBe(2000);
+  });
+
+  const renderType = type => {
+    it(`prop: type=${type}`, () => {
+      wrapper = shallowMount(CalendarPanel, {
+        propsData: {
+          type,
+          value: new Date(2019, 9, 1, 10),
+        },
+      });
+      expect(wrapper.element).toMatchSnapshot();
+    });
+  };
+  ['date', 'month', 'year'].forEach(renderType);
+
+  it('prop: disabledDate', () => {
+    const disabledDate = date => {
+      return date < new Date(2019, 9, 1) || date > new Date(2019, 9, 20);
+    };
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        value: new Date(2019, 9, 4),
+        disabledDate,
+      },
+    });
+    const tds = wrapper.findAll('.mx-table-date td');
+    for (let i = 0; i < 42; i++) {
+      const td = tds.at(i);
+      const classes = td.classes();
+      if (i < 2 || i > 21) {
+        expect(classes).toContain('disabled');
+      } else {
+        expect(classes).not.toContain('disabled');
+      }
+    }
+    tds.at(1).trigger('click');
+    expect(wrapper.emitted().select).toBeUndefined();
+  });
+
+  it('prop: partialUpdate', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        value: new Date(2019, 9, 4),
+        partialUpdate: true,
+      },
+    });
+    wrapper
+      .findAll('.mx-table-year td > div')
+      .at(0)
+      .trigger('click');
+    expect(wrapper.emitted().select[0][0]).toEqual(new Date(2010, 9, 4));
+    wrapper.setProps({ value: new Date(2010, 9, 4) });
+    wrapper
+      .findAll('.mx-table-month td > div')
+      .at(0)
+      .trigger('click');
+    expect(wrapper.emitted().select[1][0]).toEqual(new Date(2010, 0, 4));
   });
 });

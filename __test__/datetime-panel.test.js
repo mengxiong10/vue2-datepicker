@@ -11,6 +11,7 @@ describe('DatetimePanel', () => {
   it('feat: click date', () => {
     wrapper = mount(DatetimePanel, {
       propsData: {
+        type: 'datetime',
         defaultValue: new Date(2019, 9, 1, 12),
       },
     });

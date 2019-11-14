@@ -42,16 +42,14 @@ export default {
     handleSelect(date, type) {
       if (type === 'date') {
         this.openTimePanel();
-        const time = isValidDate(this.value) ? this.value : new Date(this.defaultValue);
-        const datetime = new Date(date);
-        datetime.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
-        if (this.disabledTime(new Date(datetime))) {
-          this.currentValue = date;
-        } else {
-          this.emitDate(datetime, type);
-        }
+      }
+      const time = isValidDate(this.value) ? this.value : new Date(this.defaultValue);
+      const datetime = new Date(date);
+      datetime.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
+      if (this.disabledTime(new Date(datetime))) {
+        this.currentValue = date;
       } else {
-        this.emitDate(date, type);
+        this.emitDate(datetime, type);
       }
     },
   },
@@ -59,6 +57,7 @@ export default {
     const calendarProps = {
       props: {
         ...pick(this, Object.keys(CalendarPanel.props)),
+        type: 'date',
         value: this.currentValue,
       },
       on: {
@@ -72,7 +71,7 @@ export default {
         value: this.currentValue,
       },
       on: {
-        select: this.handleSelect,
+        select: this.emitDate,
         'title-click': this.closeTimePanel,
       },
     };

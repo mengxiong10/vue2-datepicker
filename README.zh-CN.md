@@ -119,6 +119,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | popup-class         | 弹出层的类                                       |                                             | —              |
 | shortcuts           | 设置快捷选择                                     | `Array<{text, onClick}>`                    | -              |
 | title-format        | 日历单元格的 tooltip                             | [token](#token)                             | 'YYYY-MM-DD'   |
+| partial-update      | 是否更新日期当选择年或月的时候                   | `boolean`                                   | false          |
 | range-separator     | 范围分隔符                                       | `string`                                    | ' ~ '          |
 | show-week-number    | 是否显示星期数字                                 | `boolean`                                   | false          |
 | hour-step           | 小时列的间隔                                     | 1 - 60                                      | 1              |

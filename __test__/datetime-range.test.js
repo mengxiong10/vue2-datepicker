@@ -13,6 +13,7 @@ describe('DatetimeRange', () => {
     wrapper = mount(DatetimeRange, {
       sync: false,
       propsData: {
+        type: 'datetime',
         value: [new Date(2019, 9, 4, 18), new Date(2019, 9, 6, 12)],
       },
     });

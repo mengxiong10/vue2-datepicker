@@ -121,6 +121,7 @@ You can also override some of the default locale by `lang`.
 | popup-class         | popup classes                                  |                                             | —              |
 | shortcuts           | set shortcuts to select                        | `Array<{text, onClick}>`                    | -              |
 | title-format        | format of the tooltip in calendar cell         | [token](#token)                             | 'YYYY-MM-DD'   |
+| partial-update      | whether update date when select year or month  | `boolean`                                   | false          |
 | range-separator     | text of range separator                        | `string`                                    | ' ~ '          |
 | show-week-number    | determine whether show week number             | `boolean`                                   | false          |
 | hour-step           | interval between hours in time picker          | 1 - 60                                      | 1              |
