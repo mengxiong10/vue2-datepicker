@@ -6,7 +6,7 @@ locales[defaultLocale] = enUS;
 
 export function locale(name, object, isLocal) {
   if (typeof name !== 'string') return locales[defaultLocale];
-  let l;
+  let l = defaultLocale;
   if (locales[name]) {
     l = name;
   }
