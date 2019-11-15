@@ -270,6 +270,7 @@ set fixed time list to select;
 | ------------- | ------------------------ |
 | icon-calendar | custom the calender icon |
 | icon-clear    | custom the clear icon    |
+| input         | replace input            |
 | header        | popup header             |
 | footer        | popup footer             |
 | sidebar       | popup sidebar            |

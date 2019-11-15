@@ -268,6 +268,7 @@ data() {
 | ------------- | -------------- |
 | icon-calendar | 自定义日历图标 |
 | icon-clear    | 自定义清除图标 |
+| input         | 替换输入框     |
 | header        | 弹出层的头部   |
 | footer        | 弹出层的底部   |
 | sidebar       | 弹出层的侧边   |
