@@ -11,11 +11,10 @@
       <slot name="input">
         <input
           ref="input"
-          v-bind="{ name: 'date', type: 'text', autocomplete: 'off', ...inputAttr }"
+          v-bind="{ name: 'date', type: 'text', autocomplete: 'off', value: text, ...inputAttr }"
           :class="inputClass"
           :disabled="disabled"
           :readonly="!editable"
-          :value="text"
           :placeholder="placeholder"
           @keydown="handleInputKeydown"
           @focus="handleInputFocus"
