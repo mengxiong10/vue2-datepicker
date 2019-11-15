@@ -56,9 +56,7 @@
             type="button"
             class="mx-btn mx-btn-text mx-btn-shortcut"
             @click="handleSelectShortcut(v)"
-          >
-            {{ v.text }}
-          </button>
+          >{{ v.text }}</button>
         </div>
         <div class="mx-datepicker-content">
           <slot name="content" :value="currentValue" :emit="emitValue">
@@ -78,11 +76,19 @@
           type="button"
           class="mx-btn mx-datepicker-btn-confirm"
           @click="handleConfirmDate"
-        >
-          {{ confirmText }}
-        </button>
+        >{{ confirmText }}</button>
       </div>
     </Popup>
+    <style v-if="themeColor">
+  .mx-btn:hover{border-color:{{themeColor}};color:{{themeColor}}}
+  .mx-time-column li.active{color:{{themeColor}}}
+  .mx-calendar-content .cell.active{background-color:{{themeColor}}}
+  .mx-table-date .today{color:{{themeColor}}}
+  .mx-input:hover, .mx-input:focus{border-color:{{themeColor}};}
+    </style>
+    <style v-if="activeCellColor">
+  .mx-calendar-content .cell.active{color:{{activeCellColor}};}
+    </style>
   </div>
 </template>
 
@@ -225,6 +231,14 @@ export default {
       default() {
         return [];
       },
+    },
+    themeColor: {
+      type: String,
+      default: null,
+    },
+    activeCellColor: {
+      type: String,
+      default: null,
     },
   },
   data() {
