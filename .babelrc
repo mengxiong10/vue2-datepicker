@@ -1,6 +1,7 @@
 // Parceljs cann't compile babel.config.js
 {
   "presets": [
+    ["@vue/babel-preset-jsx"],
     [
       "@babel/preset-env",
       {
@@ -8,10 +9,11 @@
       }
     ]
   ],
-  "plugins": ["transform-vue-jsx", "@babel/plugin-transform-object-assign"],
+  "plugins": ["@babel/plugin-transform-object-assign"],
   "env": {
     "test": {
       "presets": [
+        ["@vue/babel-preset-jsx"],
         [
           "@babel/preset-env",
           {
@@ -20,8 +22,7 @@
             }
           }
         ]
-      ],
-      "plugins": ["transform-vue-jsx"]
+      ]
     }
   }
 }

@@ -3,6 +3,7 @@ module.exports = api => {
   api.cache(false);
   return {
     presets: [
+      ['@vue/babel-preset-jsx'],
       [
         '@babel/preset-env',
         {
@@ -10,10 +11,11 @@ module.exports = api => {
         },
       ],
     ],
-    plugins: ['transform-vue-jsx', '@babel/plugin-transform-object-assign'],
+    plugins: ['@babel/plugin-transform-object-assign'],
     env: {
       test: {
         presets: [
+          ['@vue/babel-preset-jsx'],
           [
             '@babel/preset-env',
             {
@@ -23,7 +25,6 @@ module.exports = api => {
             },
           ],
         ],
-        plugins: ['transform-vue-jsx'],
       },
     },
   };
