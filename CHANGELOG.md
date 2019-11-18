@@ -1,19 +1,16 @@
 <a name="3.0.2"></a>
-## [3.0.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.1...v3.0.2) (2019-11-14)
 
+## [3.0.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.1...v3.0.2) (2019-11-14)
 
 ### Bug Fixes
 
-* compatible with vue old version inject ([c03632f](https://github.com/mengxiong10/vue2-datepicker/commit/c03632f))
-* should return `[null, null]` when clear range ([635631f](https://github.com/mengxiong10/vue2-datepicker/commit/635631f))
-* when year < 100 && year >= 0 should be right ([8c546cc](https://github.com/mengxiong10/vue2-datepicker/commit/8c546cc))
-
+- compatible with vue old version inject ([c03632f](https://github.com/mengxiong10/vue2-datepicker/commit/c03632f))
+- should return `[null, null]` when clear a range ([635631f](https://github.com/mengxiong10/vue2-datepicker/commit/635631f))
+- when year < 100 && year >= 0, the date should be right ([8c546cc](https://github.com/mengxiong10/vue2-datepicker/commit/8c546cc))
 
 ### Features
 
-* add prop `partial-update` ([07f4271](https://github.com/mengxiong10/vue2-datepicker/commit/07f4271))
-
-
+- add prop `partial-update`. It'll update the date when select year or month in `type='date'` or `type='datetime'` ([07f4271](https://github.com/mengxiong10/vue2-datepicker/commit/07f4271))
 
 <a name="3.0.1"></a>
 
@@ -21,9 +18,8 @@
 
 ### Bug Fixes
 
-- clear event not triggering ([#369](https://github.com/mengxiong10/vue2-datepicker/issues/369)) ([06e158e](https://github.com/mengxiong10/vue2-datepicker/commit/06e158e))
+- fix clear event not triggering ([#369](https://github.com/mengxiong10/vue2-datepicker/issues/369)) ([06e158e](https://github.com/mengxiong10/vue2-datepicker/commit/06e158e))
 - ie compatibility ([99a4abd](https://github.com/mengxiong10/vue2-datepicker/commit/99a4abd))
-- update date-format-parse to fix negative year ([5ca30f8](https://github.com/mengxiong10/vue2-datepicker/commit/5ca30f8))
 
 <a name="3.0.0"></a>
 
@@ -46,7 +42,7 @@
   ```
 
 - Add prop `open` to control the state of popup
-- Add ability to select ampm, base on formatted token
+- Add select am/pm, when use12hours
 - Add event `open` and `close`
 - Add `hourStep`/`minuteStep`/`secondStep`/`showHour`/`showMinute`/`showSecond`/`use12h` to time picker for more configuration
 
@@ -82,8 +78,17 @@
   </script>
   ```
 
-- Remove `width`, use `style="{ width: '' }"` instead.
+- Remove `width`, use `style="{ width: "" }"` instead.
 - modify `shortcuts` api.
+
+  ```js
+  [
+    { text: 'today', onClick: () => new Date() // return a Date }
+  ];
+
+  ```
+
+- Remove prop `firstDayOfWeek` to locale.
 
 ## [2.13.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.2...v2.13.3) (2019-10-29)
 
@@ -102,13 +107,13 @@
 
 ### Bug Fixes
 
-- the Spanish Language error ([#361](https://github.com/mengxiong10/vue2-datepicker/issues/361)) ([04e1032](https://github.com/mengxiong10/vue2-datepicker/commit/04e10328eabfac6e10fe4a49e7579f2eff7a1736))
+- fix the Spanish Language error ([#361](https://github.com/mengxiong10/vue2-datepicker/issues/361)) ([04e1032](https://github.com/mengxiong10/vue2-datepicker/commit/04e10328eabfac6e10fe4a49e7579f2eff7a1736))
 
 # [2.13.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.12.0...v2.13.0) (2019-10-14)
 
 ### Bug Fixes
 
-- removed stoppropagation ([864ab83](https://github.com/mengxiong10/vue2-datepicker/commit/864ab835ca93322eb103fa1e00770976b7d95c41))
+- removed keyboard event `stopPropagation` ([864ab83](https://github.com/mengxiong10/vue2-datepicker/commit/864ab835ca93322eb103fa1e00770976b7d95c41))
 - the clickoutside don't work sometimes ([#326](https://github.com/mengxiong10/vue2-datepicker/issues/326)) ([d9619f8](https://github.com/mengxiong10/vue2-datepicker/commit/d9619f815c6a87052b353b800c7e597a8dea816a))
 
 ### Features
@@ -133,7 +138,7 @@
 
 ### Bug Fixes
 
-- close popup after select range ([5823f85](https://github.com/mengxiong10/vue2-datepicker/commit/5823f85))
+- close popup after select shortcuts ([5823f85](https://github.com/mengxiong10/vue2-datepicker/commit/5823f85))
 
 # [2.11.0](https://github.com/mengxiong10/vue2-datepicker/compare/v2.10.3...v2.11.0) (2019-04-09)
 
