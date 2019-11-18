@@ -91,12 +91,15 @@ export default {
   },
   render() {
     if (this.inline) {
-      return <div>{this.$slots.default}</div>;
+      return <div class="mx-datepicker-main">{this.$slots.default}</div>;
     }
     return (
       <transition name="mx-zoom-in-down">
         {this.visible && (
-          <div class="mx-datepicker-popup" style={{ top: this.top, left: this.left }}>
+          <div
+            class="mx-datepicker-main mx-datepicker-popup"
+            style={{ top: this.top, left: this.left }}
+          >
             {this.$slots.default}
           </div>
         )}

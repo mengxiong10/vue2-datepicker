@@ -43,23 +43,23 @@
       :append-to-body="appendToBody"
       @clickoutside="handleClickOutSide"
     >
-      <div v-if="hasSlot('header')" class="mx-datepicker-header">
-        <slot name="header" :value="currentValue" :emit="emitValue"></slot>
+      <div v-if="hasSlot('sidebar') || shortcuts.length" class="mx-datepicker-sidebar">
+        <slot name="sidebar" :value="currentValue" :emit="emitValue"></slot>
+        <button
+          v-for="(v, i) in shortcuts"
+          :key="i"
+          type="button"
+          class="mx-btn mx-btn-text mx-btn-shortcut"
+          @click="handleSelectShortcut(v)"
+        >
+          {{ v.text }}
+        </button>
       </div>
-      <div class="mx-datepicker-content-wrapper">
-        <div v-if="hasSlot('sidebar') || shortcuts.length" class="mx-datepicker-sidebar">
-          <slot name="sidebar" :value="currentValue" :emit="emitValue"></slot>
-          <button
-            v-for="(v, i) in shortcuts"
-            :key="i"
-            type="button"
-            class="mx-btn mx-btn-text mx-btn-shortcut"
-            @click="handleSelectShortcut(v)"
-          >
-            {{ v.text }}
-          </button>
+      <div class="mx-datepicker-content">
+        <div v-if="hasSlot('header')" class="mx-datepicker-header">
+          <slot name="header" :value="currentValue" :emit="emitValue"></slot>
         </div>
-        <div class="mx-datepicker-content">
+        <div class="mx-datepicker-body">
           <slot name="content" :value="currentValue" :emit="emitValue">
             <component
               :is="currentComponent"
@@ -69,17 +69,17 @@
             ></component>
           </slot>
         </div>
-      </div>
-      <div v-if="hasSlot('footer') || confirm" class="mx-datepicker-footer">
-        <slot name="footer" :value="currentValue" :emit="emitValue"></slot>
-        <button
-          v-if="confirm"
-          type="button"
-          class="mx-btn mx-datepicker-btn-confirm"
-          @click="handleConfirmDate"
-        >
-          {{ confirmText }}
-        </button>
+        <div v-if="hasSlot('footer') || confirm" class="mx-datepicker-footer">
+          <slot name="footer" :value="currentValue" :emit="emitValue"></slot>
+          <button
+            v-if="confirm"
+            type="button"
+            class="mx-btn mx-datepicker-btn-confirm"
+            @click="handleConfirmDate"
+          >
+            {{ confirmText }}
+          </button>
+        </div>
       </div>
     </Popup>
   </div>

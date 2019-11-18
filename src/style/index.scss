@@ -8,8 +8,6 @@
   position: relative;
   display: inline-block;
   width: 210px;
-  color: $default-color;
-  font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif;
   svg {
     width: 1em;
     height: 1em;
@@ -29,8 +27,6 @@
 
 .mx-datepicker-inline {
   width: auto;
-  border: 1px solid $border-color;
-  background-color: #fff;
 }
 
 .mx-input-wrapper {
@@ -101,25 +97,20 @@
   }
 }
 
-.mx-datepicker-popup {
-  color: $default-color;
+.mx-datepicker-main {
   font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif;
-  position: absolute;
-  margin-top: 1px;
-  margin-bottom: 1px;
-  border: 1px solid $border-color;
+  color: $default-color;
   background-color: #fff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  z-index: 1000;
-}
-
-.mx-datepicker-content-wrapper {
+  border: 1px solid $border-color;
   display: flex;
 }
 
-.mx-datepicker-content {
-  position: relative;
-  user-select: none;
+.mx-datepicker-popup {
+  position: absolute;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  z-index: 1000;
 }
 
 .mx-datepicker-sidebar {
@@ -128,6 +119,11 @@
   padding: 6px;
   overflow: auto;
   border-right: 1px solid $border-color;
+}
+
+.mx-datepicker-body {
+  position: relative;
+  user-select: none;
 }
 
 .mx-btn-shortcut {
@@ -152,6 +148,8 @@
 }
 
 .mx-calendar {
+  box-sizing: border-box;
+  width: 248px;
   padding: 6px 12px;
   & + & {
     border-left: 1px solid $border-color;
@@ -166,17 +164,13 @@
   overflow: hidden;
 }
 
-.mx-btn-icon-left {
+.mx-btn-icon-left,
+.mx-btn-icon-double-left {
   float: left;
 }
-.mx-btn-icon-right {
-  float: right;
-}
-.mx-btn-icon-double-left {
-  @extend .mx-btn-icon-left;
-}
+.mx-btn-icon-right,
 .mx-btn-icon-double-right {
-  @extend .mx-btn-icon-right;
+  float: right;
 }
 
 .mx-calendar-header-label {
@@ -192,7 +186,6 @@
 
 .mx-calendar-content {
   position: relative;
-  width: 224px;
   height: 224px;
   box-sizing: border-box;
   .cell {
