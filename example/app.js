@@ -1,11 +1,6 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-extraneous-dependencies */
 import fs from 'fs';
-import hljs from 'highlight.js/lib/highlight';
-import javascript from 'highlight.js/lib/languages/javascript';
-import xml from 'highlight.js/lib/languages/xml';
-import 'highlight.js/styles/atom-one-light.css';
-
 import Container from './helper/container.vue';
 import Card from './helper/card.vue';
 import Basic from './demo/Basic.vue';
@@ -22,9 +17,6 @@ import Disabled from './demo/Disabled.vue';
 
 import docEn from './en.md';
 import docZhCN from './zh-cn.md';
-
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('xml', xml);
 
 const components = [
   {
@@ -133,7 +125,6 @@ const App = {
     };
   },
   mounted() {
-    hljs.initHighlighting();
     window.onhashchange = () => {
       this.currentId = this.getCurrentId();
     };

@@ -10,18 +10,17 @@
       <img v-else alt="hide code" class="icon-expand" src="../assets/collapse.svg" />
     </section>
     <section v-show="codeVisible" class="card-code">
-      <pre>
-        <code class="vue">{{code}}</code>
-      </pre>
+      <highlight-code :value="code"></highlight-code>
     </section>
   </div>
 </template>
 
 <script>
-// TODO: 替换img 图标, 本地
+import HighlightCode from './highlight-code';
 
 export default {
   name: 'DemoCard',
+  components: { HighlightCode },
   props: {
     id: String,
     title: String,
@@ -142,25 +141,5 @@ $border-color: #ebedf0;
 
 .card-code {
   border-top: 1px solid $border-color;
-  pre {
-    margin: 0;
-    background: #fff;
-    &::after,
-    &::before {
-      width: 0;
-    }
-    // 添加优先级, 覆盖 引入的样式
-    code {
-      display: block;
-      background: #fff;
-      color: #314659;
-      line-height: 2;
-      border: 0;
-      box-shadow: none;
-      padding: 16px 32px;
-      border-radius: 2px;
-      font-size: 14px;
-    }
-  }
 }
 </style>
