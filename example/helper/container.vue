@@ -69,6 +69,10 @@ body {
   height: 100%;
 }
 
+body {
+  overflow: hidden;
+}
+
 .container {
   display: flex;
   height: 100%;
