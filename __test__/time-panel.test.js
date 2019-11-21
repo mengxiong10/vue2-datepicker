@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import TimePanel from '../src/time/time-panel';
+import ListColumns from '../src/time/list-columns.vue';
 
 let wrapper;
 
@@ -95,5 +96,18 @@ describe('TimePanel', () => {
     const hour = wrapper.find('[data-type=hour] li:nth-child(2)');
     hour.trigger('click');
     expect(wrapper.emitted().select).toBeUndefined();
+  });
+
+  it('fix: when the custom format pass into time panel', () => {
+    wrapper = mount(TimePanel, {
+      propsData: {
+        value: new Date(),
+        format: {},
+      },
+    });
+    const cols = wrapper.find(ListColumns);
+    expect(cols.props('showHour')).toBe(true);
+    expect(cols.props('showMinute')).toBe(true);
+    expect(cols.props('showSecond')).toBe(true);
   });
 });

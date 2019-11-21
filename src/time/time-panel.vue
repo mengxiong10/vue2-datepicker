@@ -11,7 +11,7 @@
         :date="innerValue"
         :get-classes="getClasses"
         :options="timePickerOptions"
-        :format="format"
+        :format="innerForamt"
         @select="handleSelect"
       ></list-options>
       <list-columns
@@ -53,7 +53,6 @@ export default {
       },
     },
     format: {
-      type: String,
       default: 'HH:mm:ss',
     },
     timeTitleFormat: {
@@ -115,8 +114,11 @@ export default {
       const date = new Date(this.innerValue);
       return this.formatDate(date, titleFormat);
     },
+    innerForamt() {
+      return typeof this.format === 'string' ? this.format : 'HH:mm:ss';
+    },
     ShowHourMinuteSecondAMPM() {
-      const { format } = this;
+      const format = this.innerForamt;
       const defaultProps = {
         showHour: /[HhKk]/.test(format),
         showMinute: /m/.test(format),
