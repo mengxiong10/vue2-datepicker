@@ -258,7 +258,7 @@ export default {
       return this.value2date(this.value);
     },
     text() {
-      if (this.userInput !== null) {
+      if (this.userInput) {
         return this.userInput;
       }
       if (!this.isValidValue(this.innerValue)) {

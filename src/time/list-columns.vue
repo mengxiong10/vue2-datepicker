@@ -1,11 +1,11 @@
 <template>
   <div class="mx-time-columns">
     <scrollbar-vertical v-for="(col, i) in columns" :key="i" class="mx-time-column">
-      <ul :data-type="col.type" :data-index="i" @click="handleSelect">
+      <ul class="mx-time-list" :data-type="col.type" :data-index="i" @click="handleSelect">
         <li
           v-for="(item, j) in col.list"
           :key="item.value"
-          class="cell"
+          class="mx-time-item"
           :data-index="j"
           :class="getClasses(item.value)"
         >

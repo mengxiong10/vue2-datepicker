@@ -102,7 +102,6 @@
   color: $default-color;
   background-color: #fff;
   border: 1px solid $border-color;
-  display: flex;
 }
 
 .mx-datepicker-popup {
@@ -114,11 +113,16 @@
 }
 
 .mx-datepicker-sidebar {
+  float: left;
   box-sizing: border-box;
   width: 100px;
   padding: 6px;
   overflow: auto;
-  border-right: 1px solid $border-color;
+}
+
+.mx-datepicker-sidebar + .mx-datepicker-content {
+  margin-left: 100px;
+  border-left: 1px solid $border-color;
 }
 
 .mx-datepicker-body {
@@ -308,8 +312,7 @@
   &:first-child {
     border-left: 0;
   }
-
-  ul {
+  .mx-time-list {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -319,29 +322,11 @@
       height: 32 * 6px;
     }
   }
-
-  li {
+  .mx-time-item {
+    cursor: pointer;
     font-size: 12px;
     height: 32px;
     line-height: 32px;
-  }
-}
-
-.mx-time-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  li {
-    padding: 8px 10px;
-    font-size: 14px;
-    line-height: 20px;
-  }
-}
-
-.mx-time-list,
-.mx-time-column {
-  li {
-    cursor: pointer;
     &:hover {
       background-color: $hover-color;
     }
@@ -354,5 +339,24 @@
       color: #ccc;
       background-color: #f3f3f3;
     }
+  }
+}
+
+.mx-time-option {
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 14px;
+  line-height: 20px;
+  &:hover {
+    background-color: $hover-color;
+  }
+  &.active {
+    color: $primary-color;
+    font-weight: 700;
+  }
+  &.disabled {
+    cursor: not-allowed;
+    color: #ccc;
+    background-color: #f3f3f3;
   }
 }

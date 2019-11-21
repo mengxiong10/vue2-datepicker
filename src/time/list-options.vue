@@ -1,16 +1,14 @@
 <template>
   <scrollbar-vertical>
-    <ul class="mx-time-list">
-      <li
-        v-for="item in list"
-        :key="item.value"
-        class="cell"
-        :class="getClasses(item.value)"
-        @click="handleSelect(item.value)"
-      >
-        {{ item.text }}
-      </li>
-    </ul>
+    <div
+      v-for="item in list"
+      :key="item.value"
+      class="mx-time-option"
+      :class="getClasses(item.value)"
+      @click="handleSelect(item.value)"
+    >
+      {{ item.text }}
+    </div>
   </scrollbar-vertical>
 </template>
 

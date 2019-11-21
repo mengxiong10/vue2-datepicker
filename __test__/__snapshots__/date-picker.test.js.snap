@@ -30,18 +30,18 @@ exports[`DatePicker prop: attrs of input 1`] = `
     <!---->
      
     <div
-      class="mx-datepicker-content-wrapper"
+      class="mx-datepicker-content"
     >
       <!---->
        
       <div
-        class="mx-datepicker-content"
+        class="mx-datepicker-body"
       >
         <div />
       </div>
+       
+      <!---->
     </div>
-     
-    <!---->
   </popup-stub>
 </div>
 `;
@@ -76,18 +76,18 @@ exports[`DatePicker prop: clearable 1`] = `
     <!---->
      
     <div
-      class="mx-datepicker-content-wrapper"
+      class="mx-datepicker-content"
     >
       <!---->
        
       <div
-        class="mx-datepicker-content"
+        class="mx-datepicker-body"
       >
         <div />
       </div>
+       
+      <!---->
     </div>
-     
-    <!---->
   </popup-stub>
 </div>
 `;
@@ -127,18 +127,18 @@ exports[`DatePicker prop: editable 1`] = `
     <!---->
      
     <div
-      class="mx-datepicker-content-wrapper"
+      class="mx-datepicker-content"
     >
       <!---->
        
       <div
-        class="mx-datepicker-content"
+        class="mx-datepicker-body"
       >
         <div />
       </div>
+       
+      <!---->
     </div>
-     
-    <!---->
   </popup-stub>
 </div>
 `;
