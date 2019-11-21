@@ -254,14 +254,15 @@ the shortcuts for the range picker
 set fixed time list to select;
 
 ```js
-{start: '00:00', step:'00:30' , end: '23:30'}
+{start: '00:00', step:'00:30' , end: '23:30', format: 'HH:mm' }
 ```
 
-| Attribute | Description |
-| --------- | ----------- |
-| start     | start time  |
-| step      | step time   |
-| end       | end time    |
+| Attribute | Description                          |
+| --------- | ------------------------------------ |
+| start     | start time                           |
+| step      | step time                            |
+| end       | end time                             |
+| format    | the default is same as prop `format` |
 
 ### Events
 
