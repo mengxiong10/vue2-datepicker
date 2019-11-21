@@ -15,10 +15,6 @@
     fill: currentColor;
     overflow: hidden;
   }
-  &.disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
 }
 
 .mx-datepicker-range {
@@ -53,21 +49,21 @@
   padding-left: 10px;
   font-size: 14px;
   line-height: 1.4;
-  color: #555;
+  color: $input-color;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid $input-border-color;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 
   &:hover,
   &:focus {
-    border-color: #40a9ff;
+    border-color: $input-hover-border-color;
   }
   &:disabled,
   &.disabled {
-    color: rgba(0, 0, 0, 0.25);
-    background-color: #f5f5f5;
-    border-color: #ccc;
+    color: $disabled-color;
+    background-color: $disabled-background-color;
+    border-color: $input-border-color;
     cursor: not-allowed;
   }
   &:focus {
@@ -195,19 +191,21 @@
   .cell {
     cursor: pointer;
     &:hover {
-      background-color: $hover-color;
+      color: $calendar-hover-color;
+      background-color: $calendar-hover-background-color;
     }
     &.active {
-      color: #fff;
-      background-color: $primary-color;
+      color: $calendar-active-color;
+      background-color: $calendar-active-background-color;
     }
     &.in-range {
-      background-color: $range-color;
+      color: $calendar-in-range-color;
+      background-color: $calendar-in-range-background-color;
     }
     &.disabled {
       cursor: not-allowed;
-      color: #ccc;
-      background-color: #f3f3f3;
+      color: $disabled-color;
+      background-color: $disabled-background-color;
     }
   }
 }
@@ -216,13 +214,14 @@
   .mx-date-row {
     cursor: pointer;
     &:hover {
-      background-color: $hover-color;
+      background-color: $calendar-hover-background-color;
     }
     &.mx-active-week {
-      background-color: $range-color;
+      background-color: $calendar-in-range-background-color;
     }
     .cell {
       &:hover {
+        color: inherit;
         background-color: transparent;
       }
       &.active {
@@ -265,8 +264,8 @@
   .today {
     color: mix(#fff, $primary-color, 10%);
   }
-  .not-current-month {
-    color: #ddd;
+  .cell.not-current-month {
+    color: #ccc;
   }
 }
 
@@ -328,16 +327,18 @@
     height: 32px;
     line-height: 32px;
     &:hover {
-      background-color: $hover-color;
+      color: $time-hover-color;
+      background-color: $time-hover-background-color;
     }
     &.active {
-      color: $primary-color;
+      color: $time-active-color;
+      background-color: $time-active-background-color;
       font-weight: 700;
     }
     &.disabled {
       cursor: not-allowed;
-      color: #ccc;
-      background-color: #f3f3f3;
+      color: $disabled-color;
+      background-color: $disabled-background-color;
     }
   }
 }
@@ -348,15 +349,17 @@
   font-size: 14px;
   line-height: 20px;
   &:hover {
-    background-color: $hover-color;
+    color: $time-hover-color;
+    background-color: $time-hover-background-color;
   }
   &.active {
-    color: $primary-color;
+    color: $time-active-color;
+    background-color: $time-active-background-color;
     font-weight: 700;
   }
   &.disabled {
     cursor: not-allowed;
-    color: #ccc;
-    background-color: #f3f3f3;
+    color: $disabled-color;
+    background-color: $disabled-background-color;
   }
 }

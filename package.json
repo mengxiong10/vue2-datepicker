@@ -8,18 +8,19 @@
   },
   "files": [
     "/locale",
-    "/index.*"
+    "/index.*",
+    "/scss"
   ],
   "version": "3.0.2",
   "scripts": {
     "dev": "parcel ./example/dev.html --open --port 2235",
-    "build:index": "NODE_ENV=production rollup -c",
-    "build:locale": "NODE_ENV=production rollup -c rollup.locale.config.js",
-    "build:css": "sass --style=compressed --no-source-map src/style/index.scss index.css && postcss index.css --use autoprefixer -o index.css",
+    "build:index": "cross-env NODE_ENV=production rollup -c",
+    "build:locale": "cross-env NODE_ENV=production rollup -c rollup.locale.config.js",
+    "build:css": "sass --style=compressed --no-source-map src/style/index.scss index.css && postcss index.css --use autoprefixer -o index.css --no-map && cp -R src/style scss",
     "build": "npm run lint && npm run test && npm run clean && npm run build:index && npm run build:css && npm run build:locale",
-    "clean": "rimraf locale index.*",
+    "clean": "rimraf scss locale index.*",
     "lint": "eslint src/**/*.{js,vue}",
-    "deploy:build": "NODE_ENV=production parcel build ./example/index.html --public-url ./ --out-dir _site --no-source-maps --no-minify",
+    "deploy:build": "cross-env NODE_ENV=production parcel build ./example/index.html --public-url ./ --out-dir _site --no-source-maps --no-minify",
     "deploy": "bash build/gh-pages-deploy.sh",
     "format": "prettier --write src/**/*",
     "test": "jest",
@@ -70,6 +71,7 @@
     "conventional-changelog-cli": "^2.0.25",
     "core-js": "^3.3.5",
     "coveralls": "^3.0.7",
+    "cross-env": "^6.0.3",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.1.0",

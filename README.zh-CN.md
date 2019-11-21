@@ -29,7 +29,20 @@
 $ npm install vue2-datepicker --save
 ```
 
-## Usage
+## 主题
+
+如果你的项目使用了 SCSS, 你可以改变默认的变量.
+
+创建一个新的文件. e.g. `datepicker.scss`:
+
+```scss
+$default-color: #555;
+$primary-color: #1284e7;
+
+@import '~vue2-datepicker/scss/index.scss';
+```
+
+## 用法
 
 ```html
 <script>
