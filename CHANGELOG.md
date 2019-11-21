@@ -1,3 +1,20 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.2...v3.1.0) (2019-11-21)
+
+
+### Bug Fixes
+
+*  ie style compatible ([e69b9b7](https://github.com/mengxiong10/vue2-datepicker/commit/e69b9b7))
+* move sidebar element to right position ([32c74a4](https://github.com/mengxiong10/vue2-datepicker/commit/32c74a4))
+
+
+### Features
+
+* add slot `input` ([ffd3918](https://github.com/mengxiong10/vue2-datepicker/commit/ffd3918))
+* export the scss for custom style ([09a4d8f](https://github.com/mengxiong10/vue2-datepicker/commit/09a4d8f))
+
+
+
 <a name="3.0.2"></a>
 
 ## [3.0.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.1...v3.0.2) (2019-11-14)
