@@ -195,7 +195,6 @@ export default {
       default: 'date'
     },
     inputClass: {
-      type: [String, Array],
       default: 'mx-input'
     },
     inputAttr: Object,
