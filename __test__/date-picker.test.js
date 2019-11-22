@@ -300,4 +300,22 @@ describe('DatePicker', () => {
     const emitted = wrapper.emitted();
     expect(emitted.input[0][0]).toEqual([null, null]);
   });
+
+  it('feat: should close popup when click time in datetime mode', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        type: 'datetime',
+        timePickerOptions: {
+          start: '00:00',
+          step: '00:30',
+          end: '23:30',
+        },
+        open: true,
+        showTimePanel: true,
+      },
+    });
+    const el = wrapper.find('.mx-time-option');
+    el.trigger('click');
+    expect(wrapper.emitted().close).toBeTruthy();
+  });
 });

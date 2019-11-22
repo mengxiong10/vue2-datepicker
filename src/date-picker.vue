@@ -343,7 +343,8 @@ export default {
       return value;
     },
     afterEmitValue(type) {
-      if (!type || type === this.type) {
+      // this.type === 'datetime', click the time should close popup
+      if (!type || type === this.type || type === 'time') {
         this.closePopup();
       }
     },
