@@ -1,3 +1,12 @@
+## [2.13.4](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.3...v2.13.4) (2019-11-22)
+
+
+### Bug Fixes
+
+* fix `inputClass` type ([#374](https://github.com/mengxiong10/vue2-datepicker/issues/374)) ([0122950](https://github.com/mengxiong10/vue2-datepicker/commit/0122950c7fdf70e6366e4553c080cdaa86761ddf))
+
+
+
 ## [2.13.3](https://github.com/mengxiong10/vue2-datepicker/compare/v2.13.2...v2.13.3) (2019-10-29)
 
 
