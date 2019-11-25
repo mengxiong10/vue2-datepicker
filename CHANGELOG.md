@@ -1,3 +1,14 @@
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.1.0...v3.1.1) (2019-11-25)
+
+
+### Bug Fixes
+
+* panel doesn't close after picking time ([#378](https://github.com/mengxiong10/vue2-datepicker/issues/378)) ([8657d49](https://github.com/mengxiong10/vue2-datepicker/commit/8657d49))
+* when custom formatting causes the time-panel error ([#377](https://github.com/mengxiong10/vue2-datepicker/issues/377)) ([bf949af](https://github.com/mengxiong10/vue2-datepicker/commit/bf949af))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.0.2...v3.1.0) (2019-11-21)
 
