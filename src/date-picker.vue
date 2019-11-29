@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { parse, format } from 'date-format-parse';
+import { parse, format, getWeek } from 'date-format-parse';
 import { isValidDate, isValidRangeDate, getValidDate } from './util/date';
 import { pick, isObject, mergeDeep } from './util/base';
 import { getLocale } from './locale';
@@ -121,6 +121,7 @@ export default {
   provide() {
     return {
       locale: this.locale,
+      getWeek: this.getWeek,
     };
   },
   props: {
@@ -294,6 +295,12 @@ export default {
       if (!this.$el.contains(target)) {
         this.closePopup();
       }
+    },
+    getWeek(date, options) {
+      if (isObject(this.format) && typeof this.format.getWeek === 'function') {
+        return this.format.getWeek(date, options);
+      }
+      return getWeek(date, options);
     },
     parseDate(value, fmt) {
       if (isObject(this.format) && typeof this.format.parse === 'function') {

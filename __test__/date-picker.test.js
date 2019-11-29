@@ -136,10 +136,12 @@ describe('DatePicker', () => {
   });
 
   it('prop: custom format', () => {
-    wrapper = shallowMount(DatePicker, {
+    wrapper = mount(DatePicker, {
       propsData: {
         valueType: 'format',
         value: '13/10/2019',
+        open: true,
+        type: 'week',
         format: {
           stringify(date) {
             return format(date, 'dd/MM/yyyy');
@@ -147,11 +149,16 @@ describe('DatePicker', () => {
           parse(value) {
             return parse(value, 'dd/MM/yyyy', new Date());
           },
+          getWeek(date) {
+            return date.getDate();
+          },
         },
       },
     });
     const input = wrapper.find('input').element;
     expect(input.value).toBe('13/10/2019');
+    const tableDate = wrapper.find('.mx-table-date');
+    expect(tableDate.element).toMatchSnapshot();
   });
 
   it('prop: valueType', () => {

@@ -36,6 +36,11 @@ import { createDate } from '../util/date';
 export default {
   name: 'TableDate',
   mixins: [localeMixin, formatMixin],
+  inject: {
+    getWeek: {
+      default: getWeek,
+    },
+  },
   props: {
     calendarYear: {
       type: Number,
@@ -132,7 +137,7 @@ export default {
       const year = this.calendarYear;
       const month = this.calendarMonth;
       const date = createDate(year, month, day);
-      return getWeek(date, this.t('formatLocale'));
+      return this.getWeek(date, this.t('formatLocale'));
     },
   },
 };
