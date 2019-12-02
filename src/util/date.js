@@ -19,3 +19,10 @@ export function getValidDate(value, ...backup) {
   const date = new Date(value);
   return isValidDate(date) ? date : getValidDate(...backup);
 }
+
+export function assignTime(target, source) {
+  const date = new Date(target);
+  const time = new Date(source);
+  date.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
+  return date;
+}

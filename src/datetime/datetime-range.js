@@ -1,7 +1,7 @@
 import CalendarRange from '../calendar/calendar-range';
 import TimeRange from '../time/time-range';
 import { pick } from '../util/base';
-import { isValidRangeDate } from '../util/date';
+import { isValidRangeDate, assignTime } from '../util/date';
 
 export default {
   name: 'DatetimeRange',
@@ -43,20 +43,21 @@ export default {
       if (type === 'date') {
         this.openTimePanel();
       }
-      let datetimes = dates.map((v, i) => {
-        const datetime = new Date(v);
-        const time = isValidRangeDate(this.value) ? this.value[i] : new Date(this.defaultValue);
-        datetime.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
-        return datetime;
+      let datetimes = dates.map((date, i) => {
+        const time = isValidRangeDate(this.value) ? this.value[i] : this.defaultValue;
+        return assignTime(date, time);
       });
       if (datetimes[1].getTime() < datetimes[0].getTime()) {
         datetimes = [datetimes[0], datetimes[0]];
       }
       if (datetimes.some(this.disabledTime)) {
-        this.currentValue = dates;
-      } else {
-        this.emitDate(datetimes, type);
+        datetimes = dates.map(date => assignTime(date, this.defaultValue));
+        if (datetimes.some(this.disabledTime)) {
+          this.currentValue = datetimes;
+          return;
+        }
       }
+      this.emitDate(datetimes, type);
     },
   },
   render() {

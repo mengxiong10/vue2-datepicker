@@ -59,5 +59,11 @@ describe('DatetimeRange', () => {
     expect(wrapper.emitted().select).toBeUndefined();
     const timeTitle = wrapper.find('.mx-time-header-title');
     expect(timeTitle.text()).toBe('2019-10-02');
+    const defaultValue = new Date(2019, 9, 2, 12);
+    wrapper.setProps({ defaultValue });
+    td.trigger('click');
+    td.trigger('click');
+    await flushPromises();
+    expect(wrapper.emitted().select[0][0]).toEqual([defaultValue, defaultValue]);
   });
 });

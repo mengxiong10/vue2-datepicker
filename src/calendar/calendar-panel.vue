@@ -118,7 +118,9 @@ export default {
   props: {
     value: {},
     defaultValue: {
-      type: [Date, Number],
+      validator(value) {
+        return !isNaN(new Date(value).getTime());
+      },
       default() {
         const date = new Date();
         date.setHours(0, 0, 0, 0);

@@ -45,7 +45,9 @@ export default {
   props: {
     value: {},
     defaultValue: {
-      type: [Date, Number],
+      validator(value) {
+        return !isNaN(new Date(value).getTime());
+      },
       default() {
         const date = new Date();
         date.setHours(0, 0, 0, 0);
@@ -134,7 +136,7 @@ export default {
   },
   methods: {
     isDisabled(date) {
-      return this.disabledTime(new Date(date), this.innerValue);
+      return this.disabledTime(new Date(date));
     },
     handleSelect(value, type) {
       const date = new Date(value);

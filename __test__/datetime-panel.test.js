@@ -30,7 +30,7 @@ describe('DatetimePanel', () => {
     const disabledTime = date => date < new Date(2019, 9, 2, 12);
     wrapper = mount(DatetimePanel, {
       propsData: {
-        defaultValue: new Date(2019, 9, 1),
+        defaultValue: new Date(2019, 9, 2, 10),
         disabledDate,
         disabledTime,
       },
@@ -40,5 +40,10 @@ describe('DatetimePanel', () => {
     expect(wrapper.emitted().select).toBeUndefined();
     const timeTitle = wrapper.find('.mx-time-header-title');
     expect(timeTitle.text()).toBe('2019-10-02');
+    // set the defaultValue is not disabled
+    const defaultValue = new Date(2019, 9, 2, 12);
+    wrapper.setProps({ defaultValue });
+    td.trigger('click');
+    expect(wrapper.emitted().select[0][0]).toEqual(defaultValue);
   });
 });

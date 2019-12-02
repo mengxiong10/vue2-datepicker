@@ -1,6 +1,6 @@
 import CalendarPanel from '../calendar/calendar-panel';
 import TimePanel from '../time/time-panel.vue';
-import { isValidDate } from '../util/date';
+import { assignTime, getValidDate } from '../util/date';
 import { pick } from '../util/base';
 
 export default {
@@ -43,14 +43,17 @@ export default {
       if (type === 'date') {
         this.openTimePanel();
       }
-      const time = isValidDate(this.value) ? this.value : new Date(this.defaultValue);
-      const datetime = new Date(date);
-      datetime.setHours(time.getHours(), time.getMinutes(), time.getSeconds());
+      let datetime = assignTime(date, getValidDate(this.value, this.defaultValue));
       if (this.disabledTime(new Date(datetime))) {
-        this.currentValue = date;
-      } else {
-        this.emitDate(datetime, type);
+        // set the time of defalutValue;
+        datetime = assignTime(date, this.defaultValue);
+        if (this.disabledTime(new Date(datetime))) {
+          // if disabled don't emit date
+          this.currentValue = datetime;
+          return;
+        }
       }
+      this.emitDate(datetime, type);
     },
   },
   render() {
