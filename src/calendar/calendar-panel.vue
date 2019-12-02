@@ -221,8 +221,11 @@ export default {
       }
       this.innerCalendar = calendarDate;
     },
+    isDisabled(date) {
+      return this.disabledDate(new Date(date), this.innerValue);
+    },
     emitDate(date, type) {
-      if (!this.disabledDate(new Date(date))) {
+      if (!this.isDisabled(date)) {
         this.$emit('select', date, type);
       }
     },
@@ -325,7 +328,7 @@ export default {
       return classes.concat(this.getClasses(cellDate, this.innerValue, classes.join(' ')));
     },
     getStateClass(cellDate) {
-      if (this.disabledDate(new Date(cellDate))) {
+      if (this.isDisabled(cellDate)) {
         return 'disabled';
       }
       if (this.innerValue.some(v => v.getTime() === cellDate.getTime())) {

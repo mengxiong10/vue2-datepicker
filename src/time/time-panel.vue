@@ -133,9 +133,12 @@ export default {
     },
   },
   methods: {
+    isDisabled(date) {
+      return this.disabledTime(new Date(date), this.innerValue);
+    },
     handleSelect(value, type) {
       const date = new Date(value);
-      if (!this.disabledTime(new Date(value))) {
+      if (!this.isDisabled(value)) {
         this.$emit('select', date, type);
       }
     },
@@ -144,7 +147,7 @@ export default {
     },
     getClasses(value) {
       const cellDate = new Date(value);
-      if (this.disabledTime(new Date(value))) {
+      if (this.isDisabled(value)) {
         return 'disabled';
       }
       if (cellDate.getTime() === this.innerValue.getTime()) {

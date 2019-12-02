@@ -49,10 +49,13 @@ export default {
       this.emitChange(type, 1);
     },
     disabledStartTime(date) {
-      return this.disabledTime(date, 0);
+      return this.disabledTime(date, [this.startValue, this.endValue], 0);
     },
     disabledEndTime(date) {
-      return date.getTime() < this.startValue.getTime() || this.disabledTime(date, 1);
+      return (
+        date.getTime() < this.startValue.getTime() ||
+        this.disabledTime(date, [this.startValue, this.endValue], 1)
+      );
     },
   },
   render() {
