@@ -259,7 +259,7 @@ export default {
       return this.value2date(this.value);
     },
     text() {
-      if (this.userInput) {
+      if (this.userInput !== null) {
         return this.userInput;
       }
       if (!this.isValidValue(this.innerValue)) {
@@ -343,6 +343,8 @@ export default {
       }
     },
     emitValue(date, type) {
+      // fix IE11/10 trigger input event when input is focused. (placeholder !== '')
+      this.userInput = null;
       const value = Array.isArray(date) ? date.map(this.date2value) : this.date2value(date);
       this.$emit('input', value);
       this.$emit('change', value, type);
