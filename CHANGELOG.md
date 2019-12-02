@@ -1,3 +1,19 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.1.1...v3.2.0) (2019-12-02)
+
+
+### Bug Fixes
+
+* can't clear input box ([52bd1fe](https://github.com/mengxiong10/vue2-datepicker/commit/52bd1fe))
+
+
+### Features
+
+* add `getWeek` in custom format ([#382](https://github.com/mengxiong10/vue2-datepicker/issues/382)) ([4d935d7](https://github.com/mengxiong10/vue2-datepicker/commit/4d935d7))
+* add the second parameter to `disabled-date` ([#385](https://github.com/mengxiong10/vue2-datepicker/issues/385)) ([da2ac23](https://github.com/mengxiong10/vue2-datepicker/commit/da2ac23))
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.1.0...v3.1.1) (2019-11-25)
 
