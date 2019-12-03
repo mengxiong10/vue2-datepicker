@@ -1,3 +1,13 @@
+<a name="3.2.1"></a>
+## [3.2.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.2.0...v3.2.1) (2019-12-03)
+
+
+### Bug Fixes
+
+* `defaultValue` should be used in datetime mode ([#384](https://github.com/mengxiong10/vue2-datepicker/issues/384)) ([309a1bf](https://github.com/mengxiong10/vue2-datepicker/commit/309a1bf))
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.1.1...v3.2.0) (2019-12-02)
 
