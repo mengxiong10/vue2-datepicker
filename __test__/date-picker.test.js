@@ -325,4 +325,18 @@ describe('DatePicker', () => {
     el.trigger('click');
     expect(wrapper.emitted().close).toBeTruthy();
   });
+
+  // present the button submit form
+  it('the type of all buttons should be button', () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        open: true,
+        showTimePanel: true,
+      },
+    });
+    const els = wrapper.findAll('button');
+    els.wrappers.forEach(v => {
+      expect(v.element.type).toBe('button');
+    });
+  });
 });

@@ -9,6 +9,7 @@
     <div class="mx-calendar-header">
       <button
         v-show="showIconDoubleArrow"
+        type="button"
         class="mx-btn mx-btn-text mx-btn-icon-double-left"
         @click="handleIconDoubleLeftClick"
       >
@@ -16,6 +17,7 @@
       </button>
       <button
         v-show="showIconArrow"
+        type="button"
         class="mx-btn mx-btn-text mx-btn-icon-left"
         @click="handleIconLeftClick"
       >
@@ -23,6 +25,7 @@
       </button>
       <button
         v-show="showIconDoubleArrow"
+        type="button"
         class="mx-btn mx-btn-text mx-btn-icon-double-right"
         @click="handleIconDoubleRightClick"
       >
@@ -30,6 +33,7 @@
       </button>
       <button
         v-show="showIconArrow"
+        type="button"
         class="mx-btn mx-btn-text mx-btn-icon-right"
         @click="handleIconRightClick"
       >
@@ -43,6 +47,7 @@
         </template>
         <button
           v-else-if="panel === 'month'"
+          type="button"
           class="mx-btn mx-btn-text"
           @click="handelPanelChange('year')"
         >
@@ -52,6 +57,7 @@
           <button
             v-for="item in dateHeader"
             :key="item.panel"
+            type="button"
             :class="`mx-btn mx-btn-text mx-btn-current-${item.panel}`"
             @click="handelPanelChange(item.panel)"
           >

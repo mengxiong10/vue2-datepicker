@@ -1,7 +1,11 @@
 <template>
   <div class="mx-time">
     <div v-if="showTimeHeader" class="mx-time-header">
-      <button class="mx-btn mx-btn-text mx-time-header-title" @click="handleClickTitle">
+      <button
+        type="button"
+        class="mx-btn mx-btn-text mx-time-header-title"
+        @click="handleClickTitle"
+      >
         {{ title }}
       </button>
     </div>
