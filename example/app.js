@@ -120,7 +120,6 @@ const App = {
   data() {
     return {
       lang: 'en',
-      hackReset: true,
       currentId: this.getCurrentId(),
     };
   },
@@ -140,10 +139,6 @@ const App = {
       const lang = this.lang === 'en' ? 'zh-cn' : 'en';
       this.lang = lang;
       this.changeLocale(lang);
-      this.hackReset = false;
-      this.$nextTick(() => {
-        this.hackReset = true;
-      });
     },
   },
   render(h) {
@@ -169,8 +164,8 @@ const App = {
             {this.lang === 'en' ? '中文' : 'English'}
           </button>
         </div>
-        {this.hackReset &&
-          components.map(item => {
+        <div key={this.lang}>
+          {components.map(item => {
             const { component, id, code } = item;
             const props = {
               id,
@@ -180,6 +175,7 @@ const App = {
             };
             return <Card {...{ props }}>{h(component)}</Card>;
           })}
+        </div>
       </Container>
     );
   },
