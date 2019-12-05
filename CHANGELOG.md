@@ -1,3 +1,14 @@
+<a name="3.2.2"></a>
+## [3.2.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.2.1...v3.2.2) (2019-12-05)
+
+
+### Bug Fixes
+
+* prevent button triggering external form submit ([#389](https://github.com/mengxiong10/vue2-datepicker/issues/389)) ([7fcc1df](https://github.com/mengxiong10/vue2-datepicker/commit/7fcc1df))
+* prop `lang` should be reactive ([#391](https://github.com/mengxiong10/vue2-datepicker/issues/391)) ([3c76fc3](https://github.com/mengxiong10/vue2-datepicker/commit/3c76fc3))
+
+
+
 <a name="3.2.1"></a>
 ## [3.2.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.2.0...v3.2.1) (2019-12-03)
 
