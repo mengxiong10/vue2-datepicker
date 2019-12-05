@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import localeMixin from '../mixin/locale';
-import formatMixin from '../mixin/format';
+import { format } from 'date-format-parse';
 import ScrollbarVertical from '../scrollbar/scrollbar-vertical';
 import { getScrollParent } from '../util/dom';
+import { getLocaleFieldValue } from '../locale';
 
 function parseOption(time = '') {
   const values = time.split(':');
@@ -40,7 +40,11 @@ const scrollTo = (element, to) => {
 export default {
   name: 'ListOptions',
   components: { ScrollbarVertical },
-  mixins: [localeMixin, formatMixin],
+  inject: {
+    t: {
+      default: () => getLocaleFieldValue,
+    },
+  },
   props: {
     date: Date,
     options: {
@@ -68,7 +72,7 @@ export default {
       const start = parseOption(options.start);
       const end = parseOption(options.end);
       const step = parseOption(options.step);
-      const format = options.format || this.format;
+      const fmt = options.format || this.format;
       if (start && end && step) {
         const startMinutes = start.minutes + start.hours * 60;
         const endMinutes = end.minutes + end.hours * 60;
@@ -81,7 +85,7 @@ export default {
           const value = new Date(this.date).setHours(hours, minutes, 0);
           result.push({
             value,
-            text: this.formatDate(value, format),
+            text: this.formatDate(value, fmt),
           });
         }
       }
@@ -92,6 +96,9 @@ export default {
     this.scrollToSelected();
   },
   methods: {
+    formatDate(date, fmt) {
+      return format(date, fmt, { locale: this.t('formatLocale') });
+    },
     scrollToSelected() {
       const element = this.$el.querySelector('.active');
       if (!element) return;

@@ -36,16 +36,20 @@
 </template>
 
 <script>
+import { format } from 'date-format-parse';
 import { getValidDate } from '../util/date';
-import localeMixin from '../mixin/locale';
-import formatMixin from '../mixin/format';
 import ListColumns from './list-columns';
 import ListOptions from './list-options';
+import { getLocaleFieldValue } from '../locale';
 
 export default {
   name: 'TimePanel',
   components: { ListColumns, ListOptions },
-  mixins: [localeMixin, formatMixin],
+  inject: {
+    t: {
+      default: () => getLocaleFieldValue,
+    },
+  },
   props: {
     value: {},
     defaultValue: {
@@ -124,12 +128,12 @@ export default {
       return typeof this.format === 'string' ? this.format : 'HH:mm:ss';
     },
     ShowHourMinuteSecondAMPM() {
-      const format = this.innerForamt;
+      const fmt = this.innerForamt;
       const defaultProps = {
-        showHour: /[HhKk]/.test(format),
-        showMinute: /m/.test(format),
-        showSecond: /s/.test(format),
-        use12h: /a/i.test(format),
+        showHour: /[HhKk]/.test(fmt),
+        showMinute: /m/.test(fmt),
+        showSecond: /s/.test(fmt),
+        use12h: /a/i.test(fmt),
       };
       const obj = {};
       Object.keys(defaultProps).forEach(key => {
@@ -139,6 +143,9 @@ export default {
     },
   },
   methods: {
+    formatDate(date, fmt) {
+      return format(date, fmt, { locale: this.t('formatLocale') });
+    },
     isDisabled(date) {
       return this.disabledTime(new Date(date));
     },

@@ -15,12 +15,16 @@
 </template>
 
 <script>
-import localeMixin from '../mixin/locale';
 import { chunk } from '../util/base';
+import { getLocaleFieldValue } from '../locale';
 
 export default {
   name: 'TableMonth',
-  mixins: [localeMixin],
+  inject: {
+    t: {
+      default: () => getLocaleFieldValue,
+    },
+  },
   props: {
     getCellClasses: {
       type: Function,

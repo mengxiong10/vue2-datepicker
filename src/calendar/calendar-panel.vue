@@ -106,12 +106,12 @@ import {
   startOfMonth,
   startOfDay,
 } from 'date-fns';
-import localeMixin from '../mixin/locale';
-import formatMixin from '../mixin/format';
+import { format } from 'date-format-parse';
 import { getValidDate, isValidDate, createDate } from '../util/date';
 import TableDate from './table-date';
 import TableMonth from './table-month';
 import TableYear from './table-year';
+import { getLocaleFieldValue } from '../locale';
 
 export default {
   name: 'CalendarPanel',
@@ -120,7 +120,11 @@ export default {
     TableMonth,
     TableYear,
   },
-  mixins: [localeMixin, formatMixin],
+  inject: {
+    t: {
+      default: () => getLocaleFieldValue,
+    },
+  },
   props: {
     value: {},
     defaultValue: {
@@ -222,6 +226,9 @@ export default {
     },
   },
   methods: {
+    formatDate(date, fmt) {
+      return format(date, fmt, { locale: this.t('formatLocale') });
+    },
     initCalendar() {
       let calendarDate = this.calendar;
       if (!isValidDate(calendarDate)) {

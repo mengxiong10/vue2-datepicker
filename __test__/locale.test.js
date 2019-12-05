@@ -30,7 +30,14 @@ describe('Locale', () => {
       },
     });
     expect(wrapper.find('.mx-table-date th').text()).toBe('Su');
-    expect(wrapper.find('.mx-table-date td').element.title).toBe('Sep 29, 2019');
+    expect(wrapper.find('.mx-table-month td').text()).toBe('Jan');
+    expect(wrapper.find('.mx-btn-current-month').text()).toBe('Oct');
+    expect(wrapper.find('.mx-table-date .active').element.title).toBe('Oct 10, 2019');
+    wrapper.setProps({ lang: 'zh-cn' });
+    expect(wrapper.find('.mx-table-date th').text()).toBe('一');
+    expect(wrapper.find('.mx-table-month td').text()).toBe('1月');
+    expect(wrapper.find('.mx-btn-current-month').text()).toBe('10月');
+    expect(wrapper.find('.mx-table-date .active').element.title).toBe('10月 10, 2019');
   });
 
   it('prop: lang - object', () => {

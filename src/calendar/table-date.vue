@@ -27,18 +27,19 @@
 </template>
 
 <script>
-import { getWeek } from 'date-format-parse';
-import localeMixin from '../mixin/locale';
-import formatMixin from '../mixin/format';
+import { getWeek, format } from 'date-format-parse';
 import { chunk } from '../util/base';
 import { createDate } from '../util/date';
+import { getLocaleFieldValue } from '../locale';
 
 export default {
   name: 'TableDate',
-  mixins: [localeMixin, formatMixin],
   inject: {
+    t: {
+      default: () => getLocaleFieldValue,
+    },
     getWeek: {
-      default: getWeek,
+      default: () => getWeek,
     },
   },
   props: {
@@ -116,6 +117,9 @@ export default {
     },
   },
   methods: {
+    formatDate(date, fmt) {
+      return format(date, fmt, { locale: this.t('formatLocale') });
+    },
     handleCellClick(evt) {
       let { target } = evt;
       if (target.tagName === 'DIV') {
@@ -129,9 +133,9 @@ export default {
     getCellTitle(day) {
       const year = this.calendarYear;
       const month = this.calendarMonth;
-      const format = this.titleFormat;
+      const fmt = this.titleFormat;
       const date = createDate(year, month, day);
-      return this.formatDate(date, format);
+      return this.formatDate(date, fmt);
     },
     getWeekNumber(day) {
       const year = this.calendarYear;
