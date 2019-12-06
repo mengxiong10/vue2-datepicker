@@ -1,6 +1,8 @@
 $default-color: #73879c !default;
 $primary-color: #1284e7 !default;
 
+$today-color: mix(#fff, $primary-color, 10%) !default;
+
 $input-border-color: #ccc !default;
 $input-color: #555 !default;
 $input-hover-border-color: #409aff !default;

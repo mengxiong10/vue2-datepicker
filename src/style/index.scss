@@ -262,7 +262,7 @@
   }
 
   .today {
-    color: mix(#fff, $primary-color, 10%);
+    color: $today-color;
   }
   .cell.not-current-month {
     color: #ccc;
