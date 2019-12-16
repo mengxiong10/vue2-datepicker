@@ -89,16 +89,17 @@ export default {
       }
       return 0;
     },
-    getRangeClasses(cellDate, currentDates, classes) {
+    getRangeClasses(cellDate, currentDates, classnames) {
+      const classes = [].concat(this.getClasses(cellDate, currentDates, classnames));
       if (
-        !/disabled|active|not-current-month/.test(classes) &&
+        !/disabled|active|not-current-month/.test(classnames) &&
         currentDates.length === 2 &&
         cellDate.getTime() > currentDates[0].getTime() &&
         cellDate.getTime() < currentDates[1].getTime()
       ) {
-        return 'in-range';
+        classes.push('in-range');
       }
-      return '';
+      return classes;
     },
   },
   render() {
