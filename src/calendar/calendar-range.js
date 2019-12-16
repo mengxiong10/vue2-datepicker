@@ -27,6 +27,11 @@ export default {
     calendarMaxDiff() {
       return Infinity;
     },
+    defaultValues() {
+      return Array.isArray(this.defaultValue)
+        ? this.defaultValue
+        : [this.defaultValue, this.defaultValue];
+    },
   },
   watch: {
     value: {
@@ -35,7 +40,7 @@ export default {
         this.innerValue = isValidRangeDate(this.value)
           ? this.value
           : [new Date(NaN), new Date(NaN)];
-        this.calendars = this.innerValue.map(v => getValidDate(v, this.defaultValue));
+        this.calendars = this.innerValue.map((v, i) => getValidDate(v, this.defaultValues[i]));
         this.validateCalendars(1);
       },
     },
@@ -108,6 +113,7 @@ export default {
         ...this.$props,
         calendar,
         value: this.innerValue,
+        defaultValue: this.defaultValues[index],
         getClasses: this.getRangeClasses,
         // don't update when range is true
         partialUpdate: false,

@@ -43,15 +43,18 @@ export default {
       if (type === 'date') {
         this.openTimePanel();
       }
+      const defaultValues = Array.isArray(this.defaultValue)
+        ? this.defaultValue
+        : [this.defaultValue, this.defaultValue];
       let datetimes = dates.map((date, i) => {
-        const time = isValidRangeDate(this.value) ? this.value[i] : this.defaultValue;
+        const time = isValidRangeDate(this.value) ? this.value[i] : defaultValues[i];
         return assignTime(date, time);
       });
       if (datetimes[1].getTime() < datetimes[0].getTime()) {
         datetimes = [datetimes[0], datetimes[0]];
       }
       if (datetimes.some(this.disabledTime)) {
-        datetimes = dates.map(date => assignTime(date, this.defaultValue));
+        datetimes = dates.map((date, i) => assignTime(date, defaultValues[i]));
         if (datetimes.some(this.disabledTime)) {
           this.currentValue = datetimes;
           return;

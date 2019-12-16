@@ -87,7 +87,7 @@
 
 <script>
 import { parse, format, getWeek } from 'date-format-parse';
-import { isValidDate, isValidRangeDate, getValidDate } from './util/date';
+import { isValidDate, isValidRangeDate } from './util/date';
 import { pick, isObject, mergeDeep } from './util/base';
 import { getLocale, getLocaleFieldValue } from './locale';
 import Popup from './popup';
@@ -306,7 +306,7 @@ export default {
       if (isObject(this.format) && typeof this.format.parse === 'function') {
         return this.format.parse(value, fmt);
       }
-      const backupDate = getValidDate(this.defaultValue);
+      const backupDate = new Date();
       return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },
     formatDate(date, fmt) {

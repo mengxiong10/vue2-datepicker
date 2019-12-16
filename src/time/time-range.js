@@ -56,6 +56,9 @@ export default {
     },
   },
   render() {
+    const defaultValues = Array.isArray(this.defaultValue)
+      ? this.defaultValue
+      : [this.defaultValue, this.defaultValue];
     return (
       <div class="mx-range-wrapper">
         <TimePanel
@@ -63,6 +66,7 @@ export default {
             props: {
               ...this.$props,
               value: this.startValue,
+              defaultValue: defaultValues[0],
               disabledTime: this.disabledStartTime,
             },
             on: {
@@ -76,6 +80,7 @@ export default {
             props: {
               ...this.$props,
               value: this.endValue,
+              defaultValue: defaultValues[1],
               disabledTime: this.disabledEndTime,
             },
             on: {

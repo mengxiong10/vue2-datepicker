@@ -76,4 +76,17 @@ describe('CalendarRange', () => {
     expect(startPanel.vm.partialUpdate).toBe(false);
     expect(endPanel.vm.partialUpdate).toBe(false);
   });
+
+  it('supports defaultValue is Array', () => {
+    wrapper = mount(CalendarRange, {
+      propsData: {
+        defaultValue: [new Date(2019, 9, 1), new Date(2019, 11, 1)],
+      },
+    });
+    const panels = wrapper.findAll(CalendarPanel);
+    const startPanel = panels.at(0);
+    const endPanel = panels.at(1);
+    expect(startPanel.vm.calendarMonth).toBe(9);
+    expect(endPanel.vm.calendarMonth).toBe(11);
+  });
 });

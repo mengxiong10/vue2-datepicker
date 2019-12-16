@@ -53,9 +53,6 @@ export default {
   props: {
     value: {},
     defaultValue: {
-      validator(value) {
-        return !isNaN(new Date(value).getTime());
-      },
       default() {
         const date = new Date();
         date.setHours(0, 0, 0, 0);

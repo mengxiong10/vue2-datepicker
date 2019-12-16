@@ -33,4 +33,15 @@ describe('TimeRange', () => {
       new Date(2019, 9, 4, 19, 30, 0),
     ]);
   });
+
+  it('supports defaultValue is Array', () => {
+    wrapper = mount(TimeRange, {
+      propsData: {
+        defaultValue: [new Date(2019, 9, 1, 10), new Date(2019, 11, 1, 12)],
+      },
+    });
+    const actived = wrapper.findAll('.active');
+    expect(actived.at(0).text()).toBe('10');
+    expect(actived.at(3).text()).toBe('12');
+  });
 });
