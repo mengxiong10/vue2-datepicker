@@ -379,7 +379,7 @@ export default {
     handleSelectShortcut(item) {
       if (isObject(item) && typeof item.onClick === 'function') {
         const date = item.onClick(this);
-        if (date instanceof Date) {
+        if (date) {
           this.emitValue(date);
         }
       }

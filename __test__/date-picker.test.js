@@ -212,6 +212,19 @@ describe('DatePicker', () => {
     btn.trigger('click');
     const emitted = wrapper.emitted();
     expect(emitted.input).toEqual([['2019/05/10']]);
+    wrapper.setProps({
+      range: true,
+      shortcuts: [
+        {
+          text: 'range',
+          onClick() {
+            return [date, date];
+          },
+        },
+      ],
+    });
+    btn.trigger('click');
+    expect(emitted.input[1]).toEqual([['2019/05/10', '2019/05/10']]);
   });
 
   it('prop: popupClass', () => {
