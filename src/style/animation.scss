@@ -1,5 +1,7 @@
-.mx-zoom-in-down-enter-active,
-.mx-zoom-in-down-leave-active {
+@import './var.scss';
+
+.#{$namespace}-zoom-in-down-enter-active,
+.#{$namespace}-zoom-in-down-leave-active {
   opacity: 1;
   transform: scaleY(1);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
@@ -7,8 +9,8 @@
   transform-origin: center top;
 }
 
-.mx-zoom-in-down-enter,
-.mx-zoom-in-down-leave-to {
+.#{$namespace}-zoom-in-down-enter,
+.#{$namespace}-zoom-in-down-leave-to {
   opacity: 0;
   transform: scaleY(0);
 }

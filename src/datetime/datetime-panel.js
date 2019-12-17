@@ -5,6 +5,11 @@ import { pick } from '../util/base';
 
 export default {
   name: 'DatetimePanel',
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     ...CalendarPanel.props,
     ...TimePanel.props,
@@ -78,10 +83,13 @@ export default {
         'title-click': this.closeTimePanel,
       },
     };
+
+    const { prefixClass } = this;
+
     return (
       <div>
         <CalendarPanel {...calendarProps} />
-        {this.timeVisible && <TimePanel class="mx-calendar-time" {...timeProps} />}
+        {this.timeVisible && <TimePanel class={`${prefixClass}-calendar-time`} {...timeProps} />}
       </div>
     );
   },

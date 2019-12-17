@@ -3,6 +3,11 @@ import { getPopupElementSize, getRelativePosition, getScrollParent } from './uti
 
 export default {
   name: 'Popup',
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     visible: {
       type: Boolean,
@@ -90,15 +95,17 @@ export default {
     },
   },
   render() {
+    const { prefixClass } = this;
+
     if (this.inline) {
-      return <div class="mx-datepicker-main">{this.$slots.default}</div>;
+      return <div class={`${prefixClass}-datepicker-main`}>{this.$slots.default}</div>;
     }
     return (
-      <transition name="mx-zoom-in-down">
+      <transition name={`${prefixClass}-zoom-in-down`}>
         {this.visible && (
           <div
-            class="mx-datepicker-main mx-datepicker-popup"
-            style={{ top: this.top, left: this.left }}
+            class={`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`}
+            style={{ top: this.top, left: this.left, position: 'absolute' }}
           >
             {this.$slots.default}
           </div>

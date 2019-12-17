@@ -1,13 +1,18 @@
 <template>
   <div
     :class="{
-      'mx-datepicker': true,
-      'mx-datepicker-range': range,
-      'mx-datepicker-inline': inline,
+      [`${prefixClass}-datepicker`]: true,
+      [`${prefixClass}-datepicker-range`]: range,
+      [`${prefixClass}-datepicker-inline`]: inline,
       disabled: disabled,
     }"
   >
-    <div v-if="!inline" class="mx-input-wrapper" @mousedown="openPopup" @touchstart="openPopup">
+    <div
+      v-if="!inline"
+      :class="`${prefixClass}-input-wrapper`"
+      @mousedown="openPopup"
+      @touchstart="openPopup"
+    >
       <slot name="input">
         <input
           ref="input"
@@ -23,12 +28,12 @@
           @change="handleInputChange"
         />
       </slot>
-      <i v-if="showClearIcon" class="mx-icon-clear" @mousedown.stop="handleClear">
+      <i v-if="showClearIcon" :class="`${prefixClass}-icon-clear`" @mousedown.stop="handleClear">
         <slot name="icon-clear">
           <icon-close></icon-close>
         </slot>
       </i>
-      <i class="mx-icon-calendar">
+      <i :class="`${prefixClass}-icon-calendar`">
         <slot name="icon-calendar">
           <icon-calendar></icon-calendar>
         </slot>
@@ -43,23 +48,26 @@
       :append-to-body="appendToBody"
       @clickoutside="handleClickOutSide"
     >
-      <div v-if="hasSlot('sidebar') || shortcuts.length" class="mx-datepicker-sidebar">
+      <div
+        v-if="hasSlot('sidebar') || shortcuts.length"
+        :class="`${prefixClass}-datepicker-sidebar`"
+      >
         <slot name="sidebar" :value="currentValue" :emit="emitValue"></slot>
         <button
           v-for="(v, i) in shortcuts"
           :key="i"
           type="button"
-          class="mx-btn mx-btn-text mx-btn-shortcut"
+          :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-shortcut`"
           @click="handleSelectShortcut(v)"
         >
           {{ v.text }}
         </button>
       </div>
-      <div class="mx-datepicker-content">
-        <div v-if="hasSlot('header')" class="mx-datepicker-header">
+      <div :class="`${prefixClass}-datepicker-content`">
+        <div v-if="hasSlot('header')" :class="`${prefixClass}-datepicker-header`">
           <slot name="header" :value="currentValue" :emit="emitValue"></slot>
         </div>
-        <div class="mx-datepicker-body">
+        <div :class="`${prefixClass}-datepicker-body`">
           <slot name="content" :value="currentValue" :emit="emitValue">
             <component
               :is="currentComponent"
@@ -69,12 +77,12 @@
             ></component>
           </slot>
         </div>
-        <div v-if="hasSlot('footer') || confirm" class="mx-datepicker-footer">
+        <div v-if="hasSlot('footer') || confirm" :class="`${prefixClass}-datepicker-footer`">
           <slot name="footer" :value="currentValue" :emit="emitValue"></slot>
           <button
             v-if="confirm"
             type="button"
-            class="mx-btn mx-datepicker-btn-confirm"
+            :class="`${prefixClass}-btn ${prefixClass}-datepicker-btn-confirm`"
             @click="handleConfirmDate"
           >
             {{ confirmText }}
@@ -122,6 +130,7 @@ export default {
     return {
       t: this.getLocaleFieldValue,
       getWeek: this.getWeek,
+      prefixClass: this.prefixClass,
     };
   },
   props: {
@@ -176,8 +185,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    prefixClass: {
+      type: String,
+      default: 'mx',
+    },
     inputClass: {
-      default: 'mx-input',
+      default() {
+        return `${this.prefixClass}-input`;
+      },
     },
     inputAttr: {
       type: Object,

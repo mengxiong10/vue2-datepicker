@@ -1,15 +1,15 @@
 <template>
-  <div class="mx-time">
-    <div v-if="showTimeHeader" class="mx-time-header">
+  <div :class="`${prefixClass}-time`">
+    <div v-if="showTimeHeader" :class="`${prefixClass}-time-header`">
       <button
         type="button"
-        class="mx-btn mx-btn-text mx-time-header-title"
+        :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-time-header-title`"
         @click="handleClickTitle"
       >
         {{ title }}
       </button>
     </div>
-    <div class="mx-time-content">
+    <div :class="`${prefixClass}-time-content`">
       <list-options
         v-if="timePickerOptions"
         :date="innerValue"
@@ -48,6 +48,9 @@ export default {
   inject: {
     t: {
       default: () => getLocaleFieldValue,
+    },
+    prefixClass: {
+      default: 'mx',
     },
   },
   props: {

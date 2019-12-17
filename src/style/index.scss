@@ -4,7 +4,7 @@
 @import './scrollbar.scss';
 @import './animation.scss';
 
-.mx-datepicker {
+.#{$namespace}-datepicker {
   position: relative;
   display: inline-block;
   width: 210px;
@@ -17,30 +17,30 @@
   }
 }
 
-.mx-datepicker-range {
+.#{$namespace}-datepicker-range {
   width: 320px;
 }
 
-.mx-datepicker-inline {
+.#{$namespace}-datepicker-inline {
   width: auto;
 }
 
-.mx-input-wrapper {
+.#{$namespace}-input-wrapper {
   position: relative;
-  .mx-icon-clear {
+  .#{$namespace}-icon-clear {
     display: none;
   }
   &:hover {
-    .mx-icon-clear {
+    .#{$namespace}-icon-clear {
       display: block;
     }
-    .mx-icon-clear + .mx-icon-calendar {
+    .#{$namespace}-icon-clear + .#{$namespace}-icon-calendar {
       display: none;
     }
   }
 }
 
-.mx-input {
+.#{$namespace}-input {
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
@@ -74,8 +74,8 @@
   }
 }
 
-.mx-icon-calendar,
-.mx-icon-clear {
+.#{$namespace}-icon-calendar,
+.#{$namespace}-icon-clear {
   position: absolute;
   top: 50%;
   right: 8px;
@@ -86,21 +86,21 @@
   vertical-align: middle;
 }
 
-.mx-icon-clear {
+.#{$namespace}-icon-clear {
   cursor: pointer;
   &:hover {
     color: rgba(0, 0, 0, 0.8);
   }
 }
 
-.mx-datepicker-main {
+.#{$namespace}-datepicker-main {
   font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif;
   color: $default-color;
   background-color: #fff;
   border: 1px solid $border-color;
 }
 
-.mx-datepicker-popup {
+.#{$namespace}-datepicker-popup {
   position: absolute;
   margin-top: 1px;
   margin-bottom: 1px;
@@ -108,7 +108,7 @@
   z-index: 1000;
 }
 
-.mx-datepicker-sidebar {
+.#{$namespace}-datepicker-sidebar {
   float: left;
   box-sizing: border-box;
   width: 100px;
@@ -116,38 +116,38 @@
   overflow: auto;
 }
 
-.mx-datepicker-sidebar + .mx-datepicker-content {
+.#{$namespace}-datepicker-sidebar + .#{$namespace}-datepicker-content {
   margin-left: 100px;
   border-left: 1px solid $border-color;
 }
 
-.mx-datepicker-body {
+.#{$namespace}-datepicker-body {
   position: relative;
   user-select: none;
 }
 
-.mx-btn-shortcut {
+.#{$namespace}-btn-shortcut {
   display: block;
   padding: 0 6px;
   line-height: 24px;
 }
 
-.mx-range-wrapper {
+.#{$namespace}-range-wrapper {
   display: flex;
 }
 
-.mx-datepicker-header {
+.#{$namespace}-datepicker-header {
   padding: 6px 8px;
   border-bottom: 1px solid $border-color;
 }
 
-.mx-datepicker-footer {
+.#{$namespace}-datepicker-footer {
   padding: 6px 8px;
   text-align: right;
   border-top: 1px solid $border-color;
 }
 
-.mx-calendar {
+.#{$namespace}-calendar {
   box-sizing: border-box;
   width: 248px;
   padding: 6px 12px;
@@ -156,7 +156,7 @@
   }
 }
 
-.mx-calendar-header {
+.#{$namespace}-calendar-header {
   box-sizing: border-box;
   height: 34px;
   line-height: 34px;
@@ -164,27 +164,27 @@
   overflow: hidden;
 }
 
-.mx-btn-icon-left,
-.mx-btn-icon-double-left {
+.#{$namespace}-btn-icon-left,
+.#{$namespace}-btn-icon-double-left {
   float: left;
 }
-.mx-btn-icon-right,
-.mx-btn-icon-double-right {
+.#{$namespace}-btn-icon-right,
+.#{$namespace}-btn-icon-double-right {
   float: right;
 }
 
-.mx-calendar-header-label {
+.#{$namespace}-calendar-header-label {
   font-size: 14px;
 }
 
-.mx-calendar-decade-separator {
+.#{$namespace}-calendar-decade-separator {
   margin: 0 2px;
   &:after {
     content: '~';
   }
 }
 
-.mx-calendar-content {
+.#{$namespace}-calendar-content {
   position: relative;
   height: 224px;
   box-sizing: border-box;
@@ -210,13 +210,13 @@
   }
 }
 
-.mx-calendar-week-mode {
-  .mx-date-row {
+.#{$namespace}-calendar-week-mode {
+  .#{$namespace}-date-row {
     cursor: pointer;
     &:hover {
       background-color: $calendar-hover-background-color;
     }
-    &.mx-active-week {
+    &.#{$namespace}-active-week {
       background-color: $calendar-in-range-background-color;
     }
     .cell {
@@ -232,11 +232,11 @@
   }
 }
 
-.mx-week-number {
+.#{$namespace}-week-number {
   opacity: 0.5;
 }
 
-.mx-table {
+.#{$namespace}-table {
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
@@ -254,7 +254,7 @@
   }
 }
 
-.mx-table-date {
+.#{$namespace}-table-date {
   td,
   th {
     height: 32px;
@@ -269,7 +269,7 @@
   }
 }
 
-.mx-time {
+.#{$namespace}-time {
   flex: 1;
   width: 224px;
   background: #fff;
@@ -277,32 +277,32 @@
     border-left: 1px solid $border-color;
   }
 }
-.mx-calendar-time {
+.#{$namespace}-calendar-time {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.mx-time-header {
-  @extend .mx-calendar-header;
+.#{$namespace}-time-header {
+  @extend .#{$namespace}-calendar-header;
   border-bottom: 1px solid $border-color;
 }
 
-.mx-time-content {
+.#{$namespace}-time-content {
   height: 224px;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.mx-time-columns {
+.#{$namespace}-time-columns {
   display: flex;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.mx-time-column {
+.#{$namespace}-time-column {
   flex: 1;
   position: relative;
   border-left: 1px solid $border-color;
@@ -311,7 +311,7 @@
   &:first-child {
     border-left: 0;
   }
-  .mx-time-list {
+  .#{$namespace}-time-list {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -321,7 +321,7 @@
       height: 32 * 6px;
     }
   }
-  .mx-time-item {
+  .#{$namespace}-time-item {
     cursor: pointer;
     font-size: 12px;
     height: 32px;
@@ -343,7 +343,7 @@
   }
 }
 
-.mx-time-option {
+.#{$namespace}-time-option {
   cursor: pointer;
   padding: 8px 10px;
   font-size: 14px;

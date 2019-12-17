@@ -3,6 +3,11 @@ import { isValidRangeDate } from '../util/date';
 
 export default {
   name: 'TimeRange',
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     ...TimePanel.props,
   },
@@ -59,8 +64,11 @@ export default {
     const defaultValues = Array.isArray(this.defaultValue)
       ? this.defaultValue
       : [this.defaultValue, this.defaultValue];
+
+    const { prefixClass } = this;
+
     return (
-      <div class="mx-range-wrapper">
+      <div class={`${prefixClass}-range-wrapper`}>
         <TimePanel
           {...{
             props: {

@@ -3,8 +3,7 @@
     <div
       v-for="item in list"
       :key="item.value"
-      class="mx-time-option"
-      :class="getClasses(item.value)"
+      :class="[`${prefixClass}-time-option`, getClasses(item.value)]"
       @click="handleSelect(item.value)"
     >
       {{ item.text }}
@@ -43,6 +42,9 @@ export default {
   inject: {
     t: {
       default: () => getLocaleFieldValue,
+    },
+    prefixClass: {
+      default: 'mx',
     },
   },
   props: {

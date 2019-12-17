@@ -1,13 +1,17 @@
 <template>
-  <div class="mx-time-columns">
-    <scrollbar-vertical v-for="(col, i) in columns" :key="i" class="mx-time-column">
-      <ul class="mx-time-list" :data-type="col.type" :data-index="i" @click="handleSelect">
+  <div :class="`${prefixClass}-time-columns`">
+    <scrollbar-vertical v-for="(col, i) in columns" :key="i" :class="`${prefixClass}-time-column`">
+      <ul
+        :class="`${prefixClass}-time-list`"
+        :data-type="col.type"
+        :data-index="i"
+        @click="handleSelect"
+      >
         <li
           v-for="(item, j) in col.list"
           :key="item.value"
-          class="mx-time-item"
           :data-index="j"
-          :class="getClasses(item.value)"
+          :class="[`${prefixClass}-time-item`, getClasses(item.value)]"
         >
           {{ item.text }}
         </li>
@@ -62,9 +66,12 @@ const scrollTo = (element, to, duration = 0) => {
 
 export default {
   name: 'ListColumns',
-
   components: { ScrollbarVertical },
-
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     date: Date,
     getClasses: {

@@ -5,6 +5,11 @@ import { getValidDate, isValidDate, isValidRangeDate } from '../util/date';
 export default {
   name: 'CalendarRange',
   components: { CalendarPanel },
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     ...CalendarPanel.props,
   },
@@ -124,6 +129,9 @@ export default {
       };
       return <calendar-panel {...{ props, on }}></calendar-panel>;
     });
-    return <div class="mx-range-wrapper">{calendarRange}</div>;
+
+    const { prefixClass } = this;
+
+    return <div class={`${prefixClass}-range-wrapper`}>{calendarRange}</div>;
   },
 };

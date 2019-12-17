@@ -1,5 +1,5 @@
 <template>
-  <table class="mx-table mx-table-month" @click="handleClick">
+  <table :class="`${prefixClass}-table ${prefixClass}-table-month`" @click="handleClick">
     <tr v-for="(row, i) in months" :key="i">
       <td
         v-for="(cell, j) in row"
@@ -23,6 +23,9 @@ export default {
   inject: {
     t: {
       default: () => getLocaleFieldValue,
+    },
+    prefixClass: {
+      default: 'mx',
     },
   },
   props: {

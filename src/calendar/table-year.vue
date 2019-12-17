@@ -1,5 +1,5 @@
 <template>
-  <table class="mx-table mx-table-year" @click="handleClick">
+  <table :class="`${prefixClass}-table ${prefixClass}-table-year`" @click="handleClick">
     <tr v-for="(row, i) in years" :key="i">
       <td
         v-for="(cell, j) in row"
@@ -19,6 +19,11 @@ import { chunk } from '../util/base';
 
 export default {
   name: 'TableYear',
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     decade: Number,
     getCellClasses: {

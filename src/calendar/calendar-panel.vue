@@ -1,54 +1,54 @@
 <template>
   <div
     :class="[
-      'mx-calendar',
-      `mx-calendar-panel-${panel}`,
-      { 'mx-calendar-week-mode': type === 'week' },
+      `${prefixClass}-calendar`,
+      `${prefixClass}-calendar-panel-${panel}`,
+      { [`${prefixClass}-calendar-week-mode`]: type === 'week' },
     ]"
   >
-    <div class="mx-calendar-header">
+    <div :class="`${prefixClass}-calendar-header`">
       <button
         v-show="showIconDoubleArrow"
         type="button"
-        class="mx-btn mx-btn-text mx-btn-icon-double-left"
+        :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-double-left`"
         @click="handleIconDoubleLeftClick"
       >
-        <i class="mx-icon-double-left"></i>
+        <i :class="`${prefixClass}-icon-double-left`"></i>
       </button>
       <button
         v-show="showIconArrow"
         type="button"
-        class="mx-btn mx-btn-text mx-btn-icon-left"
+        :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-left`"
         @click="handleIconLeftClick"
       >
-        <i class="mx-icon-left"></i>
+        <i :class="`${prefixClass}-icon-left`"></i>
       </button>
       <button
         v-show="showIconDoubleArrow"
         type="button"
-        class="mx-btn mx-btn-text mx-btn-icon-double-right"
+        :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-double-right`"
         @click="handleIconDoubleRightClick"
       >
-        <i class="mx-icon-double-right"></i>
+        <i :class="`${prefixClass}-icon-double-right`"></i>
       </button>
       <button
         v-show="showIconArrow"
         type="button"
-        class="mx-btn mx-btn-text mx-btn-icon-right"
+        :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-right`"
         @click="handleIconRightClick"
       >
-        <i class="mx-icon-right"></i>
+        <i :class="`${prefixClass}-icon-right`"></i>
       </button>
-      <span class="mx-calendar-header-label">
+      <span :class="`${prefixClass}-calendar-header-label`">
         <template v-if="panel === 'year'">
           <span>{{ calendarDecade }}</span>
-          <span class="mx-calendar-decade-separator"></span>
+          <span :class="`${prefixClass}-calendar-decade-separator`"></span>
           <span>{{ calendarDecade + 9 }}</span>
         </template>
         <button
           v-else-if="panel === 'month'"
           type="button"
-          class="mx-btn mx-btn-text"
+          :class="`${prefixClass}-btn ${prefixClass}-btn-text`"
           @click="handelPanelChange('year')"
         >
           {{ calendarYear }}
@@ -58,7 +58,9 @@
             v-for="item in dateHeader"
             :key="item.panel"
             type="button"
-            :class="`mx-btn mx-btn-text mx-btn-current-${item.panel}`"
+            :class="
+              `${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-current-${item.panel}`
+            "
             @click="handelPanelChange(item.panel)"
           >
             {{ item.label }}
@@ -66,7 +68,7 @@
         </template>
       </span>
     </div>
-    <div class="mx-calendar-content">
+    <div :class="`${prefixClass}-calendar-content`">
       <table-year
         v-show="panel === 'year'"
         :decade="calendarDecade"
@@ -123,6 +125,9 @@ export default {
   inject: {
     t: {
       default: () => getLocaleFieldValue,
+    },
+    prefixClass: {
+      default: 'mx',
     },
   },
   props: {
@@ -356,7 +361,7 @@ export default {
         const time = v.getTime();
         return time >= start && time <= end;
       });
-      return active ? 'mx-active-week' : '';
+      return active ? `${this.prefixClass}-active-week` : '';
     },
   },
 };

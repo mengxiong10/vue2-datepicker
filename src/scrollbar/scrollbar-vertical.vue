@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-scrollbar"
+    :class="`${prefixClass}-scrollbar`"
     :style="{
       position: 'relative',
       overflow: 'hidden',
@@ -8,16 +8,16 @@
   >
     <div
       ref="wrap"
-      class="mx-scrollbar-wrap"
+      :class="`${prefixClass}-scrollbar-wrap`"
       :style="{ marginRight: `-${scrollbarWidth}px` }"
       @scroll="handleScroll"
     >
       <slot></slot>
     </div>
-    <div class="mx-scrollbar-track">
+    <div :class="`${prefixClass}-scrollbar-track`">
       <div
         ref="thumb"
-        class="mx-scrollbar-thumb"
+        :class="`${prefixClass}-scrollbar-thumb`"
         :style="{ height: thumbHeight, top: thumbTop }"
         @mousedown="handleDragstart"
       ></div>
@@ -30,6 +30,11 @@
 import getScrollbarWidth from '../util/scrollbar-width';
 
 export default {
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   data() {
     return {
       scrollbarWidth: 0,

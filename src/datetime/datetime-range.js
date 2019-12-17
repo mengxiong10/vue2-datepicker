@@ -5,6 +5,11 @@ import { isValidRangeDate, assignTime } from '../util/date';
 
 export default {
   name: 'DatetimeRange',
+  inject: {
+    prefixClass: {
+      default: 'mx',
+    },
+  },
   props: {
     ...CalendarRange.props,
     ...TimeRange.props,
@@ -85,10 +90,13 @@ export default {
         'title-click': this.closeTimePanel,
       },
     };
+
+    const { prefixClass } = this;
+
     return (
       <div>
         <CalendarRange {...calendarProps} />
-        {this.timeVisible && <TimeRange class="mx-calendar-time" {...timeProps} />}
+        {this.timeVisible && <TimeRange class={`${prefixClass}-calendar-time`} {...timeProps} />}
       </div>
     );
   },

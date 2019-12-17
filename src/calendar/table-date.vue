@@ -1,14 +1,18 @@
 <template>
-  <table class="mx-table mx-table-date">
+  <table :class="`${prefixClass}-table ${prefixClass}-table-date`">
     <thead>
       <tr>
-        <th v-if="showWeekNumber" class="mx-week-number-header"></th>
+        <th v-if="showWeekNumber" :class="`${prefixClass}-week-number-header`"></th>
         <th v-for="day in days" :key="day">{{ day }}</th>
       </tr>
     </thead>
     <tbody @click="handleCellClick">
-      <tr v-for="(row, i) in dates" :key="i" class="mx-date-row" :class="getRowClasses(row)">
-        <td v-if="showWeekNumber" class="mx-week-number">
+      <tr
+        v-for="(row, i) in dates"
+        :key="i"
+        :class="[`${prefixClass}-date-row`, getRowClasses(row)]"
+      >
+        <td v-if="showWeekNumber" :class="`${prefixClass}-week-number`">
           {{ getWeekNumber(row[0].day) }}
         </td>
         <td
@@ -40,6 +44,9 @@ export default {
     },
     getWeek: {
       default: () => getWeek,
+    },
+    prefixClass: {
+      default: 'mx',
     },
   },
   props: {
