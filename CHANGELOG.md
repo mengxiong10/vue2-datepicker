@@ -1,3 +1,21 @@
+<a name="3.3.0"></a>
+# [3.3.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.2.2...v3.3.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* `get-class` should be valid in `range` ([c8f7122](https://github.com/mengxiong10/vue2-datepicker/commit/c8f7122))
+* shortcus with range ([#400](https://github.com/mengxiong10/vue2-datepicker/issues/400)) ([bb0255f](https://github.com/mengxiong10/vue2-datepicker/commit/bb0255f))
+
+
+### Features
+
+* `default-value` supports Array for `range` ([#395](https://github.com/mengxiong10/vue2-datepicker/issues/395)) ([b33c9b8](https://github.com/mengxiong10/vue2-datepicker/commit/b33c9b8))
+* add `prefixClass` prop ([#401](https://github.com/mengxiong10/vue2-datepicker/issues/401)) ([a756753](https://github.com/mengxiong10/vue2-datepicker/commit/a756753))
+* add prop `defaultPanel` ([#394](https://github.com/mengxiong10/vue2-datepicker/issues/394)) ([73a1b73](https://github.com/mengxiong10/vue2-datepicker/commit/73a1b73))
+
+
+
 <a name="3.2.2"></a>
 ## [3.2.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.2.1...v3.2.2) (2019-12-05)
 
