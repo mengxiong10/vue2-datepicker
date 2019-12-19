@@ -139,6 +139,9 @@ export default {
         return date;
       },
     },
+    defaultPanel: {
+      type: String,
+    },
     disabledDate: {
       type: Function,
       default: () => false,
@@ -167,8 +170,9 @@ export default {
     },
   },
   data() {
-    const panels = ['date', 'year', 'month'];
-    const panel = panels.indexOf(this.type) !== -1 ? this.type : 'date';
+    const panels = ['date', 'month', 'year'];
+    const index = Math.max(panels.indexOf(this.type), panels.indexOf(this.defaultPanel));
+    const panel = index !== -1 ? panels[index] : 'date';
     return {
       panel,
       innerCalendar: null,

@@ -187,4 +187,15 @@ describe('CalendarPanel', () => {
       .trigger('click');
     expect(wrapper.emitted().select[1][0]).toEqual(new Date(2010, 0, 4));
   });
+
+  it('prop: defaultPanel', () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        open: true,
+        type: 'month',
+        defaultPanel: 'year',
+      },
+    });
+    expect(wrapper.vm.panel).toBe('year');
+  });
 });
