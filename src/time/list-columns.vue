@@ -81,6 +81,10 @@ export default {
     hourOptions: Array,
     minuteOptions: Array,
     secondOptions: Array,
+    showDay: {
+      type: Boolean,
+      default: false,
+    },
     showHour: {
       type: Boolean,
       default: true,
@@ -92,6 +96,10 @@ export default {
     showSecond: {
       type: Boolean,
       default: true,
+    },
+    dayStep: {
+      type: Number,
+      default: 1,
     },
     hourStep: {
       type: Number,
@@ -113,6 +121,7 @@ export default {
   computed: {
     columns() {
       const cols = [];
+      if (this.showDay) cols.push({ type: 'day', list: this.getDaysList() });
       if (this.showHour) cols.push({ type: 'hour', list: this.getHoursList() });
       if (this.showMinute) cols.push({ type: 'minute', list: this.getMinutesList() });
       if (this.showSecond) cols.push({ type: 'second', list: this.getSecondsList() });
@@ -134,6 +143,18 @@ export default {
     this.scrollToSelected(0);
   },
   methods: {
+    getDaysList() {
+      const la = generateOptions(31, this.dayStep, this.dayOptions).map(num => {
+        const today = new Date();
+        today.setMilliseconds(this.date.getMilliseconds());
+        today.setSeconds(this.date.getSeconds());
+        today.setMinutes(this.date.getMinutes());
+        today.setHours(this.date.getHours());
+        const value = today.setDate(today.getDate() + num);
+        return { value, text: padNumber(num) };
+      });
+      return la;
+    },
     getHoursList() {
       return generateOptions(this.use12h ? 12 : 24, this.hourStep, this.hourOptions).map(num => {
         const date = new Date(this.date);

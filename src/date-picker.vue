@@ -104,6 +104,7 @@ import IconClose from './icon/icon-close';
 import CalendarPanel from './calendar/calendar-panel';
 import CalendarRange from './calendar/calendar-range';
 import TimePanel from './time/time-panel';
+import DurationPanel from './time/duration-panel';
 import TimeRange from './time/time-range';
 import DatetimePanel from './datetime/datetime-panel';
 import DatetimeRange from './datetime/datetime-range';
@@ -111,11 +112,13 @@ import DatetimeRange from './datetime/datetime-range';
 const componentMap = {
   default: CalendarPanel,
   time: TimePanel,
+  duration: DurationPanel,
   datetime: DatetimePanel,
 };
 const componentRangeMap = {
   default: CalendarRange,
   time: TimeRange,
+  duration: null, // Not implemented
   datetime: DatetimeRange,
 };
 
@@ -135,13 +138,14 @@ export default {
   },
   props: {
     ...DatetimePanel.props,
+    ...DurationPanel.props,
     value: {},
     valueType: {
       type: String,
       default: 'date', // date, format, timestamp, or token like 'YYYY-MM-DD'
     },
     type: {
-      type: String, // ['date', 'datetime', 'time', 'year', 'month', 'week']
+      type: String, // ['date', 'datetime', 'time', 'duration', 'year', 'month', 'week']
       default: 'date',
     },
     format: {
@@ -153,6 +157,20 @@ export default {
           year: 'YYYY',
           month: 'YYYY-MM',
           time: 'HH:mm:ss',
+          duration: {
+            // Date to String
+            stringify: date => {
+              const today = new Date();
+              return date
+                ? `${date.getDate() - today.getDate()} days, ${date.getHours()} hours`
+                : '';
+            },
+            // String to Date
+            parse: () => {
+              // This should never be called, we do not support parsing
+              throw new Error('String to date in duration not supported.');
+            },
+          },
           week: 'w',
         };
         return map[this.type] || map.date;
@@ -368,7 +386,7 @@ export default {
     },
     afterEmitValue(type) {
       // this.type === 'datetime', click the time should close popup
-      if (!type || type === this.type || type === 'time') {
+      if (!type || type === this.type || type === 'time' || type === 'duration') {
         this.closePopup();
       }
     },
