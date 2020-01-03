@@ -193,14 +193,14 @@ You can also override some of the default locale by `lang`.
 the `format` accepts an object to customize formatting.
 
 ```html
-<date-picker :format="momentForamt" />
+<date-picker :format="momentFormat" />
 ```
 
 ```js
 data() {
   return {
     // Use moment.js instead of the default
-    momentForamt: {
+    momentFormat: {
       // Date to String
       stringify: (date) => {
         return date ? moment(date).format('LL') : ''
