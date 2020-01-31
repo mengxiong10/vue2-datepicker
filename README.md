@@ -67,7 +67,7 @@ To create a scss file. e.g. `datepicker.scss`:
 $default-color: #555;
 $primary-color: #1284e7;
 
-@import '~vue2-datepicker/scss/index.scss';
+@import '~vue2-datepicker/src/index.scss';
 ```
 
 ## Internationalization
