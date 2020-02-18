@@ -1,3 +1,14 @@
+<a name="3.3.1"></a>
+## [3.3.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.3.0...v3.3.1) (2020-02-18)
+
+
+### Bug Fixes
+
+* adjust zIndex of popup ([#412](https://github.com/mengxiong10/vue2-datepicker/issues/412)) ([513d10a](https://github.com/mengxiong10/vue2-datepicker/commit/513d10a))
+* change  z-index to style variable ([#412](https://github.com/mengxiong10/vue2-datepicker/issues/412)) ([82080aa](https://github.com/mengxiong10/vue2-datepicker/commit/82080aa))
+
+
+
 <a name="3.3.0"></a>
 # [3.3.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.2.2...v3.3.0) (2019-12-19)
 
