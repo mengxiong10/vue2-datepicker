@@ -191,14 +191,14 @@ import 'vue2-datepicker/locale/zh-cn';
 `format` 接受一个对象去自定义格式化
 
 ```html
-<date-picker :format="momentForamt" />
+<date-picker :format="momentFormat" />
 ```
 
 ```js
 data() {
   return {
     // 使用moment.js 替换默认
-    momentForamt: {
+    momentFormat: {
       // Date to String
       stringify: (date) => {
         return date ? moment(date).format('LL') : ''
