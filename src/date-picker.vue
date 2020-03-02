@@ -400,11 +400,13 @@ export default {
       }
     },
     openPopup() {
+      if (this.popupVisible) return;
       this.defaultOpen = true;
       this.$emit('open');
       this.$emit('update:open', true);
     },
     closePopup() {
+      if (!this.popupVisible) return;
       this.defaultOpen = false;
       this.$emit('close');
       this.$emit('update:open', false);
