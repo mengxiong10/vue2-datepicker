@@ -53,13 +53,18 @@ export function getRelativePosition(el, targetWidth, targetHeight, fixed) {
   return { left: `${left}px`, top: `${top}px` };
 }
 
-export function getScrollParent(node, until = document) {
+export function getScrollParent(node, until = document.body) {
   if (!node || node === until) {
     return null;
   }
 
-  if (node.scrollHeight > node.clientHeight) {
-    return node;
-  }
-  return getScrollParent(node.parentNode, until);
+  const style = (value, prop) => getComputedStyle(value, null).getPropertyValue(prop);
+
+  const regex = /(auto|scroll)/;
+
+  const scroll = regex.test(
+    style(node, 'overflow') + style(node, 'overflow-y') + style(node, 'overflow-x')
+  );
+
+  return scroll ? node : getScrollParent(node.parentNode, until);
 }
