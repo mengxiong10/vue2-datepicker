@@ -220,7 +220,7 @@ export default {
     },
   },
   watch: {
-    value: {
+    visible: {
       immediate: true,
       handler: 'initCalendar',
     },

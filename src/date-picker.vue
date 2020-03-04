@@ -363,14 +363,7 @@ export default {
       const value = Array.isArray(date) ? date.map(this.date2value) : this.date2value(date);
       this.$emit('input', value);
       this.$emit('change', value, type);
-      this.afterEmitValue(type);
       return value;
-    },
-    afterEmitValue(type) {
-      // this.type === 'datetime', click the time should close popup
-      if (!type || type === this.type || type === 'time') {
-        this.closePopup();
-      }
     },
     isValidValue(value) {
       const validate = this.range ? isValidRangeDate : isValidDate;
@@ -382,6 +375,7 @@ export default {
       } else {
         this.emitValue(val, type);
       }
+      this.closePopup();
     },
     handleClear() {
       this.emitValue(this.range ? [null, null] : null);
@@ -440,6 +434,8 @@ export default {
       const { keyCode } = evt;
       // Tab 9 or Enter 13
       if (keyCode === 9) {
+        // eslint-disable-next-line
+        console.log('2');
         this.closePopup();
       } else if (keyCode === 13) {
         this.handleInputChange();
