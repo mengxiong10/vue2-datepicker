@@ -114,6 +114,7 @@ import TableDate from './table-date';
 import TableMonth from './table-month';
 import TableYear from './table-year';
 import { getLocaleFieldValue } from '../locale';
+import emitter from '../mixin/emitter';
 
 export default {
   name: 'CalendarPanel',
@@ -122,6 +123,7 @@ export default {
     TableMonth,
     TableYear,
   },
+  mixins: [emitter],
   inject: {
     t: {
       default: () => getLocaleFieldValue,
@@ -248,6 +250,8 @@ export default {
     emitDate(date, type) {
       if (!this.isDisabled(date)) {
         this.$emit('select', date, type);
+        // someone need get the first selected date to set range value. (#429)
+        this.dispatch('DatePicker', 'pick', date, type);
       }
     },
     updateCalendar(date) {

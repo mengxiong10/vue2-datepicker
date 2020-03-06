@@ -352,4 +352,17 @@ describe('DatePicker', () => {
       expect(v.element.type).toBe('button');
     });
   });
+
+  it('should emit pick event on first click', () => {
+    wrapper = mount(DatePicker, {
+      range: true,
+      propsData: {
+        open: true,
+        defaultValue: new Date(2019, 9, 1),
+      },
+    });
+    const td = wrapper.find('.mx-table-date td');
+    td.trigger('click');
+    expect(wrapper.emitted().pick[0][0]).toEqual(new Date(2019, 8, 29));
+  });
 });

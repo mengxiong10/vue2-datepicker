@@ -277,6 +277,7 @@ set fixed time list to select;
 | input-error | When user type a invalid Date        | the input text                               |
 | focus       | When input focus                     |                                              |
 | blur        | When input blur                      |                                              |
+| pick        | when select date [#429](issues/429)  | date                                         |
 
 ### Slots
 
