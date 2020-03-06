@@ -255,8 +255,10 @@ export default {
       }
     },
     updateCalendar(date) {
+      const oldValue = new Date(this.innerCalendar);
       this.innerCalendar = date;
       this.$emit('update:calendar', date);
+      this.dispatch('DatePicker', 'calendar-change', date, oldValue);
     },
     handelPanelChange(panel) {
       this.panel = panel;
