@@ -355,8 +355,8 @@ describe('DatePicker', () => {
 
   it('should emit pick event on first click', () => {
     wrapper = mount(DatePicker, {
-      range: true,
       propsData: {
+        range: true,
         open: true,
         defaultValue: new Date(2019, 9, 1),
       },
@@ -364,5 +364,24 @@ describe('DatePicker', () => {
     const td = wrapper.find('.mx-table-date td');
     td.trigger('click');
     expect(wrapper.emitted().pick[0][0]).toEqual(new Date(2019, 8, 29));
+  });
+
+  it('Ignore whitespace around separator on manual range input', () => {
+    const rangeSeparator = ' ~ ';
+    const text = '2020-02-12';
+    wrapper = mount(DatePicker, {
+      propsData: {
+        range: true,
+        rangeSeparator: ' ~ ',
+        valueType: 'format',
+      },
+    });
+    const input = wrapper.find('input');
+
+    input.setValue(`${text} ${rangeSeparator} ${text}`);
+    input.trigger('change');
+    input.setValue(`${text}${rangeSeparator.trim()}${text}`);
+    input.trigger('change');
+    expect(wrapper.emitted().input).toEqual([[[text, text]], [[text, text]]]);
   });
 });

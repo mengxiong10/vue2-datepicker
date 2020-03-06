@@ -419,14 +419,14 @@ export default {
     },
     handleInputChange() {
       if (!this.editable || this.userInput === null) return;
-      const text = this.userInput;
+      const text = this.userInput.trim();
       this.userInput = null;
       if (text === '') {
         this.handleClear();
         return;
       }
       const date = this.range
-        ? text.split(this.rangeSeparator).map(v => this.parseDate(v, this.format))
+        ? text.split(this.rangeSeparator.trim()).map(v => this.parseDate(v.trim(), this.format))
         : this.parseDate(text, this.format);
       if (this.isValidValue(date)) {
         this.emitValue(date);
