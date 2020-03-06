@@ -134,6 +134,9 @@
 
 .#{$namespace}-range-wrapper {
   display: flex;
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
 }
 
 .#{$namespace}-datepicker-header {
