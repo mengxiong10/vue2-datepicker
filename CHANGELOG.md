@@ -1,3 +1,13 @@
+<a name="3.4.1"></a>
+## [3.4.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.4.0...v3.4.1) (2020-03-06)
+
+
+### Bug Fixes
+
+* split error when rangeSeparator is same as token ([435a6e8](https://github.com/mengxiong10/vue2-datepicker/commit/435a6e8))
+
+
+
 <a name="3.4.0"></a>
 # [3.4.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.3.1...v3.4.0) (2020-03-06)
 
