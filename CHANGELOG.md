@@ -1,3 +1,22 @@
+<a name="3.4.0"></a>
+# [3.4.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.3.1...v3.4.0) (2020-03-06)
+
+
+### Bug Fixes
+
+* fix open event fired multiple times ([be26d2a](https://github.com/mengxiong10/vue2-datepicker/commit/be26d2a))
+* mobile support for date range ([#419](https://github.com/mengxiong10/vue2-datepicker/issues/419)) ([3c2e00e](https://github.com/mengxiong10/vue2-datepicker/commit/3c2e00e))
+* popup doesn't reposition when scrolling in Firefox ([#427](https://github.com/mengxiong10/vue2-datepicker/issues/427)) ([2d50e75](https://github.com/mengxiong10/vue2-datepicker/commit/2d50e75))
+
+
+### Features
+
+* add `calendar-change` event ([#432](https://github.com/mengxiong10/vue2-datepicker/issues/432)) ([17d2262](https://github.com/mengxiong10/vue2-datepicker/commit/17d2262))
+* add `pick` event when date clicked ([#429](https://github.com/mengxiong10/vue2-datepicker/issues/429)) ([2fb9e67](https://github.com/mengxiong10/vue2-datepicker/commit/2fb9e67))
+* ignore whitespace around separator on manual range input ([#416](https://github.com/mengxiong10/vue2-datepicker/issues/416)) ([376a7ef](https://github.com/mengxiong10/vue2-datepicker/commit/376a7ef))
+
+
+
 <a name="3.3.1"></a>
 ## [3.3.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.3.0...v3.3.1) (2020-02-18)
 
