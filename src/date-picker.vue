@@ -425,9 +425,16 @@ export default {
         this.handleClear();
         return;
       }
-      const date = this.range
-        ? text.split(this.rangeSeparator.trim()).map(v => this.parseDate(v.trim(), this.format))
-        : this.parseDate(text, this.format);
+      let date;
+      if (this.range) {
+        let arr = text.split(this.rangeSeparator);
+        if (arr.length !== 2) {
+          arr = text.split(this.rangeSeparator.trim());
+        }
+        date = arr.map(v => this.parseDate(v.trim(), this.format));
+      } else {
+        date = this.parseDate(text, this.format);
+      }
       if (this.isValidValue(date)) {
         this.emitValue(date);
         this.blur();

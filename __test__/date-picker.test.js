@@ -382,6 +382,9 @@ describe('DatePicker', () => {
     input.trigger('change');
     input.setValue(`${text}${rangeSeparator.trim()}${text}`);
     input.trigger('change');
-    expect(wrapper.emitted().input).toEqual([[[text, text]], [[text, text]]]);
+    wrapper.setProps({ rangeSeparator: ' - ' });
+    input.setValue(`${text} - ${text}`);
+    input.trigger('change');
+    expect(wrapper.emitted().input).toEqual([[[text, text]], [[text, text]], [[text, text]]]);
   });
 });
