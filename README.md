@@ -72,8 +72,8 @@ $primary-color: #1284e7;
 
 ## Internationalization
 
-The default language of v3.x is English. If you need other locales.
-You can import locale file.
+The default language of v3.x is English. If you need other locales,
+you can import a locale file.
 Once you import a locale, it becomes the active locale.
 
 ```js
@@ -190,7 +190,7 @@ You can also override some of the default locale by `lang`.
 
 #### custom format
 
-the `format` accepts an object to customize formatting.
+The `format` accepts an object to customize formatting.
 
 ```html
 <date-picker :format="momentFormat" />
@@ -228,7 +228,7 @@ set the format of binding value
 
 #### shortcuts
 
-the shortcuts for the range picker
+The shortcuts for the range picker
 
 ```js
 [
@@ -251,7 +251,7 @@ the shortcuts for the range picker
 
 #### time-picker-options
 
-set fixed time list to select;
+Set fixed time list to select;
 
 ```js
 {start: '00:00', step:'00:30' , end: '23:30', format: 'HH:mm' }
