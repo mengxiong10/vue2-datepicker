@@ -254,30 +254,30 @@ export default {
         this.dispatch('DatePicker', 'pick', date, type);
       }
     },
-    updateCalendar(date) {
+    updateCalendar(date, type) {
       const oldValue = new Date(this.innerCalendar);
       this.innerCalendar = date;
       this.$emit('update:calendar', date);
-      this.dispatch('DatePicker', 'calendar-change', date, oldValue);
+      this.dispatch('DatePicker', 'calendar-change', date, oldValue, type);
     },
     handelPanelChange(panel) {
       this.panel = panel;
     },
     handleIconLeftClick() {
       const nextCalendar = subMonths(this.innerCalendar, 1);
-      this.updateCalendar(nextCalendar);
+      this.updateCalendar(nextCalendar, 'last-month');
     },
     handleIconRightClick() {
       const nextCalendar = addMonths(this.innerCalendar, 1);
-      this.updateCalendar(nextCalendar);
+      this.updateCalendar(nextCalendar, 'next-month');
     },
     handleIconDoubleLeftClick() {
       const nextCalendar = subYears(this.innerCalendar, this.panel === 'year' ? 10 : 1);
-      this.updateCalendar(nextCalendar);
+      this.updateCalendar(nextCalendar, this.panel === 'year' ? 'last-decade' : 'last-year');
     },
     handleIconDoubleRightClick() {
       const nextCalendar = addYears(this.innerCalendar, this.panel === 'year' ? 10 : 1);
-      this.updateCalendar(nextCalendar);
+      this.updateCalendar(nextCalendar, this.panel === 'year' ? 'next-decade' : 'next-year');
     },
     handleSelectYear(year) {
       if (this.type === 'year') {
@@ -285,7 +285,7 @@ export default {
         this.emitDate(date, 'year');
       } else {
         const nextCalendar = setYear(this.innerCalendar, year);
-        this.updateCalendar(nextCalendar);
+        this.updateCalendar(nextCalendar, 'year');
         this.handelPanelChange('month');
         if (this.partialUpdate && this.innerValue[0]) {
           const date = setYear(this.innerValue[0], year);
@@ -299,7 +299,7 @@ export default {
         this.emitDate(date, 'month');
       } else {
         const nextCalendar = setMonth(this.innerCalendar, month);
-        this.updateCalendar(nextCalendar);
+        this.updateCalendar(nextCalendar, 'month');
         this.handelPanelChange('date');
         if (this.partialUpdate && this.innerValue[0]) {
           const date = setMonth(setYear(this.innerValue[0], this.calendarYear), month);
