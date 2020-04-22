@@ -30,6 +30,7 @@ module.exports = {
     'no-restricted-globals': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': [2, { ignore: ['vue2-datepicker'] }],
+    'import/no-extraneous-dependencies': 'off',
     'vue/require-default-prop': 'off',
     'vue/require-prop-types': 'off',
     'vue/no-v-html': 'off',
