@@ -1,3 +1,14 @@
+<a name="3.5.0"></a>
+# [3.5.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.4.1...v3.5.0) (2020-04-22)
+
+
+### Features
+
+* add argument `event` for `open` event ([#457](https://github.com/mengxiong10/vue2-datepicker/issues/457)) ([a4103fa](https://github.com/mengxiong10/vue2-datepicker/commit/a4103fa))
+* add type for `calendar-change` ([#459](https://github.com/mengxiong10/vue2-datepicker/issues/459)) ([c835c79](https://github.com/mengxiong10/vue2-datepicker/commit/c835c79))
+
+
+
 <a name="3.4.1"></a>
 ## [3.4.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.4.0...v3.4.1) (2020-03-06)
 
