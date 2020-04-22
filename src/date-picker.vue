@@ -399,10 +399,10 @@ export default {
         }
       }
     },
-    openPopup() {
+    openPopup(evt) {
       if (this.popupVisible) return;
       this.defaultOpen = true;
-      this.$emit('open');
+      this.$emit('open', evt);
       this.$emit('update:open', true);
     },
     closePopup() {
@@ -459,7 +459,7 @@ export default {
       this.$emit('blur', evt);
     },
     handleInputFocus(evt) {
-      this.openPopup();
+      this.openPopup(evt);
       this.$emit('focus', evt);
     },
     hasSlot(name) {
