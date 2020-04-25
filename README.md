@@ -116,6 +116,7 @@ You can also override some of the default locale by `lang`.
 | format              | to set the date format. similar to moment.js   | [token](#token)                             | 'YYYY-MM-DD'   |
 | value-type          | data type of the binding value                 | [value-type](#value-type)                   | 'date'         |
 | default-value       | default date of the calendar                   | `Date`                                      | new Date()     |
+| default-panel       | default panel of the picker                    | `string` \|'date'|'year'|'month'\           | 'date'         |
 | lang                | override the default locale                    | `object`                                    |                |
 | placeholder         | input placeholder text                         | `string`                                    | ''             |
 | editable            | whether the input is editable                  | `boolean`                                   | true           |
