@@ -7,12 +7,7 @@
       disabled: disabled,
     }"
   >
-    <div
-      v-if="!inline"
-      :class="`${prefixClass}-input-wrapper`"
-      @mousedown="openPopup"
-      @touchstart="openPopup"
-    >
+    <div v-if="!inline" :class="`${prefixClass}-input-wrapper`" @mousedown="openPopup">
       <slot name="input">
         <input
           ref="input"
