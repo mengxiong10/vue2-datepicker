@@ -151,6 +151,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | time-title-format   | 时间面板头部的格式化                             | [token](#token)                             | 'YYYY-MM-DD'   |
 | time-picker-options | 设置固定时间去选择                               | [time-picker-options](#time-picker-options) | null           |
 | prefix-class        | 设置 class 的前缀                                | `string`                                    | 'mx'           |
+| scroll-duration     | 设置滚动时候当选中小时的时候                     | `number`                                    | 100            |
 
 #### Token
 

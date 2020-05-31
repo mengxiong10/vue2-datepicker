@@ -74,6 +74,10 @@ export default {
   },
   props: {
     date: Date,
+    scrollDuration: {
+      type: Number,
+      default: 100,
+    },
     getClasses: {
       type: Function,
       default: () => [],
@@ -125,7 +129,7 @@ export default {
     date: {
       handler() {
         this.$nextTick(() => {
-          this.scrollToSelected(100);
+          this.scrollToSelected(this.scrollDuration);
         });
       },
     },

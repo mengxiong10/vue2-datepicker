@@ -28,6 +28,7 @@
         :hour-step="hourStep"
         :minute-step="minuteStep"
         :second-step="secondStep"
+        :scroll-duration="scrollDuration"
         v-bind="ShowHourMinuteSecondAMPM"
         @select="handleSelect"
       ></list-columns>
@@ -113,6 +114,10 @@ export default {
     use12h: {
       type: Boolean,
       default: undefined,
+    },
+    scrollDuration: {
+      type: Number,
+      default: 100,
     },
   },
   computed: {
