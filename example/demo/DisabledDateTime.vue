@@ -1,12 +1,8 @@
 <template>
   <div class="box">
     <section>
-      <p>date not before today</p>
-      <date-picker v-model="value1" :disabled-date="notBeforeToday"></date-picker>
-    </section>
-    <section>
-      <p>date not after today</p>
-      <date-picker v-model="value2" :disabled-date="notAfterToday"></date-picker>
+      <p>Not before today && Not after a week</p>
+      <date-picker v-model="value1" :disabled-date="notBeforeAndAfter"></date-picker>
     </section>
     <section>
       <p>time not before 09:00</p>
@@ -40,18 +36,15 @@ export default {
   data() {
     return {
       value1: new Date(),
-      value2: new Date(),
       value3: '',
       value4: '',
-      value5: '',
     };
   },
   methods: {
-    notBeforeToday(date) {
-      return date < today;
-    },
-    notAfterToday(date) {
-      return date > today;
+    notBeforeAndAfter(date) {
+      return (
+        date.getTime() < today.getTime() || date.getTime() > today.getTime() + 7 * 24 * 3600 * 1000
+      );
     },
     notBeforeNine(date) {
       return date.getHours() < 9;
