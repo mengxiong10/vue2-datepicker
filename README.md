@@ -64,6 +64,8 @@ If your project uses SCSS, you can change the default style variables.
 To create a scss file. e.g. `datepicker.scss`:
 
 ```scss
+$namespace: 'xmx'; // change the 'mx' to 'xmx'. then <date-picker prefix-class="xmx" />
+
 $default-color: #555;
 $primary-color: #1284e7;
 
@@ -150,6 +152,7 @@ You can also override some of the default locale by `lang`.
 | show-time-header    | whether show header of time picker             | `boolean`                                   | false          |
 | time-title-format   | format of the time header                      | [token](#token)                             | 'YYYY-MM-DD'   |
 | time-picker-options | set fixed time list to select                  | [time-picker-options](#time-picker-options) | null           |
+| prefix-class        | set prefix class                               | `string`                                    | 'mx'           |
 
 #### Token
 
@@ -270,7 +273,7 @@ Set fixed time list to select;
 | --------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | input           | When the value change(v-model event)                                               | date                                                                                                                     |
 | change          | When the value change(same as input)                                               | date, type('date'\|'hour'\|'minute'\|'second'\|'ampm                                                                     |
-| open            | When panel opening                                                                 | event                                                                                                                         |
+| open            | When panel opening                                                                 | event                                                                                                                    |
 | close           | When panel closing                                                                 |                                                                                                                          |
 | confirm         | When click 'confirm' button                                                        | date                                                                                                                     |
 | clear           | When click 'clear' button                                                          |                                                                                                                          |

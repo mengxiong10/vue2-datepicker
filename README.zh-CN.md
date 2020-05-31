@@ -36,6 +36,8 @@ $ npm install vue2-datepicker --save
 创建一个新的文件. e.g. `datepicker.scss`:
 
 ```scss
+$namespace: 'xmx'; // 更改默认前缀为'xmx'. 然后设置 <date-picker prefix-class="xmx" />
+
 $default-color: #555;
 $primary-color: #1284e7;
 
@@ -148,6 +150,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | show-time-header    | 是否显示时间选择面板的头部                       | `boolean`                                   | false          |
 | time-title-format   | 时间面板头部的格式化                             | [token](#token)                             | 'YYYY-MM-DD'   |
 | time-picker-options | 设置固定时间去选择                               | [time-picker-options](#time-picker-options) | null           |
+| prefix-class        | 设置 class 的前缀                                | `string`                                    | 'mx'           |
 
 #### Token
 
