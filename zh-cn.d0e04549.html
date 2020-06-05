@@ -1,0 +1,59 @@
+<!-- Basic -->
+
+<h3 id="基本">基本</h3>
+<p>可以选择或手动输入一个日期, 月, 年, 时间或者日期加时间</p>
+<!-- ValueType -->
+
+<h3 id="绑定值的类型">绑定值的类型</h3>
+<p>通过<code>valueType</code>去设置<code>ｖ-model</code>绑定的值的类型</p>
+<ul>
+<li>&quot;format&quot;: 返回一个字符串，和输入框格式化之后的一样．</li>
+<li>&quot;date&quot;(default): 返回一个 Date 对象.</li>
+<li>&quot;timestamp&quot;: 返回一个时间戳.</li>
+<li>token: 一个可以被解析的 token, 返回格式化这个 token 的字符串.</li>
+</ul>
+<!-- Range -->
+
+<h3 id="日期范围">日期范围</h3>
+<p>支持选择一个日期范围</p>
+<!-- DisabledDateTime -->
+
+<h3 id="不可选择的日期和时间">不可选择的日期和时间</h3>
+<p>可用 <code>disabledDate</code> 和 <code>disabledTime</code> 分别禁止选择部分日期和时间.</p>
+<p><strong>当你使用<code>disabledDate</code> 或 <code>disabledTime</code>的时候, 应该设置<code>defaultValue</code>的值是不被禁止选择的.</strong></p>
+<!-- Disabled -->
+
+<h3 id="禁用和可编辑">禁用和可编辑</h3>
+<ul>
+<li><code>disabled</code>: 设置组件是否禁用</li>
+<li><code>editable</code>: 设置是否可手动输入</li>
+</ul>
+<!-- Shortcut -->
+
+<h3 id="快捷选项">快捷选项</h3>
+<p>可以通过设置 <code>shortcuts</code> 提升用户体验.</p>
+<p>也可以使用 slot header 或者 footer 去设置额外的元素.</p>
+<!-- ControlTimePanel -->
+
+<h3 id="控制时间选择的显示和隐藏日期时间模式">控制时间选择的显示和隐藏(日期时间模式)</h3>
+<p>时间选择的显示可以通过 <code>showTimePanel</code> 控制.</p>
+<p>默认情况下选择一个日期后时间面板就自动显示.</p>
+<!-- ControlOpen -->
+
+<h3 id="控制弹窗打开">控制弹窗打开</h3>
+<p>可以通过 <code>open</code> 去控制弹窗的显示</p>
+<p>下面的例子说明怎么关闭弹窗当选择秒的时候</p>
+<!-- HideSeconds -->
+
+<h3 id="隐藏秒和显示-ampm">隐藏秒和显示 am/pm</h3>
+<p>时间选择的列是自动显示通过 <code>format</code>的设置.</p>
+<p>你可以通过 <code>showHour</code> <code>showMinute</code> <code>showSecond</code> 覆盖默认值</p>
+<!-- MinuteStep -->
+
+<h3 id="间隔的时间和自定义时间选择">间隔的时间和自定义时间选择</h3>
+<p>设置间隔的时间通过<code>hourStep</code> <code>minuteStep</code> <code>secondStep</code>.</p>
+<p>设置自定义的选择通过<code>hourOptions</code> <code>minuteOptions</code> <code>secondOptions</code>.</p>
+<!-- FixedTimeList -->
+
+<h3 id="固定的时间列表">固定的时间列表</h3>
+<p>可以通过 <code>timePickerOptions</code> 提供一个固定的时间列表选择</p>
