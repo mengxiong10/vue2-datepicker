@@ -27,9 +27,7 @@ Support to select a date range.
 
 Disabled part of dates and time by `disabledDate` and `disabledTime` respectively.
 
-You should let the value of `defaultValue` not be disabled, when you use `disabledDate` or `disabledTime`.
-
-The default value of `defaultValue` is `new Date().setHour(0,0,0,0)`.
+**You should let the `defaultValue` not be disabled, when you use `disabledDate` or `disabledTime`.**
 
 <!-- Disabled -->
 

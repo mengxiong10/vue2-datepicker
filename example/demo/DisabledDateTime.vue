@@ -1,31 +1,32 @@
 <template>
   <div class="box">
     <section>
-      <p>date not before today</p>
-      <date-picker v-model="value1" :disabled-date="notBeforeToday"></date-picker>
+      <p>Not before than today and not after than a week</p>
+      <date-picker
+        v-model="value1"
+        :default-value="new Date()"
+        :disabled-date="disabledBeforeTodayAndAfterAWeek"
+      ></date-picker>
     </section>
     <section>
-      <p>date not after today</p>
-      <date-picker v-model="value2" :disabled-date="notAfterToday"></date-picker>
-    </section>
-    <section>
-      <p>time not before 09:00</p>
+      <p>Not before 09:00</p>
       <date-picker
         v-model="value3"
         value-type="format"
         type="time"
         placeholder="HH:mm:ss"
-        :default-value="new Date().setHours(9, 0, 0)"
-        :disabled-time="notBeforeNine"
+        :default-value="new Date().setHours(9, 0, 0, 0)"
+        :disabled-time="notBeforeNineOClock"
       ></date-picker>
     </section>
     <section>
-      <p>datetime not before 2019-10-09 12:00</p>
+      <p>Not before than 12:00 Today</p>
       <date-picker
         v-model="value4"
         type="datetime"
-        :disabled-date="notBeforeDate"
-        :disabled-time="notBeforeTime"
+        :default-value="new Date().setHours(12, 0, 0, 0)"
+        :disabled-date="notBeforeToday"
+        :disabled-time="notBeforeTodayTwelveOClock"
         value-type="format"
       ></date-picker>
     </section>
@@ -33,9 +34,6 @@
 </template>
 
 <script>
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-
 export default {
   data() {
     return {
@@ -47,20 +45,20 @@ export default {
     };
   },
   methods: {
-    notBeforeToday(date) {
-      return date < today;
+    disabledBeforeTodayAndAfterAWeek(date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      return date < today || date > new Date(today.getTime() + 7 * 24 * 3600 * 1000);
     },
-    notAfterToday(date) {
-      return date > today;
-    },
-    notBeforeNine(date) {
+    notBeforeNineOClock(date) {
       return date.getHours() < 9;
     },
-    notBeforeDate(date) {
-      return date < new Date(2019, 9, 9);
+    notBeforeToday(date) {
+      return date < new Date(new Date().setHours(0, 0, 0, 0));
     },
-    notBeforeTime(date) {
-      return date < new Date(2019, 9, 9, 12);
+    notBeforeTodayTwelveOClock(date) {
+      return date < new Date(new Date().setHours(12, 0, 0, 0));
     },
   },
 };

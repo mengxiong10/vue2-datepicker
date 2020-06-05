@@ -27,9 +27,7 @@
 
 可用 `disabledDate` 和 `disabledTime` 分别禁止选择部分日期和时间.
 
-当你使用`disabledDate` 或 `disabledTime`的时候, 应该设置`defaultValue`的值是不被禁止选择的.
-
-`defaultValue`的默认值是`new Date().setHour(0,0,0,0)`
+**当你使用`disabledDate` 或 `disabledTime`的时候, 应该设置`defaultValue`的值是不被禁止选择的.**
 
 <!-- Disabled -->
 
