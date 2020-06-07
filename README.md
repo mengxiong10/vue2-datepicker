@@ -133,6 +133,7 @@ You can also override some of the default locale by `lang`.
 | input-class         | input classname                                  | `string`                                    | 'mx-input'     |
 | input-attr          | input attrs(eg: { name: 'date', id: 'foo'})      | `object`                                    | —              |
 | open                | open state of picker                             | `boolean`                                   | -              |
+| default-panel       | default panel of the picker                      | year\|month                                 | -              |
 | popup-style         | popup style                                      | `object`                                    | —              |
 | popup-class         | popup classes                                    |                                             | —              |
 | shortcuts           | set shortcuts to select                          | `Array<{text, onClick}>`                    | -              |

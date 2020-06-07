@@ -131,6 +131,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | input-class         | 输入框的类                                       | `string`                                    | 'mx-input'     |
 | input-attr          | 输入框的其他属性(eg: { name: 'date', id: 'foo'}) | `object`                                    | —              |
 | open                | 控制弹出层的显示                                 | `boolean`                                   | -              |
+| default-panel       | 控制打开的面板                                   | year\|month                                 | -              |
 | popup-style         | 弹出层的样式                                     | `object`                                    | —              |
 | popup-class         | 弹出层的类                                       |                                             | —              |
 | shortcuts           | 设置快捷选择                                     | `Array<{text, onClick}>`                    | -              |
