@@ -124,6 +124,7 @@ You can also override some of the default locale by `lang`.
 | clearable           | if false, don't show the clear icon              | `boolean`                                   | true           |
 | confirm             | if true, need click the button to change value   | `boolean`                                   | false          |
 | confirm-text        | the text of confirm button                       | `string`                                    | 'OK'           |
+| multiple            | if true, multi-select date                       | `boolean`                                   | false          |
 | disabled            | disable the component                            | `boolean`                                   | false          |
 | disabled-date       | specify the date that cannot be selected         | `(date) => boolean`                         | -              |
 | disabled-time       | specify the time that cannot be selected         | `(date) => boolean`                         | -              |

@@ -122,6 +122,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | clearable           | 是否显示清除按钮                                 | `boolean`                                   | true           |
 | confirm             | 是否需要确认                                     | `boolean`                                   | false          |
 | confirm-text        | 确认按钮的文字                                   | `string`                                    | 'OK'           |
+| multiple            | 如果是 true, 可以选择多个日期                    | `boolean`                                   | false          |
 | disabled            | 禁用组件                                         | `boolean`                                   | false          |
 | disabled-date       | 禁止选择的日期                                   | `(date) => boolean`                         | -              |
 | disabled-time       | 禁止选择的时间                                   | `(date) => boolean`                         | -              |
