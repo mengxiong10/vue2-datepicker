@@ -38,10 +38,8 @@ export default {
   data() {
     return {
       value1: new Date(),
-      value2: new Date(),
       value3: '',
       value4: '',
-      value5: '',
     };
   },
   methods: {

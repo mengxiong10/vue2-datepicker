@@ -387,4 +387,35 @@ describe('DatePicker', () => {
     input.trigger('change');
     expect(wrapper.emitted().input).toEqual([[[text, text]], [[text, text]], [[text, text]]]);
   });
+
+  it('prop: multiple', () => {
+    const value = [new Date(2020, 5, 6), new Date(2020, 6, 7)];
+    wrapper = mount(DatePicker, {
+      propsData: {
+        multiple: true,
+        open: true,
+        value,
+      },
+    });
+    wrapper.find('.mx-date-row .active').trigger('click');
+    expect(wrapper.emitted().input[0][0]).toEqual(value.slice(0, 1));
+    wrapper.find('[title="2020-07-15"]').trigger('click');
+    expect(wrapper.emitted().input[1][0]).toEqual(value.concat(new Date(2020, 6, 15)));
+  });
+
+  it('prop: invalid multiple', () => {
+    wrapper = shallowMount(DatePicker, {
+      propsData: {
+        multiple: true,
+        range: true,
+      },
+    });
+    const { vm } = wrapper;
+    expect(vm.validMultipleType).toBe(false);
+    wrapper.setProps({
+      range: false,
+      type: 'datetime',
+    });
+    expect(vm.validMultipleType).toBe(false);
+  });
 });

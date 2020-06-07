@@ -240,7 +240,8 @@ export default {
     initCalendar() {
       let calendarDate = this.calendar;
       if (!isValidDate(calendarDate)) {
-        calendarDate = getValidDate(this.innerValue[0], this.defaultValue);
+        const { length } = this.innerValue;
+        calendarDate = getValidDate(length > 0 ? this.innerValue[length - 1] : this.defaultValue);
       }
       this.innerCalendar = calendarDate;
     },
@@ -249,7 +250,7 @@ export default {
     },
     emitDate(date, type) {
       if (!this.isDisabled(date)) {
-        this.$emit('select', date, type);
+        this.$emit('select', date, type, this.innerValue);
         // someone need get the first selected date to set range value. (#429)
         this.dispatch('DatePicker', 'pick', date, type);
       }
@@ -287,7 +288,7 @@ export default {
         const nextCalendar = setYear(this.innerCalendar, year);
         this.updateCalendar(nextCalendar, 'year');
         this.handelPanelChange('month');
-        if (this.partialUpdate && this.innerValue[0]) {
+        if (this.partialUpdate && this.innerValue.length === 1) {
           const date = setYear(this.innerValue[0], year);
           this.emitDate(date, 'year');
         }
@@ -301,7 +302,7 @@ export default {
         const nextCalendar = setMonth(this.innerCalendar, month);
         this.updateCalendar(nextCalendar, 'month');
         this.handelPanelChange('date');
-        if (this.partialUpdate && this.innerValue[0]) {
+        if (this.partialUpdate && this.innerValue.length === 1) {
           const date = setMonth(setYear(this.innerValue[0], this.calendarYear), month);
           this.emitDate(date, 'month');
         }
