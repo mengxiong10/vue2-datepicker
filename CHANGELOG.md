@@ -1,3 +1,19 @@
+<a name="3.6.0"></a>
+# [3.6.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.5.0...v3.6.0) (2020-06-07)
+
+
+### Bug Fixes
+
+* remove touchstart event ([#469](https://github.com/mengxiong10/vue2-datepicker/issues/469)) ([b6b770d](https://github.com/mengxiong10/vue2-datepicker/commit/b6b770d))
+
+
+### Features
+
+* add multi-select ([#444](https://github.com/mengxiong10/vue2-datepicker/issues/444)) ([7835ffb](https://github.com/mengxiong10/vue2-datepicker/commit/7835ffb))
+* add the prop `scroll-duration` ([#475](https://github.com/mengxiong10/vue2-datepicker/issues/475)) ([051ad89](https://github.com/mengxiong10/vue2-datepicker/commit/051ad89))
+
+
+
 <a name="3.5.0"></a>
 # [3.5.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.4.1...v3.5.0) (2020-04-22)
 
