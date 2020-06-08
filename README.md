@@ -301,6 +301,15 @@ Set fixed time list to select;
 
 [CHANGELOG](CHANGELOG.md)
 
+## One-time Donations
+
+If you find this project useful, you can buy me a coffee
+
+[Paypal Me](https://www.paypal.me/mengxiong10)
+
+![donate](https://user-images.githubusercontent.com/14135808/83999111-a7947600-a994-11ea-84e9-9a215def4155.png)
+
+
 ## License
 
 [MIT](https://github.com/mengxiong10/vue2-datepicker/blob/master/LICENSE)

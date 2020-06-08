@@ -298,6 +298,14 @@ data() {
 
 [CHANGELOG](CHANGELOG.md)
 
+## 一次性捐赠
+
+如果这个项目对你很有用，你可以请我喝杯咖啡
+
+[Paypal Me](https://www.paypal.me/mengxiong10)
+
+![donate](https://user-images.githubusercontent.com/14135808/83999111-a7947600-a994-11ea-84e9-9a215def4155.png)
+
 ## License
 
 [MIT](https://github.com/mengxiong10/vue2-datepicker/blob/master/LICENSE)
