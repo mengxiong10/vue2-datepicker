@@ -60,6 +60,12 @@ You can use the prop `open` to control the visible of popup.
 
 This example shows how to close the popup when the seconds is selected.
 
+<!-- ShowBE -->
+
+### Show Buddhist Era year
+
+You can add the prop `:show-be-year="true"` to show BE instead of CE
+
 <!-- HideSeconds -->
 
 ### Hide seconds selection & display AMPM selection
