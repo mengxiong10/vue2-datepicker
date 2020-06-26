@@ -8,7 +8,7 @@
         class="cell"
         :class="getCellClasses(cell)"
       >
-        <div>{{ cell }}</div>
+        <div>{{ showBeYear ? cell + 543 : cell }}</div>
       </td>
     </tr>
   </table>
@@ -31,6 +31,10 @@ export default {
       default: () => {
         return [];
       },
+    },
+    showBeYear: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

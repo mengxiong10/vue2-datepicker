@@ -82,6 +82,10 @@ export default {
         return [];
       },
     },
+    showBeYear: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     firstDayOfWeek() {
@@ -142,7 +146,11 @@ export default {
       const month = this.calendarMonth;
       const fmt = this.titleFormat;
       const date = createDate(year, month, day);
-      return this.formatDate(date, fmt);
+      let title = this.formatDate(date, fmt);
+      if (this.showBeYear) {
+        title = title.replace(date.getFullYear(), date.getFullYear() + 543);
+      }
+      return title;
     },
     getWeekNumber(day) {
       const year = this.calendarYear;

@@ -119,6 +119,10 @@ export default {
       type: Number,
       default: 100,
     },
+    showBeYear: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     innerValue() {
@@ -127,7 +131,11 @@ export default {
     title() {
       const titleFormat = this.timeTitleFormat;
       const date = new Date(this.innerValue);
-      return this.formatDate(date, titleFormat);
+      let title = this.formatDate(date, titleFormat);
+      if (this.showBeYear) {
+        title = title.replace(date.getFullYear(), date.getFullYear() + 543);
+      }
+      return title;
     },
     innerForamt() {
       return typeof this.format === 'string' ? this.format : 'HH:mm:ss';

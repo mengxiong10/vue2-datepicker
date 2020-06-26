@@ -41,9 +41,9 @@
       </button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <template v-if="panel === 'year'">
-          <span>{{ calendarDecade }}</span>
+          <span>{{ showBeYear ? calendarDecade + 543 : calendarDecade }}</span>
           <span :class="`${prefixClass}-calendar-decade-separator`"></span>
-          <span>{{ calendarDecade + 9 }}</span>
+          <span>{{ (showBeYear ? calendarDecade + 543 : calendarDecade) + 9 }}</span>
         </template>
         <button
           v-else-if="panel === 'month'"
@@ -51,7 +51,7 @@
           :class="`${prefixClass}-btn ${prefixClass}-btn-text`"
           @click="handelPanelChange('year')"
         >
-          {{ calendarYear }}
+          {{ showBeYear ? calendarYear + 543 : calendarYear }}
         </button>
         <template v-else-if="panel === 'date'">
           <button
@@ -63,7 +63,7 @@
             "
             @click="handelPanelChange(item.panel)"
           >
-            {{ item.label }}
+            {{ item.panel === 'year' && showBeYear ? parseInt(item.label) + 543 : item.label }}
           </button>
         </template>
       </span>
@@ -73,6 +73,7 @@
         v-show="panel === 'year'"
         :decade="calendarDecade"
         :get-cell-classes="getYearClasses"
+        :show-be-year="showBeYear"
         @select="handleSelectYear"
       ></table-year>
       <table-month
@@ -90,6 +91,7 @@
         :show-week-number="typeof showWeekNumber === 'boolean' ? showWeekNumber : type === 'week'"
         :get-cell-classes="getDateClasses"
         :get-row-classes="getWeekState"
+        :show-be-year="showBeYear"
         @select="handleSelectDate"
       ></table-date>
     </div>
@@ -167,6 +169,10 @@ export default {
     calendar: Date,
     // update date when select year or month
     partialUpdate: {
+      type: Boolean,
+      default: false,
+    },
+    showBeYear: {
       type: Boolean,
       default: false,
     },

@@ -245,6 +245,10 @@ export default {
         return [];
       },
     },
+    showBeYear: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -263,6 +267,7 @@ export default {
       const props = {
         ...pick(this, Object.keys(this.currentComponent.props)),
         value: this.currentValue,
+        showBeYear: this.showBeYear,
       };
       return props;
     },
@@ -295,7 +300,11 @@ export default {
       if (Array.isArray(this.innerValue)) {
         return this.innerValue.map(v => this.formatDate(v, fmt)).join(this.rangeSeparator);
       }
-      return this.formatDate(this.innerValue, fmt);
+      let text = this.formatDate(this.innerValue, fmt);
+      if (this.showBeYear) {
+        text = text.replace(this.innerValue.getFullYear(), this.innerValue.getFullYear() + 543);
+      }
+      return text;
     },
     showClearIcon() {
       return !this.disabled && this.clearable && this.text;
