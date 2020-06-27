@@ -156,6 +156,7 @@ You can also override some of the default locale by `lang`.
 | time-picker-options | set fixed time list to select                    | [time-picker-options](#time-picker-options) | null           |
 | prefix-class        | set prefix class                                 | `string`                                    | 'mx'           |
 | scroll-duration     | set the duration of scroll when hour is selected | `number`                                    | 100            |
+| show-be-year        | show buddhist era year instead of CE             | `boolean`                                   | false          |
 
 #### Token
 
