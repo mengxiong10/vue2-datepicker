@@ -1,3 +1,13 @@
+<a name="3.6.1"></a>
+## [3.6.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.6.0...v3.6.1) (2020-07-13)
+
+
+### Bug Fixes
+
+* popup sholud be not auto closed in `time range` ([a4e5019](https://github.com/mengxiong10/vue2-datepicker/commit/a4e5019))
+
+
+
 <a name="3.6.0"></a>
 # [3.6.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.5.0...v3.6.0) (2020-06-07)
 
