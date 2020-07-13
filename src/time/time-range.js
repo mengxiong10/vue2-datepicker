@@ -35,7 +35,7 @@ export default {
   methods: {
     emitChange(type, index) {
       const date = [this.startValue, this.endValue];
-      this.$emit('select', date, type, index);
+      this.$emit('select', date, type === 'time' ? 'time-range' : type, index);
     },
     handleSelectStart(date, type) {
       this.startValue = date;
