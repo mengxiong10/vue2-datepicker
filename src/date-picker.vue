@@ -396,6 +396,19 @@ export default {
       }
       return isValidDate(value);
     },
+    isValidValueAndNotDisabled(value) {
+      if (!this.isValidValue(value)) {
+        return false;
+      }
+      const disabledDate =
+        typeof this.disabledDate === 'function' ? this.disabledDate : () => false;
+      const disabledTime =
+        typeof this.disabledTime === 'function' ? this.disabledTime : () => false;
+      if (!Array.isArray(value)) {
+        value = [value];
+      }
+      return value.every(v => !disabledDate(v) && !disabledTime(v));
+    },
     handleMultipleDates(date, dates) {
       if (this.validMultipleType && dates) {
         const nextDates = dates.filter(v => v.getTime() !== date.getTime());
@@ -470,7 +483,7 @@ export default {
       } else {
         date = this.parseDate(text, this.format);
       }
-      if (this.isValidValue(date)) {
+      if (this.isValidValueAndNotDisabled(date)) {
         this.emitValue(date);
         this.blur();
       } else {

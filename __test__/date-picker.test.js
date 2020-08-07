@@ -418,4 +418,24 @@ describe('DatePicker', () => {
     });
     expect(vm.validMultipleType).toBe(false);
   });
+
+  it('If the value entered manually is in the disabled range should be invalid', () => {
+    const someday = new Date(2020, 6, 1);
+    wrapper = shallowMount(DatePicker, {
+      format: 'YYYY-MM-DD',
+      propsData: {
+        disabledDate: date => {
+          return date < someday;
+        },
+      },
+    });
+    const textInput = wrapper.find('input');
+    textInput.setValue('2020-08-01');
+    textInput.trigger('change');
+    expect(wrapper.emitted().input[0][0]).toEqual(new Date(2020, 7, 1));
+    textInput.setValue('2020-05-01');
+    textInput.trigger('change');
+    expect(wrapper.emitted().input[1]).toBe(undefined);
+    expect(wrapper.emitted()['input-error'][0][0]).toBe('2020-05-01');
+  });
 });
