@@ -456,10 +456,10 @@ export default {
       this.$emit('update:open', false);
     },
     blur() {
-      this.$refs.input.blur();
+      if (this.hasSlot('input')) this.$refs.input.blur();
     },
     focus() {
-      this.$refs.input.focus();
+      if (this.hasSlot('input')) this.$refs.input.focus();
     },
     handleInputChange() {
       if (!this.editable || this.userInput === null) return;
