@@ -8,19 +8,47 @@
     }"
   >
     <div v-if="!inline" :class="`${prefixClass}-input-wrapper`" @mousedown="openPopup">
-      <slot name="input">
+      <slot
+        name="input"
+        :props="{
+          name: 'date',
+          type: 'text',
+          autocomplete: 'off',
+          value: text,
+          class: inputClass,
+          readonly: !editable,
+          disabled,
+          placeholder,
+          ...inputAttr,
+        }"
+        :events="{
+          keydown: handleInputKeydown,
+          focus: handleInputFocus,
+          blur: handleInputBlur,
+          input: handleInputInput,
+          change: handleInputChange,
+        }"
+      >
         <input
           ref="input"
-          v-bind="{ name: 'date', type: 'text', autocomplete: 'off', value: text, ...inputAttr }"
-          :class="inputClass"
-          :disabled="disabled"
-          :readonly="!editable"
-          :placeholder="placeholder"
-          @keydown="handleInputKeydown"
-          @focus="handleInputFocus"
-          @blur="handleInputBlur"
-          @input="handleInputInput"
-          @change="handleInputChange"
+          v-bind="{
+            name: 'date',
+            type: 'text',
+            autocomplete: 'off',
+            value: text,
+            class: inputClass,
+            readonly: !editable,
+            disabled,
+            placeholder,
+            ...inputAttr,
+          }"
+          v-on="{
+            keydown: handleInputKeydown,
+            focus: handleInputFocus,
+            blur: handleInputBlur,
+            input: handleInputInput,
+            change: handleInputChange,
+          }"
         />
       </slot>
       <i v-if="showClearIcon" :class="`${prefixClass}-icon-clear`" @mousedown.stop="handleClear">
@@ -456,10 +484,15 @@ export default {
       this.$emit('update:open', false);
     },
     blur() {
-      this.$refs.input.blur();
+      // when use slot input
+      if (this.$refs.input) {
+        this.$refs.input.blur();
+      }
     },
     focus() {
-      this.$refs.input.focus();
+      if (this.$refs.input) {
+        this.$refs.input.focus();
+      }
     },
     handleInputChange() {
       if (!this.editable || this.userInput === null) return;
