@@ -1,3 +1,14 @@
+<a name="3.6.2"></a>
+## [3.6.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.6.1...v3.6.2) (2020-08-10)
+
+
+### Bug Fixes
+
+* provide scoped slot to `input` slot ([#492](https://github.com/mengxiong10/vue2-datepicker/issues/492)) ([b3126a0](https://github.com/mengxiong10/vue2-datepicker/commit/b3126a0))
+* value entered manually in disabled range should be invalid ([#508](https://github.com/mengxiong10/vue2-datepicker/issues/508)) ([1bca35b](https://github.com/mengxiong10/vue2-datepicker/commit/1bca35b))
+
+
+
 <a name="3.6.1"></a>
 ## [3.6.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.6.0...v3.6.1) (2020-07-13)
 
