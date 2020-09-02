@@ -111,7 +111,7 @@
 .#{$namespace}-datepicker-sidebar {
   float: left;
   box-sizing: border-box;
-  width: 100px;
+  width: $sidebar-margin-left;
   padding: 6px;
   overflow: auto;
 }
