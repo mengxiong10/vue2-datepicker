@@ -40,7 +40,7 @@ export default {
   name: 'ListOptions',
   components: { ScrollbarVertical },
   inject: {
-    t: {
+    translateFn: {
       default: () => getLocaleFieldValue,
     },
     prefixClass: {
@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     formatDate(date, fmt) {
-      return format(date, fmt, { locale: this.t('formatLocale') });
+      return format(date, fmt, { locale: this.translateFn('formatLocale') });
     },
     scrollToSelected() {
       const element = this.$el.querySelector('.active');

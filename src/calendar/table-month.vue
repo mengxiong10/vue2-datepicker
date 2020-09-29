@@ -21,7 +21,7 @@ import { getLocaleFieldValue } from '../locale';
 export default {
   name: 'TableMonth',
   inject: {
-    t: {
+    translateFn: {
       default: () => getLocaleFieldValue,
     },
     prefixClass: {
@@ -38,7 +38,8 @@ export default {
   },
   computed: {
     months() {
-      const monthsLocale = this.t('months') || this.t('formatLocale.monthsShort');
+      const monthsLocale =
+        this.translateFn('months') || this.translateFn('formatLocale.monthsShort');
       const months = monthsLocale.map((text, month) => {
         return { text, month };
       });

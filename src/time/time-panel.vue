@@ -47,7 +47,7 @@ export default {
   name: 'TimePanel',
   components: { ListColumns, ListOptions },
   inject: {
-    t: {
+    translateFn: {
       default: () => getLocaleFieldValue,
     },
     prefixClass: {
@@ -149,7 +149,7 @@ export default {
   },
   methods: {
     formatDate(date, fmt) {
-      return format(date, fmt, { locale: this.t('formatLocale') });
+      return format(date, fmt, { locale: this.translateFn('formatLocale') });
     },
     isDisabled(date) {
       return this.disabledTime(new Date(date));

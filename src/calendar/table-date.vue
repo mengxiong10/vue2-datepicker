@@ -39,7 +39,7 @@ import { getLocaleFieldValue } from '../locale';
 export default {
   name: 'TableDate',
   inject: {
-    t: {
+    translateFn: {
       default: () => getLocaleFieldValue,
     },
     getWeek: {
@@ -85,10 +85,10 @@ export default {
   },
   computed: {
     firstDayOfWeek() {
-      return this.t('formatLocale.firstDayOfWeek') || 0;
+      return this.translateFn('formatLocale.firstDayOfWeek') || 0;
     },
     days() {
-      const days = this.t('days') || this.t('formatLocale.weekdaysMin');
+      const days = this.translateFn('days') || this.translateFn('formatLocale.weekdaysMin');
       return days.concat(days).slice(this.firstDayOfWeek, this.firstDayOfWeek + 7);
     },
     dates() {
@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     formatDate(date, fmt) {
-      return format(date, fmt, { locale: this.t('formatLocale') });
+      return format(date, fmt, { locale: this.translateFn('formatLocale') });
     },
     handleCellClick(evt) {
       let { target } = evt;
@@ -148,7 +148,7 @@ export default {
       const year = this.calendarYear;
       const month = this.calendarMonth;
       const date = createDate(year, month, day);
-      return this.getWeek(date, this.t('formatLocale'));
+      return this.getWeek(date, this.translateFn('formatLocale'));
     },
   },
 };
