@@ -125,7 +125,7 @@ export default {
   },
   mixins: [emitter],
   inject: {
-    t: {
+    translateFn: {
       default: () => getLocaleFieldValue,
     },
     prefixClass: {
@@ -207,9 +207,9 @@ export default {
       return this.panel === 'date';
     },
     dateHeader() {
-      const monthBeforeYear = this.t('monthBeforeYear');
-      const yearFormat = this.t('yearFormat');
-      const monthFormat = this.t('monthFormat') || 'MMM';
+      const monthBeforeYear = this.translateFn('monthBeforeYear');
+      const yearFormat = this.translateFn('yearFormat');
+      const monthFormat = this.translateFn('monthFormat') || 'MMM';
       const yearLabel = {
         panel: 'year',
         label: this.formatDate(this.innerCalendar, yearFormat),
@@ -235,7 +235,7 @@ export default {
   },
   methods: {
     formatDate(date, fmt) {
-      return format(date, fmt, { locale: this.t('formatLocale') });
+      return format(date, fmt, { locale: this.translateFn('formatLocale') });
     },
     initCalendar() {
       let calendarDate = this.calendar;
