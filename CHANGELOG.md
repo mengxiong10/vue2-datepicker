@@ -1,3 +1,13 @@
+<a name="3.7.0"></a>
+# [3.7.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.6.3...v3.7.0) (2020-10-20)
+
+
+### Features
+
+* add prop `formatter` to replace the object usage of `format` ([5d3d547](https://github.com/mengxiong10/vue2-datepicker/commit/5d3d547))
+
+
+
 <a name="3.6.3"></a>
 ## [3.6.3](https://github.com/mengxiong10/vue2-datepicker/compare/v3.6.2...v3.6.3) (2020-10-17)
 
