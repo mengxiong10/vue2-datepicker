@@ -135,14 +135,14 @@ describe('DatePicker', () => {
     expect(input.value).toBe('2019/10/10');
   });
 
-  it('prop: custom format', () => {
+  it('prop: formatter', () => {
     wrapper = mount(DatePicker, {
       propsData: {
         valueType: 'format',
         value: '13/10/2019',
         open: true,
         type: 'week',
-        format: {
+        formatter: {
           stringify(date) {
             return format(date, 'dd/MM/yyyy');
           },

@@ -168,7 +168,7 @@ export default {
       default: 'date',
     },
     format: {
-      type: [String, Object],
+      type: String,
       default() {
         const map = {
           date: 'YYYY-MM-DD',
@@ -180,6 +180,9 @@ export default {
         };
         return map[this.type] || map.date;
       },
+    },
+    formatter: {
+      type: Object,
     },
     range: {
       type: Boolean,
@@ -347,6 +350,13 @@ export default {
       },
     },
   },
+  created() {
+    if (typeof this.format === 'object') {
+      console.warn(
+        "[vue2-datepicker]: The prop `format` don't support Object any more. You can use the new prop `formatter` to replace it"
+      );
+    }
+  },
   methods: {
     handleClickOutSide(evt) {
       const { target } = evt;
@@ -354,22 +364,28 @@ export default {
         this.closePopup();
       }
     },
+    getFormatter(key) {
+      return (
+        (isObject(this.formatter) && this.formatter[key]) ||
+        (isObject(this.format) && this.format[key])
+      );
+    },
     getWeek(date, options) {
-      if (isObject(this.format) && typeof this.format.getWeek === 'function') {
-        return this.format.getWeek(date, options);
+      if (typeof this.getFormatter('getWeek') === 'function') {
+        return this.getFormatter('getWeek')(date, options);
       }
       return getWeek(date, options);
     },
     parseDate(value, fmt) {
-      if (isObject(this.format) && typeof this.format.parse === 'function') {
-        return this.format.parse(value, fmt);
+      if (typeof this.getFormatter('parse') === 'function') {
+        return this.getFormatter('parse')(value, fmt);
       }
       const backupDate = new Date();
       return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },
     formatDate(date, fmt) {
-      if (isObject(this.format) && typeof this.format.stringify === 'function') {
-        return this.format.stringify(date, fmt);
+      if (typeof this.getFormatter('stringify') === 'function') {
+        return this.getFormatter('stringify')(date, fmt);
       }
       return format(date, fmt, { locale: this.locale.formatLocale });
     },

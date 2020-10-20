@@ -114,6 +114,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | type                | 日期选择的类型                                   | date \|datetime\|year\|month\|time\|week    | 'date'         |
 | range               | 如果是 true, 变成日期范围选择                    | `boolean`                                   | false          |
 | format              | 设置格式化的 token, 类似 moment.js               | [token](#token)                             | 'YYYY-MM-DD'   |
+| formatter           | 使用自己的格式化程序, 比如 moment.js             | [object](#formatter)                        | -              |
 | value-type          | 设置绑定值的类型                                 | [value-type](#value-type)                   | 'date'         |
 | default-value       | 设置日历默认的时间                               | `Date`                                      | new Date()     |
 | lang                | 覆盖默认的语音设置                               | `object`                                    |                |
@@ -192,12 +193,12 @@ import 'vue2-datepicker/locale/zh-cn';
 | Unix Timestamp             | X    | 1360013296                             |
 | Unix Millisecond Timestamp | x    | 1360013296123                          |
 
-#### custom format
+#### formatter
 
-`format` 接受一个对象去自定义格式化
+`formatter` 接受一个对象去自定义格式化
 
 ```html
-<date-picker :format="momentFormat" />
+<date-picker :formatter="momentFormat" />
 ```
 
 ```js
@@ -205,13 +206,17 @@ data() {
   return {
     // 使用moment.js 替换默认
     momentFormat: {
-      // Date to String
+      //[可选] Date to String
       stringify: (date) => {
         return date ? moment(date).format('LL') : ''
       },
-      // String to Date
+      //[可选]  String to Date
       parse: (value) => {
         return value ? moment(value, 'LL').toDate() : null
+      },
+      //[可选] getWeekNumber
+      getWeek: (date) => {
+        return // a number
       }
     }
   }

@@ -116,6 +116,7 @@ You can also override some of the default locale by `lang`.
 | type                | select the type of picker                        | date \|datetime\|year\|month\|time\|week    | 'date'         |
 | range               | if true, pick the range date                     | `boolean`                                   | false          |
 | format              | to set the date format. similar to moment.js     | [token](#token)                             | 'YYYY-MM-DD'   |
+| formatter           | use your own formatter, such as moment.js        | [object](#formatter)                        | -              |
 | value-type          | data type of the binding value                   | [value-type](#value-type)                   | 'date'         |
 | default-value       | default date of the calendar                     | `Date`                                      | new Date()     |
 | lang                | override the default locale                      | `object`                                    |                |
@@ -194,12 +195,12 @@ You can also override some of the default locale by `lang`.
 | Unix Timestamp             | X     | 1360013296                             |
 | Unix Millisecond Timestamp | x     | 1360013296123                          |
 
-#### custom format
+#### formatter
 
-The `format` accepts an object to customize formatting.
+The `formatter` accepts an object to customize formatting.
 
 ```html
-<date-picker :format="momentFormat" />
+<date-picker :formatter="momentFormat" />
 ```
 
 ```js
@@ -207,13 +208,17 @@ data() {
   return {
     // Use moment.js instead of the default
     momentFormat: {
-      // Date to String
+      //[optional] Date to String
       stringify: (date) => {
         return date ? moment(date).format('LL') : ''
       },
-      // String to Date
+      //[optional]  String to Date
       parse: (value) => {
         return value ? moment(value, 'LL').toDate() : null
+      },
+      //[optional] getWeekNumber
+      getWeek: (date) => {
+        return // a number
       }
     }
   }
@@ -308,7 +313,6 @@ If you find this project useful, you can buy me a coffee
 [Paypal Me](https://www.paypal.me/mengxiong10)
 
 ![donate](https://user-images.githubusercontent.com/14135808/83999111-a7947600-a994-11ea-84e9-9a215def4155.png)
-
 
 ## License
 
