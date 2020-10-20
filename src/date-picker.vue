@@ -302,7 +302,18 @@ export default {
       }
       let text = this.formatDate(this.innerValue, fmt);
       if (this.showBeYear) {
-        text = text.replace(this.innerValue.getFullYear(), this.innerValue.getFullYear() + 543);
+        const dayFormat = fmt.match(/[D]+/);
+        const monthFormat = fmt.match(/[M]+/);
+        const yearFormat = fmt.match(/[Y]+/);
+        const date = new Date(this.innerValue);
+        text = fmt
+          .replace(dayFormat, this.formatDate(date, dayFormat))
+          .replace(monthFormat, this.formatDate(date, monthFormat))
+          .replace(
+            yearFormat,
+            this.formatDate(date.setFullYear(this.innerValue.getFullYear() + 543), yearFormat)
+          );
+        text = this.formatDate(this.innerValue, text);
       }
       return text;
     },
