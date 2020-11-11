@@ -1,0 +1,599 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker prop: attrs of input 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="test"
+      name="test"
+      placeholder="test placeholder"
+      type="number"
+    />
+    <!---->
+    <i
+      class="mx-icon-calendar"
+    >
+      <svg
+        height="1em"
+        viewBox="0 0 1024 1024"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M940.218182 107.054545h-209.454546V46.545455h-65.163636v60.50909H363.054545V46.545455H297.890909v60.50909H83.781818c-18.618182 0-32.581818 13.963636-32.581818 32.581819v805.236363c0 18.618182 13.963636 32.581818 32.581818 32.581818h861.090909c18.618182 0 32.581818-13.963636 32.581818-32.581818V139.636364c-4.654545-18.618182-18.618182-32.581818-37.236363-32.581819zM297.890909 172.218182V232.727273h65.163636V172.218182h307.2V232.727273h65.163637V172.218182h176.872727v204.8H116.363636V172.218182h181.527273zM116.363636 912.290909V442.181818h795.927273v470.109091H116.363636z"
+        />
+      </svg>
+    </i>
+  </div>
+</div>
+`;
+
+exports[`DatePicker prop: clearable 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="mx-input"
+      name="date"
+      placeholder=""
+      type="text"
+    />
+    <!---->
+    <i
+      class="mx-icon-calendar"
+    >
+      <svg
+        height="1em"
+        viewBox="0 0 1024 1024"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M940.218182 107.054545h-209.454546V46.545455h-65.163636v60.50909H363.054545V46.545455H297.890909v60.50909H83.781818c-18.618182 0-32.581818 13.963636-32.581818 32.581819v805.236363c0 18.618182 13.963636 32.581818 32.581818 32.581818h861.090909c18.618182 0 32.581818-13.963636 32.581818-32.581818V139.636364c-4.654545-18.618182-18.618182-32.581818-37.236363-32.581819zM297.890909 172.218182V232.727273h65.163636V172.218182h307.2V232.727273h65.163637V172.218182h176.872727v204.8H116.363636V172.218182h181.527273zM116.363636 912.290909V442.181818h795.927273v470.109091H116.363636z"
+        />
+      </svg>
+    </i>
+  </div>
+</div>
+`;
+
+exports[`DatePicker prop: editable 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="mx-input"
+      name="date"
+      placeholder=""
+      readonly=""
+      type="text"
+    />
+    <i
+      class="mx-icon-clear"
+    >
+      <svg
+        height="1em"
+        viewBox="0 0 1024 1024"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M810.005333 274.005333l-237.994667 237.994667 237.994667 237.994667-60.010667 60.010667-237.994667-237.994667-237.994667 237.994667-60.010667-60.010667 237.994667-237.994667-237.994667-237.994667 60.010667-60.010667 237.994667 237.994667 237.994667-237.994667z"
+        />
+      </svg>
+    </i>
+    <i
+      class="mx-icon-calendar"
+    >
+      <svg
+        height="1em"
+        viewBox="0 0 1024 1024"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M940.218182 107.054545h-209.454546V46.545455h-65.163636v60.50909H363.054545V46.545455H297.890909v60.50909H83.781818c-18.618182 0-32.581818 13.963636-32.581818 32.581819v805.236363c0 18.618182 13.963636 32.581818 32.581818 32.581818h861.090909c18.618182 0 32.581818-13.963636 32.581818-32.581818V139.636364c-4.654545-18.618182-18.618182-32.581818-37.236363-32.581819zM297.890909 172.218182V232.727273h65.163636V172.218182h307.2V232.727273h65.163637V172.218182h176.872727v204.8H116.363636V172.218182h181.527273zM116.363636 912.290909V442.181818h795.927273v470.109091H116.363636z"
+        />
+      </svg>
+    </i>
+  </div>
+</div>
+`;
+
+exports[`DatePicker prop: formatter 1`] = `
+<table
+  class="mx-table mx-table-date"
+>
+  <thead>
+    <tr>
+      <th
+        class="mx-week-number-header"
+      />
+      
+      <th>
+        Su
+      </th>
+      <th>
+        Mo
+      </th>
+      <th>
+        Tu
+      </th>
+      <th>
+        We
+      </th>
+      <th>
+        Th
+      </th>
+      <th>
+        Fr
+      </th>
+      <th>
+        Sa
+      </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr
+      class="mx-date-row"
+    >
+      <td
+        class="mx-week-number"
+      >
+        29
+      </td>
+      
+      <td
+        class="cell not-current-month"
+        data-date="1569686400000"
+        title="2019-09-29"
+      >
+        <div>
+          29
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1569772800000"
+        title="2019-09-30"
+      >
+        <div>
+          30
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1569859200000"
+        title="2019-10-01"
+      >
+        <div>
+          1
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1569945600000"
+        title="2019-10-02"
+      >
+        <div>
+          2
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570032000000"
+        title="2019-10-03"
+      >
+        <div>
+          3
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570118400000"
+        title="2019-10-04"
+      >
+        <div>
+          4
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570204800000"
+        title="2019-10-05"
+      >
+        <div>
+          5
+        </div>
+      </td>
+      
+    </tr>
+    <tr
+      class="mx-date-row"
+    >
+      <td
+        class="mx-week-number"
+      >
+        6
+      </td>
+      
+      <td
+        class="cell"
+        data-date="1570291200000"
+        title="2019-10-06"
+      >
+        <div>
+          6
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570377600000"
+        title="2019-10-07"
+      >
+        <div>
+          7
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570464000000"
+        title="2019-10-08"
+      >
+        <div>
+          8
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570550400000"
+        title="2019-10-09"
+      >
+        <div>
+          9
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570636800000"
+        title="2019-10-10"
+      >
+        <div>
+          10
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570723200000"
+        title="2019-10-11"
+      >
+        <div>
+          11
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570809600000"
+        title="2019-10-12"
+      >
+        <div>
+          12
+        </div>
+      </td>
+      
+    </tr>
+    <tr
+      class="mx-date-row mx-active-week"
+    >
+      <td
+        class="mx-week-number"
+      >
+        13
+      </td>
+      
+      <td
+        class="cell active"
+        data-date="1570896000000"
+        title="2019-10-13"
+      >
+        <div>
+          13
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1570982400000"
+        title="2019-10-14"
+      >
+        <div>
+          14
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571068800000"
+        title="2019-10-15"
+      >
+        <div>
+          15
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571155200000"
+        title="2019-10-16"
+      >
+        <div>
+          16
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571241600000"
+        title="2019-10-17"
+      >
+        <div>
+          17
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571328000000"
+        title="2019-10-18"
+      >
+        <div>
+          18
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571414400000"
+        title="2019-10-19"
+      >
+        <div>
+          19
+        </div>
+      </td>
+      
+    </tr>
+    <tr
+      class="mx-date-row"
+    >
+      <td
+        class="mx-week-number"
+      >
+        20
+      </td>
+      
+      <td
+        class="cell"
+        data-date="1571500800000"
+        title="2019-10-20"
+      >
+        <div>
+          20
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571587200000"
+        title="2019-10-21"
+      >
+        <div>
+          21
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571673600000"
+        title="2019-10-22"
+      >
+        <div>
+          22
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571760000000"
+        title="2019-10-23"
+      >
+        <div>
+          23
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571846400000"
+        title="2019-10-24"
+      >
+        <div>
+          24
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1571932800000"
+        title="2019-10-25"
+      >
+        <div>
+          25
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1572019200000"
+        title="2019-10-26"
+      >
+        <div>
+          26
+        </div>
+      </td>
+      
+    </tr>
+    <tr
+      class="mx-date-row"
+    >
+      <td
+        class="mx-week-number"
+      >
+        27
+      </td>
+      
+      <td
+        class="cell"
+        data-date="1572105600000"
+        title="2019-10-27"
+      >
+        <div>
+          27
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1572192000000"
+        title="2019-10-28"
+      >
+        <div>
+          28
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1572278400000"
+        title="2019-10-29"
+      >
+        <div>
+          29
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1572364800000"
+        title="2019-10-30"
+      >
+        <div>
+          30
+        </div>
+      </td>
+      <td
+        class="cell"
+        data-date="1572451200000"
+        title="2019-10-31"
+      >
+        <div>
+          31
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1572537600000"
+        title="2019-11-01"
+      >
+        <div>
+          1
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1572624000000"
+        title="2019-11-02"
+      >
+        <div>
+          2
+        </div>
+      </td>
+      
+    </tr>
+    <tr
+      class="mx-date-row"
+    >
+      <td
+        class="mx-week-number"
+      >
+        3
+      </td>
+      
+      <td
+        class="cell not-current-month"
+        data-date="1572710400000"
+        title="2019-11-03"
+      >
+        <div>
+          3
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1572796800000"
+        title="2019-11-04"
+      >
+        <div>
+          4
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1572883200000"
+        title="2019-11-05"
+      >
+        <div>
+          5
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1572969600000"
+        title="2019-11-06"
+      >
+        <div>
+          6
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1573056000000"
+        title="2019-11-07"
+      >
+        <div>
+          7
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1573142400000"
+        title="2019-11-08"
+      >
+        <div>
+          8
+        </div>
+      </td>
+      <td
+        class="cell not-current-month"
+        data-date="1573228800000"
+        title="2019-11-09"
+      >
+        <div>
+          9
+        </div>
+      </td>
+      
+    </tr>
+    
+  </tbody>
+</table>
+`;

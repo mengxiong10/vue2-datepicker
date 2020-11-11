@@ -1,0 +1,121 @@
+{
+  "name": "vue2-datepicker",
+  "description": "Vue3 Datepicker Component",
+  "main": "index.js",
+  "module": "index.esm.js",
+  "alias": {
+    "vue2-datepicker": "./src/index.js"
+  },
+  "files": [
+    "/locale",
+    "/index.*",
+    "/scss"
+  ],
+  "version": "3.7.0",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development rollup -c -w",
+    "build:index": "cross-env NODE_ENV=production rollup -c",
+    "build:locale": "cross-env NODE_ENV=production rollup -c rollup.locale.config.js",
+    "build:css": "sass --style=compressed --no-source-map src/style/index.scss index.css && postcss index.css --use autoprefixer -o index.css --no-map && cp -R src/style scss",
+    "build": "npm run test && npm run clean && npm run build:index && npm run build:css && npm run build:locale",
+    "clean": "rimraf scss locale index.*",
+    "lint": "eslint src/**/*.{js,vue}",
+    "lint:fix": "eslint src/**/*.{js,vue} --fix",
+    "format": "prettier --write src/**/*",
+    "test": "npm run lint && jest",
+    "cov": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "release": "bash build/git.sh && bash build/release.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mengxiong10/vue2-datepicker.git"
+  },
+  "keywords": [
+    "vue",
+    "calendar",
+    "datepicker",
+    "datetimepicker"
+  ],
+  "author": "xiemengxiong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mengxiong10/vue2-datepicker/issues"
+  },
+  "homepage": "https://github.com/mengxiong10/vue2-datepicker#readme",
+  "dependencies": {
+    "date-format-parse": "^0.2.5",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-object-assign": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/test-utils": "^2.0.0-0",
+    "autoprefixer": "^9.8.6",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "conventional-changelog-cli": "^2.1.1",
+    "cross-env": "^7.0.2",
+    "date-fns": "^2.16.1",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-vue": "^7.0.0-0",
+    "jest": "^24.9.0",
+    "jest-serializer-vue": "^2.0.2",
+    "postcss-cli": "^6.1.3",
+    "prettier": "^1.19.1",
+    "rollup": "^2.33.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "sass": "^1.26.5",
+    "typescript": "~3.9.3",
+    "vue-jest": "^5.0.0-0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "moduleNameMapper": {
+      "vue2-datepicker": "<rootDir>/src"
+    },
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -x @commitlint/config-conventional -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,vue}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie < 10"
+  ]
+}

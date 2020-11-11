@@ -1,0 +1,7 @@
+
+dist
+lib
+es
+node_modules
+/locale
+/index.*

@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeRange render: correct classes of the columns 1`] = `
+<div
+  class="mx-range-wrapper"
+>
+  <div
+    class="mx-time"
+  >
+    <!--v-if-->
+    <div
+      class="mx-time-content"
+    >
+      <div
+        class="mx-time-columns"
+      >
+        
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="margin-right: -0px;"
+          >
+            
+            <ul
+              class="mx-time-list"
+              data-index="0"
+              data-type="hour"
+            >
+              
+              <li
+                class="mx-time-item"
+                data-index="0"
+              >
+                12
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="1"
+              >
+                02
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="2"
+              >
+                04
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="3"
+              >
+                06
+              </li>
+              <li
+                class="mx-time-item active"
+                data-index="4"
+              >
+                08
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="5"
+              >
+                10
+              </li>
+              
+            </ul>
+            
+          </div>
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="margin-right: -0px;"
+          >
+            
+            <ul
+              class="mx-time-list"
+              data-index="1"
+              data-type="minute"
+            >
+              
+              <li
+                class="mx-time-item"
+                data-index="0"
+              >
+                00
+              </li>
+              <li
+                class="mx-time-item active"
+                data-index="1"
+              >
+                30
+              </li>
+              
+            </ul>
+            
+          </div>
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="margin-right: -0px;"
+          >
+            
+            <ul
+              class="mx-time-list"
+              data-index="2"
+              data-type="ampm"
+            >
+              
+              <li
+                class="mx-time-item active"
+                data-index="0"
+              >
+                AM
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="1"
+              >
+                PM
+              </li>
+              
+            </ul>
+            
+          </div>
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div
+    class="mx-time"
+  >
+    <!--v-if-->
+    <div
+      class="mx-time-content"
+    >
+      <div
+        class="mx-time-columns"
+      >
+        
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="margin-right: -0px;"
+          >
+            
+            <ul
+              class="mx-time-list"
+              data-index="0"
+              data-type="hour"
+            >
+              
+              <li
+                class="mx-time-item"
+                data-index="0"
+              >
+                12
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="1"
+              >
+                02
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="2"
+              >
+                04
+              </li>
+              <li
+                class="mx-time-item active"
+                data-index="3"
+              >
+                06
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="4"
+              >
+                08
+              </li>
+              <li
+                class="mx-time-item"
+                data-index="5"
+              >
+                10
+              </li>
+              
+            </ul>
+            
+          </div>
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="margin-right: -0px;"
+          >
+            
+            <ul
+              class="mx-time-list"
+              data-index="1"
+              data-type="minute"
+            >
+              
+              <li
+                class="mx-time-item"
+                data-index="0"
+              >
+                00
+              </li>
+              <li
+                class="mx-time-item active"
+                data-index="1"
+              >
+                30
+              </li>
+              
+            </ul>
+            
+          </div>
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        <div
+          class="mx-scrollbar mx-time-column"
+          style="position: relative; overflow: hidden;"
+        >
+          <div
+            class="mx-scrollbar-wrap"
+            style="margin-right: -0px;"
+          >
+            
+            <ul
+              class="mx-time-list"
+              data-index="2"
+              data-type="ampm"
+            >
+              
+              <li
+                class="mx-time-item disabled"
+                data-index="0"
+              >
+                AM
+              </li>
+              <li
+                class="mx-time-item active"
+                data-index="1"
+              >
+                PM
+              </li>
+              
+            </ul>
+            
+          </div>
+          <div
+            class="mx-scrollbar-track"
+          >
+            <div
+              class="mx-scrollbar-thumb"
+            />
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+`;
