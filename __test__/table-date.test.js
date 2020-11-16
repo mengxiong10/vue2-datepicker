@@ -11,9 +11,7 @@ describe('TableDate', () => {
   it('corrent render', () => {
     wrapper = mount(TableDate, {
       propsData: {
-        calendarYear: 2019,
-        calendarMonth: 9,
-        firstDayOfWeek: 1,
+        calendar: new Date(2019, 9, 1, 0, 0, 0),
         titleFormat: 'DD/MM/YYYY',
       },
     });

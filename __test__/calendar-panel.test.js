@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import { mount, shallowMount } from '@vue/test-utils';
 import CalendarPanel from '../src/calendar/calendar-panel';
 
@@ -14,8 +15,8 @@ describe('CalendarPanel', () => {
         value: new Date(2019, 9, 4),
       },
     });
-    const tds = wrapper.findAll('.mx-table-date td');
-    tds.at(0).trigger('click');
+    const td = wrapper.find('.mx-table-date td');
+    td.trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2019, 8, 29));
   });
 
@@ -26,8 +27,8 @@ describe('CalendarPanel', () => {
         defaultValue: new Date(2019, 9, 1),
       },
     });
-    const tds = wrapper.findAll('.mx-table-month td > div');
-    tds.at(0).trigger('click');
+    const td = wrapper.find('.mx-table-month td > div');
+    td.trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2019, 0, 1));
   });
 
@@ -38,8 +39,8 @@ describe('CalendarPanel', () => {
         defaultValue: new Date(2019, 9, 1),
       },
     });
-    const tds = wrapper.findAll('.mx-table-year td > div');
-    tds.at(0).trigger('click');
+    const td = wrapper.find('.mx-table-year td > div');
+    td.trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2010, 0));
   });
 
@@ -50,22 +51,37 @@ describe('CalendarPanel', () => {
         defaultValue: new Date().setFullYear(11),
       },
     });
-    const tds = wrapper.findAll('.mx-table-year td > div');
-    tds.at(0).trigger('click');
+    const td = wrapper.find('.mx-table-year td > div');
+    td.trigger('click');
     const expectedDate = new Date(10, 0).setFullYear(10);
     expect(wrapper.emitted().select[0][0].getTime()).toBe(expectedDate);
   });
 
-  it('feat: active class', () => {
+  it('feat: active class', async () => {
     wrapper = mount(CalendarPanel);
     const td = wrapper.find('.mx-table-date td:nth-child(6)');
     expect(td.classes()).not.toContain('active');
-    wrapper.setProps({ value: new Date(2019, 9, 4) });
+    await wrapper.setProps({ value: new Date(2019, 9, 4) });
     expect(td.classes()).toContain('active');
   });
 
-  it('feat: click prev/next month', () => {
-    wrapper = shallowMount(CalendarPanel);
+  it('feat: panel change', async () => {
+    wrapper = mount(CalendarPanel);
+    const { vm } = wrapper;
+    await wrapper.find('.mx-btn-current-year').trigger('click');
+    expect(vm.panel).toBe('year');
+    await wrapper.find('.mx-table-year td > div').trigger('click');
+    expect(vm.panel).toBe('month');
+    await wrapper.find('.mx-table-month td > div').trigger('click');
+    expect(vm.panel).toBe('date');
+    await wrapper.find('.mx-btn-current-month').trigger('click');
+    expect(vm.panel).toBe('month');
+    await wrapper.find('.mx-calendar-header-label > button').trigger('click');
+    expect(vm.panel).toBe('year');
+  });
+
+  it('feat: click prev/next month', async () => {
+    wrapper = mount(CalendarPanel);
 
     const nextBtn = wrapper.find('.mx-btn-icon-right');
     const lastBtn = wrapper.find('.mx-btn-icon-left');
@@ -74,7 +90,7 @@ describe('CalendarPanel', () => {
     while (count--) {
       const oldYear = vm.calendarYear;
       const oldMonth = vm.calendarMonth;
-      nextBtn.trigger('click');
+      await nextBtn.trigger('click');
       const newYear = vm.calendarYear;
       const newMonth = vm.calendarMonth;
       if (oldMonth === 11) {
@@ -89,7 +105,7 @@ describe('CalendarPanel', () => {
     while (count--) {
       const oldYear = vm.calendarYear;
       const oldMonth = vm.calendarMonth;
-      lastBtn.trigger('click');
+      await lastBtn.trigger('click');
       const newYear = vm.calendarYear;
       const newMonth = vm.calendarMonth;
       if (oldMonth === 0) {
@@ -102,33 +118,42 @@ describe('CalendarPanel', () => {
     }
   });
 
-  it('feat: click prev/next year', () => {
-    wrapper = shallowMount(CalendarPanel, {
+  ['date', 'month'].forEach(type => {
+    it(`feat: click prev/next year in ${type} panel`, async () => {
+      wrapper = mount(CalendarPanel, {
+        propsData: {
+          value: new Date(2018, 4, 5),
+          defaultPanel: type,
+        },
+      });
+      const nextBtn = wrapper.find('.mx-btn-icon-double-right');
+      const lastBtn = wrapper.find('.mx-btn-icon-double-left');
+      const { vm } = wrapper;
+      const oldYear = vm.calendarYear;
+      expect(oldYear).toBe(2018);
+      await nextBtn.trigger('click');
+      let newYear = vm.calendarYear;
+      expect(newYear).toBe(2019);
+      await lastBtn.trigger('click');
+      newYear = vm.calendarYear;
+      expect(newYear).toBe(oldYear);
+    });
+  });
+
+  it('feat: click prev/next decade', () => {
+    wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2018, 4, 5),
+        defaultPanel: 'year',
       },
     });
     const nextBtn = wrapper.find('.mx-btn-icon-double-right');
     const lastBtn = wrapper.find('.mx-btn-icon-double-left');
-    const yearBtn = wrapper.find('.mx-btn-current-year');
-    const { vm } = wrapper;
-    const oldYear = vm.calendarYear;
-    expect(oldYear).toBe(2018);
     nextBtn.trigger('click');
-    let newYear = vm.calendarYear;
-    expect(newYear).toBe(2019);
-    lastBtn.trigger('click');
-    newYear = vm.calendarYear;
-    expect(newYear).toBe(oldYear);
-    // 年视图测试
-    yearBtn.trigger('click');
-    expect(vm.panel).toBe('year');
-    expect(vm.calendarDecade).toBe(2010);
-    nextBtn.trigger('click');
-    expect(vm.calendarDecade).toBe(2020);
+    expect(wrapper.vm.calendarYear).toBe(2028);
     lastBtn.trigger('click');
     lastBtn.trigger('click');
-    expect(vm.calendarDecade).toBe(2000);
+    expect(wrapper.vm.calendarYear).toBe(2008);
   });
 
   const renderType = type => {
@@ -139,10 +164,23 @@ describe('CalendarPanel', () => {
           value: new Date(2019, 9, 1, 10),
         },
       });
-      expect(wrapper.element).toMatchSnapshot();
+      expect(wrapper.vm.panel).toBe(type);
     });
   };
   ['date', 'month', 'year'].forEach(renderType);
+
+  it('feat: select year to change the calendar', async () => {
+    wrapper = mount(CalendarPanel, {
+      propsData: {
+        value: new Date(2018, 4, 5),
+        defaultPanel: 'year',
+      },
+    });
+    await wrapper.find('.mx-table-year td > div').trigger('click');
+    expect(wrapper.vm.calendarYear).toBe(2010);
+    await wrapper.find('.mx-table-month td > div').trigger('click');
+    expect(wrapper.vm.calendarMonth).toBe(0);
+  });
 
   it('prop: disabledDate', () => {
     const disabledDate = date => {
@@ -168,11 +206,12 @@ describe('CalendarPanel', () => {
     expect(wrapper.emitted().select).toBeUndefined();
   });
 
-  it('prop: partialUpdate', () => {
+  it('prop: partialUpdate', async () => {
     wrapper = mount(CalendarPanel, {
       propsData: {
         value: new Date(2019, 9, 4),
         partialUpdate: true,
+        defaultPanel: 'year',
       },
     });
     wrapper
@@ -180,11 +219,8 @@ describe('CalendarPanel', () => {
       .at(0)
       .trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2010, 9, 4));
-    wrapper.setProps({ value: new Date(2010, 9, 4) });
-    wrapper
-      .findAll('.mx-table-month td > div')
-      .at(0)
-      .trigger('click');
+    await wrapper.setProps({ value: new Date(2010, 9, 4) });
+    wrapper.find('.mx-table-month td > div').trigger('click');
     expect(wrapper.emitted().select[1][0]).toEqual(new Date(2010, 0, 4));
   });
 

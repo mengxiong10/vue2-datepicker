@@ -11,7 +11,7 @@ describe('TableYear', () => {
   it('decade=2010', () => {
     wrapper = mount(TableYear, {
       propsData: {
-        decade: 2010,
+        calendar: new Date(2019, 9, 1, 0, 0, 0),
       },
     });
     expect(wrapper.element).toMatchSnapshot();

@@ -62,7 +62,7 @@ describe('TimePanel', () => {
     expect(wrapper.element).toMatchSnapshot();
   });
 
-  it('feat: emit select event when click', () => {
+  it('feat: emit select event when click', async () => {
     wrapper = mount(TimePanel, {
       propsData: {
         format: 'hh:mm:ss a',
@@ -72,15 +72,15 @@ describe('TimePanel', () => {
     const hour = wrapper.find('[data-type=hour] li:nth-child(2)');
     hour.trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2019, 9, 10, 1));
-    wrapper.setProps({ value: new Date(2019, 9, 10, 1) });
+    await wrapper.setProps({ value: new Date(2019, 9, 10, 1) });
     const minute = wrapper.find('[data-type=minute] li:nth-child(2)');
     minute.trigger('click');
     expect(wrapper.emitted().select[1][0]).toEqual(new Date(2019, 9, 10, 1, 1));
-    wrapper.setProps({ value: new Date(2019, 9, 10, 1, 1) });
+    await wrapper.setProps({ value: new Date(2019, 9, 10, 1, 1) });
     const second = wrapper.find('[data-type=second] li:nth-child(2)');
     second.trigger('click');
     expect(wrapper.emitted().select[2][0]).toEqual(new Date(2019, 9, 10, 1, 1, 1));
-    wrapper.setProps({ value: new Date(2019, 9, 10, 1, 1, 1) });
+    await wrapper.setProps({ value: new Date(2019, 9, 10, 1, 1, 1) });
     const pm = wrapper.find('[data-type=ampm] li:nth-child(2)');
     pm.trigger('click');
     expect(wrapper.emitted().select[3][0]).toEqual(new Date(2019, 9, 10, 13, 1, 1));
@@ -105,7 +105,7 @@ describe('TimePanel', () => {
         format: {},
       },
     });
-    const cols = wrapper.find(ListColumns);
+    const cols = wrapper.findComponent(ListColumns);
     expect(cols.props('showHour')).toBe(true);
     expect(cols.props('showMinute')).toBe(true);
     expect(cols.props('showSecond')).toBe(true);

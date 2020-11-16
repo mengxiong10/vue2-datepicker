@@ -1,3 +1,16 @@
+<template>
+  <transition :name="`${prefixClass}-zoom-in-down`">
+    <div
+      v-if="visible"
+      :class="`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`"
+      :style="{ top, left, position: 'absolute' }"
+    >
+      <slot></slot>
+    </div>
+  </transition>
+</template>
+
+<script>
 import { rafThrottle } from './util/throttle';
 import { getPopupElementSize, getRelativePosition, getScrollParent } from './util/dom';
 
@@ -16,10 +29,6 @@ export default {
     appendToBody: {
       type: Boolean,
       default: true,
-    },
-    inline: {
-      type: Boolean,
-      default: false,
     },
   },
   data() {
@@ -41,9 +50,6 @@ export default {
     },
   },
   mounted() {
-    if (this.inline) {
-      return;
-    }
     if (this.appendToBody) {
       document.body.appendChild(this.$el);
     }
@@ -59,9 +65,6 @@ export default {
     window.addEventListener('resize', this._displayPopup);
   },
   beforeDestroy() {
-    if (this.inline) {
-      return;
-    }
     if (this.appendToBody && this.$el.parentNode) {
       this.$el.parentNode.removeChild(this.$el);
     }
@@ -81,7 +84,7 @@ export default {
       }
     },
     displayPopup() {
-      if (this.inline || !this.visible) return;
+      if (!this.visible) return;
       const popup = this.$el;
       const relativeElement = this.$parent.$el;
       const { appendToBody } = this;
@@ -94,23 +97,5 @@ export default {
       this.top = top;
     },
   },
-  render() {
-    const { prefixClass } = this;
-
-    if (this.inline) {
-      return <div class={`${prefixClass}-datepicker-main`}>{this.$slots.default}</div>;
-    }
-    return (
-      <transition name={`${prefixClass}-zoom-in-down`}>
-        {this.visible && (
-          <div
-            class={`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`}
-            style={{ top: this.top, left: this.left, position: 'absolute' }}
-          >
-            {this.$slots.default}
-          </div>
-        )}
-      </transition>
-    );
-  },
 };
+</script>

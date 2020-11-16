@@ -5,7 +5,7 @@ import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
-const external = id => /date-fns/.test(id);
+const external = Object.keys(pkg.dependencies);
 
 const input = 'src/index.js';
 

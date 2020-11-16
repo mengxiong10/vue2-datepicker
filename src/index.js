@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import DatePicker from './date-picker.vue';
+import DatePicker from './date-picker';
 import CalendarPanel from './calendar/calendar-panel';
 import CalendarRange from './calendar/calendar-range';
 import TimePanel from './time/time-panel';

@@ -15,7 +15,7 @@
 import { format } from 'date-format-parse';
 import ScrollbarVertical from '../scrollbar/scrollbar-vertical';
 import { getScrollParent } from '../util/dom';
-import { getLocaleFieldValue } from '../locale';
+import { getLocale } from '../locale';
 
 function parseOption(time = '') {
   const values = time.split(':');
@@ -40,8 +40,8 @@ export default {
   name: 'ListOptions',
   components: { ScrollbarVertical },
   inject: {
-    translateFn: {
-      default: () => getLocaleFieldValue,
+    getLocale: {
+      default: () => getLocale,
     },
     prefixClass: {
       default: 'mx',
@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     formatDate(date, fmt) {
-      return format(date, fmt, { locale: this.translateFn('formatLocale') });
+      return format(date, fmt, { locale: this.getLocale().formatLocale });
     },
     scrollToSelected() {
       const element = this.$el.querySelector('.active');

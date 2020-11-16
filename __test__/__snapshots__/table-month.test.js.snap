@@ -1,119 +1,155 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TableMonth correct render 1`] = `
-<table
-  class="mx-table mx-table-month"
-  getclasses="month => {
-          if (month === 9) {
-            return 'active';
-          }
-
-          return '';
-        }"
+<div
+  class="mx-calendar mx-calendar-panel-month"
 >
-  <tr>
-    <td
-      class="cell"
-      data-month="0"
+  <div
+    class="mx-calendar-header"
+  >
+    <button
+      class="mx-btn mx-btn-text mx-btn-icon-double-left"
+      type="button"
     >
-      <div>
-        Jan
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="1"
+      <i
+        class="mx-icon-double-left"
+      />
+    </button>
+     
+    <button
+      class="mx-btn mx-btn-text mx-btn-icon-double-right"
+      type="button"
     >
-      <div>
-        Feb
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="2"
+      <i
+        class="mx-icon-double-right"
+      />
+    </button>
+     
+    <span
+      class="mx-calendar-header-label"
     >
-      <div>
-        Mar
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-month="3"
+      <button
+        class="mx-btn mx-btn-text"
+        type="button"
+      >
+        
+        2019
+      
+      </button>
+    </span>
+  </div>
+   
+  <div
+    class="mx-calendar-content"
+  >
+    <table
+      class="mx-table mx-table-month"
     >
-      <div>
-        Apr
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="4"
-    >
-      <div>
-        May
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="5"
-    >
-      <div>
-        Jun
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-month="6"
-    >
-      <div>
-        Jul
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="7"
-    >
-      <div>
-        Aug
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="8"
-    >
-      <div>
-        Sep
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-month="9"
-    >
-      <div>
-        Oct
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="10"
-    >
-      <div>
-        Nov
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-month="11"
-    >
-      <div>
-        Dec
-      </div>
-    </td>
-  </tr>
-</table>
+      <tr>
+        <td
+          class="cell"
+          data-month="0"
+        >
+          <div>
+            Jan
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="1"
+        >
+          <div>
+            Feb
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="2"
+        >
+          <div>
+            Mar
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell"
+          data-month="3"
+        >
+          <div>
+            Apr
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="4"
+        >
+          <div>
+            May
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="5"
+        >
+          <div>
+            Jun
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell"
+          data-month="6"
+        >
+          <div>
+            Jul
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="7"
+        >
+          <div>
+            Aug
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="8"
+        >
+          <div>
+            Sep
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell active"
+          data-month="9"
+        >
+          <div>
+            Oct
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="10"
+        >
+          <div>
+            Nov
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-month="11"
+        >
+          <div>
+            Dec
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 `;

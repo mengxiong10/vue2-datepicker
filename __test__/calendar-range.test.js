@@ -1,5 +1,4 @@
 import { mount } from '@vue/test-utils';
-import flushPromises from 'flush-promises';
 import CalendarRange from '../src/calendar/calendar-range';
 import CalendarPanel from '../src/calendar/calendar-panel';
 
@@ -12,7 +11,6 @@ afterEach(() => {
 describe('CalendarRange', () => {
   it('feat: correct classes', () => {
     wrapper = mount(CalendarRange, {
-      sync: false,
       propsData: {
         value: [new Date(2019, 9, 30), new Date(2019, 10, 2)],
       },
@@ -29,38 +27,31 @@ describe('CalendarRange', () => {
 
   it('feat: click range', async () => {
     wrapper = mount(CalendarRange, {
-      sync: false,
       propsData: {
         defaultValue: new Date(2019, 9, 1),
       },
     });
     expect(wrapper.vm.calendars).toEqual([new Date(2019, 9, 1), new Date(2019, 10, 1)]);
     const tds = wrapper.findAll('.mx-table-date td');
-    tds.at(2).trigger('click');
-    await flushPromises();
+    await tds.at(2).trigger('click');
     expect(wrapper.emitted().select).toBeUndefined();
-    tds.at(8).trigger('click');
-    await flushPromises();
+    await tds.at(8).trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual([new Date(2019, 9, 1), new Date(2019, 9, 7)]);
   });
 
   it('feat: calendars min gap', async () => {
     wrapper = mount(CalendarRange, {
-      sync: false,
       propsData: {
         defaultValue: new Date(2019, 6, 1),
       },
     });
-    const panels = wrapper.findAll(CalendarPanel);
-    const startPanel = panels.at(0);
-    const endPanel = panels.at(1);
+    const firstRightIcon = wrapper.find('.mx-calendar-panel-date .mx-btn-icon-right');
+    const secondLeftIcon = wrapper.find('.mx-calendar-panel-date:nth-child(2) .mx-btn-icon-left');
 
-    startPanel.find('.mx-btn-icon-right').trigger('click');
-    await flushPromises();
+    await firstRightIcon.trigger('click');
     expect(wrapper.vm.calendars).toEqual([new Date(2019, 7, 1), new Date(2019, 8, 1)]);
 
-    endPanel.find('.mx-btn-icon-left').trigger('click');
-    await flushPromises();
+    await secondLeftIcon.trigger('click');
     expect(wrapper.vm.calendars).toEqual([new Date(2019, 6, 1), new Date(2019, 7, 1)]);
   });
 
@@ -70,7 +61,7 @@ describe('CalendarRange', () => {
         partialUpdate: true,
       },
     });
-    const panels = wrapper.findAll(CalendarPanel);
+    const panels = wrapper.findAllComponents(CalendarPanel);
     const startPanel = panels.at(0);
     const endPanel = panels.at(1);
     expect(startPanel.vm.partialUpdate).toBe(false);
@@ -83,7 +74,7 @@ describe('CalendarRange', () => {
         defaultValue: [new Date(2019, 9, 1), new Date(2019, 11, 1)],
       },
     });
-    const panels = wrapper.findAll(CalendarPanel);
+    const panels = wrapper.findAllComponents(CalendarPanel);
     const startPanel = panels.at(0);
     const endPanel = panels.at(1);
     expect(startPanel.vm.calendarMonth).toBe(9);

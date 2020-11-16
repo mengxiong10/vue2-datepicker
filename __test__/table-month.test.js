@@ -11,7 +11,8 @@ describe('TableMonth', () => {
   it('correct render', () => {
     wrapper = mount(TableMonth, {
       propsData: {
-        getClasses: month => {
+        calendar: new Date(2019, 9, 1, 0, 0, 0),
+        getCellClasses: month => {
           if (month === 9) {
             return 'active';
           }

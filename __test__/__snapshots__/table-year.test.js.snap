@@ -1,98 +1,144 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TableYear decade=2010 1`] = `
-<table
-  class="mx-table mx-table-year"
+<div
+  class="mx-calendar mx-calendar-panel-year"
 >
-  <tr>
-    <td
-      class="cell"
-      data-year="2010"
+  <div
+    class="mx-calendar-header"
+  >
+    <button
+      class="mx-btn mx-btn-text mx-btn-icon-double-left"
+      type="button"
     >
-      <div>
+      <i
+        class="mx-icon-double-left"
+      />
+    </button>
+     
+    <button
+      class="mx-btn mx-btn-text mx-btn-icon-double-right"
+      type="button"
+    >
+      <i
+        class="mx-icon-double-right"
+      />
+    </button>
+     
+    <span
+      class="mx-calendar-header-label"
+    >
+      <span>
         2010
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-year="2011"
-    >
-      <div>
-        2011
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-year="2012"
-    >
-      <div>
-        2012
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-year="2013"
-    >
-      <div>
-        2013
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-year="2014"
-    >
-      <div>
-        2014
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-year="2015"
-    >
-      <div>
-        2015
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-year="2016"
-    >
-      <div>
-        2016
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-year="2017"
-    >
-      <div>
-        2017
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td
-      class="cell"
-      data-year="2018"
-    >
-      <div>
-        2018
-      </div>
-    </td>
-    <td
-      class="cell"
-      data-year="2019"
-    >
-      <div>
+      </span>
+       
+      <span
+        class="mx-calendar-decade-separator"
+      />
+       
+      <span>
         2019
-      </div>
-    </td>
-  </tr>
-</table>
+      </span>
+    </span>
+  </div>
+   
+  <div
+    class="mx-calendar-content"
+  >
+    <table
+      class="mx-table mx-table-year"
+    >
+      <tr>
+        <td
+          class="cell"
+          data-year="2010"
+        >
+          <div>
+            2010
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-year="2011"
+        >
+          <div>
+            2011
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell"
+          data-year="2012"
+        >
+          <div>
+            2012
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-year="2013"
+        >
+          <div>
+            2013
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell"
+          data-year="2014"
+        >
+          <div>
+            2014
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-year="2015"
+        >
+          <div>
+            2015
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell"
+          data-year="2016"
+        >
+          <div>
+            2016
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-year="2017"
+        >
+          <div>
+            2017
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="cell"
+          data-year="2018"
+        >
+          <div>
+            2018
+          </div>
+        </td>
+        <td
+          class="cell"
+          data-year="2019"
+        >
+          <div>
+            2019
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 `;

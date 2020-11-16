@@ -1,5 +1,5 @@
 import CalendarPanel from '../calendar/calendar-panel';
-import TimePanel from '../time/time-panel.vue';
+import TimePanel from '../time/time-panel';
 import { assignTime, getValidDate } from '../util/date';
 import { pick } from '../util/base';
 
@@ -64,7 +64,7 @@ export default {
   render() {
     const calendarProps = {
       props: {
-        ...pick(this, Object.keys(CalendarPanel.props)),
+        ...pick(this.$props, Object.keys(CalendarPanel.props)),
         type: 'date',
         value: this.currentValue,
       },
@@ -74,13 +74,13 @@ export default {
     };
     const timeProps = {
       props: {
-        ...pick(this, Object.keys(TimePanel.props)),
+        ...pick(this.$props, Object.keys(TimePanel.props)),
         showTimeHeader: true,
         value: this.currentValue,
       },
       on: {
         select: this.emitDate,
-        'title-click': this.closeTimePanel,
+        clicktitle: this.closeTimePanel,
       },
     };
 

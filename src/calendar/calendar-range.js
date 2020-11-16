@@ -1,6 +1,5 @@
-import { addMonths, subMonths, differenceInCalendarMonths } from 'date-fns';
 import CalendarPanel from './calendar-panel';
-import { getValidDate, isValidDate, isValidRangeDate } from '../util/date';
+import { getValidDate, isValidDate, isValidRangeDate, startOfMonth } from '../util/date';
 
 export default {
   name: 'CalendarRange',
@@ -45,8 +44,10 @@ export default {
         this.innerValue = isValidRangeDate(this.value)
           ? this.value
           : [new Date(NaN), new Date(NaN)];
-        this.calendars = this.innerValue.map((v, i) => getValidDate(v, this.defaultValues[i]));
-        this.validateCalendars(1);
+        const calendars = this.innerValue.map((v, i) =>
+          startOfMonth(getValidDate(v, this.defaultValues[i]))
+        );
+        this.updateCalendars(calendars);
       },
     },
   },
@@ -68,27 +69,25 @@ export default {
       this.$emit('select', dates, type);
     },
     updateStartCalendar(value) {
-      this.calendars.splice(0, 1, value);
-      this.validateCalendars(1);
+      this.updateCalendars([value, this.calendars[1]], 1);
     },
     updateEndCalendar(value) {
-      this.calendars.splice(1, 1, value);
-      this.validateCalendars(0);
+      this.updateCalendars([this.calendars[0], value], 0);
     },
-    validateCalendars(index) {
-      const gap = this.getCalendarGap();
+    updateCalendars(calendars, adjustIndex = 1) {
+      const gap = this.getCalendarGap(calendars);
       if (gap) {
-        let calendar = this.calendars[index];
-        if (index === 0) {
-          calendar = subMonths(calendar, gap);
-        } else {
-          calendar = addMonths(calendar, gap);
-        }
-        this.calendars.splice(index, 1, calendar);
+        const calendar = new Date(calendars[adjustIndex]);
+        calendar.setMonth(calendar.getMonth() + (adjustIndex === 0 ? -gap : gap));
+        calendars[adjustIndex] = calendar;
       }
+      this.calendars = calendars;
     },
-    getCalendarGap() {
-      const diff = differenceInCalendarMonths(this.calendars[1], this.calendars[0]);
+    getCalendarGap(calendars) {
+      const [calendarLeft, calendarRight] = calendars;
+      const yearDiff = calendarRight.getFullYear() - calendarLeft.getFullYear();
+      const monthDiff = calendarRight.getMonth() - calendarLeft.getMonth();
+      const diff = yearDiff * 12 + monthDiff;
       const min = this.calendarMinDiff;
       const max = this.calendarMaxDiff;
       if (diff < min) {
