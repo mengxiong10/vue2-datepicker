@@ -482,9 +482,11 @@ export default {
         ...pick(this.$props, Object.keys(Component.props)),
         value: this.currentValue,
       };
-      const content = (
-        <Component {...{ props, on: { select: this.handleSelectDate }, ref: 'picker' }} />
-      );
+      const on = {
+        ...pick(this.$listeners, Component.emits || []),
+        select: this.handleSelectDate,
+      };
+      const content = <Component {...{ props, on, ref: 'picker' }} />;
       return (
         <div class={`${this.prefixClass}-datepicker-body`}>
           {this.renderSlot('content', content, {
