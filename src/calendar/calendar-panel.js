@@ -125,7 +125,9 @@ export default {
       this.dispatchDatePicker('calendar-change', calendar, oldCalendar, type);
     },
     handelPanelChange(panel) {
+      const oldPanel = this.panel;
       this.panel = panel;
+      this.dispatchDatePicker('panel-change', panel, oldPanel);
     },
     handleSelectYear(year) {
       if (this.type === 'year') {

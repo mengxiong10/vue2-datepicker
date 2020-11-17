@@ -287,6 +287,7 @@ data() {
 | blur            | 当输入框失焦                                                                   |                                                                                                                          |
 | pick            | 当点击日期时 [#429](https://github.com/mengxiong10/vue2-datepicker/issues/429) | date                                                                                                                     |
 | calendar-change | 当改变年月时                                                                   | date, oldDate, type('year'\|'month'\|'last-year'\|'next-year'\|'last-month'\|'next-month'\|'last-decade'\|'next-decade') |
+| panel-change    | 当日历面板改变时                                                               | type('year'\|'month'\|'date'), oldType                                                                                   |
 
 ### Slots
 

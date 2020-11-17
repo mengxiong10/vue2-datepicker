@@ -290,6 +290,7 @@ Set fixed time list to select;
 | blur            | When input blur                                                                    |                                                                                                                          |
 | pick            | when select date [#429](https://github.com/mengxiong10/vue2-datepicker/issues/429) | date                                                                                                                     |
 | calendar-change | when change the calendar                                                           | date, oldDate, type('year'\|'month'\|'last-year'\|'next-year'\|'last-month'\|'next-month'\|'last-decade'\|'next-decade') |
+| panel-change    | when the calendar panel changes                                                    | type('year'\|'month'\|'date'), oldType                                                                                   |
 
 ### Slots
 

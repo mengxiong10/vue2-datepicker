@@ -439,4 +439,15 @@ describe('DatePicker', () => {
     expect(wrapper.emitted().input[1]).toBe(undefined);
     expect(wrapper.emitted()['input-error'][0][0]).toBe('2020-05-01');
   });
+
+  it('panel-change event should be emitd', async () => {
+    wrapper = mount(DatePicker, {
+      propsData: {
+        open: true,
+      },
+    });
+    const yearBtn = wrapper.find('.mx-btn-current-year');
+    await yearBtn.trigger('click');
+    expect(wrapper.emitted()['panel-change'][0]).toEqual(['year', 'date']);
+  });
 });
