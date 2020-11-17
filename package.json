@@ -48,7 +48,7 @@
     "vue": "^2.5.0"
   },
   "dependencies": {
-    "date-format-parse": "^0.2.5"
+    "date-format-parse": "^0.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
