@@ -1,3 +1,20 @@
+<a name="3.8.0"></a>
+# [3.8.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.7.0...v3.8.0) (2020-11-18)
+
+
+### Bug Fixes
+
+* the MMM parse error ([c504b1d](https://github.com/mengxiong10/vue2-datepicker/commit/c504b1d))
+
+
+### Features
+
+* add event `panel-change` ([3d29b49](https://github.com/mengxiong10/vue2-datepicker/commit/3d29b49))
+* add event `update:show-time-panel` ([#531](https://github.com/mengxiong10/vue2-datepicker/issues/531)) ([45969a1](https://github.com/mengxiong10/vue2-datepicker/commit/45969a1))
+* add prop `getYearPanel` ([#526](https://github.com/mengxiong10/vue2-datepicker/issues/526)) ([7fc299a](https://github.com/mengxiong10/vue2-datepicker/commit/7fc299a))
+
+
+
 <a name="3.7.0"></a>
 # [3.7.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.6.3...v3.7.0) (2020-10-20)
 
