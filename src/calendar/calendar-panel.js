@@ -49,6 +49,9 @@ export default {
       type: Boolean,
       default: undefined,
     },
+    getYearPanel: {
+      type: Function,
+    },
     titleFormat: {
       type: String,
       default: 'YYYY-MM-DD',
@@ -226,6 +229,7 @@ export default {
         <TableYear
           calendar={innerCalendar}
           getCellClasses={this.getYearClasses}
+          getYearPanel={this.getYearPanel}
           onSelect={this.handleSelectYear}
           onChangecalendar={this.handleCalendarChange}
         />
