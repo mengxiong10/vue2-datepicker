@@ -4,13 +4,27 @@
 .#{$namespace}-zoom-in-down-leave-active {
   opacity: 1;
   transform: scaleY(1);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform $popup-animation-speed $popup-timing-function,
+    opacity $popup-animation-speed $popup-timing-function;
   transform-origin: center top;
 }
 
 .#{$namespace}-zoom-in-down-enter,
 .#{$namespace}-zoom-in-down-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.#{$namespace}-zoom-in-up-enter-active,
+.#{$namespace}-zoom-in-up-leave-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: transform $popup-animation-speed $popup-timing-function,
+    opacity $popup-animation-speed $popup-timing-function;
+  transform-origin: center bottom;
+}
+
+.#{$namespace}-zoom-in-up-enter,
+.#{$namespace}-zoom-in-up-leave-to {
   opacity: 0;
   transform: scaleY(0);
 }
