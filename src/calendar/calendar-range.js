@@ -8,10 +8,10 @@ export default {
       default: 'mx',
     },
   },
-  emits: ['select'],
   props: {
     ...CalendarPanel.props,
   },
+  emits: ['select'],
   data() {
     return {
       innerValue: [],

@@ -49,26 +49,36 @@ export default {
       type: Function,
       default: () => [],
     },
+    getYearPanel: {
+      type: Function,
+    },
   },
   emits: ['select', 'changecalendar'],
   computed: {
     years() {
-      const firstYear = Math.floor(this.calendar.getFullYear() / 10) * 10;
+      const calendar = new Date(this.calendar);
+      if (typeof this.getYearPanel === 'function') {
+        return this.getYearPanel(calendar);
+      }
+      return this.getYears(calendar);
+    },
+    firstYear() {
+      return this.years[0][0];
+    },
+    lastYear() {
+      const last = (arr) => arr[arr.length - 1];
+      return last(last(this.years));
+    },
+  },
+  methods: {
+    getYears(calendar) {
+      const firstYear = Math.floor(calendar.getFullYear() / 10) * 10;
       const years = [];
       for (let i = 0; i < 10; i++) {
         years.push(firstYear + i);
       }
       return chunk(years, 2);
     },
-    firstYear() {
-      return this.years[0][0];
-    },
-    lastYear() {
-      const last = arr => arr[arr.length - 1];
-      return last(last(this.years));
-    },
-  },
-  methods: {
     getNextCalendar(diffYear) {
       const year = this.calendar.getFullYear();
       const month = this.calendar.getMonth();

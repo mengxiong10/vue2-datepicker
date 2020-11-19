@@ -10,7 +10,6 @@ export default {
       default: 'mx',
     },
   },
-  emits: ['select'],
   props: {
     ...CalendarPanel.props,
     ...TimePanel.props,
@@ -19,6 +18,8 @@ export default {
       default: undefined,
     },
   },
+  emits: ['select', 'update:showTimePanel'],
+
   data() {
     return {
       defaultTimeVisible: false,
@@ -33,6 +34,9 @@ export default {
   watch: {
     value(val) {
       this.currentValue = val;
+    },
+    defaultTimeVisible(val) {
+      this.$emit('update:showTimePanel', val);
     },
   },
   methods: {

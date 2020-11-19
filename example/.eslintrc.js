@@ -16,7 +16,7 @@ module.exports = {
     },
     'import/extensions': ['.js', '.jsx', '.vue'],
   },
-  extends: ['airbnb-base', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
+  extends: ['airbnb-base', 'prettier', 'prettier/vue'],
 
   plugins: ['vue'],
 

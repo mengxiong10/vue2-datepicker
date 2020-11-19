@@ -24,14 +24,14 @@
 import ScrollbarVertical from '../scrollbar/scrollbar-vertical';
 import { getScrollParent } from '../util/dom';
 
-const padNumber = value => {
+const padNumber = (value) => {
   value = parseInt(value, 10);
   return value < 10 ? `0${value}` : `${value}`;
 };
 
 const generateOptions = (length, step, options) => {
   if (Array.isArray(options)) {
-    return options.filter(v => v >= 0 && v < length);
+    return options.filter((v) => v >= 0 && v < length);
   }
   if (step <= 0) {
     step = 1;
@@ -123,7 +123,7 @@ export default {
       if (this.showSecond) cols.push({ type: 'second', list: this.getSecondsList() });
       if (this.use12h) cols.push({ type: 'ampm', list: this.getAMPMList() });
 
-      return cols.filter(v => v.list.length > 0);
+      return cols.filter((v) => v.list.length > 0);
     },
   },
   watch: {
@@ -140,7 +140,7 @@ export default {
   },
   methods: {
     getHoursList() {
-      return generateOptions(this.use12h ? 12 : 24, this.hourStep, this.hourOptions).map(num => {
+      return generateOptions(this.use12h ? 12 : 24, this.hourStep, this.hourOptions).map((num) => {
         const date = new Date(this.date);
         let text = padNumber(num);
         if (this.use12h) {
@@ -156,13 +156,13 @@ export default {
       });
     },
     getMinutesList() {
-      return generateOptions(60, this.minuteStep, this.minuteOptions).map(num => {
+      return generateOptions(60, this.minuteStep, this.minuteOptions).map((num) => {
         const value = new Date(this.date).setMinutes(num);
         return { value, text: padNumber(num) };
       });
     },
     getSecondsList() {
-      return generateOptions(60, this.secondStep, this.secondOptions).map(num => {
+      return generateOptions(60, this.secondStep, this.secondOptions).map((num) => {
         const value = new Date(this.date).setSeconds(num);
         return { value, text: padNumber(num) };
       });

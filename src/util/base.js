@@ -37,7 +37,7 @@ export function pick(obj, props) {
     props = [props];
   }
   const res = {};
-  props.forEach(prop => {
+  props.forEach((prop) => {
     if (prop in obj) {
       res[prop] = obj[prop];
     }
@@ -56,7 +56,7 @@ export function mergeDeep(target, source) {
   }
   let result = target;
   if (isObject(source)) {
-    Object.keys(source).forEach(key => {
+    Object.keys(source).forEach((key) => {
       let value = source[key];
       if (isObject(value) && isObject(target[key])) {
         value = mergeDeep(target[key], value);
@@ -65,4 +65,8 @@ export function mergeDeep(target, source) {
     });
   }
   return result;
+}
+
+export function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

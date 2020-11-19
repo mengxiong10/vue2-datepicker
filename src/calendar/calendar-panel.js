@@ -21,7 +21,6 @@ export default {
       default: () => () => {},
     },
   },
-  emits: ['select', 'update:calendar'],
   props: {
     value: {},
     defaultValue: {
@@ -50,6 +49,9 @@ export default {
       type: Boolean,
       default: undefined,
     },
+    getYearPanel: {
+      type: Function,
+    },
     titleFormat: {
       type: String,
       default: 'YYYY-MM-DD',
@@ -61,6 +63,7 @@ export default {
       default: false,
     },
   },
+  emits: ['select', 'update:calendar'],
   data() {
     const panels = ['date', 'month', 'year'];
     const index = Math.max(panels.indexOf(this.type), panels.indexOf(this.defaultPanel));
@@ -79,7 +82,7 @@ export default {
         date: startOfDay,
       };
       const start = map[this.type] || map.date;
-      return value.filter(isValidDate).map(v => start(v));
+      return value.filter(isValidDate).map((v) => start(v));
     },
     calendarYear() {
       return this.innerCalendar.getFullYear();
@@ -126,7 +129,9 @@ export default {
       this.dispatchDatePicker('calendar-change', calendar, oldCalendar, type);
     },
     handelPanelChange(panel) {
+      const oldPanel = this.panel;
       this.panel = panel;
+      this.dispatchDatePicker('panel-change', panel, oldPanel);
     },
     handleSelectYear(year) {
       if (this.type === 'year') {
@@ -202,7 +207,7 @@ export default {
       if (this.isDisabled(cellDate)) {
         return 'disabled';
       }
-      if (this.innerValue.some(v => v.getTime() === cellDate.getTime())) {
+      if (this.innerValue.some((v) => v.getTime() === cellDate.getTime())) {
         return 'active';
       }
       return '';
@@ -211,7 +216,7 @@ export default {
       if (this.type !== 'week') return '';
       const start = row[0].getTime();
       const end = row[6].getTime();
-      const active = this.innerValue.some(v => {
+      const active = this.innerValue.some((v) => {
         const time = v.getTime();
         return time >= start && time <= end;
       });
@@ -225,6 +230,7 @@ export default {
         <TableYear
           calendar={innerCalendar}
           getCellClasses={this.getYearClasses}
+          getYearPanel={this.getYearPanel}
           onSelect={this.handleSelectYear}
           onChangecalendar={this.handleCalendarChange}
         />

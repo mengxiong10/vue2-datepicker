@@ -1,6 +1,6 @@
 import { parse, format, getWeek } from 'date-format-parse';
 import { isValidDate, isValidRangeDate, isValidDates } from './util/date';
-import { pick, isObject, mergeDeep } from './util/base';
+import { pick, isObject, mergeDeep, capitalize } from './util/base';
 import { getLocale } from './locale';
 import Popup from './popup';
 import IconCalendar from './icon/icon-calendar';
@@ -133,6 +133,25 @@ export default {
       },
     },
   },
+  emits: [
+    'update:modelValue',
+    'input',
+    'change',
+    'clear',
+    'confirm',
+    'open',
+    'close',
+    'update:open',
+    'blur',
+    'focus',
+    'pick',
+    'input-error',
+    'calendar-change',
+    'panel-change',
+    'inputError',
+    'calendarChange',
+    'panelChange',
+  ],
   data() {
     return {
       // cache the innervalue, wait to confirm
@@ -468,9 +487,14 @@ export default {
       const Component = map[this.type] || map.default;
       const props = {
         ...pick(this.$props, Object.keys(Component.props)),
+        ...pick(
+          this.$attrs,
+          (Component.emits || []).map((v) => `on${capitalize(v)}`)
+        ),
         value: this.currentValue,
+        onSelect: this.handleSelectDate,
       };
-      const content = <Component {...props} onSelect={this.handleSelectDate} ref="picker" />;
+      const content = <Component {...props} ref="picker" />;
       return (
         <div class={`${this.prefixClass}-datepicker-body`}>
           {this.renderSlot('content', content, {
