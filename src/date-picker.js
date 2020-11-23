@@ -331,10 +331,13 @@ export default {
         this.emitValue(val, this.validMultipleType ? `multiple-${type}` : type);
       }
     },
-    handleClear(evt) {
-      evt.stopPropagation();
+    clear() {
       this.emitValue(this.range ? [null, null] : null);
       this.$emit('clear');
+    },
+    handleClear(evt) {
+      evt.stopPropagation();
+      this.clear();
     },
     handleConfirmDate() {
       const value = this.emitValue(this.currentValue);
@@ -378,7 +381,7 @@ export default {
       const text = this.userInput.trim();
       this.userInput = null;
       if (text === '') {
-        this.handleClear();
+        this.clear();
         return;
       }
       let date;
