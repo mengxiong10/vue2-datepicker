@@ -254,7 +254,7 @@ export default {
         getRowClasses={this.getWeekState}
         titleFormat={this.titleFormat}
         showWeekNumber={
-          typeof showWeekNumber === 'boolean' ? this.showWeekNumber : this.type === 'week'
+          typeof this.showWeekNumber === 'boolean' ? this.showWeekNumber : this.type === 'week'
         }
         onSelect={this.handleSelectDate}
         onChangepanel={this.handelPanelChange}
