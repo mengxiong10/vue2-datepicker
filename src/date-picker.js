@@ -332,7 +332,9 @@ export default {
       }
     },
     handleClear(evt) {
-      evt.stopPropagation();
+      if (evt) {
+        evt.stopPropagation();
+      }
       this.emitValue(this.range ? [null, null] : null);
       this.$emit('clear');
     },
