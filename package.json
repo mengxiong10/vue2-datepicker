@@ -25,7 +25,7 @@
     "test": "npm run lint && jest",
     "cov": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "release": "bash build/git.sh && bash build/release.sh"
+    "release": "bash build/release.sh"
   },
   "repository": {
     "type": "git",
