@@ -406,7 +406,8 @@ export default {
       }
     },
     handleInputInput(evt) {
-      this.userInput = evt.target.value;
+      // slot input v-model
+      this.userInput = typeof evt === 'string' ? evt : evt.target.value;
     },
     handleInputKeydown(evt) {
       const { keyCode } = evt;
