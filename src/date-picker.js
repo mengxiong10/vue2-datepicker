@@ -426,7 +426,7 @@ export default {
       }
     },
     handleInputInput(evt) {
-      this.userInput = evt.target.value;
+      this.userInput = typeof evt === 'string' ? evt : evt.target.value;
     },
     handleInputKeydown(evt) {
       const { keyCode } = evt;
