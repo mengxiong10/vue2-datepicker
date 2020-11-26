@@ -33,13 +33,17 @@
             :key="i"
             :class="[`${prefixClass}-date-row`, getRowClasses(row)]"
           >
-            <td v-if="showWeekNumber" :class="`${prefixClass}-week-number`">
+            <td
+              v-if="showWeekNumber"
+              :data-row-col="`${i},0`"
+              :class="`${prefixClass}-week-number`"
+            >
               {{ getWeekNumber(row[0]) }}
             </td>
             <td
               v-for="(cell, j) in row"
               :key="j"
-              :data-date="cell.getTime()"
+              :data-row-col="`${i},${j}`"
               class="cell"
               :class="getCellClasses(cell)"
               :title="getCellTitle(cell)"
@@ -155,9 +159,11 @@ export default {
       if (target.tagName.toUpperCase() === 'DIV') {
         target = target.parentNode;
       }
-      const date = target.getAttribute('data-date');
-      if (date) {
-        this.$emit('select', new Date(parseInt(date, 10)));
+      const index = target.getAttribute('data-row-col');
+      if (index) {
+        const [row, col] = index.split(',').map((v) => parseInt(v, 10));
+        const date = this.dates[row][col];
+        this.$emit('select', new Date(date));
       }
     },
     formatDate(date, fmt) {
