@@ -1,3 +1,16 @@
+<a name="3.8.1"></a>
+## [3.8.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.8.0...v3.8.1) (2020-11-26)
+
+
+### Bug Fixes
+
+* `input` event work with slot input  ([#546](https://github.com/mengxiong10/vue2-datepicker/issues/546)) ([ef1a748](https://github.com/mengxiong10/vue2-datepicker/commit/ef1a748))
+* clear text error ([#544](https://github.com/mengxiong10/vue2-datepicker/issues/544)) ([bcc4f77](https://github.com/mengxiong10/vue2-datepicker/commit/bcc4f77))
+* click event compatible with xhtml ([#550](https://github.com/mengxiong10/vue2-datepicker/issues/550)) ([b7cbc0d](https://github.com/mengxiong10/vue2-datepicker/commit/b7cbc0d))
+* showWeekNumber don't work ([57f2219](https://github.com/mengxiong10/vue2-datepicker/commit/57f2219))
+
+
+
 <a name="3.8.0"></a>
 # [3.8.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.7.0...v3.8.0) (2020-11-18)
 
