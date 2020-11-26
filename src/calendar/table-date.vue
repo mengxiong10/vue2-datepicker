@@ -151,7 +151,7 @@ export default {
     },
     handleCellClick(evt) {
       let { target } = evt;
-      if (target.tagName === 'DIV') {
+      if (target.tagName.toUpperCase() === 'DIV') {
         target = target.parentNode;
       }
       const date = target.getAttribute('data-date');

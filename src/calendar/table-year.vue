@@ -91,7 +91,7 @@ export default {
     },
     handleClick(evt) {
       let { target } = evt;
-      if (target.tagName === 'DIV') {
+      if (target.tagName.toUpperCase() === 'DIV') {
         target = target.parentNode;
       }
       const year = target.getAttribute('data-year');
