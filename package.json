@@ -11,7 +11,7 @@
     "/index.*",
     "/scss"
   ],
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "scripts": {
     "dev": "cross-env NODE_ENV=development rollup -c -w",
     "build:index": "cross-env NODE_ENV=production rollup -c",
