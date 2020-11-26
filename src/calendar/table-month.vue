@@ -89,7 +89,7 @@ export default {
     },
     handleClick(evt) {
       let { target } = evt;
-      if (target.tagName === 'DIV') {
+      if (target.tagName.toUpperCase() === 'DIV') {
         target = target.parentNode;
       }
       const month = target.getAttribute('data-month');
