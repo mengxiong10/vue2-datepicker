@@ -114,6 +114,48 @@ exports[`DatePicker prop: editable 1`] = `
 </div>
 `;
 
+exports[`DatePicker prop: required 1`] = `
+<div
+  class="mx-datepicker"
+>
+  <div
+    class="mx-input-wrapper"
+  >
+    <input
+      autocomplete="off"
+      class="mx-input"
+      name="date"
+      placeholder=""
+      required="required"
+      type="text"
+    />
+    <i
+      class="mx-icon-clear"
+    >
+      <anonymous-stub />
+    </i>
+    <i
+      class="mx-icon-calendar"
+    >
+      <anonymous-stub />
+    </i>
+  </div>
+  <popup-stub
+    appendtobody="true"
+  >
+    <div
+      class="mx-datepicker-content"
+    >
+      <div
+        class="mx-datepicker-body"
+      >
+        <div />
+      </div>
+    </div>
+  </popup-stub>
+</div>
+`;
+
 exports[`DatePicker prop: formatter 1`] = `
 <table
   class="mx-table mx-table-date"

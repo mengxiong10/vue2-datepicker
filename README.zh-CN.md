@@ -119,6 +119,7 @@ import 'vue2-datepicker/locale/zh-cn';
 | default-value       | 设置日历默认的时间                               | `Date`                                      | new Date()     |
 | lang                | 覆盖默认的语音设置                               | `object`                                    |                |
 | placeholder         | 输入框的 placeholder                             | `string`                                    | ''             |
+| required            | input html attribute required                    | `boolean`                                   | false          |
 | editable            | 输入框是否可以输入                               | `boolean`                                   | true           |
 | clearable           | 是否显示清除按钮                                 | `boolean`                                   | true           |
 | confirm             | 是否需要确认                                     | `boolean`                                   | false          |

@@ -121,6 +121,7 @@ You can also override some of the default locale by `lang`.
 | default-value       | default date of the calendar                     | `Date`                                      | new Date()     |
 | lang                | override the default locale                      | `object`                                    |                |
 | placeholder         | input placeholder text                           | `string`                                    | ''             |
+| required            | input html attribute required                    | `boolean`                                   | false          |
 | editable            | whether the input is editable                    | `boolean`                                   | true           |
 | clearable           | if false, don't show the clear icon              | `boolean`                                   | true           |
 | confirm             | if true, need click the button to change value   | `boolean`                                   | false          |

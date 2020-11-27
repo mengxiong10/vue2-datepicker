@@ -107,6 +107,20 @@ describe('DatePicker', () => {
     expect(wrapper.element).toMatchSnapshot();
   });
 
+  it('prop: required', () => {
+    wrapper = shallowMount(DatePicker, {
+      propsData: {
+        value: new Date(2019, 4, 10),
+        defaultValue: new Date(2019, 4, 10),
+        required: true,
+      },
+      scopedSlots: {
+        content: '<div></div>',
+      },
+    });
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
   it('prop: attrs of input', () => {
     wrapper = shallowMount(DatePicker, {
       propsData: {

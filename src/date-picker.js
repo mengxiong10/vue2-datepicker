@@ -77,6 +77,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    required: {
+      type: Boolean,
+      default: false,
+    },
     clearable: {
       type: Boolean,
       default: true,
@@ -447,6 +451,7 @@ export default {
         readonly: !this.editable,
         disabled: this.disabled,
         placeholder: this.placeholder,
+        required: this.required,
         ...this.inputAttr,
       };
       const { value, ...attrs } = props;
