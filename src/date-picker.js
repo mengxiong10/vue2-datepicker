@@ -449,7 +449,7 @@ export default {
         placeholder: this.placeholder,
         ...this.inputAttr,
       };
-      const { value, ...attrs } = props;
+      const { value, class: className, ...attrs } = props;
       const events = {
         keydown: this.handleInputKeydown,
         focus: this.handleInputFocus,
@@ -459,7 +459,7 @@ export default {
       };
       const input = this.renderSlot(
         'input',
-        <input value={value} {...{ attrs, on: events }} ref="input" />,
+        <input value={value} class={className} {...{ attrs, on: events }} ref="input" />,
         {
           props,
           events,
