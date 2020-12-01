@@ -365,6 +365,12 @@ export default {
       this.$emit('close');
       this.$emit('update:open', false);
     },
+    keyup() {
+      // when use slot input
+      if (this.$refs.input) {
+        this.$refs.input.keyup();
+      }
+    },
     blur() {
       // when use slot input
       if (this.$refs.input) {
@@ -418,6 +424,9 @@ export default {
         this.handleInputChange();
       }
     },
+    handleInputKeyup(evt) {
+      this.$emit('keyup', evt);
+    },
     handleInputBlur(evt) {
       // tab close
       this.$emit('blur', evt);
@@ -456,6 +465,7 @@ export default {
         blur: this.handleInputBlur,
         input: this.handleInputInput,
         change: this.handleInputChange,
+        keyup: this.handleInputKeyup,
       };
       const input = this.renderSlot(
         'input',
