@@ -29,7 +29,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-restricted-globals': 'off',
     'import/prefer-default-export': 'off',
-    'import/no-unresolved': [2, { ignore: ['vue2-datepicker'] }],
+    'import/no-unresolved': [2, { ignore: ['vue2-datepicker-keyup'] }],
     'import/no-extraneous-dependencies': 'off',
     'vue/require-default-prop': 'off',
     'vue/require-prop-types': 'off',

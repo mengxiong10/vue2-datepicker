@@ -211,7 +211,7 @@ export default {
   created() {
     if (typeof this.format === 'object') {
       console.warn(
-        "[vue2-datepicker]: The prop `format` don't support Object any more. You can use the new prop `formatter` to replace it"
+        "[vue2-datepicker-keyup]: The prop `format` don't support Object any more. You can use the new prop `formatter` to replace it"
       );
     }
   },

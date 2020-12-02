@@ -21,7 +21,7 @@ const plugins = [
 
 const umd = fileList.map(file => {
   const input = path.join(localePath, file);
-  const external = ['vue2-datepicker'];
+  const external = ['vue2-datepicker-keyup'];
   const name = path.basename(file, '.js').replace(/-(\w+)/g, (m, p1) => p1.toUpperCase());
   return {
     input,
@@ -32,7 +32,7 @@ const umd = fileList.map(file => {
       format: 'umd',
       name: `DatePicker.lang.${name}`,
       globals: {
-        'vue2-datepicker': 'DatePicker',
+        'vue2-datepicker-keyup': 'DatePicker',
       },
     },
   };

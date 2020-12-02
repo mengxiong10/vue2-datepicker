@@ -1,4 +1,4 @@
-import DatePicker from 'vue2-datepicker';
+import DatePicker from 'vue2-datepicker-keyup';
 import eo from 'date-format-parse/lib/locale/eo';
 
 const lang = {

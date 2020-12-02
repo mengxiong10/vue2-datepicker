@@ -17,7 +17,7 @@ const getTemplate = locale => {
   const yearFormat = yearFormatMap[locale] || 'YYYY';
 
   const template = `
-${locale === 'en' ? '' : "import DatePicker from 'vue2-datepicker';"}
+${locale === 'en' ? '' : "import DatePicker from 'vue2-datepicker-keyup';"}
 import ${formatLocale} from 'date-format-parse/lib/locale/${locale}';
 
 const lang = {
