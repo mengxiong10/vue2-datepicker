@@ -1,10 +1,10 @@
 {
-  "name": "vue2-datepicker",
-  "description": "A Datepicker Component For Vue2",
+  "name": "vue2-datepicker-keyup",
+  "description": "A Datepicker Component For Vue2 with keyup event support",
   "main": "index.js",
   "module": "index.esm.js",
   "alias": {
-    "vue2-datepicker": "./src/index.js"
+    "vue2-datepicker-keyup": "./src/index.js"
   },
   "files": [
     "/locale",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mengxiong10/vue2-datepicker.git"
+    "url": "git+https://github.com/MrBurrBurr/vue2-datepicker-keyup.git"
   },
   "keywords": [
     "vue",
@@ -113,7 +113,7 @@
       "jest-serializer-vue"
     ],
     "moduleNameMapper": {
-      "vue2-datepicker": "<rootDir>/src"
+      "vue2-datepicker-keyup": "<rootDir>/src"
     },
     "coverageReporters": [
       "text",
