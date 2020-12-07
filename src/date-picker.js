@@ -239,7 +239,7 @@ export default {
       if (typeof this.getFormatter('parse') === 'function') {
         return this.getFormatter('parse')(value, fmt);
       }
-      const backupDate = new Date();
+      const backupDate = this.inputValue;
       return parse(value, fmt, { locale: this.locale.formatLocale, backupDate });
     },
     formatDate(date, fmt) {
