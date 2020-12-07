@@ -1,3 +1,13 @@
+<a name="3.8.2"></a>
+## [3.8.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.8.1...v3.8.2) (2020-12-07)
+
+
+### Bug Fixes
+
+* input class with object syntax ([#552](https://github.com/mengxiong10/vue2-datepicker/issues/552)) ([5e399b4](https://github.com/mengxiong10/vue2-datepicker/commit/5e399b4))
+
+
+
 <a name="3.8.1"></a>
 ## [3.8.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.8.0...v3.8.1) (2020-11-26)
 
