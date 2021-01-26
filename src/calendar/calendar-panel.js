@@ -112,7 +112,10 @@ export default {
       this.innerCalendar = startOfMonth(calendarDate);
     },
     isDisabled(date) {
-      return this.disabledDate(new Date(date), this.innerValue);
+      if (typeof this.disabledDate === "function") {
+        return this.disabledDate(new Date(date), this.innerValue);
+      }
+      return false;
     },
     emitDate(date, type) {
       if (!this.isDisabled(date)) {
