@@ -80,4 +80,24 @@ describe('CalendarRange', () => {
     expect(startPanel.vm.calendarMonth).toBe(9);
     expect(endPanel.vm.calendarMonth).toBe(11);
   });
+
+  it('feat: hover range', async () => {
+    wrapper = mount(CalendarRange, {
+      propsData: {
+        defaultValue: new Date(2019, 9, 1),
+      },
+    });
+    expect(wrapper.vm.calendars).toEqual([new Date(2019, 9, 1), new Date(2019, 10, 1)]);
+    const tds = wrapper.findAll('.mx-table-date td');
+    await tds.at(2).trigger('click');
+    await tds.at(8).trigger('mouseenter');
+
+    for (let i = 0; i < tds.length; i++) {
+      if (i > 2 && i < 8) {
+        expect(tds.at(i).classes()).toContain('hover-in-range');
+      } else {
+        expect(tds.at(i).classes()).not.toContain('hover-in-range');
+      }
+    }
+  });
 });
