@@ -126,7 +126,7 @@ export default {
           [min, max] = [max, min];
         }
         if (cellDate.getTime() > min && cellDate.getTime() < max) {
-          classes.push('in-range');
+          classes.push('hover-in-range');
         }
       }
 
