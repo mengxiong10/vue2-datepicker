@@ -66,10 +66,10 @@ export default {
         this.innerValue = [date, new Date(NaN)];
       }
     },
-    handleMouseEnter(cell) {
+    handleCellMouseEnter(cell) {
       this.hoveredValue = cell;
     },
-    handleMouseLeave() {
+    handleRangeMouseLeave() {
       this.hoveredValue = null;
     },
     emitDate(dates, type) {
@@ -147,14 +147,17 @@ export default {
       const on = {
         select: this.handleSelect,
         'update:calendar': index === 0 ? this.updateStartCalendar : this.updateEndCalendar,
-        mouseenter: this.handleMouseEnter,
-        mouseleave: this.handleMouseLeave,
+        mouseenter: this.handleCellMouseEnter,
       };
       return <calendar-panel {...{ props, on }}></calendar-panel>;
     });
 
     const { prefixClass } = this;
 
-    return <div class={`${prefixClass}-range-wrapper`}>{calendarRange}</div>;
+    return (
+      <div class={`${prefixClass}-range-wrapper`} onMouseleave={this.handleRangeMouseLeave}>
+        {calendarRange}
+      </div>
+    );
   },
 };

@@ -48,7 +48,6 @@
               :class="getCellClasses(cell)"
               :title="getCellTitle(cell)"
               @mouseenter="handleMouseEnter(cell)"
-              @mouseleave="handleMouseLeave(cell)"
             >
               <div>{{ cell.getDate() }}</div>
             </td>
@@ -157,9 +156,6 @@ export default {
     },
     handleMouseEnter(cell) {
       this.$emit('mouseenter', cell);
-    },
-    handleMouseLeave(cell) {
-      this.$emit('mouseleave', cell);
     },
     handleCellClick(evt) {
       let { target } = evt;

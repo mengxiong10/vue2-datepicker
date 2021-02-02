@@ -166,9 +166,6 @@ export default {
     handleMouseEnter(cell) {
       this.$emit('mouseenter', cell);
     },
-    handleMouseLeave(cell) {
-      this.$emit('mouseleave', cell);
-    },
     getMonthCellDate(month) {
       return createDate(this.calendarYear, month);
     },
@@ -266,7 +263,6 @@ export default {
         onChangepanel={this.handelPanelChange}
         onChangecalendar={this.handleCalendarChange}
         onMouseenter={this.handleMouseEnter}
-        onMouseleave={this.handleMouseLeave}
       />
     );
   },
