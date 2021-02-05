@@ -1,4 +1,5 @@
 import { mount } from '@vue/test-utils';
+import { parse } from 'date-fns';
 import CalendarRange from '../src/calendar/calendar-range';
 import CalendarPanel from '../src/calendar/calendar-panel';
 
@@ -10,19 +11,25 @@ afterEach(() => {
 
 describe('CalendarRange', () => {
   it('feat: correct classes', () => {
+    const start = new Date(2019, 9, 30);
+    const end = new Date(2019, 10, 2);
     wrapper = mount(CalendarRange, {
       propsData: {
-        value: [new Date(2019, 9, 30), new Date(2019, 10, 2)],
+        value: [start, end],
       },
     });
-    const activeTds = wrapper.findAll('.mx-table-date .active');
-    const rangeTds = wrapper.findAll('.mx-table-date .in-range');
-    expect(activeTds.length).toBe(2);
-    expect(activeTds.at(0).text()).toBe('30');
-    expect(activeTds.at(1).text()).toBe('2');
-    expect(rangeTds.length).toBe(2);
-    expect(rangeTds.at(0).text()).toBe('31');
-    expect(rangeTds.at(1).text()).toBe('1');
+    const tds = wrapper.findAll('.mx-table-date td');
+
+    for (let i = 0; i < tds.length; i++) {
+      const td = tds.at(i);
+      const { title } = td.element;
+      const cell = parse(title, 'yyyy-MM-dd', new Date()).getTime();
+      if (cell > start.getTime() && cell < end.getTime()) {
+        expect(td.classes()).toContain('in-range');
+      } else {
+        expect(td.classes()).not.toContain('hover-in-range');
+      }
+    }
   });
 
   it('feat: click range', async () => {
@@ -87,13 +94,12 @@ describe('CalendarRange', () => {
         defaultValue: new Date(2019, 9, 1),
       },
     });
-    expect(wrapper.vm.calendars).toEqual([new Date(2019, 9, 1), new Date(2019, 10, 1)]);
     const tds = wrapper.findAll('.mx-table-date td');
-    await tds.at(2).trigger('click');
+    await tds.at(10).trigger('click');
     await tds.at(60).trigger('mouseenter');
 
     for (let i = 0; i < tds.length; i++) {
-      if (i > 2 && i < 60) {
+      if (i > 10 && i < 60) {
         expect(tds.at(i).classes()).toContain('hover-in-range');
       } else {
         expect(tds.at(i).classes()).not.toContain('hover-in-range');
@@ -104,10 +110,10 @@ describe('CalendarRange', () => {
 
     // hover to back
     await tds.at(60).trigger('click');
-    await tds.at(2).trigger('mouseenter');
+    await tds.at(10).trigger('mouseenter');
 
     for (let i = 0; i < tds.length; i++) {
-      if (i > 2 && i < 60) {
+      if (i > 10 && i < 60) {
         expect(tds.at(i).classes()).toContain('hover-in-range');
       } else {
         expect(tds.at(i).classes()).not.toContain('hover-in-range');

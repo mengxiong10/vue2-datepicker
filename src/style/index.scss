@@ -270,6 +270,7 @@
   }
   .cell.not-current-month {
     color: #ccc;
+    background: none; // cover the in-range style
   }
 }
 

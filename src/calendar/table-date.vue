@@ -48,6 +48,7 @@
               :class="getCellClasses(cell)"
               :title="getCellTitle(cell)"
               @mouseenter="handleMouseEnter(cell)"
+              @mouseleave="handleMouseLeave(cell)"
             >
               <div>{{ cell.getDate() }}</div>
             </td>
@@ -77,6 +78,12 @@ export default {
     },
     prefixClass: {
       default: 'mx',
+    },
+    onDateMouseEnter: {
+      default: undefined,
+    },
+    onDateMouseLeave: {
+      default: undefined,
     },
   },
   props: {
@@ -155,7 +162,14 @@ export default {
       this.$emit('changepanel', panel);
     },
     handleMouseEnter(cell) {
-      this.$emit('mouseenter', cell);
+      if (typeof this.onDateMouseEnter === 'function') {
+        this.onDateMouseEnter(cell);
+      }
+    },
+    handleMouseLeave(cell) {
+      if (typeof this.onDateMouseLeave === 'function') {
+        this.onDateMouseLeave(cell);
+      }
     },
     handleCellClick(evt) {
       let { target } = evt;
