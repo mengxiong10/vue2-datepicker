@@ -16,6 +16,7 @@ export default {
     return {
       innerValue: [],
       calendars: [],
+      hoveredValue: null,
     };
   },
   computed: {
@@ -65,6 +66,12 @@ export default {
         this.innerValue = [date, new Date(NaN)];
       }
     },
+    handleCellMouseEnter(cell) {
+      this.hoveredValue = cell;
+    },
+    handleRangeMouseLeave() {
+      this.hoveredValue = null;
+    },
     emitDate(dates, type) {
       this.$emit('select', dates, type);
     },
@@ -101,13 +108,28 @@ export default {
     getRangeClasses(cellDate, currentDates, classnames) {
       const classes = [].concat(this.getClasses(cellDate, currentDates, classnames));
       if (
-        !/disabled|active|not-current-month/.test(classnames) &&
         currentDates.length === 2 &&
+        !/disabled|active|not-current-month/.test(classnames) &&
         cellDate.getTime() > currentDates[0].getTime() &&
         cellDate.getTime() < currentDates[1].getTime()
       ) {
         classes.push('in-range');
+      } else if (
+        currentDates.length === 1 &&
+        this.hoveredValue &&
+        !/disabled|active/.test(classnames)
+      ) {
+        let min = this.hoveredValue.getTime();
+        let max = currentDates[0].getTime();
+
+        if (min > max) {
+          [min, max] = [max, min];
+        }
+        if (cellDate.getTime() > min && cellDate.getTime() < max) {
+          classes.push('hover-in-range');
+        }
       }
+
       return classes;
     },
   },
@@ -125,12 +147,17 @@ export default {
       const on = {
         select: this.handleSelect,
         'update:calendar': index === 0 ? this.updateStartCalendar : this.updateEndCalendar,
+        mouseenter: this.handleCellMouseEnter,
       };
       return <calendar-panel {...{ props, on }}></calendar-panel>;
     });
 
     const { prefixClass } = this;
 
-    return <div class={`${prefixClass}-range-wrapper`}>{calendarRange}</div>;
+    return (
+      <div class={`${prefixClass}-range-wrapper`} onMouseleave={this.handleRangeMouseLeave}>
+        {calendarRange}
+      </div>
+    );
   },
 };

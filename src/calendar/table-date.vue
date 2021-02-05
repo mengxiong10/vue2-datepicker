@@ -47,6 +47,7 @@
               class="cell"
               :class="getCellClasses(cell)"
               :title="getCellTitle(cell)"
+              @mouseenter="handleMouseEnter(cell)"
             >
               <div>{{ cell.getDate() }}</div>
             </td>
@@ -152,6 +153,9 @@ export default {
     },
     handlePanelChange(panel) {
       this.$emit('changepanel', panel);
+    },
+    handleMouseEnter(cell) {
+      this.$emit('mouseenter', cell);
     },
     handleCellClick(evt) {
       let { target } = evt;

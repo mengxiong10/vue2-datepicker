@@ -163,6 +163,9 @@ export default {
     handleSelectDate(date) {
       this.emitDate(date, this.type === 'week' ? 'week' : 'date');
     },
+    handleMouseEnter(cell) {
+      this.$emit('mouseenter', cell);
+    },
     getMonthCellDate(month) {
       return createDate(this.calendarYear, month);
     },
@@ -259,6 +262,7 @@ export default {
         onSelect={this.handleSelectDate}
         onChangepanel={this.handelPanelChange}
         onChangecalendar={this.handleCalendarChange}
+        onMouseenter={this.handleMouseEnter}
       />
     );
   },
