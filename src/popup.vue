@@ -3,7 +3,7 @@
     <div
       v-if="visible"
       :class="`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`"
-      :style="{ top, left, position: 'absolute' }"
+      :style="{ transform: 'translate(' + left + ',' + top + ')' }"
     >
       <slot></slot>
     </div>

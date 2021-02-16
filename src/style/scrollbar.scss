@@ -13,6 +13,8 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  /* force own composition layer, see https://stackoverflow.com/a/41026886/2373138 */
+  will-change: transform;
 }
 
 .#{$namespace}-scrollbar-track {
