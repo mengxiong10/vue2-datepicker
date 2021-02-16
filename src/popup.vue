@@ -37,6 +37,25 @@ export default {
       left: '',
     };
   },
+  computed: {
+    hasShadowParent() {
+      if (!document.head.attachShadow) {
+        return false;
+      }
+
+      let element = this.$el;
+
+      while (element) {
+        if (element instanceof ShadowRoot) {
+          return true;
+        }
+
+        element = element.parentNode;
+      }
+
+      return false;
+    },
+  },
   watch: {
     visible: {
       immediate: true,
@@ -76,10 +95,18 @@ export default {
   },
   methods: {
     handleClickOutside(evt) {
-      if (!this.visible) return;
+      if (!this.visible) {
+        return;
+      }
+
       const { target } = evt;
       const el = this.$el;
+
       if (el && !el.contains(target)) {
+        if (this.hasShadowParent && evt.composedPath().includes(el)) {
+          return;
+        }
+
         this.$emit('clickoutside', evt);
       }
     },

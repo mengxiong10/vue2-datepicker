@@ -14,6 +14,7 @@ import HideSeconds from './demo/HideSeconds.vue';
 import MinuteStep from './demo/MinuteStep.vue';
 import FixedTimeList from './demo/FixedTimeList.vue';
 import Disabled from './demo/Disabled.vue';
+import ShadowDom from './demo/ShadowDom.vue';
 
 import docEn from './en.md';
 import docZhCN from './zh-cn.md';
@@ -73,6 +74,11 @@ const components = [
     id: 'ControlOpen',
     component: ControlOpen,
     code: fs.readFileSync(`${__dirname}/demo/ControlOpen.vue`, 'utf8'),
+  },
+  {
+    id: 'ShadowDom',
+    component: ShadowDom,
+    code: fs.readFileSync(`${__dirname}/demo/ShadowDom.vue`, 'utf8'),
   },
 ];
 
