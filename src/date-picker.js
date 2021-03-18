@@ -4,6 +4,7 @@ import { pick, isObject, mergeDeep } from './util/base';
 import { getLocale } from './locale';
 import Popup from './popup';
 import IconCalendar from './icon/icon-calendar';
+import IconTime from './icon/icon-time';
 import IconClose from './icon/icon-close';
 import CalendarPanel from './calendar/calendar-panel';
 import CalendarRange from './calendar/calendar-range';
@@ -465,6 +466,7 @@ export default {
           events,
         }
       );
+      const calendarIcon = this.type === 'time' ? <IconTime /> : <IconCalendar />;
       return (
         <div class={`${prefixClass}-input-wrapper`} onMousedown={this.openPopup}>
           {input}
@@ -474,7 +476,7 @@ export default {
             </i>
           ) : null}
           <i class={`${prefixClass}-icon-calendar`}>
-            {this.renderSlot('icon-calendar', <IconCalendar />)}
+            {this.renderSlot('icon-calendar', calendarIcon)}
           </i>
         </div>
       );
