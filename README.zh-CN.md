@@ -109,52 +109,52 @@ import 'vue2-datepicker/locale/zh-cn';
 
 ### Props
 
-| 属性                | 描述                                             | 类型                                        | 默认值         |
-| ------------------- | ------------------------------------------------ | ------------------------------------------- | -------------- |
-| type                | 日期选择的类型                                   | date \|datetime\|year\|month\|time\|week    | 'date'         |
-| range               | 如果是 true, 变成日期范围选择                    | `boolean`                                   | false          |
-| format              | 设置格式化的 token, 类似 moment.js               | [token](#token)                             | 'YYYY-MM-DD'   |
-| formatter           | 使用自己的格式化程序, 比如 moment.js             | [object](#formatter)                        | -              |
-| value-type          | 设置绑定值的类型                                 | [value-type](#value-type)                   | 'date'         |
-| default-value       | 设置日历默认的时间                               | `Date`                                      | new Date()     |
-| lang                | 覆盖默认的语音设置                               | `object`                                    |                |
-| placeholder         | 输入框的 placeholder                             | `string`                                    | ''             |
-| editable            | 输入框是否可以输入                               | `boolean`                                   | true           |
-| clearable           | 是否显示清除按钮                                 | `boolean`                                   | true           |
-| confirm             | 是否需要确认                                     | `boolean`                                   | false          |
-| confirm-text        | 确认按钮的文字                                   | `string`                                    | 'OK'           |
-| multiple            | 如果是 true, 可以选择多个日期                    | `boolean`                                   | false          |
-| disabled            | 禁用组件                                         | `boolean`                                   | false          |
-| disabled-date       | 禁止选择的日期                                   | `(date) => boolean`                         | -              |
-| disabled-time       | 禁止选择的时间                                   | `(date) => boolean`                         | -              |
-| append-to-body      | 弹出层插入到 body 元素下                         | `boolean`                                   | true           |
-| inline              | 不显示输入框                                     | `boolean`                                   | false          |
-| input-class         | 输入框的类                                       | `string`                                    | 'mx-input'     |
-| input-attr          | 输入框的其他属性(eg: { name: 'date', id: 'foo'}) | `object`                                    | —              |
-| open                | 控制弹出层的显示                                 | `boolean`                                   | -              |
-| default-panel       | 控制打开的面板                                   | year\|month                                 | -              |
-| popup-style         | 弹出层的样式                                     | `object`                                    | —              |
-| popup-class         | 弹出层的类                                       |                                             | —              |
-| shortcuts           | 设置快捷选择                                     | `Array<{text, onClick}>`                    | -              |
-| title-format        | 日历单元格的 tooltip                             | [token](#token)                             | 'YYYY-MM-DD'   |
-| partial-update      | 是否更新日期当选择年或月的时候                   | `boolean`                                   | false          |
-| range-separator     | 范围分隔符                                       | `string`                                    | ' ~ '          |
-| show-week-number    | 是否显示星期数字                                 | `boolean`                                   | false          |
-| hour-step           | 小时列的间隔                                     | 1 - 60                                      | 1              |
-| minute-step         | 分钟列的间隔                                     | 1 - 60                                      | 1              |
-| second-step         | 秒列的间隔                                       | 1 - 60                                      | 1              |
-| hour-options        | 自定义小时列                                     | `Array<number>`                             | -              |
-| minute-options      | 自定义分钟列                                     | `Array<number>`                             | -              |
-| second-options      | 自定义秒列                                       | `Array<number>`                             | -              |
-| show-hour           | 是否显示小时列                                   | `boolean`                                   | base on format |
-| show-minute         | 是否显示分钟列                                   | `boolean`                                   | base on format |
-| show-second         | 是否显示秒列                                     | `boolean`                                   | base on format |
-| use12h              | 是否显示 ampm 列                                 | `boolean`                                   | base on format |
-| show-time-header    | 是否显示时间选择面板的头部                       | `boolean`                                   | false          |
-| time-title-format   | 时间面板头部的格式化                             | [token](#token)                             | 'YYYY-MM-DD'   |
-| time-picker-options | 设置固定时间去选择                               | [time-picker-options](#time-picker-options) | null           |
-| prefix-class        | 设置 class 的前缀                                | `string`                                    | 'mx'           |
-| scroll-duration     | 设置滚动时候当选中小时的时候                     | `number`                                    | 100            |
+| 属性                | 描述                                             | 类型                                            | 默认值         |
+| ------------------- | ------------------------------------------------ | ----------------------------------------------- | -------------- |
+| type                | 日期选择的类型                                   | date \|datetime\|year\|month\|time\|week        | 'date'         |
+| range               | 如果是 true, 变成日期范围选择                    | `boolean`                                       | false          |
+| format              | 设置格式化的 token, 类似 moment.js               | [token](#token)                                 | 'YYYY-MM-DD'   |
+| formatter           | 使用自己的格式化程序, 比如 moment.js             | [object](#formatter)                            | -              |
+| value-type          | 设置绑定值的类型                                 | [value-type](#value-type)                       | 'date'         |
+| default-value       | 设置日历默认的时间                               | `Date`                                          | new Date()     |
+| lang                | 覆盖默认的语音设置                               | `object`                                        |                |
+| placeholder         | 输入框的 placeholder                             | `string`                                        | ''             |
+| editable            | 输入框是否可以输入                               | `boolean`                                       | true           |
+| clearable           | 是否显示清除按钮                                 | `boolean`                                       | true           |
+| confirm             | 是否需要确认                                     | `boolean`                                       | false          |
+| confirm-text        | 确认按钮的文字                                   | `string`                                        | 'OK'           |
+| multiple            | 如果是 true, 可以选择多个日期                    | `boolean`                                       | false          |
+| disabled            | 禁用组件                                         | `boolean`                                       | false          |
+| disabled-date       | 禁止选择的日期                                   | `(date: Date, currentValue: Date[]) => boolean` | -              |
+| disabled-time       | 禁止选择的时间                                   | `(date: Date) => boolean`                       | -              |
+| append-to-body      | 弹出层插入到 body 元素下                         | `boolean`                                       | true           |
+| inline              | 不显示输入框                                     | `boolean`                                       | false          |
+| input-class         | 输入框的类                                       | `string`                                        | 'mx-input'     |
+| input-attr          | 输入框的其他属性(eg: { name: 'date', id: 'foo'}) | `object`                                        | —              |
+| open                | 控制弹出层的显示                                 | `boolean`                                       | -              |
+| default-panel       | 控制打开的面板                                   | year\|month                                     | -              |
+| popup-style         | 弹出层的样式                                     | `object`                                        | —              |
+| popup-class         | 弹出层的类                                       |                                                 | —              |
+| shortcuts           | 设置快捷选择                                     | `Array<{text, onClick}>`                        | -              |
+| title-format        | 日历单元格的 tooltip                             | [token](#token)                                 | 'YYYY-MM-DD'   |
+| partial-update      | 是否更新日期当选择年或月的时候                   | `boolean`                                       | false          |
+| range-separator     | 范围分隔符                                       | `string`                                        | ' ~ '          |
+| show-week-number    | 是否显示星期数字                                 | `boolean`                                       | false          |
+| hour-step           | 小时列的间隔                                     | 1 - 60                                          | 1              |
+| minute-step         | 分钟列的间隔                                     | 1 - 60                                          | 1              |
+| second-step         | 秒列的间隔                                       | 1 - 60                                          | 1              |
+| hour-options        | 自定义小时列                                     | `Array<number>`                                 | -              |
+| minute-options      | 自定义分钟列                                     | `Array<number>`                                 | -              |
+| second-options      | 自定义秒列                                       | `Array<number>`                                 | -              |
+| show-hour           | 是否显示小时列                                   | `boolean`                                       | base on format |
+| show-minute         | 是否显示分钟列                                   | `boolean`                                       | base on format |
+| show-second         | 是否显示秒列                                     | `boolean`                                       | base on format |
+| use12h              | 是否显示 ampm 列                                 | `boolean`                                       | base on format |
+| show-time-header    | 是否显示时间选择面板的头部                       | `boolean`                                       | false          |
+| time-title-format   | 时间面板头部的格式化                             | [token](#token)                                 | 'YYYY-MM-DD'   |
+| time-picker-options | 设置固定时间去选择                               | [time-picker-options](#time-picker-options)     | null           |
+| prefix-class        | 设置 class 的前缀                                | `string`                                        | 'mx'           |
+| scroll-duration     | 设置滚动时候当选中小时的时候                     | `number`                                        | 100            |
 
 #### Token
 
