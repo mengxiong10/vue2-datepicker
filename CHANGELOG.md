@@ -1,3 +1,19 @@
+<a name="3.9.1"></a>
+## [3.9.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.9.0...v3.9.1) (2021-06-03)
+
+
+### Bug Fixes
+
+* move vertical-align to td, th to avoid UA style dependency ([#608](https://github.com/mengxiong10/vue2-datepicker/issues/608)) ([#610](https://github.com/mengxiong10/vue2-datepicker/issues/610)) ([705c100](https://github.com/mengxiong10/vue2-datepicker/commit/705c100))
+* update:show-time-panel event invalid ([#614](https://github.com/mengxiong10/vue2-datepicker/issues/614)) ([7ec739a](https://github.com/mengxiong10/vue2-datepicker/commit/7ec739a))
+
+
+### Features
+
+* add default icon for 'time' type ([#583](https://github.com/mengxiong10/vue2-datepicker/issues/583)) ([e872756](https://github.com/mengxiong10/vue2-datepicker/commit/e872756))
+
+
+
 <a name="3.9.0"></a>
 # [3.9.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.8.2...v3.9.0) (2021-02-06)
 

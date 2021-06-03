@@ -11,7 +11,7 @@
     "/index.*",
     "/scss"
   ],
-  "version": "3.9.0",
+  "version": "3.9.1",
   "scripts": {
     "dev": "parcel ./example/dev.html --open --port 2235",
     "build:index": "cross-env NODE_ENV=production rollup -c",
