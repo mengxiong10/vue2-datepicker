@@ -34,16 +34,15 @@ export default {
     value(val) {
       this.currentValue = val;
     },
-    defaultTimeVisible(val) {
-      this.$emit('update:show-time-panel', val);
-    },
   },
   methods: {
     closeTimePanel() {
       this.defaultTimeVisible = false;
+      this.$emit('update:show-time-panel', false);
     },
     openTimePanel() {
       this.defaultTimeVisible = true;
+      this.$emit('update:show-time-panel', true);
     },
     emitDate(date, type) {
       this.$emit('select', date, type);
