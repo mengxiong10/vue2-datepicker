@@ -10,6 +10,7 @@
 }
 
 .#{$namespace}-zoom-in-down-enter,
+.#{$namespace}-zoom-in-down-enter-from,
 .#{$namespace}-zoom-in-down-leave-to {
   opacity: 0;
   transform: scaleY(0);
