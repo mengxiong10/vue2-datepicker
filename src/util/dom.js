@@ -24,11 +24,14 @@ export function getPopupElementSize(element) {
  * @param {Number} targetHeight target element's height
  * @param {Boolean} fixed
  */
-export function getRelativePosition(el, targetWidth, targetHeight, fixed) {
+export function getRelativePosition(el, targetWidth, targetHeight, fixed, horizontalPosition) {
   let left = 0;
   let top = 0;
+  let bottom = 0;
   let offsetX = 0;
   let offsetY = 0;
+  let orientation = 'down';
+  const horizontal = horizontalPosition || 'right;';
   const relativeRect = el.getBoundingClientRect();
   const dw = document.documentElement.clientWidth;
   const dh = document.documentElement.clientHeight;
@@ -38,7 +41,7 @@ export function getRelativePosition(el, targetWidth, targetHeight, fixed) {
   }
   if (dw - relativeRect.left < targetWidth && relativeRect.right < targetWidth) {
     left = offsetX - relativeRect.left + 1;
-  } else if (relativeRect.left + relativeRect.width / 2 <= dw / 2) {
+  } else if (horizontal === 'left' || relativeRect.left + relativeRect.width / 2 <= dw / 2) {
     left = offsetX;
   } else {
     left = offsetX + relativeRect.width - targetWidth;
@@ -50,7 +53,11 @@ export function getRelativePosition(el, targetWidth, targetHeight, fixed) {
   } else {
     top = offsetY - targetHeight;
   }
-  return { left: `${left}px`, top: `${top}px` };
+  if (relativeRect.top > top) {
+    orientation = 'up';
+    bottom = dh - relativeRect.top;
+  }
+  return { left: `${left}px`, top: `${top}px`, bottom: `${bottom}px`, orientation };
 }
 
 export function getScrollParent(node, until = document.body) {
