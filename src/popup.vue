@@ -3,7 +3,7 @@
     <div
       v-if="visible"
       :class="`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`"
-      :style="{ top, left, position: 'absolute' }"
+      :style="{ transform: 'translate(' + left + ',' + top + ')' }"
     >
       <slot></slot>
     </div>
@@ -61,7 +61,7 @@ export default {
     const relativeElement = this.$parent.$el;
     this._displayPopup = rafThrottle(() => this.displayPopup());
     this._scrollParent = getScrollParent(relativeElement) || window;
-    this._scrollParent.addEventListener('scroll', this._displayPopup);
+    this._scrollParent.addEventListener('scroll', this._displayPopup, { passive: true });
     window.addEventListener('resize', this._displayPopup);
   },
   beforeDestroy() {
