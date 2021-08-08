@@ -355,7 +355,7 @@ export default {
       }
     },
     openPopup(evt) {
-      if (this.popupVisible) return;
+      if (this.popupVisible || this.disabled) return;
       this.defaultOpen = true;
       this.$emit('open', evt);
       this.$emit('update:open', true);
