@@ -1,3 +1,14 @@
+<a name="3.9.2"></a>
+## [3.9.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.9.1...v3.9.2) (2021-08-08)
+
+
+### Bug Fixes
+
+* don't change default open state when datepicker disabled ([#630](https://github.com/mengxiong10/vue2-datepicker/issues/630)) ([a1251ff](https://github.com/mengxiong10/vue2-datepicker/commit/a1251ff))
+* round the timezone offset ([57216c1](https://github.com/mengxiong10/vue2-datepicker/commit/57216c1))
+
+
+
 <a name="3.9.1"></a>
 ## [3.9.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.9.0...v3.9.1) (2021-06-03)
 
