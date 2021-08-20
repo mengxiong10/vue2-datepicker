@@ -78,7 +78,7 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-vue": "^6.0.0",
     "flush-promises": "^1.0.2",
-    "highlight.js": "^9.15.10",
+    "highlight.js": "^10.4.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "jest-serializer-vue": "^2.0.2",
