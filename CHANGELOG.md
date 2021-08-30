@@ -1,3 +1,13 @@
+<a name="3.10.1"></a>
+## [3.10.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.0...v3.10.1) (2021-08-30)
+
+
+### Features
+
+* improve the boundary of disabledtime ([#597](https://github.com/mengxiong10/vue2-datepicker/issues/597)) ([071c398](https://github.com/mengxiong10/vue2-datepicker/commit/071c398))
+
+
+
 <a name="3.10.0"></a>
 # [3.10.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.9.2...v3.10.0) (2021-08-30)
 
