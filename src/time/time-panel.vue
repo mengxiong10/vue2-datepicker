@@ -120,10 +120,12 @@ export default {
       default: 100,
     },
   },
+  data() {
+    return {
+      innerValue: getValidDate(this.value, this.defaultValue),
+    };
+  },
   computed: {
-    innerValue() {
-      return getValidDate(this.value, this.defaultValue);
-    },
     title() {
       const titleFormat = this.timeTitleFormat;
       const date = new Date(this.innerValue);
@@ -147,25 +149,61 @@ export default {
       return obj;
     },
   },
+  watch: {
+    value: {
+      immediate: true,
+      handler() {
+        this.innerValue = getValidDate(this.value, this.defaultValue);
+      },
+    },
+  },
   methods: {
     formatDate(date, fmt) {
       return format(date, fmt, { locale: this.getLocale().formatLocale });
     },
-    isDisabled(date) {
-      return this.disabledTime(new Date(date));
+    isDisabledTime(value) {
+      return this.disabledTime(new Date(value));
+    },
+    isDisabledHour(date) {
+      const value = new Date(date);
+      return (
+        this.isDisabledTime(value) &&
+        this.isDisabledTime(value.setMinutes(0, 0, 0)) &&
+        this.isDisabledTime(value.setMinutes(59, 59, 999))
+      );
+    },
+    isDisabledMinute(date) {
+      const value = new Date(date);
+      return (
+        this.isDisabledTime(value) &&
+        this.isDisabledTime(value.setSeconds(0, 0)) &&
+        this.isDisabledTime(value.setSeconds(59, 999))
+      );
+    },
+    isDisabled(date, type) {
+      if (type === 'hour') {
+        return this.isDisabledHour(date);
+      }
+      if (type === 'minute') {
+        return this.isDisabledMinute(date);
+      }
+      return this.isDisabledTime(date);
     },
     handleSelect(value, type) {
       const date = new Date(value);
-      if (!this.isDisabled(value)) {
-        this.$emit('select', date, type);
+      if (!this.isDisabled(value, type)) {
+        this.innerValue = date;
+        if (!this.isDisabledTime(date)) {
+          this.$emit('select', date, type);
+        }
       }
     },
     handleClickTitle() {
       this.$emit('clicktitle');
     },
-    getClasses(value) {
+    getClasses(value, type) {
       const cellDate = new Date(value);
-      if (this.isDisabled(value)) {
+      if (this.isDisabled(value, type)) {
         return 'disabled';
       }
       if (cellDate.getTime() === this.innerValue.getTime()) {

@@ -11,7 +11,7 @@
           v-for="(item, j) in col.list"
           :key="item.value"
           :data-index="j"
-          :class="[`${prefixClass}-time-item`, getClasses(item.value)]"
+          :class="[`${prefixClass}-time-item`, getClasses(item.value, col.type)]"
         >
           {{ item.text }}
         </li>

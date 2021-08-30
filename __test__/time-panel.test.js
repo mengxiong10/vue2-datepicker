@@ -70,19 +70,19 @@ describe('TimePanel', () => {
       },
     });
     const hour = wrapper.find('[data-type=hour] li:nth-child(2)');
-    hour.trigger('click');
+    await hour.trigger('click');
     expect(wrapper.emitted().select[0][0]).toEqual(new Date(2019, 9, 10, 1));
     await wrapper.setProps({ value: new Date(2019, 9, 10, 1) });
     const minute = wrapper.find('[data-type=minute] li:nth-child(2)');
-    minute.trigger('click');
+    await minute.trigger('click');
     expect(wrapper.emitted().select[1][0]).toEqual(new Date(2019, 9, 10, 1, 1));
     await wrapper.setProps({ value: new Date(2019, 9, 10, 1, 1) });
     const second = wrapper.find('[data-type=second] li:nth-child(2)');
-    second.trigger('click');
+    await second.trigger('click');
     expect(wrapper.emitted().select[2][0]).toEqual(new Date(2019, 9, 10, 1, 1, 1));
     await wrapper.setProps({ value: new Date(2019, 9, 10, 1, 1, 1) });
     const pm = wrapper.find('[data-type=ampm] li:nth-child(2)');
-    pm.trigger('click');
+    await pm.trigger('click');
     expect(wrapper.emitted().select[3][0]).toEqual(new Date(2019, 9, 10, 13, 1, 1));
   });
 

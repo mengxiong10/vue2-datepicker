@@ -9,13 +9,13 @@
       ></date-picker>
     </section>
     <section>
-      <p>Not before 09:00</p>
+      <p>Not before 09:30</p>
       <date-picker
         v-model="value3"
         value-type="format"
         type="time"
         placeholder="HH:mm:ss"
-        :default-value="new Date().setHours(9, 0, 0, 0)"
+        :default-value="new Date().setHours(9, 30, 0, 0)"
         :disabled-time="notBeforeNineOClock"
       ></date-picker>
     </section>
@@ -50,7 +50,7 @@ export default {
       return date < today || date > new Date(today.getTime() + 7 * 24 * 3600 * 1000);
     },
     notBeforeNineOClock(date) {
-      return date.getHours() < 9;
+      return date < new Date(date.getTime()).setHours(9, 30, 0, 0);
     },
     notBeforeToday(date) {
       return date < new Date(new Date().setHours(0, 0, 0, 0));
