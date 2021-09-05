@@ -208,6 +208,13 @@ export default {
         this.currentValue = val;
       },
     },
+    popupVisible: {
+      handler(val) {
+        if (val) {
+          this.currentValue = this.innerValue;
+        }
+      },
+    },
   },
   created() {
     if (typeof this.format === 'object') {
