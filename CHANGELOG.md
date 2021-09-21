@@ -1,3 +1,13 @@
+<a name="3.10.2"></a>
+## [3.10.2](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.1...v3.10.2) (2021-09-21)
+
+
+### Bug Fixes
+
+* sync selectedValue and inputValue on opening ([#640](https://github.com/mengxiong10/vue2-datepicker/issues/640)) ([8907810](https://github.com/mengxiong10/vue2-datepicker/commit/8907810))
+
+
+
 <a name="3.10.1"></a>
 ## [3.10.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.0...v3.10.1) (2021-08-30)
 
