@@ -284,20 +284,16 @@ export default {
           return this.formatDate(date, this.valueType);
       }
     },
-    emitValue(date, type) {
+    emitValue(date, type, close = true) {
       // fix IE11/10 trigger input event when input is focused. (placeholder !== '')
       this.userInput = null;
       const value = Array.isArray(date) ? date.map(this.date2value) : this.date2value(date);
       this.$emit('input', value);
       this.$emit('change', value, type);
-      this.afterEmitValue(type);
-      return value;
-    },
-    afterEmitValue(type) {
-      // this.type === 'datetime', click the time should close popup
-      if (!type || type === this.type || type === 'time') {
+      if (close) {
         this.closePopup();
       }
+      return value;
     },
     isValidValue(value) {
       if (this.validMultipleType) {
@@ -336,7 +332,12 @@ export default {
       if (this.confirm) {
         this.currentValue = val;
       } else {
-        this.emitValue(val, this.validMultipleType ? `multiple-${type}` : type);
+        this.emitValue(
+          val,
+          type,
+          // this.type === 'datetime', click the time should close popup
+          !this.validMultipleType && (type === this.type || type === 'time')
+        );
       }
     },
     clear() {

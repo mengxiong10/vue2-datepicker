@@ -77,11 +77,18 @@ export function getCalendar({ firstDayOfWeek, year, month }) {
 
 export function setMonth(dirtyDate, dirtyMonth) {
   const date = new Date(dirtyDate);
-  const month = Number(dirtyMonth);
+  const month = typeof dirtyMonth === 'function' ? dirtyMonth(date.getMonth()) : Number(dirtyMonth);
   const year = date.getFullYear();
   const daysInMonth = createDate(year, month + 1, 0).getDate();
   const day = date.getDate();
   date.setMonth(month, Math.min(day, daysInMonth));
+  return date;
+}
+
+export function setYear(dirtyDate, dirtyYear) {
+  const date = new Date(dirtyDate);
+  const year = typeof dirtyYear === 'function' ? dirtyYear(date.getFullYear()) : dirtyYear;
+  date.setFullYear(year);
   return date;
 }
 

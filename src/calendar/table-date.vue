@@ -63,7 +63,7 @@
 import { getWeek, format } from 'date-format-parse';
 import IconButton from './icon-button';
 import { chunk } from '../util/base';
-import { createDate, getCalendar } from '../util/date';
+import { getCalendar, setMonth, setYear } from '../util/date';
 import { getLocale } from '../locale';
 
 export default {
@@ -141,22 +141,33 @@ export default {
     },
   },
   methods: {
-    getNextCalendar(diffMonth) {
-      const year = this.calendar.getFullYear();
-      const month = this.calendar.getMonth();
-      return createDate(year, month + diffMonth);
-    },
     handleIconLeftClick() {
-      this.$emit('changecalendar', this.getNextCalendar(-1), 'last-month');
+      this.$emit(
+        'changecalendar',
+        setMonth(this.calendar, v => v - 1),
+        'last-month'
+      );
     },
     handleIconRightClick() {
-      this.$emit('changecalendar', this.getNextCalendar(1), 'next-month');
+      this.$emit(
+        'changecalendar',
+        setMonth(this.calendar, v => v + 1),
+        'next-month'
+      );
     },
     handleIconDoubleLeftClick() {
-      this.$emit('changecalendar', this.getNextCalendar(-12), 'last-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, v => v - 1),
+        'last-year'
+      );
     },
     handleIconDoubleRightClick() {
-      this.$emit('changecalendar', this.getNextCalendar(12), 'next-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, v => v + 1),
+        'next-year'
+      );
     },
     handlePanelChange(panel) {
       this.$emit('changepanel', panel);

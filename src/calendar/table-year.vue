@@ -30,7 +30,7 @@
 <script>
 import IconButton from './icon-button';
 import { chunk } from '../util/base';
-import { createDate } from '../util/date';
+import { setYear } from '../util/date';
 
 export default {
   name: 'TableYear',
@@ -78,16 +78,19 @@ export default {
       }
       return chunk(years, 2);
     },
-    getNextCalendar(diffYear) {
-      const year = this.calendar.getFullYear();
-      const month = this.calendar.getMonth();
-      return createDate(year + diffYear, month);
-    },
     handleIconDoubleLeftClick() {
-      this.$emit('changecalendar', this.getNextCalendar(-10), 'last-decade');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, v => v - 10),
+        'last-decade'
+      );
     },
     handleIconDoubleRightClick() {
-      this.$emit('changecalendar', this.getNextCalendar(10), 'next-decade');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, v => v + 10),
+        'next-decade'
+      );
     },
     handleClick(evt) {
       let { target } = evt;

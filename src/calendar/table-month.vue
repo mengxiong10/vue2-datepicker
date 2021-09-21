@@ -35,7 +35,7 @@
 import { chunk } from '../util/base';
 import IconButton from './icon-button';
 import { getLocale } from '../locale';
-import { createDate } from '../util/date';
+import { setYear } from '../util/date';
 
 export default {
   name: 'TableMonth',
@@ -72,16 +72,19 @@ export default {
     },
   },
   methods: {
-    getNextCalendar(diffYear) {
-      const year = this.calendar.getFullYear();
-      const month = this.calendar.getMonth();
-      return createDate(year + diffYear, month);
-    },
     handleIconDoubleLeftClick() {
-      this.$emit('changecalendar', this.getNextCalendar(-1), 'last-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, v => v - 1),
+        'last-year'
+      );
     },
     handleIconDoubleRightClick() {
-      this.$emit('changecalendar', this.getNextCalendar(1), 'next-year');
+      this.$emit(
+        'changecalendar',
+        setYear(this.calendar, v => v + 1),
+        'next-year'
+      );
     },
     handlePanelChange() {
       this.$emit('changepanel', 'year');
