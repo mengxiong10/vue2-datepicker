@@ -134,6 +134,15 @@ export default {
       ) {
         return classes.concat('hover-in-range');
       }
+      if(currentDates.length === 2){
+        if (!/disabled|not-current-month/.test(classnames) && cellDate.getTime() === currentDates[0].getTime()) {
+          classes.push('start-date'); 
+        }
+
+        if (!/disabled|not-current-month/.test(classnames) && cellDate.getTime() === currentDates[1].getTime()) {
+          classes.push('end-date'); 
+        }
+      }
 
       return classes;
     },
