@@ -476,10 +476,18 @@ export default {
       );
       const calendarIcon = this.type === 'time' ? <IconTime /> : <IconCalendar />;
       return (
-        <div class={`${prefixClass}-input-wrapper`} onMousedown={this.openPopup}>
+        <div
+          class={`${prefixClass}-input-wrapper`}
+          onMousedown={this.openPopup}
+          onTouchstart={this.openPopup}
+        >
           {input}
           {this.showClearIcon ? (
-            <i class={`${prefixClass}-icon-clear`} onMousedown={this.handleClear}>
+            <i
+              class={`${prefixClass}-icon-clear`}
+              onMousedown={this.handleClear}
+              onTouchstart={this.handleClear}
+            >
               {this.renderSlot('icon-clear', <IconClose />)}
             </i>
           ) : null}
