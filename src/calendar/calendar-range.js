@@ -116,7 +116,7 @@ export default {
 
       if (/disabled|active/.test(classnames)) return classes;
 
-      const inRange = (data, range, fn = v => v.getTime()) => {
+      const inRange = (data, range, fn = (v) => v.getTime()) => {
         const value = fn(data);
         let [min, max] = range.map(fn);
         if (min > max) {
@@ -134,13 +134,19 @@ export default {
       ) {
         return classes.concat('hover-in-range');
       }
-      if(currentDates.length === 2){
-        if (!/disabled|not-current-month/.test(classnames) && cellDate.getTime() === currentDates[0].getTime()) {
-          classes.push('start-date'); 
+      if (currentDates.length === 2) {
+        if (
+          !/disabled|not-current-month/.test(classnames) &&
+          cellDate.getTime() === currentDates[0].getTime()
+        ) {
+          classes.concat('start-date');
         }
 
-        if (!/disabled|not-current-month/.test(classnames) && cellDate.getTime() === currentDates[1].getTime()) {
-          classes.push('end-date'); 
+        if (
+          !/disabled|not-current-month/.test(classnames) &&
+          cellDate.getTime() === currentDates[1].getTime()
+        ) {
+          classes.concat('end-date');
         }
       }
 
