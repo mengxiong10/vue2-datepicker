@@ -1,3 +1,13 @@
+<a name="3.10.4"></a>
+## [3.10.4](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.3...v3.10.4) (2021-12-02)
+
+
+### Bug Fixes
+
+* disabledtime for ampm ([#664](https://github.com/mengxiong10/vue2-datepicker/issues/664)) ([21f5718](https://github.com/mengxiong10/vue2-datepicker/commit/21f5718))
+
+
+
 <a name="3.10.3"></a>
 ## [3.10.3](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.2...v3.10.3) (2021-11-17)
 
