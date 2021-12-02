@@ -307,7 +307,7 @@ exports[`TimeRange render: correct classes of the columns 1`] = `
               data-type="ampm"
             >
               <li
-                class="mx-time-item disabled"
+                class="mx-time-item"
                 data-index="0"
               >
                 

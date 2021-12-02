@@ -180,12 +180,25 @@ export default {
         this.isDisabledTime(value.setSeconds(59, 999))
       );
     },
+    isDisabledAMPM(date) {
+      const value = new Date(date);
+      const minHour = value.getHours() < 12 ? 0 : 12;
+      const maxHour = minHour + 11;
+      return (
+        this.isDisabledTime(value) &&
+        this.isDisabledTime(value.setHours(minHour, 0, 0, 0)) &&
+        this.isDisabledTime(value.setHours(maxHour, 59, 59, 999))
+      );
+    },
     isDisabled(date, type) {
       if (type === 'hour') {
         return this.isDisabledHour(date);
       }
       if (type === 'minute') {
         return this.isDisabledMinute(date);
+      }
+      if (type === 'ampm') {
+        return this.isDisabledAMPM(date);
       }
       return this.isDisabledTime(date);
     },
