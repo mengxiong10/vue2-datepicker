@@ -17,6 +17,8 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
 </a>
 
+**对于 Vue3.0, 请使用[vue-datepicker-next](https://github.com/mengxiong10/vue-datepicker-next)**
+
 ## 线上 Demo
 
 <https://mengxiong10.github.io/vue2-datepicker/index.html>

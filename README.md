@@ -17,6 +17,8 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT">
 </a>
 
+**For Vue 3.0, you can use [vue-datepicker-next](https://github.com/mengxiong10/vue-datepicker-next) from the same author**
+
 ## Demo
 
 <https://mengxiong10.github.io/vue2-datepicker/index.html>
