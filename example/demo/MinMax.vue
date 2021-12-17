@@ -39,7 +39,7 @@ export default {
     return {
       value: '',
       min: new Date(Date.now() - 3 * MONTH_1),
-      max: new Date(Date.now() + 20 * MONTH_1),
+      max: new Date(Date.now() + 200 * MONTH_1),
     };
   },
 };

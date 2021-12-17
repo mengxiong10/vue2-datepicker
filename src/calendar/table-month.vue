@@ -83,10 +83,10 @@ export default {
       return this.calendar.getFullYear();
     },
     isDoubleLeftDisabled() {
-      return !this.min || this.calendarYear <= this.min;
+      return !!this.min && this.calendarYear <= this.min;
     },
     isDoubleRightDisabled() {
-      return !this.max || this.calendarYear >= this.max;
+      return !!this.max && this.calendarYear >= this.max;
     },
     months() {
       const locale = this.getLocale();

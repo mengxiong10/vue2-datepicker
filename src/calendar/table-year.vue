@@ -75,10 +75,10 @@ export default {
   },
   computed: {
     isDoubleLeftDisabled() {
-      return !this.min || this.firstYear <= this.min;
+      return !!this.min && this.firstYear <= this.min;
     },
     isDoubleRightDisabled() {
-      return !this.max || this.lastYear >= this.max;
+      return !!this.max && this.lastYear >= this.max;
     },
     years() {
       const calendar = new Date(this.calendar);
