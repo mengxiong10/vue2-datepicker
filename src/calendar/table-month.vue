@@ -1,8 +1,16 @@
 <template>
   <div :class="`${prefixClass}-calendar ${prefixClass}-calendar-panel-month`">
     <div :class="`${prefixClass}-calendar-header`">
-      <icon-button type="double-left" @click="handleIconDoubleLeftClick"></icon-button>
-      <icon-button type="double-right" @click="handleIconDoubleRightClick"></icon-button>
+      <icon-button
+        type="double-left"
+        :disabled="isDoubleLeftDisabled"
+        @click="handleIconDoubleLeftClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        :disabled="isDoubleRightDisabled"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <button
           type="button"
@@ -53,14 +61,32 @@ export default {
       type: Date,
       default: () => new Date(),
     },
+    getIsMonthDisabled: {
+      type: Function,
+      default: () => false,
+    },
     getCellClasses: {
       type: Function,
       default: () => [],
+    },
+    min: {
+      // in year e.g. 2021
+      type: Number,
+    },
+    max: {
+      // in year e.g. 2021
+      type: Number,
     },
   },
   computed: {
     calendarYear() {
       return this.calendar.getFullYear();
+    },
+    isDoubleLeftDisabled() {
+      return !this.min || this.calendarYear <= this.min;
+    },
+    isDoubleRightDisabled() {
+      return !this.max || this.calendarYear >= this.max;
     },
     months() {
       const locale = this.getLocale();
@@ -96,6 +122,7 @@ export default {
       }
       const month = target.getAttribute('data-month');
       if (month) {
+        if (this.getIsMonthDisabled(month)) return;
         this.$emit('select', parseInt(month, 10));
       }
     },

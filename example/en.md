@@ -60,6 +60,13 @@ You can use the prop `open` to control the visible of popup.
 
 This example shows how to close the popup when the seconds is selected.
 
+<!-- MinMax -->
+### Min Max
+
+You can use the prop `min` &amp; `max` to specify range.
+
+This example shows how to use min and max date to restrict specify dates.
+
 <!-- HideSeconds -->
 
 ### Hide seconds selection & display AMPM selection
