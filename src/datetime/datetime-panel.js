@@ -78,7 +78,6 @@ export default {
     const timeProps = {
       props: {
         ...pick(this.$props, Object.keys(TimePanel.props)),
-        showTimeHeader: true,
         value: this.currentValue,
       },
       on: {

@@ -13,6 +13,7 @@ describe('DatetimePanel', () => {
       propsData: {
         type: 'datetime',
         defaultValue: new Date(2019, 9, 1, 12),
+        showTimeHeader: true,
       },
     });
     const td = wrapper.find('.mx-table-date td:nth-child(4)');

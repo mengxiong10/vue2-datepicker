@@ -52,6 +52,9 @@ export default {
     getYearPanel: {
       type: Function,
     },
+    formatter: {
+      type: Object,
+    },
     titleFormat: {
       type: String,
       default: 'YYYY-MM-DD',
@@ -252,6 +255,7 @@ export default {
         calendar={innerCalendar}
         getCellClasses={this.getDateClasses}
         getRowClasses={this.getWeekState}
+        formatter={this.formatter}
         titleFormat={this.titleFormat}
         showWeekNumber={
           typeof this.showWeekNumber === 'boolean' ? this.showWeekNumber : this.type === 'week'

@@ -62,7 +62,7 @@
 <script>
 import { getWeek, format } from 'date-format-parse';
 import IconButton from './icon-button';
-import { chunk } from '../util/base';
+import { chunk, isObject } from '../util/base';
 import { getCalendar, setMonth, setYear } from '../util/date';
 import { getLocale } from '../locale';
 
@@ -94,6 +94,9 @@ export default {
     showWeekNumber: {
       type: Boolean,
       default: false,
+    },
+    formatter: {
+      type: Object,
     },
     titleFormat: {
       type: String,
@@ -197,7 +200,17 @@ export default {
     formatDate(date, fmt) {
       return format(date, fmt, { locale: this.getLocale().formatLocale });
     },
+    getFormatter(key) {
+      return (
+        (isObject(this.formatter) && this.formatter[key]) ||
+        (isObject(this.format) && this.format[key])
+      );
+    },
     getCellTitle(date) {
+      if (typeof this.getFormatter('getLocalDate') === 'function') {
+        return this.getFormatter('getLocalDate')(date);
+      }
+
       const fmt = this.titleFormat;
       return this.formatDate(date, fmt);
     },
