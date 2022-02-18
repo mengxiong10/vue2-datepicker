@@ -133,6 +133,18 @@ export default {
         return [];
       },
     },
+    min: {
+      type: [Date, String],
+      validator(value) {
+        return !isNaN(new Date(value));
+      },
+    },
+    max: {
+      type: [Date, String],
+      validator(value) {
+        return !isNaN(new Date(value));
+      },
+    },
   },
   data() {
     return {

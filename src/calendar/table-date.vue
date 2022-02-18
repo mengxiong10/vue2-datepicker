@@ -1,10 +1,26 @@
 <template>
   <div :class="`${prefixClass}-calendar ${prefixClass}-calendar-panel-date`">
     <div :class="`${prefixClass}-calendar-header`">
-      <icon-button type="double-left" @click="handleIconDoubleLeftClick"></icon-button>
-      <icon-button type="left" @click="handleIconLeftClick"></icon-button>
-      <icon-button type="double-right" @click="handleIconDoubleRightClick"></icon-button>
-      <icon-button type="right" @click="handleIconRightClick"></icon-button>
+      <icon-button
+        :disabled="isDoubleLeftDisabled"
+        type="double-left"
+        @click="handleIconDoubleLeftClick"
+      ></icon-button>
+      <icon-button
+        :disabled="isGoLeftDisabled"
+        type="left"
+        @click="handleIconLeftClick"
+      ></icon-button>
+      <icon-button
+        :disabled="isDoubleRightDisabled"
+        type="double-right"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
+      <icon-button
+        :disabled="isGoRightDisabled"
+        type="right"
+        @click="handleIconRightClick"
+      ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <button
           v-for="item in yearMonth"
@@ -107,8 +123,44 @@ export default {
       type: Function,
       default: () => [],
     },
+    getIsDateDisabled: {
+      type: Function,
+      default: () => [],
+    },
+    min: { type: Date },
+    max: { type: Date },
   },
   computed: {
+    isDoubleLeftDisabled() {
+      if (!this.min || !this.calendar) return false;
+
+      const date = new Date(this.calendar);
+      date.setFullYear(date.getFullYear() - 1);
+      const min = new Date(this.min);
+      min.setDate(date.getDate());
+      return date <= min;
+    },
+    isDoubleRightDisabled() {
+      if (!this.max || !this.calendar) return false;
+
+      const date = new Date(this.calendar);
+      date.setFullYear(date.getFullYear() + 1);
+      const max = new Date(this.max);
+      max.setDate(date.getDate());
+      return date >= max;
+    },
+    isGoLeftDisabled() {
+      if (!this.min) return false;
+
+      return this.calendar < this.min;
+    },
+    isGoRightDisabled() {
+      if (!this.max) return false;
+
+      const date = new Date(this.calendar);
+      date.setMonth(date.getMonth() + 1);
+      return date > this.max;
+    },
     firstDayOfWeek() {
       return this.getLocale().formatLocale.firstDayOfWeek || 0;
     },
@@ -191,7 +243,9 @@ export default {
       if (index) {
         const [row, col] = index.split(',').map(v => parseInt(v, 10));
         const date = this.dates[row][col];
-        this.$emit('select', new Date(date));
+        if (!this.getIsDateDisabled(date)) {
+          this.$emit('select', new Date(date));
+        }
       }
     },
     formatDate(date, fmt) {

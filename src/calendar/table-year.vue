@@ -1,8 +1,16 @@
 <template>
   <div :class="`${prefixClass}-calendar ${prefixClass}-calendar-panel-year`">
     <div :class="`${prefixClass}-calendar-header`">
-      <icon-button type="double-left" @click="handleIconDoubleLeftClick"></icon-button>
-      <icon-button type="double-right" @click="handleIconDoubleRightClick"></icon-button>
+      <icon-button
+        type="double-left"
+        :disabled="isDoubleLeftDisabled"
+        @click="handleIconDoubleLeftClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        :disabled="isDoubleRightDisabled"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <span>{{ firstYear }}</span>
         <span :class="`${prefixClass}-calendar-decade-separator`"></span>
@@ -49,11 +57,29 @@ export default {
       type: Function,
       default: () => [],
     },
+    getIsYearDisabled: {
+      type: Function,
+      default: () => false,
+    },
     getYearPanel: {
       type: Function,
     },
+    min: {
+      // in year e.g. 2021
+      type: Number,
+    },
+    max: {
+      // in year e.g. 2021
+      type: Number,
+    },
   },
   computed: {
+    isDoubleLeftDisabled() {
+      return !!this.min && this.firstYear <= this.min;
+    },
+    isDoubleRightDisabled() {
+      return !!this.max && this.lastYear >= this.max;
+    },
     years() {
       const calendar = new Date(this.calendar);
       if (typeof this.getYearPanel === 'function') {
@@ -99,6 +125,7 @@ export default {
       }
       const year = target.getAttribute('data-year');
       if (year) {
+        if (this.getIsYearDisabled(year)) return;
         this.$emit('select', parseInt(year, 10));
       }
     },

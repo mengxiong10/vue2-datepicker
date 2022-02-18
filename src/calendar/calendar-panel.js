@@ -62,14 +62,27 @@ export default {
       type: Boolean,
       default: false,
     },
+    min: {
+      type: Date,
+    },
+    max: {
+      type: Date,
+    },
   },
   data() {
     const panels = ['date', 'month', 'year'];
     const index = Math.max(panels.indexOf(this.type), panels.indexOf(this.defaultPanel));
     const panel = index !== -1 ? panels[index] : 'date';
+    const minDate = (this.min && new Date(this.min)) || undefined;
+    const maxDate = (this.max && new Date(this.max)) || undefined;
+    if (minDate) minDate.setHours(0, 0, 0, 0);
+    if (maxDate) maxDate.setHours(23, 59, 59, 999);
+
     return {
       panel,
       innerCalendar: new Date(),
+      minDate,
+      maxDate,
     };
   },
   computed: {
@@ -186,7 +199,10 @@ export default {
     },
     getMonthClasses(month) {
       if (this.type !== 'month') {
-        return this.calendarMonth === month ? 'active' : '';
+        const classes = [this.calendarMonth === month ? 'active' : ''];
+        if (this.getIsMonthDisabled(month)) classes.push('disabled');
+
+        return classes;
       }
       const classes = [];
       const cellDate = this.getMonthCellDate(month);
@@ -195,7 +211,10 @@ export default {
     },
     getYearClasses(year) {
       if (this.type !== 'year') {
-        return this.calendarYear === year ? 'active' : '';
+        const classes = [this.calendarYear === year ? 'active' : ''];
+        if (this.getIsYearDisabled(year)) classes.push('disabled');
+
+        return classes;
       }
       const classes = [];
       const cellDate = this.getYearCellDate(year);
@@ -203,7 +222,7 @@ export default {
       return classes.concat(this.getClasses(cellDate, this.innerValue, classes.join(' ')));
     },
     getStateClass(cellDate) {
-      if (this.isDisabled(cellDate)) {
+      if (this.getIsDateDisabled(cellDate) || this.isDisabled(cellDate)) {
         return 'disabled';
       }
       if (this.innerValue.some(v => v.getTime() === cellDate.getTime())) {
@@ -221,9 +240,34 @@ export default {
       });
       return active ? `${this.prefixClass}-active-week` : '';
     },
+    getIsYearDisabled(year) {
+      return (
+        (!!this.minDate && year < this.minDate.getFullYear()) ||
+        (!!this.maxDate && year > this.maxDate.getFullYear())
+      );
+    },
+    getIsMonthDisabled(month) {
+      const cellDate = this.getMonthCellDate(month);
+
+      return (
+        (!!this.minDate &&
+          (this.minDate.getFullYear() > cellDate.getFullYear() ||
+            (this.minDate.getFullYear() === cellDate.getFullYear() &&
+              month < this.minDate.getMonth()))) ||
+        (!!this.maxDate &&
+          (this.maxDate.getFullYear() < cellDate.getFullYear() ||
+            (this.maxDate.getFullYear() === cellDate.getFullYear() &&
+              month > this.maxDate.getMonth())))
+      );
+    },
+    getIsDateDisabled(cellDate) {
+      return (
+        (!!this.minDate && this.minDate > cellDate) || (!!this.maxDate && this.maxDate < cellDate)
+      );
+    },
   },
   render() {
-    const { panel, innerCalendar } = this;
+    const { panel, innerCalendar, minDate, maxDate } = this;
     if (panel === 'year') {
       return (
         <TableYear
@@ -232,6 +276,9 @@ export default {
           getYearPanel={this.getYearPanel}
           onSelect={this.handleSelectYear}
           onChangecalendar={this.handleCalendarChange}
+          getIsYearDisabled={this.getIsYearDisabled}
+          min={minDate && minDate.getFullYear()}
+          max={maxDate && maxDate.getFullYear()}
         />
       );
     }
@@ -243,6 +290,9 @@ export default {
           onSelect={this.handleSelectMonth}
           onChangepanel={this.handelPanelChange}
           onChangecalendar={this.handleCalendarChange}
+          getIsMonthDisabled={this.getIsMonthDisabled}
+          min={minDate && minDate.getFullYear()}
+          max={maxDate && maxDate.getFullYear()}
         />
       );
     }
@@ -259,6 +309,9 @@ export default {
         onSelect={this.handleSelectDate}
         onChangepanel={this.handelPanelChange}
         onChangecalendar={this.handleCalendarChange}
+        getIsDateDisabled={this.getIsDateDisabled}
+        min={minDate}
+        max={maxDate}
       />
     );
   },
