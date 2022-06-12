@@ -1,3 +1,13 @@
+<a name="3.11.0"></a>
+# [3.11.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.4...v3.11.0) (2022-06-12)
+
+
+### Features
+
+* add disabledCalendarChanger ([#628](https://github.com/mengxiong10/vue2-datepicker/issues/628)) ([f487d11](https://github.com/mengxiong10/vue2-datepicker/commit/f487d11))
+
+
+
 <a name="3.10.4"></a>
 ## [3.10.4](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.3...v3.10.4) (2021-12-02)
 
