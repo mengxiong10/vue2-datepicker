@@ -1,8 +1,16 @@
 <template>
   <div :class="`${prefixClass}-calendar ${prefixClass}-calendar-panel-year`">
     <div :class="`${prefixClass}-calendar-header`">
-      <icon-button type="double-left" @click="handleIconDoubleLeftClick"></icon-button>
-      <icon-button type="double-right" @click="handleIconDoubleRightClick"></icon-button>
+      <icon-button
+        type="double-left"
+        :disabled="isDisabledArrows('last-decade')"
+        @click="handleIconDoubleLeftClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        :disabled="isDisabledArrows('next-decade')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <span>{{ firstYear }}</span>
         <span :class="`${prefixClass}-calendar-decade-separator`"></span>
@@ -41,6 +49,10 @@ export default {
     },
   },
   props: {
+    disabledCalendarChanger: {
+      type: Function,
+      default: () => false,
+    },
     calendar: {
       type: Date,
       default: () => new Date(),
@@ -70,6 +82,21 @@ export default {
     },
   },
   methods: {
+    isDisabledArrows(type) {
+      const date = new Date(this.calendar);
+      switch (type) {
+        case 'last-decade':
+          date.setFullYear(this.firstYear - 1, 11, 31);
+          date.setHours(23, 59, 59, 999);
+          break;
+        case 'next-decade':
+          date.setFullYear(this.lastYear + 1, 0, 1);
+          break;
+        default:
+          break;
+      }
+      return this.disabledCalendarChanger(date, type);
+    },
     getYears(calendar) {
       const firstYear = Math.floor(calendar.getFullYear() / 10) * 10;
       const years = [];
@@ -98,7 +125,7 @@ export default {
         target = target.parentNode;
       }
       const year = target.getAttribute('data-year');
-      if (year) {
+      if (year && !target.classList.contains('disabled')) {
         this.$emit('select', parseInt(year, 10));
       }
     },

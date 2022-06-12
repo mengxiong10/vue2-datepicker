@@ -1,10 +1,26 @@
 <template>
   <div :class="`${prefixClass}-calendar ${prefixClass}-calendar-panel-date`">
     <div :class="`${prefixClass}-calendar-header`">
-      <icon-button type="double-left" @click="handleIconDoubleLeftClick"></icon-button>
-      <icon-button type="left" @click="handleIconLeftClick"></icon-button>
-      <icon-button type="double-right" @click="handleIconDoubleRightClick"></icon-button>
-      <icon-button type="right" @click="handleIconRightClick"></icon-button>
+      <icon-button
+        type="double-left"
+        :disabled="isDisabledArrows('last-year')"
+        @click="handleIconDoubleLeftClick"
+      ></icon-button>
+      <icon-button
+        type="left"
+        :disabled="isDisabledArrows('last-month')"
+        @click="handleIconLeftClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        :disabled="isDisabledArrows('next-year')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
+      <icon-button
+        type="right"
+        :disabled="isDisabledArrows('next-month')"
+        @click="handleIconRightClick"
+      ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <button
           v-for="item in yearMonth"
@@ -87,6 +103,10 @@ export default {
     },
   },
   props: {
+    disabledCalendarChanger: {
+      type: Function,
+      default: () => false,
+    },
     calendar: {
       type: Date,
       default: () => new Date(),
@@ -141,6 +161,28 @@ export default {
     },
   },
   methods: {
+    isDisabledArrows(type) {
+      const date = new Date(this.calendar);
+      switch (type) {
+        case 'last-year':
+          date.setFullYear(date.getFullYear() - 1, date.getMonth() + 1, 0);
+          date.setHours(23, 59, 59, 999);
+          break;
+        case 'next-year':
+          date.setFullYear(date.getFullYear() + 1);
+          break;
+        case 'last-month':
+          date.setMonth(date.getMonth(), 0);
+          date.setHours(23, 59, 59, 999);
+          break;
+        case 'next-month':
+          date.setMonth(date.getMonth() + 1);
+          break;
+        default:
+          break;
+      }
+      return this.disabledCalendarChanger(date, type);
+    },
     handleIconLeftClick() {
       this.$emit(
         'changecalendar',

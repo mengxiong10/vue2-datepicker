@@ -18,6 +18,11 @@
     border-color: $primary-color;
     color: $primary-color;
   }
+  &:disabled,
+  &.disabled {
+    color: $disabled-color;
+    cursor: not-allowed;
+  }
 }
 
 .#{$namespace}-btn-text {

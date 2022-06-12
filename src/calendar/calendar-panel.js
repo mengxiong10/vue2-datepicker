@@ -33,6 +33,10 @@ export default {
     defaultPanel: {
       type: String,
     },
+    disabledCalendarChanger: {
+      type: Function,
+      default: () => false,
+    },
     disabledDate: {
       type: Function,
       default: () => false,
@@ -185,19 +189,33 @@ export default {
       return classes.concat(this.getClasses(cellDate, this.innerValue, classes.join(' ')));
     },
     getMonthClasses(month) {
-      if (this.type !== 'month') {
-        return this.calendarMonth === month ? 'active' : '';
-      }
       const classes = [];
+      if (this.type !== 'month') {
+        if (this.calendarMonth === month) {
+          classes.push('active');
+        }
+        const cellDate = this.getMonthCellDate(month);
+        if (this.disabledCalendarChanger(cellDate, 'month')) {
+          classes.push('disabled');
+        }
+        return classes;
+      }
       const cellDate = this.getMonthCellDate(month);
       classes.push(this.getStateClass(cellDate));
       return classes.concat(this.getClasses(cellDate, this.innerValue, classes.join(' ')));
     },
     getYearClasses(year) {
-      if (this.type !== 'year') {
-        return this.calendarYear === year ? 'active' : '';
-      }
       const classes = [];
+      if (this.type !== 'year') {
+        if (this.calendarYear === year) {
+          classes.push('active');
+        }
+        const cellDate = this.getYearCellDate(year);
+        if (this.disabledCalendarChanger(cellDate, 'year')) {
+          classes.push('disabled');
+        }
+        return classes;
+      }
       const cellDate = this.getYearCellDate(year);
       classes.push(this.getStateClass(cellDate));
       return classes.concat(this.getClasses(cellDate, this.innerValue, classes.join(' ')));
@@ -227,6 +245,7 @@ export default {
     if (panel === 'year') {
       return (
         <TableYear
+          disabledCalendarChanger={this.disabledCalendarChanger}
           calendar={innerCalendar}
           getCellClasses={this.getYearClasses}
           getYearPanel={this.getYearPanel}
@@ -238,6 +257,7 @@ export default {
     if (panel === 'month') {
       return (
         <TableMonth
+          disabledCalendarChanger={this.disabledCalendarChanger}
           calendar={innerCalendar}
           getCellClasses={this.getMonthClasses}
           onSelect={this.handleSelectMonth}
@@ -248,6 +268,7 @@ export default {
     }
     return (
       <TableDate
+        disabledCalendarChanger={this.disabledCalendarChanger}
         class={{ [`${this.prefixClass}-calendar-week-mode`]: this.type === 'week' }}
         calendar={innerCalendar}
         getCellClasses={this.getDateClasses}

@@ -1,7 +1,13 @@
 <template>
   <button
     type="button"
-    :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-${type}`"
+    :disabled="disabled"
+    :class="[
+      `${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-${type}`,
+      {
+        disabled: disabled,
+      },
+    ]"
     v-on="$listeners"
   >
     <i :class="`${prefixClass}-icon-${type}`"></i>
@@ -12,6 +18,7 @@
 export default {
   props: {
     type: String,
+    disabled: Boolean,
   },
   inject: {
     prefixClass: {
