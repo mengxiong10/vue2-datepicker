@@ -140,6 +140,7 @@ export default {
       currentValue: null,
       userInput: null,
       defaultOpen: false,
+      mouseInInput: false,
     };
   },
   computed: {
@@ -188,7 +189,7 @@ export default {
       return this.formatDate(this.innerValue);
     },
     showClearIcon() {
-      return !this.disabled && this.clearable && this.text;
+      return !this.disabled && this.clearable && this.text && this.mouseInInput;
     },
     locale() {
       if (isObject(this.lang)) {
@@ -224,6 +225,12 @@ export default {
     }
   },
   methods: {
+    handleMouseEnter() {
+      this.mouseInInput = true;
+    },
+    handleMouseLeave() {
+      this.mouseInInput = false;
+    },
     handleClickOutSide(evt) {
       const { target } = evt;
       if (!this.$el.contains(target)) {
@@ -475,25 +482,25 @@ export default {
         }
       );
       const calendarIcon = this.type === 'time' ? <IconTime /> : <IconCalendar />;
+      // remove touchstart event to avoid opens the popup while scrolling in mobile #469
       return (
         <div
           class={`${prefixClass}-input-wrapper`}
-          onMousedown={this.openPopup}
-          onTouchstart={this.openPopup}
+          onMouseenter={this.handleMouseEnter}
+          onMouseleave={this.handleMouseLeave}
+          onClick={this.openPopup}
+          ref="inputWrapper"
         >
           {input}
           {this.showClearIcon ? (
-            <i
-              class={`${prefixClass}-icon-clear`}
-              onMousedown={this.handleClear}
-              onTouchstart={this.handleClear}
-            >
+            <i class={`${prefixClass}-icon-clear`} onClick={this.handleClear}>
               {this.renderSlot('icon-clear', <IconClose />)}
             </i>
-          ) : null}
-          <i class={`${prefixClass}-icon-calendar`}>
-            {this.renderSlot('icon-calendar', calendarIcon)}
-          </i>
+          ) : (
+            <i class={`${prefixClass}-icon-calendar`}>
+              {this.renderSlot('icon-calendar', calendarIcon)}
+            </i>
+          )}
         </div>
       );
     },

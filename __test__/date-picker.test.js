@@ -17,7 +17,7 @@ describe('DatePicker', () => {
     expect(wrapper.find('.mx-datepicker-popup').exists()).toBe(false);
     // expect click input should show the popup
     const input = wrapper.find('input');
-    await input.trigger('mousedown');
+    await input.trigger('click');
     expect(wrapper.find('.mx-datepicker-popup').exists()).toBe(true);
     // expect click out side should hide the popup
     const bodyWrapper = createWrapper(document.body);
@@ -296,28 +296,31 @@ describe('DatePicker', () => {
     expect(popup.element.parentNode).toBe(document.body);
   });
 
-  it('feat: should emit clear event when click clear button', () => {
+  it('feat: should emit clear event when click clear button', async () => {
     wrapper = shallowMount(DatePicker, {
       propsData: {
         value: new Date(2019, 10, 9),
       },
     });
+    await wrapper.find('.mx-input-wrapper').trigger('mouseenter');
     const clearButton = wrapper.find('.mx-icon-clear');
-    clearButton.trigger('mousedown');
+
+    clearButton.trigger('click');
     const emitted = wrapper.emitted();
     expect(emitted.clear).toBeTruthy();
     expect(emitted.input[0][0]).toBe(null);
   });
 
-  it('feat: should emit [null, null] when clear range', () => {
+  it('feat: should emit [null, null] when clear range', async () => {
     wrapper = shallowMount(DatePicker, {
       propsData: {
         range: true,
         value: [new Date(2019, 10, 9), new Date(2019, 11, 9)],
       },
     });
+    await wrapper.find('.mx-input-wrapper').trigger('mouseenter');
     const clearButton = wrapper.find('.mx-icon-clear');
-    clearButton.trigger('mousedown');
+    clearButton.trigger('click');
     const emitted = wrapper.emitted();
     expect(emitted.input[0][0]).toEqual([null, null]);
   });

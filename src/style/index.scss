@@ -27,17 +27,6 @@
 
 .#{$namespace}-input-wrapper {
   position: relative;
-  .#{$namespace}-icon-clear {
-    display: none;
-  }
-  &:hover {
-    .#{$namespace}-icon-clear {
-      display: block;
-    }
-    .#{$namespace}-icon-clear + .#{$namespace}-icon-calendar {
-      display: none;
-    }
-  }
 }
 
 .#{$namespace}-input {

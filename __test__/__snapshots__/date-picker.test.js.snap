@@ -88,11 +88,6 @@ exports[`DatePicker prop: editable 1`] = `
       type="text"
     />
     <i
-      class="mx-icon-clear"
-    >
-      <anonymous-stub />
-    </i>
-    <i
       class="mx-icon-calendar"
     >
       <anonymous-stub />
