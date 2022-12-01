@@ -1,3 +1,13 @@
+<a name="3.11.1"></a>
+## [3.11.1](https://github.com/mengxiong10/vue2-datepicker/compare/v3.11.0...v3.11.1) (2022-12-01)
+
+
+### Bug Fixes
+
+* should click twice to open popup in mobile ([#725](https://github.com/mengxiong10/vue2-datepicker/issues/725)) ([375edbb](https://github.com/mengxiong10/vue2-datepicker/commit/375edbb))
+
+
+
 <a name="3.11.0"></a>
 # [3.11.0](https://github.com/mengxiong10/vue2-datepicker/compare/v3.10.4...v3.11.0) (2022-06-12)
 
