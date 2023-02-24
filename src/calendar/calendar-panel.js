@@ -105,6 +105,11 @@ export default {
     defaultValue: {
       handler: 'initCalendar',
     },
+    type: {
+      handler: function(val) {
+        this.handelPanelChange(val);
+      },
+    },
   },
   methods: {
     initCalendar() {
