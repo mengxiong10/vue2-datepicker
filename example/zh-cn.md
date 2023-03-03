@@ -81,3 +81,9 @@
 ### 固定的时间列表
 
 可以通过 `timePickerOptions` 提供一个固定的时间列表选择
+
+<!-- ShadowDom -->
+
+### Shadow DOM
+
+If you use the component inside shadow DOM, you should set the `:append-to-body="false"`.

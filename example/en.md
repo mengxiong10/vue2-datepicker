@@ -81,3 +81,9 @@ Set custom time options by `hourOptions` `minuteOptions` `secondOptions`.
 ### Select fixed time list
 
 You can provide a list of fixed time for users to choose by `timePickerOptions`
+
+<!-- ShadowDom -->
+
+### Shadow DOM
+
+If you use the component inside shadow DOM, you should set the `:append-to-body="false"`.
