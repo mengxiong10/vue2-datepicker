@@ -1,9 +1,9 @@
 <template>
-  <transition :name="`${prefixClass}-zoom-in-down`">
+  <transition :name="`${prefixClass}-zoom-in-${orientation}`">
     <div
       v-if="visible"
       :class="`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`"
-      :style="{ top, left, position: 'absolute' }"
+      :style="{ top, bottom, left, position: 'absolute' }"
     >
       <slot></slot>
     </div>
@@ -13,6 +13,8 @@
 <script>
 import { rafThrottle } from './util/throttle';
 import { getPopupElementSize, getRelativePosition, getScrollParent } from './util/dom';
+
+const temporaryRect = { width: 250, height: 270 };
 
 export default {
   name: 'Popup',
@@ -30,11 +32,17 @@ export default {
       type: Boolean,
       default: true,
     },
+    horizontalPosition: {
+      type: String,
+      default: 'right',
+    },
   },
   data() {
     return {
       top: '',
+      bottom: '',
       left: '',
+      orientation: 'down',
     };
   },
   watch: {
@@ -56,6 +64,9 @@ export default {
     this._clickoutEvent = 'ontouchend' in document ? 'touchstart' : 'mousedown';
 
     document.addEventListener(this._clickoutEvent, this.handleClickOutside);
+
+    // check ofientation
+    this.displayPopup();
 
     // change the popup position when resize or scroll
     const relativeElement = this.$parent.$el;
@@ -84,17 +95,29 @@ export default {
       }
     },
     displayPopup() {
-      if (!this.visible) return;
       const popup = this.$el;
       const relativeElement = this.$parent.$el;
-      const { appendToBody } = this;
-      if (!this._popupRect) {
+      const { appendToBody, horizontalPosition } = this;
+      if (this.visible && !this._popupRect) {
         this._popupRect = getPopupElementSize(popup);
       }
-      const { width, height } = this._popupRect;
-      const { left, top } = getRelativePosition(relativeElement, width, height, appendToBody);
+      const { width, height } = this.visible ? this._popupRect : temporaryRect;
+      const { left, top, bottom, orientation } = getRelativePosition(
+        relativeElement,
+        width,
+        height,
+        appendToBody,
+        horizontalPosition
+      );
       this.left = left;
-      this.top = top;
+      this.orientation = orientation;
+      if (orientation === 'up') {
+        this.top = '';
+        this.bottom = bottom;
+      } else {
+        this.top = top;
+        this.bottom = '';
+      }
     },
   },
 };

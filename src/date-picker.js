@@ -95,6 +95,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    horizontalPosition: {
+      // always show from left or right
+      type: String,
+      default: 'right', // left / right
+    },
     open: {
       type: Boolean,
       default: undefined,
@@ -605,6 +610,7 @@ export default {
             style={this.popupStyle}
             visible={this.popupVisible}
             appendToBody={this.appendToBody}
+            horizontalPosition={this.horizontalPosition}
             onClickoutside={this.handleClickOutSide}
           >
             {sidedar}
