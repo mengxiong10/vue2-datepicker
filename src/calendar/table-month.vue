@@ -3,13 +3,9 @@
     <div :class="`${prefixClass}-calendar-header`">
       <icon-button
         type="double-left"
+        :aria-label="locale.prev"
         :disabled="isDisabledArrows('last-year')"
         @click="handleIconDoubleLeftClick"
-      ></icon-button>
-      <icon-button
-        type="double-right"
-        :disabled="isDisabledArrows('next-year')"
-        @click="handleIconDoubleRightClick"
       ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <button
@@ -20,6 +16,12 @@
           {{ calendarYear }}
         </button>
       </span>
+      <icon-button
+        type="double-right"
+        :aria-label="locale.next"
+        :disabled="isDisabledArrows('next-year')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
       <table :class="`${prefixClass}-table ${prefixClass}-table-month`" @click="handleClick">
@@ -81,6 +83,9 @@ export default {
         return { text, month };
       });
       return chunk(months, 3);
+    },
+    locale() {
+      return this.getLocale();
     },
   },
   methods: {
