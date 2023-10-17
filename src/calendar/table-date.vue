@@ -3,23 +3,15 @@
     <div :class="`${prefixClass}-calendar-header`">
       <icon-button
         type="double-left"
+        :aria-label="locale.prevYear"
         :disabled="isDisabledArrows('last-year')"
         @click="handleIconDoubleLeftClick"
       ></icon-button>
       <icon-button
         type="left"
+        :aria-label="locale.prevMonth"
         :disabled="isDisabledArrows('last-month')"
         @click="handleIconLeftClick"
-      ></icon-button>
-      <icon-button
-        type="double-right"
-        :disabled="isDisabledArrows('next-year')"
-        @click="handleIconDoubleRightClick"
-      ></icon-button>
-      <icon-button
-        type="right"
-        :disabled="isDisabledArrows('next-month')"
-        @click="handleIconRightClick"
       ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <button
@@ -34,6 +26,18 @@
           {{ item.label }}
         </button>
       </span>
+      <icon-button
+        type="right"
+        :aria-label="locale.nextMonth"
+        :disabled="isDisabledArrows('next-month')"
+        @click="handleIconRightClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        :aria-label="locale.nextYear"
+        :disabled="isDisabledArrows('next-year')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
       <table :class="`${prefixClass}-table ${prefixClass}-table-date`">
@@ -158,6 +162,9 @@ export default {
         month,
       });
       return chunk(arr, 7);
+    },
+    locale() {
+      return this.getLocale();
     },
   },
   methods: {

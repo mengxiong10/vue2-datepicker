@@ -3,19 +3,21 @@
     <div :class="`${prefixClass}-calendar-header`">
       <icon-button
         type="double-left"
+        :aria-label="locale.prev"
         :disabled="isDisabledArrows('last-decade')"
         @click="handleIconDoubleLeftClick"
-      ></icon-button>
-      <icon-button
-        type="double-right"
-        :disabled="isDisabledArrows('next-decade')"
-        @click="handleIconDoubleRightClick"
       ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <span>{{ firstYear }}</span>
         <span :class="`${prefixClass}-calendar-decade-separator`"></span>
         <span>{{ lastYear }}</span>
       </span>
+      <icon-button
+        type="double-right"
+        :aria-label="locale.next"
+        :disabled="isDisabledArrows('next-decade')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
       <table :class="`${prefixClass}-table ${prefixClass}-table-year`" @click="handleClick">
@@ -39,11 +41,15 @@
 import IconButton from './icon-button';
 import { chunk } from '../util/base';
 import { setYear } from '../util/date';
+import { getLocale } from '../locale';
 
 export default {
   name: 'TableYear',
   components: { IconButton },
   inject: {
+    getLocale: {
+      default: () => getLocale,
+    },
     prefixClass: {
       default: 'mx',
     },
@@ -79,6 +85,9 @@ export default {
     lastYear() {
       const last = arr => arr[arr.length - 1];
       return last(last(this.years));
+    },
+    locale() {
+      return this.getLocale();
     },
   },
   methods: {
