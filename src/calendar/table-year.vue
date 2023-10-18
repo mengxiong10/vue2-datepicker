@@ -20,14 +20,28 @@
       ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
-      <table :class="`${prefixClass}-table ${prefixClass}-table-year`" @click="handleClick">
+      <table
+        :class="`${prefixClass}-table ${prefixClass}-table-year`"
+        @click="handleClick"
+        @keydown.enter="handleClick"
+      >
         <tr v-for="(row, i) in years" :key="i">
           <td
             v-for="(cell, j) in row"
+            :ref="handleRef(cell)"
             :key="j"
-            :data-year="cell"
+            aria-hidden="false"
             class="cell"
+            role="button"
+            :tabindex="handleTabIndex(cell)"
+            :data-year="cell"
             :class="getCellClasses(cell)"
+            @blur.prevent="onBlur(i, j)"
+            @keydown.tab.prevent.stop
+            @keydown.up.prevent="handleArrowUp(i, j)"
+            @keydown.down.prevent="handleArrowDown(i, j)"
+            @keydown.left.prevent="handleArrowLeft(i, j)"
+            @keydown.right.prevent="handleArrowRight(i, j)"
           >
             <div>{{ cell }}</div>
           </td>
@@ -114,6 +128,68 @@ export default {
       }
       return chunk(years, 2);
     },
+    handleArrowUp(row, column) {
+      if (row === 0) {
+        return;
+      }
+      const year = this.years[row - 1][column];
+      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
+    handleArrowDown(row, column) {
+      if (row === this.years.length - 1) {
+        return;
+      }
+      const year = this.years[row + 1][column];
+      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
+    handleArrowLeft(row, column) {
+      if (column % 2 === 0) {
+        if (row === 0 && column === 0) {
+          this.handleIconDoubleLeftClick();
+          const ref = this.$refs[`year-cell-${this.lastYear}`]?.[0];
+          if (ref) {
+            ref.focus();
+          }
+        }
+        return;
+      }
+      const year = this.years[row][column - 1];
+      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
+    handleArrowRight(row, column) {
+      if (column % 2 === 1) {
+        if (row === this.years.length - 1) {
+          const lastRow = this.years[row];
+          if (column === lastRow.length - 1) {
+            this.handleIconDoubleRightClick();
+            const year = this.years[0][0];
+            const ref = this.$refs[`year-cell-${year}`]?.[0];
+            if (ref) {
+              ref.focus();
+            }
+          }
+        }
+        return;
+      }
+      const year = this.years[row][column + 1];
+      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
     handleIconDoubleLeftClick() {
       this.$emit(
         'changecalendar',
@@ -136,6 +212,30 @@ export default {
       const year = target.getAttribute('data-year');
       if (year && !target.classList.contains('disabled')) {
         this.$emit('select', parseInt(year, 10));
+        this.selectedYear = parseInt(year, 10);
+      }
+    },
+    handleRef(cellDate) {
+      return this.disabledCalendarChanger(cellDate, 'year') ? undefined : `year-cell-${cellDate}`;
+    },
+    handleTabIndex(cellDate) {
+      return this.disabledCalendarChanger(cellDate, 'year') ? -1 : 0;
+    },
+    moveToFirstCell() {
+      const year = this.years[0][0];
+      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      if (ref) {
+        setTimeout(() => {
+          ref.focus();
+          ref.classList.add('focus');
+        }, 1);
+      }
+    },
+    onBlur(i, j) {
+      const year = this.years[i][j];
+      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      if (ref) {
+        ref.classList.remove('focus');
       }
     },
   },

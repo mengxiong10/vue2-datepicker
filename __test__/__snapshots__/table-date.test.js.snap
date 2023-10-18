@@ -108,6 +108,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,0"
+            role="button"
+            tabindex="0"
             title="29/09/2019"
           >
             <div>
@@ -117,6 +119,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,1"
+            role="button"
+            tabindex="0"
             title="30/09/2019"
           >
             <div>
@@ -126,6 +130,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,2"
+            role="button"
+            tabindex="0"
             title="01/10/2019"
           >
             <div>
@@ -135,6 +141,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,3"
+            role="button"
+            tabindex="0"
             title="02/10/2019"
           >
             <div>
@@ -144,6 +152,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,4"
+            role="button"
+            tabindex="0"
             title="03/10/2019"
           >
             <div>
@@ -153,6 +163,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,5"
+            role="button"
+            tabindex="0"
             title="04/10/2019"
           >
             <div>
@@ -162,6 +174,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="0,6"
+            role="button"
+            tabindex="0"
             title="05/10/2019"
           >
             <div>
@@ -177,6 +191,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,0"
+            role="button"
+            tabindex="0"
             title="06/10/2019"
           >
             <div>
@@ -186,6 +202,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,1"
+            role="button"
+            tabindex="0"
             title="07/10/2019"
           >
             <div>
@@ -195,6 +213,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,2"
+            role="button"
+            tabindex="0"
             title="08/10/2019"
           >
             <div>
@@ -204,6 +224,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,3"
+            role="button"
+            tabindex="0"
             title="09/10/2019"
           >
             <div>
@@ -213,6 +235,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,4"
+            role="button"
+            tabindex="0"
             title="10/10/2019"
           >
             <div>
@@ -222,6 +246,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,5"
+            role="button"
+            tabindex="0"
             title="11/10/2019"
           >
             <div>
@@ -231,6 +257,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="1,6"
+            role="button"
+            tabindex="0"
             title="12/10/2019"
           >
             <div>
@@ -246,6 +274,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,0"
+            role="button"
+            tabindex="0"
             title="13/10/2019"
           >
             <div>
@@ -255,6 +285,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,1"
+            role="button"
+            tabindex="0"
             title="14/10/2019"
           >
             <div>
@@ -264,6 +296,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,2"
+            role="button"
+            tabindex="0"
             title="15/10/2019"
           >
             <div>
@@ -273,6 +307,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,3"
+            role="button"
+            tabindex="0"
             title="16/10/2019"
           >
             <div>
@@ -282,6 +318,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,4"
+            role="button"
+            tabindex="0"
             title="17/10/2019"
           >
             <div>
@@ -291,6 +329,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,5"
+            role="button"
+            tabindex="0"
             title="18/10/2019"
           >
             <div>
@@ -300,6 +340,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="2,6"
+            role="button"
+            tabindex="0"
             title="19/10/2019"
           >
             <div>
@@ -315,6 +357,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,0"
+            role="button"
+            tabindex="0"
             title="20/10/2019"
           >
             <div>
@@ -324,6 +368,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,1"
+            role="button"
+            tabindex="0"
             title="21/10/2019"
           >
             <div>
@@ -333,6 +379,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,2"
+            role="button"
+            tabindex="0"
             title="22/10/2019"
           >
             <div>
@@ -342,6 +390,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,3"
+            role="button"
+            tabindex="0"
             title="23/10/2019"
           >
             <div>
@@ -351,6 +401,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,4"
+            role="button"
+            tabindex="0"
             title="24/10/2019"
           >
             <div>
@@ -360,6 +412,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,5"
+            role="button"
+            tabindex="0"
             title="25/10/2019"
           >
             <div>
@@ -369,6 +423,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="3,6"
+            role="button"
+            tabindex="0"
             title="26/10/2019"
           >
             <div>
@@ -384,6 +440,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,0"
+            role="button"
+            tabindex="0"
             title="27/10/2019"
           >
             <div>
@@ -393,6 +451,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,1"
+            role="button"
+            tabindex="0"
             title="28/10/2019"
           >
             <div>
@@ -402,6 +462,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,2"
+            role="button"
+            tabindex="0"
             title="29/10/2019"
           >
             <div>
@@ -411,6 +473,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,3"
+            role="button"
+            tabindex="0"
             title="30/10/2019"
           >
             <div>
@@ -420,6 +484,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,4"
+            role="button"
+            tabindex="0"
             title="31/10/2019"
           >
             <div>
@@ -429,6 +495,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,5"
+            role="button"
+            tabindex="0"
             title="01/11/2019"
           >
             <div>
@@ -438,6 +506,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="4,6"
+            role="button"
+            tabindex="0"
             title="02/11/2019"
           >
             <div>
@@ -453,6 +523,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,0"
+            role="button"
+            tabindex="0"
             title="03/11/2019"
           >
             <div>
@@ -462,6 +534,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,1"
+            role="button"
+            tabindex="0"
             title="04/11/2019"
           >
             <div>
@@ -471,6 +545,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,2"
+            role="button"
+            tabindex="0"
             title="05/11/2019"
           >
             <div>
@@ -480,6 +556,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,3"
+            role="button"
+            tabindex="0"
             title="06/11/2019"
           >
             <div>
@@ -489,6 +567,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,4"
+            role="button"
+            tabindex="0"
             title="07/11/2019"
           >
             <div>
@@ -498,6 +578,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,5"
+            role="button"
+            tabindex="0"
             title="08/11/2019"
           >
             <div>
@@ -507,6 +589,8 @@ exports[`TableDate corrent render 1`] = `
           <td
             class="cell"
             data-row-col="5,6"
+            role="button"
+            tabindex="0"
             title="09/11/2019"
           >
             <div>

@@ -354,6 +354,7 @@ export default {
     handleClear(evt) {
       evt.stopPropagation();
       this.clear();
+      this.$refs.input.focus();
     },
     handleConfirmDate() {
       const value = this.emitValue(this.currentValue);
@@ -380,6 +381,7 @@ export default {
       this.defaultOpen = false;
       this.$emit('close');
       this.$emit('update:open', false);
+      this.$refs.input.focus();
     },
     blur() {
       // when use slot input
@@ -428,10 +430,12 @@ export default {
     handleInputKeydown(evt) {
       const { keyCode } = evt;
       // Tab 9 or Enter 13
-      if (keyCode === 9) {
+      if (keyCode === 9 || keyCode === 27) {
         this.closePopup();
       } else if (keyCode === 13) {
         this.handleInputChange();
+      } else if (keyCode === 40) {
+        this.handleInputFocus();
       }
     },
     handleInputBlur(evt) {
@@ -468,7 +472,7 @@ export default {
       const { value, class: className, ...attrs } = props;
       const events = {
         keydown: this.handleInputKeydown,
-        focus: this.handleInputFocus,
+        focus: this.handleMouseEnter,
         blur: this.handleInputBlur,
         input: this.handleInputInput,
         change: this.handleInputChange,
@@ -493,9 +497,15 @@ export default {
         >
           {input}
           {this.showClearIcon ? (
-            <i class={`${prefixClass}-icon-clear`} onClick={this.handleClear}>
-              {this.renderSlot('icon-clear', <IconClose />)}
-            </i>
+            <button
+              class={`${prefixClass}-button-clear`}
+              aria-label="clear"
+              onClick={this.handleClear}
+            >
+              <i class={`${prefixClass}-icon-clear`}>
+                {this.renderSlot('icon-clear', <IconClose />)}
+              </i>
+            </button>
           ) : (
             <i class={`${prefixClass}-icon-calendar`}>
               {this.renderSlot('icon-calendar', calendarIcon)}

@@ -24,14 +24,27 @@
       ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
-      <table :class="`${prefixClass}-table ${prefixClass}-table-month`" @click="handleClick">
+      <table
+        :class="`${prefixClass}-table ${prefixClass}-table-month`"
+        @click="handleClick"
+        @keydown.enter="handleClick"
+      >
         <tr v-for="(row, i) in months" :key="i">
           <td
             v-for="(cell, j) in row"
             :key="j"
-            :data-month="cell.month"
+            :ref="`month-cell-${cell.text}`"
             class="cell"
+            role="button"
+            tabindex="0"
+            :data-month="cell.month"
             :class="getCellClasses(cell.month)"
+            @blur="onBlur(i, j)"
+            @keydown.tab.prevent.stop
+            @keydown.up.prevent="handleArrowUp(i, j)"
+            @keydown.down.prevent="handleArrowDown(i, j)"
+            @keydown.left.prevent="handleArrowLeft(i, j)"
+            @keydown.right.prevent="handleArrowRight(i, j)"
           >
             <div>{{ cell.text }}</div>
           </td>
@@ -77,7 +90,7 @@ export default {
       return this.calendar.getFullYear();
     },
     months() {
-      const locale = this.getLocale();
+      const { locale } = this;
       const monthsLocale = locale.months || locale.formatLocale.monthsShort;
       const months = monthsLocale.map((text, month) => {
         return { text, month };
@@ -104,6 +117,70 @@ export default {
       }
       return this.disabledCalendarChanger(date, type);
     },
+    handleArrowUp(row, column) {
+      if (row === 0) {
+        return;
+      }
+      const month = this.months[row - 1][column];
+      const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
+    handleArrowDown(row, column) {
+      if (row === this.months.length - 1) {
+        return;
+      }
+      const month = this.months[row + 1][column];
+      const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
+    handleArrowLeft(row, column) {
+      if (column <= 0) {
+        if (row === 0 && column === 0) {
+          this.handleIconDoubleLeftClick();
+          const lastMonth = this.months[this.months.length - 1];
+          const month = lastMonth[lastMonth.length - 1];
+          const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+          if (ref) {
+            ref.focus();
+          }
+        }
+        return;
+      }
+      const month = this.months[row][column - 1];
+      const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
+    handleArrowRight(row, column) {
+      if (column >= 2) {
+        if (row === this.months.length - 1) {
+          const lastRow = this.months[row];
+          if (column === lastRow.length - 1) {
+            this.handleIconDoubleRightClick();
+            const month = this.months[0][0];
+            const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+            if (ref) {
+              ref.focus();
+            }
+          }
+        }
+        return;
+      }
+      const month = this.months[row][column + 1];
+      const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+      if (ref) {
+        ref.focus();
+        ref.classList.add('focus');
+      }
+    },
     handleIconDoubleLeftClick() {
       this.$emit(
         'changecalendar',
@@ -129,6 +206,23 @@ export default {
       const month = target.getAttribute('data-month');
       if (month && !target.classList.contains('disabled')) {
         this.$emit('select', parseInt(month, 10));
+      }
+    },
+    moveToFirstCell() {
+      const month = this.months[0][0];
+      const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+      if (ref) {
+        setTimeout(() => {
+          ref.focus();
+          ref.classList.add('focus');
+        }, 1);
+      }
+    },
+    onBlur(i, j) {
+      const month = this.months[i][j];
+      const ref = this.$refs[`month-cell-${month.text}`]?.[0];
+      if (ref) {
+        ref.classList.remove('focus');
       }
     },
   },

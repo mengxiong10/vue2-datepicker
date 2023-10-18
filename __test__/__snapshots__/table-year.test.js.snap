@@ -50,16 +50,22 @@ exports[`TableYear decade=2010 1`] = `
     >
       <tr>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2010"
+          role="button"
+          tabindex="0"
         >
           <div>
             2010
           </div>
         </td>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2011"
+          role="button"
+          tabindex="0"
         >
           <div>
             2011
@@ -68,16 +74,22 @@ exports[`TableYear decade=2010 1`] = `
       </tr>
       <tr>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2012"
+          role="button"
+          tabindex="0"
         >
           <div>
             2012
           </div>
         </td>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2013"
+          role="button"
+          tabindex="0"
         >
           <div>
             2013
@@ -86,16 +98,22 @@ exports[`TableYear decade=2010 1`] = `
       </tr>
       <tr>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2014"
+          role="button"
+          tabindex="0"
         >
           <div>
             2014
           </div>
         </td>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2015"
+          role="button"
+          tabindex="0"
         >
           <div>
             2015
@@ -104,16 +122,22 @@ exports[`TableYear decade=2010 1`] = `
       </tr>
       <tr>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2016"
+          role="button"
+          tabindex="0"
         >
           <div>
             2016
           </div>
         </td>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2017"
+          role="button"
+          tabindex="0"
         >
           <div>
             2017
@@ -122,16 +146,22 @@ exports[`TableYear decade=2010 1`] = `
       </tr>
       <tr>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2018"
+          role="button"
+          tabindex="0"
         >
           <div>
             2018
           </div>
         </td>
         <td
+          aria-hidden="false"
           class="cell"
           data-year="2019"
+          role="button"
+          tabindex="0"
         >
           <div>
             2019
