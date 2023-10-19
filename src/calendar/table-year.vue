@@ -28,7 +28,7 @@
         <tr v-for="(row, i) in years" :key="i">
           <td
             v-for="(cell, j) in row"
-            :ref="handleRef(cell)"
+            :ref="handleRefName(cell, i, j)"
             :key="j"
             aria-hidden="false"
             class="cell"
@@ -36,12 +36,11 @@
             :tabindex="handleTabIndex(cell)"
             :data-year="cell"
             :class="getCellClasses(cell)"
-            @blur.prevent="onBlur(i, j)"
             @keydown.tab.prevent.stop
-            @keydown.up.prevent="handleArrowUp(i, j)"
-            @keydown.down.prevent="handleArrowDown(i, j)"
-            @keydown.left.prevent="handleArrowLeft(i, j)"
-            @keydown.right.prevent="handleArrowRight(i, j)"
+            @keydown.up.prevent="handleArrowUp(cell, i, j)"
+            @keydown.down.prevent="handleArrowDown(cell, i, j)"
+            @keydown.left.prevent="handleArrowLeft(cell, i, j)"
+            @keydown.right.prevent="handleArrowRight(cell, i, j)"
           >
             <div>{{ cell }}</div>
           </td>
@@ -54,7 +53,7 @@
 <script>
 import IconButton from './icon-button';
 import { chunk } from '../util/base';
-import { setYear } from '../util/date';
+import { createDate, setYear } from '../util/date';
 import { getLocale } from '../locale';
 
 export default {
@@ -84,6 +83,10 @@ export default {
     getYearPanel: {
       type: Function,
     },
+    isDisabled: {
+      type: Function,
+      default: () => false,
+    },
   },
   computed: {
     years() {
@@ -102,6 +105,12 @@ export default {
     },
     locale() {
       return this.getLocale();
+    },
+    refsArray() {
+      if (this.$refs) {
+        return Object.entries(this.$refs);
+      }
+      return [];
     },
   },
   methods: {
@@ -128,66 +137,64 @@ export default {
       }
       return chunk(years, 2);
     },
-    handleArrowUp(row, column) {
+    handleArrowUp(cell, row, column) {
       if (row === 0) {
         return;
       }
-      const year = this.years[row - 1][column];
-      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      const refName = this.handleRefName(cell, row - 1, column);
+      const ref = this.$refs[refName]?.[0];
       if (ref) {
         ref.focus();
-        ref.classList.add('focus');
       }
     },
-    handleArrowDown(row, column) {
+    handleArrowDown(cell, row, column) {
       if (row === this.years.length - 1) {
         return;
       }
-      const year = this.years[row + 1][column];
-      const ref = this.$refs[`year-cell-${year}`]?.[0];
+      const refName = this.handleRefName(cell, row + 1, column);
+      const ref = this.$refs[refName]?.[0];
       if (ref) {
         ref.focus();
-        ref.classList.add('focus');
       }
     },
-    handleArrowLeft(row, column) {
-      if (column % 2 === 0) {
-        if (row === 0 && column === 0) {
-          this.handleIconDoubleLeftClick();
-          const ref = this.$refs[`year-cell-${this.lastYear}`]?.[0];
-          if (ref) {
-            ref.focus();
+    handleArrowLeft(cell, row, column) {
+      const currentRefName = this.handleRefName(cell, row, column);
+      const firstRef = this.refsArray[0];
+      if (currentRefName !== firstRef[0]) {
+        const refName = this.handleRefName(cell, row, column - 1);
+        const ref = this.$refs[refName]?.[0];
+        if (ref) {
+          ref.focus();
+        }
+      } else {
+        this.handleIconDoubleLeftClick();
+        const lastRef = this.refsArray[this.refsArray.length - 1];
+        if (lastRef.length) {
+          const element = lastRef[1];
+          if (element.length) {
+            element[0].focus();
           }
         }
-        return;
-      }
-      const year = this.years[row][column - 1];
-      const ref = this.$refs[`year-cell-${year}`]?.[0];
-      if (ref) {
-        ref.focus();
-        ref.classList.add('focus');
       }
     },
-    handleArrowRight(row, column) {
-      if (column % 2 === 1) {
-        if (row === this.years.length - 1) {
-          const lastRow = this.years[row];
-          if (column === lastRow.length - 1) {
-            this.handleIconDoubleRightClick();
-            const year = this.years[0][0];
-            const ref = this.$refs[`year-cell-${year}`]?.[0];
-            if (ref) {
-              ref.focus();
-            }
+    handleArrowRight(cell, row, column) {
+      const currentRefName = this.handleRefName(cell, row, column);
+      const lastRef = this.refsArray[this.refsArray.length - 1];
+      if (currentRefName !== lastRef[0]) {
+        const refName = this.handleRefName(cell, row, column + 1);
+        const ref = this.$refs[refName]?.[0];
+        if (ref) {
+          ref.focus();
+        }
+      } else {
+        this.handleIconDoubleRightClick();
+        const firstRef = this.refsArray[0];
+        if (firstRef.length) {
+          const element = firstRef[1];
+          if (element.length) {
+            element[0].focus();
           }
         }
-        return;
-      }
-      const year = this.years[row][column + 1];
-      const ref = this.$refs[`year-cell-${year}`]?.[0];
-      if (ref) {
-        ref.focus();
-        ref.classList.add('focus');
       }
     },
     handleIconDoubleLeftClick() {
@@ -215,28 +222,16 @@ export default {
         this.selectedYear = parseInt(year, 10);
       }
     },
-    handleRef(cellDate) {
-      return this.disabledCalendarChanger(cellDate, 'year') ? undefined : `year-cell-${cellDate}`;
+    handleRefName(cellDate, row, col) {
+      const date = createDate(cellDate, 0);
+      if (!this.isDisabled(date)) {
+        return `year-cell-${row}-${col}`;
+      }
+      return undefined;
     },
     handleTabIndex(cellDate) {
-      return this.disabledCalendarChanger(cellDate, 'year') ? -1 : 0;
-    },
-    moveToFirstCell() {
-      const year = this.years[0][0];
-      const ref = this.$refs[`year-cell-${year}`]?.[0];
-      if (ref) {
-        setTimeout(() => {
-          ref.focus();
-          ref.classList.add('focus');
-        }, 1);
-      }
-    },
-    onBlur(i, j) {
-      const year = this.years[i][j];
-      const ref = this.$refs[`year-cell-${year}`]?.[0];
-      if (ref) {
-        ref.classList.remove('focus');
-      }
+      const date = createDate(cellDate, 0);
+      return this.isDisabled(date) ? -1 : 0;
     },
   },
 };
