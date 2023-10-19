@@ -154,15 +154,8 @@
   line-height: 34px;
   text-align: center;
   overflow: hidden;
-}
-
-.#{$namespace}-btn-icon-left,
-.#{$namespace}-btn-icon-double-left {
-  float: left;
-}
-.#{$namespace}-btn-icon-right,
-.#{$namespace}-btn-icon-double-right {
-  float: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .#{$namespace}-calendar-header-label {
@@ -199,6 +192,9 @@
       cursor: not-allowed;
       color: $disabled-color;
       background-color: $disabled-background-color;
+    }
+    &.focus {
+      outline: -webkit-focus-ring-color auto 1px;
     }
   }
 }
