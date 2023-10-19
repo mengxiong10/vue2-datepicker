@@ -9,7 +9,6 @@
   margin: 0;
   cursor: pointer;
   background-color: transparent;
-  outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   color: $default-color;
@@ -28,6 +27,11 @@
 .#{$namespace}-btn-text {
   border: 0;
   padding: 0 4px;
-  text-align: left;
+  text-align: center;
   line-height: inherit;
+  min-width: 32px;
+
+  &:focus-visible {
+    outline-offset: -1px;
+  }
 }

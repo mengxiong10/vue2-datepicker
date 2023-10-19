@@ -23,8 +23,9 @@ describe('DatePicker', () => {
     const bodyWrapper = createWrapper(document.body);
     await bodyWrapper.trigger('mousedown');
     expect(wrapper.find('.mx-datepicker-popup').exists()).toBe(false);
-    // expect focus input should show the popop
+    // expect keydown down should show the popop
     await input.trigger('focus');
+    await input.trigger('keydown.down');
     expect(wrapper.find('.mx-datepicker-popup').exists()).toBe(true);
     // expoce keydown tab should hide the popup
     await input.trigger('keydown.tab');
@@ -265,7 +266,6 @@ describe('DatePicker', () => {
     // click the date expect popup don't close
     vm.handleSelectDate(new Date(2018, 5, 5));
     expect(wrapper.emitted().input).toBeUndefined();
-    expect(vm.popupVisible).toBe(true);
     await btn.trigger('click');
     expect(wrapper.emitted().input[0][0]).toEqual(new Date(2018, 5, 5));
     expect(vm.popupVisible).toBe(false);

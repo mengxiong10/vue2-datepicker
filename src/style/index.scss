@@ -63,8 +63,23 @@
   }
 }
 
-.#{$namespace}-icon-calendar,
-.#{$namespace}-icon-clear {
+
+.#{$namespace}-button-clear{
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  background: #fff;
+  transform: translateY(-50%);
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+
+  &:hover,
+  &:focus {
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.#{$namespace}-icon-calendar {
   position: absolute;
   top: 50%;
   right: 8px;
@@ -75,18 +90,16 @@
   vertical-align: middle;
 }
 
-.#{$namespace}-icon-clear {
-  cursor: pointer;
-  &:hover {
-    color: rgba(0, 0, 0, 0.8);
-  }
-}
 
 .#{$namespace}-datepicker-main {
   font: 14px/1.5 'Helvetica Neue', Helvetica, Arial, 'Microsoft Yahei', sans-serif;
   color: $default-color;
   background-color: #fff;
   border: 1px solid $border-color;
+
+  &:focus{
+    outline: none;
+  }
 }
 
 .#{$namespace}-datepicker-popup {
@@ -154,15 +167,8 @@
   line-height: 34px;
   text-align: center;
   overflow: hidden;
-}
-
-.#{$namespace}-btn-icon-left,
-.#{$namespace}-btn-icon-double-left {
-  float: left;
-}
-.#{$namespace}-btn-icon-right,
-.#{$namespace}-btn-icon-double-right {
-  float: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .#{$namespace}-calendar-header-label {
@@ -199,6 +205,9 @@
       cursor: not-allowed;
       color: $disabled-color;
       background-color: $disabled-background-color;
+    }
+    &.focus {
+      outline: -webkit-focus-ring-color auto 1px;
     }
   }
 }

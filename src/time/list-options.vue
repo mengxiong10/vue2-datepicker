@@ -3,8 +3,10 @@
     <div
       v-for="item in list"
       :key="item.value"
+      :tabindex="isDisabled(item.value) ? '-1' : '0'"
       :class="[`${prefixClass}-time-option`, getClasses(item.value)]"
       @click="handleSelect(item.value)"
+      @keydown.enter="handleSelect(item.value)"
     >
       {{ item.text }}
     </div>
@@ -62,6 +64,10 @@ export default {
     getClasses: {
       type: Function,
       default: () => [],
+    },
+    isDisabled: {
+      type: Function,
+      default: () => false,
     },
   },
   computed: {

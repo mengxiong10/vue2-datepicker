@@ -148,6 +148,8 @@ export default {
         getClasses: this.getRangeClasses,
         // don't update when range is true
         partialUpdate: false,
+        rangeIndex: index,
+        range: true,
       };
       const on = {
         select: this.handleSelect,

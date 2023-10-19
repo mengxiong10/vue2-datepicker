@@ -3,29 +3,44 @@
     <div :class="`${prefixClass}-calendar-header`">
       <icon-button
         type="double-left"
+        :aria-label="locale.prev"
         :disabled="isDisabledArrows('last-decade')"
         @click="handleIconDoubleLeftClick"
-      ></icon-button>
-      <icon-button
-        type="double-right"
-        :disabled="isDisabledArrows('next-decade')"
-        @click="handleIconDoubleRightClick"
       ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <span>{{ firstYear }}</span>
         <span :class="`${prefixClass}-calendar-decade-separator`"></span>
         <span>{{ lastYear }}</span>
       </span>
+      <icon-button
+        type="double-right"
+        :aria-label="locale.next"
+        :disabled="isDisabledArrows('next-decade')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
-      <table :class="`${prefixClass}-table ${prefixClass}-table-year`" @click="handleClick">
+      <table
+        :class="`${prefixClass}-table ${prefixClass}-table-year`"
+        @click="handleClick"
+        @keydown.enter="handleClick"
+      >
         <tr v-for="(row, i) in years" :key="i">
           <td
             v-for="(cell, j) in row"
+            :ref="handleRefName(cell, i, j)"
             :key="j"
-            :data-year="cell"
+            aria-hidden="false"
             class="cell"
+            role="button"
+            :tabindex="handleTabIndex(cell)"
+            :data-year="cell"
             :class="getCellClasses(cell)"
+            @keydown.tab.prevent.stop
+            @keydown.up.prevent="handleArrowUp(cell, i, j)"
+            @keydown.down.prevent="handleArrowDown(cell, i, j)"
+            @keydown.left.prevent="handleArrowLeft(cell, i, j)"
+            @keydown.right.prevent="handleArrowRight(cell, i, j)"
           >
             <div>{{ cell }}</div>
           </td>
@@ -38,12 +53,16 @@
 <script>
 import IconButton from './icon-button';
 import { chunk } from '../util/base';
-import { setYear } from '../util/date';
+import { createDate, setYear } from '../util/date';
+import { getLocale } from '../locale';
 
 export default {
   name: 'TableYear',
   components: { IconButton },
   inject: {
+    getLocale: {
+      default: () => getLocale,
+    },
     prefixClass: {
       default: 'mx',
     },
@@ -64,6 +83,10 @@ export default {
     getYearPanel: {
       type: Function,
     },
+    isDisabled: {
+      type: Function,
+      default: () => false,
+    },
   },
   computed: {
     years() {
@@ -79,6 +102,15 @@ export default {
     lastYear() {
       const last = arr => arr[arr.length - 1];
       return last(last(this.years));
+    },
+    locale() {
+      return this.getLocale();
+    },
+    refsArray() {
+      if (this.$refs) {
+        return Object.entries(this.$refs);
+      }
+      return [];
     },
   },
   methods: {
@@ -105,6 +137,66 @@ export default {
       }
       return chunk(years, 2);
     },
+    handleArrowUp(cell, row, column) {
+      if (row === 0) {
+        return;
+      }
+      const refName = this.handleRefName(cell, row - 1, column);
+      const ref = this.$refs[refName]?.[0];
+      if (ref) {
+        ref.focus();
+      }
+    },
+    handleArrowDown(cell, row, column) {
+      if (row === this.years.length - 1) {
+        return;
+      }
+      const refName = this.handleRefName(cell, row + 1, column);
+      const ref = this.$refs[refName]?.[0];
+      if (ref) {
+        ref.focus();
+      }
+    },
+    handleArrowLeft(cell, row, column) {
+      const currentRefName = this.handleRefName(cell, row, column);
+      const firstRef = this.refsArray[0];
+      if (currentRefName !== firstRef[0]) {
+        const refName = this.handleRefName(cell, row, column - 1);
+        const ref = this.$refs[refName]?.[0];
+        if (ref) {
+          ref.focus();
+        }
+      } else {
+        this.handleIconDoubleLeftClick();
+        const lastRef = this.refsArray[this.refsArray.length - 1];
+        if (lastRef.length) {
+          const element = lastRef[1];
+          if (element.length) {
+            element[0].focus();
+          }
+        }
+      }
+    },
+    handleArrowRight(cell, row, column) {
+      const currentRefName = this.handleRefName(cell, row, column);
+      const lastRef = this.refsArray[this.refsArray.length - 1];
+      if (currentRefName !== lastRef[0]) {
+        const refName = this.handleRefName(cell, row, column + 1);
+        const ref = this.$refs[refName]?.[0];
+        if (ref) {
+          ref.focus();
+        }
+      } else {
+        this.handleIconDoubleRightClick();
+        const firstRef = this.refsArray[0];
+        if (firstRef.length) {
+          const element = firstRef[1];
+          if (element.length) {
+            element[0].focus();
+          }
+        }
+      }
+    },
     handleIconDoubleLeftClick() {
       this.$emit(
         'changecalendar',
@@ -127,7 +219,19 @@ export default {
       const year = target.getAttribute('data-year');
       if (year && !target.classList.contains('disabled')) {
         this.$emit('select', parseInt(year, 10));
+        this.selectedYear = parseInt(year, 10);
       }
+    },
+    handleRefName(cellDate, row, col) {
+      const date = createDate(cellDate, 0);
+      if (!this.isDisabled(date)) {
+        return `year-cell-${row}-${col}`;
+      }
+      return undefined;
+    },
+    handleTabIndex(cellDate) {
+      const date = createDate(cellDate, 0);
+      return this.isDisabled(date) ? -1 : 0;
     },
   },
 };

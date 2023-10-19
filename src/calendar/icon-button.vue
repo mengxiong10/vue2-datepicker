@@ -1,6 +1,7 @@
 <template>
   <button
     type="button"
+    :aria-label="ariaLabel"
     :disabled="disabled"
     :class="[
       `${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-btn-icon-${type}`,
@@ -17,6 +18,7 @@
 <script>
 export default {
   props: {
+    ariaLabel: String,
     type: String,
     disabled: Boolean,
   },

@@ -2,6 +2,7 @@
   <div :class="`${prefixClass}-time`">
     <div v-if="showTimeHeader" :class="`${prefixClass}-time-header`">
       <button
+        ref="dateButton"
         type="button"
         :class="`${prefixClass}-btn ${prefixClass}-btn-text ${prefixClass}-time-header-title`"
         @click="handleClickTitle"
@@ -14,6 +15,7 @@
         v-if="timePickerOptions"
         :date="innerValue"
         :get-classes="getClasses"
+        :is-disabled="isDisabled"
         :options="timePickerOptions"
         :format="innerForamt"
         @select="handleSelect"
@@ -21,6 +23,7 @@
       <list-columns
         v-else
         :date="innerValue"
+        :is-disabled-time="isDisabled"
         :get-classes="getClasses"
         :hour-options="hourOptions"
         :minute-options="minuteOptions"
@@ -156,6 +159,14 @@ export default {
         this.innerValue = getValidDate(this.value, this.defaultValue);
       },
     },
+  },
+  mounted() {
+    const ref = this.$refs.dateButton;
+    if (ref) {
+      setTimeout(() => {
+        ref.focus();
+      }, 300);
+    }
   },
   methods: {
     formatDate(date, fmt) {

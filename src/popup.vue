@@ -1,9 +1,13 @@
 <template>
-  <transition :name="`${prefixClass}-zoom-in-down`">
+  <transition :name="`${prefixClass}-zoom-in-down`" @after-enter="afterAnimateIn">
     <div
       v-if="visible"
+      ref="datePickerContainer"
+      role="application"
+      tabindex="-1"
       :class="`${prefixClass}-datepicker-main ${prefixClass}-datepicker-popup`"
       :style="{ top, left, position: 'absolute' }"
+      @keydown.esc="closePopUp"
     >
       <slot></slot>
     </div>
@@ -75,6 +79,9 @@ export default {
     window.removeEventListener('resize', this._displayPopup);
   },
   methods: {
+    afterAnimateIn() {
+      this.$refs.datePickerContainer.focus();
+    },
     handleClickOutside(evt) {
       if (!this.visible) return;
       const { target } = evt;
@@ -95,6 +102,9 @@ export default {
       const { left, top } = getRelativePosition(relativeElement, width, height, appendToBody);
       this.left = left;
       this.top = top;
+    },
+    closePopUp(evt) {
+      this.$emit('clickoutside', evt);
     },
   },
 };

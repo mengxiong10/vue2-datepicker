@@ -3,23 +3,15 @@
     <div :class="`${prefixClass}-calendar-header`">
       <icon-button
         type="double-left"
+        :aria-label="locale.prevYear"
         :disabled="isDisabledArrows('last-year')"
         @click="handleIconDoubleLeftClick"
       ></icon-button>
       <icon-button
         type="left"
+        :aria-label="locale.prevMonth"
         :disabled="isDisabledArrows('last-month')"
         @click="handleIconLeftClick"
-      ></icon-button>
-      <icon-button
-        type="double-right"
-        :disabled="isDisabledArrows('next-year')"
-        @click="handleIconDoubleRightClick"
-      ></icon-button>
-      <icon-button
-        type="right"
-        :disabled="isDisabledArrows('next-month')"
-        @click="handleIconRightClick"
       ></icon-button>
       <span :class="`${prefixClass}-calendar-header-label`">
         <button
@@ -34,6 +26,18 @@
           {{ item.label }}
         </button>
       </span>
+      <icon-button
+        type="right"
+        :aria-label="locale.nextMonth"
+        :disabled="isDisabledArrows('next-month')"
+        @click="handleIconRightClick"
+      ></icon-button>
+      <icon-button
+        type="double-right"
+        :aria-label="locale.nextYear"
+        :disabled="isDisabledArrows('next-year')"
+        @click="handleIconDoubleRightClick"
+      ></icon-button>
     </div>
     <div :class="`${prefixClass}-calendar-content`">
       <table :class="`${prefixClass}-table ${prefixClass}-table-date`">
@@ -43,7 +47,7 @@
             <th v-for="day in days" :key="day">{{ day }}</th>
           </tr>
         </thead>
-        <tbody @click="handleCellClick">
+        <tbody @click="handleCellClick" @keydown.enter="handleCellClick">
           <tr
             v-for="(row, i) in dates"
             :key="i"
@@ -58,13 +62,23 @@
             </td>
             <td
               v-for="(cell, j) in row"
+              :id="handleId(i, j)"
               :key="j"
-              :data-row-col="`${i},${j}`"
+              :ref="handleRefName(cell, i, j)"
               class="cell"
+              role="button"
               :class="getCellClasses(cell)"
+              :data-row-col="`${i},${j}`"
+              :disabled="isDisabled(cell)"
+              :tabindex="handleTabIndex(cell)"
               :title="getCellTitle(cell)"
               @mouseenter="handleMouseEnter(cell)"
               @mouseleave="handleMouseLeave(cell)"
+              @keydown.tab.prevent.stop
+              @keydown.up.prevent="handleArrowUp(cell, i, j)"
+              @keydown.down.prevent="handleArrowDown(cell, i, j)"
+              @keydown.left.prevent="handleArrowLeft(cell, i, j)"
+              @keydown.right.prevent="handleArrowRight(cell, i, j)"
             >
               <div>{{ cell.getDate() }}</div>
             </td>
@@ -111,6 +125,10 @@ export default {
       type: Date,
       default: () => new Date(),
     },
+    isDisabled: {
+      type: Function,
+      default: () => false,
+    },
     showWeekNumber: {
       type: Boolean,
       default: false,
@@ -126,6 +144,14 @@ export default {
     getCellClasses: {
       type: Function,
       default: () => [],
+    },
+    range: {
+      type: Boolean,
+      default: false,
+    },
+    rangeIndex: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {
@@ -159,6 +185,15 @@ export default {
       });
       return chunk(arr, 7);
     },
+    locale() {
+      return this.getLocale();
+    },
+    refsArray() {
+      if (this.$refs) {
+        return Object.entries(this.$refs);
+      }
+      return [];
+    },
   },
   methods: {
     isDisabledArrows(type) {
@@ -182,6 +217,96 @@ export default {
           break;
       }
       return this.disabledCalendarChanger(date, type);
+    },
+    handleArrowUp(cell, row, column) {
+      if (row === 0) {
+        return;
+      }
+      const refName = this.handleRefName(cell, row - 1, column);
+      const ref = this.$refs[refName]?.[0];
+      if (ref) {
+        ref.focus();
+      }
+    },
+    handleArrowDown(cell, row, column) {
+      if (row === this.dates.length - 1) {
+        return;
+      }
+      const refName = this.handleRefName(cell, row + 1, column);
+      const ref = this.$refs[refName]?.[0];
+      if (ref) {
+        ref.focus();
+      }
+    },
+    handleArrowLeft(cell, row, column) {
+      const currentRefName = this.handleRefName(cell, row, column);
+      const firstRef = this.refsArray[0];
+      if (currentRefName !== firstRef[0]) {
+        const refName = this.handleRefName(cell, row, column - 1);
+        const ref = this.$refs[refName]?.[0];
+        if (ref) {
+          ref.focus();
+        }
+      } else if (this.range) {
+        let index = 0;
+        if (this.rangeIndex === 0) {
+          this.handleIconLeftClick();
+        } else {
+          index = this.rangeIndex - 1;
+        }
+        const lastRow = this.dates[this.dates.length - 1];
+        const cellName = `#range-date-${index}-cell-${this.dates.length - 1}-${lastRow.length - 1}`;
+        const cellElement = document.querySelector(cellName);
+        if (cellElement) {
+          cellElement.focus();
+        }
+      } else {
+        this.$nextTick(() => {
+          this.handleIconLeftClick();
+          const lastRef = this.refsArray[this.refsArray.length - 1];
+          if (lastRef.length) {
+            const element = lastRef[1];
+            if (element.length) {
+              element[0].focus();
+            }
+          }
+        });
+      }
+    },
+    handleArrowRight(cell, row, column) {
+      const currentRefName = this.handleRefName(cell, row, column);
+      const lastRef = this.refsArray[this.refsArray.length - 1];
+      if (currentRefName !== lastRef[0]) {
+        const refName = this.handleRefName(cell, row, column + 1);
+        const ref = this.$refs[refName]?.[0];
+        if (ref) {
+          ref.focus();
+        }
+      } else if (this.range) {
+        let index = 0;
+        if (this.rangeIndex === 0) {
+          index = this.rangeIndex + 1;
+        } else {
+          index = this.rangeIndex - 1;
+          this.handleIconRightClick();
+        }
+        const cellName = `#range-date-${index}-cell-0-0`;
+        const cellElement = document.querySelector(cellName);
+        if (cellElement) {
+          cellElement.focus();
+        }
+      } else {
+        this.$nextTick(() => {
+          this.handleIconLeftClick();
+          const firstRef = this.refsArray[0];
+          if (firstRef.length) {
+            const element = firstRef[1];
+            if (element.length) {
+              element[0].focus();
+            }
+          }
+        });
+      }
     },
     handleIconLeftClick() {
       this.$emit(
@@ -245,6 +370,25 @@ export default {
     },
     getWeekNumber(date) {
       return this.getWeek(date, this.getLocale().formatLocale);
+    },
+    handleRefName(cellDate, row, col) {
+      if (!this.isDisabled(cellDate)) {
+        if (this.range) {
+          return `range-date-${this.rangeIndex}-cell-${row}-${col}`;
+        }
+        return `date-cell-${row}-${col}`;
+      }
+      return undefined;
+    },
+    handleId(row, col) {
+      if (this.range) {
+        return `range-date-${this.rangeIndex}-cell-${row}-${col}`;
+      }
+      return undefined;
+    },
+    handleTabIndex(cellDate) {
+      const response = this.isDisabled(cellDate);
+      return response ? -1 : 0;
     },
   },
 };

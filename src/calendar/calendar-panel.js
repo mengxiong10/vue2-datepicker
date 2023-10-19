@@ -66,6 +66,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    range: {
+      type: Boolean,
+      default: false,
+    },
+    rangeIndex: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     const panels = ['date', 'month', 'year'];
@@ -249,6 +257,7 @@ export default {
           calendar={innerCalendar}
           getCellClasses={this.getYearClasses}
           getYearPanel={this.getYearPanel}
+          isDisabled={this.isDisabled}
           onSelect={this.handleSelectYear}
           onChangecalendar={this.handleCalendarChange}
         />
@@ -260,6 +269,7 @@ export default {
           disabledCalendarChanger={this.disabledCalendarChanger}
           calendar={innerCalendar}
           getCellClasses={this.getMonthClasses}
+          isDisabled={this.isDisabled}
           onSelect={this.handleSelectMonth}
           onChangepanel={this.handelPanelChange}
           onChangecalendar={this.handleCalendarChange}
@@ -273,6 +283,9 @@ export default {
         calendar={innerCalendar}
         getCellClasses={this.getDateClasses}
         getRowClasses={this.getWeekState}
+        isDisabled={this.isDisabled}
+        range={this.range}
+        rangeIndex={this.rangeIndex}
         titleFormat={this.titleFormat}
         showWeekNumber={
           typeof this.showWeekNumber === 'boolean' ? this.showWeekNumber : this.type === 'week'
