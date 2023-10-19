@@ -6,12 +6,17 @@
         :data-type="col.type"
         :data-index="i"
         @click="handleSelect"
+        @keydown.enter="handleSelect"
       >
         <li
           v-for="(item, j) in col.list"
           :key="item.value"
+          :ref="`item-${i}-${j}`"
+          :tabindex="isDisabledTime(item.value, col.type) ? '-1' : '0'"
           :data-index="j"
           :class="[`${prefixClass}-time-item`, getClasses(item.value, col.type)]"
+          @keydown.left.prevent="handleArrowLeft(i, j)"
+          @keydown.right.prevent="handleArrowRight(i, j)"
         >
           {{ item.text }}
         </li>
@@ -81,6 +86,10 @@ export default {
     getClasses: {
       type: Function,
       default: () => [],
+    },
+    isDisabledTime: {
+      type: Function,
+      default: () => false,
     },
     hourOptions: Array,
     minuteOptions: Array,
@@ -172,6 +181,24 @@ export default {
         const value = date.setHours((date.getHours() % 12) + i * 12);
         return { text, value };
       });
+    },
+    handleArrowLeft(col, row) {
+      if (col <= 0) {
+        return;
+      }
+      const ref = this.$refs[`item-${col - 1}-${row}`]?.[0];
+      if (ref) {
+        ref.focus();
+      }
+    },
+    handleArrowRight(col, row) {
+      if (col >= 2) {
+        return;
+      }
+      const ref = this.$refs[`item-${col + 1}-${row}`]?.[0];
+      if (ref) {
+        ref.focus();
+      }
     },
     scrollToSelected(duration) {
       const elements = this.$el.querySelectorAll('.active');
